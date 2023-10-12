@@ -5,12 +5,13 @@ import { Reset } from "styled-reset";
 import GlobalStyle from "./styles/GlobalStyle";
 import defaultTheme from "./styles/defaultTheme";
 
+import Header from "./components/Header";
+
 const Container = styled.div`
   margin: 0 auto;
   width: ${(props) => props.theme.sizes.layoutWidth};
   background: ${(props) => props.theme.colors.layoutBackground};
 `;
-
 
 export default function App() {
 	return (
@@ -18,7 +19,8 @@ export default function App() {
 			<Reset />
 			<GlobalStyle />
 			<Container>
-				<h1>Hello</h1>
+				<Header />
+				<p>추가해주세요</p>
 			</Container>
 		</ThemeProvider>
 	);
