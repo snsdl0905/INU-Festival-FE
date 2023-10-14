@@ -7,6 +7,7 @@ import defaultTheme from "./styles/defaultTheme";
 
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
+import FestivalSentence from "./components/FestivalSentence";
 
 const Container = styled.div`
   margin: 0 auto;
@@ -21,7 +22,7 @@ export default function App() {
 			<GlobalStyle />
 			<Container>
 				<Header />
-				<p>추가해주세요</p>
+				<FestivalSentence />
 				<Navbar />
 			</Container>
 		</ThemeProvider>
