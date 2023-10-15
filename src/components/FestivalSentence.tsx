@@ -3,14 +3,16 @@ import styled from "styled-components"
 const FestivalSentenceBox =styled.div`
     margin-top: 10rem;
     background-color: #F8F8FA;
-    width: 390px;
-    height: 73px;
+    width: 335px;
+    height: 61px;
     top: 483px;
     left: 20px;
     border-radius: 12px;
     display:flex;
     justify-around:space-between;
     align-items:center;
+    margin-left:20px;
+    margin-right:20px;
 `
 152
 const BallonBox = styled.div`
@@ -35,7 +37,7 @@ const BallonBox = styled.div`
             height: 30.16px;
             top: 496px;
             left: 44px;
-            margin-left:24px;
+            margin-left:16px;
         }
 `
 
@@ -47,41 +49,52 @@ const SentenceBox =styled.div`
         font-weight: 600;
         line-height: 21px; /* 131.25% */
         letter-spacing: -0.48px;
-        margin-left:13px;
+        margin-left:6px;
+
+
+        span{
+            color: #939393;
+            font-family: SF Pro;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 510;
+            line-height: 100%; /* 12px */
+            letter-spacing: -0.36px;
+        }
 `
 const WordContainer=styled.div`
         display:flex;
-
+        margin-left:20px;
+        margin-top:12px;
 `
+
 const Word = styled.div`
-    margin-top:19px;
-    margin-right:10px;
-    width: 76px;
-    height: 38px;
+    width: 64px;
+    height: 36px;
     flex-shrink: 0;
     border-radius: 33px;
-    background: #F8F8FA;
+    background: #F7F7F7;
     text-align:center;
-    line-height:38px;
-    color: #3A3A3A;
+    color: #4F4F4F;
     font-family: SF Pro;
-    font-size: 13px;
+    font-size: 12px;
     font-style: normal;
     font-weight: 600;
-    letter-spacing: -0.26px;
+    line-height: 36px;
+    letter-spacing: -0.24px;
+    margin-right:8px;
 `
-
 
 export default function FestivalSentence(){
     return(
         <>
             <FestivalSentenceBox>
                 <BallonBox>
-                    <img src="ballon.png" alt="말풍선"/>
-                    <div>201902929</div>  {/* 데이터 들어오면 바뀜 */}
+                    <img src="ballon.png" alt="말풍선"/> {/* 데이터 들어오면 바뀜 */}
                 </BallonBox>
                 <SentenceBox>
-                    퇴근길에 이런 유익한 글을 보니 기분이 좋네요. {/* 데이터 들어오면 바뀜 */}
+                      <span>201902929</span><br />
+                      퇴근길에 이런 글을 보니 기분이 좋네요. {/* 데이터 들어오면 바뀜 */}
                 </SentenceBox>
             </FestivalSentenceBox>
 
