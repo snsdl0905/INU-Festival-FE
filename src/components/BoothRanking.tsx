@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import BoothItem from "./BoothItem";
 
 const BoothRankingTitle = styled.div`
         color: #000;
@@ -39,10 +40,8 @@ const BoothRankingContainer= styled.div`
 `
 const BoothWrapper = styled.div`
             display: flex;
-            height: 444px;
             flex-direction: column;
             align-items: flex-start;
-            gap: 24px;
             flex: 1 0 0;
 `;
 const BoothRankingCrown = styled.div`
@@ -58,60 +57,13 @@ const LineDiv = styled.div`
     width: 292px;
     height: 1px;
     background-color: #CEDCEA;
+    margin-bottom:24px;
+    margin-top:12px;
 `
-
-const Booth = styled.div`
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        align-self: stretch;
-`
-
-const BoothDetail =styled.div`
-display: flex;
-width: 214px;
-justify-content: space-between;
-align-items: center;
-`
-const BoothRank =styled.img`
-    width: 28px;
-    height: 28px;
-    flex-shrink: 0;
-`
-
-const BoothImg = styled.img`
-            width: 48px;
-            height: 48px;
-            left: 45px;
-            border-radius:50%
-`
-const BoothTitle =styled.div`
-
-        div{
-            &:first-child{
-                        color: #B6BBC4;
-                        font-size: 13px;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: normal;
-                        letter-spacing: -0.26px;
-            }
-            &:last-child{
-                    color: #000;
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: normal;
-                    letter-spacing: -0.32px;
-            }
-    }
-`
-const BoothHeart=styled.div`
-        width: 64px;
-        height: 32px;
-        flex-shrink: 0;
-        border-radius: 21px;
-        background: #EBF2FF;
+const BoothList = styled.div`
+display:flex;
+flex-direction:column;
+gap:36px;
 `
 
 
@@ -132,22 +84,14 @@ export default function BoothRanking()
             <BoothWrapper>
                 <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
                 <LineDiv />
-
-                <Booth>
-                    <BoothDetail>
-                        <BoothRank src="Rank1.png" />
-                        <BoothImg src="BoothDefault.png"/>
-                            <BoothTitle>
-                                <div>교내</div>
-                                <div>취업경력개발원</div>
-                            </BoothTitle>
-                    </BoothDetail>
-                    
-                        <BoothHeart>
-                        </BoothHeart>
-                </Booth>
-
-                </BoothWrapper>
+                <BoothList>
+                        <BoothItem />
+                        <BoothItem />
+                        <BoothItem />
+                        <BoothItem />
+                        <BoothItem />
+                </BoothList>
+            </BoothWrapper>
             </BoothRankingContainer>        
         </>    
     )
