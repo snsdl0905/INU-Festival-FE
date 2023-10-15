@@ -9,12 +9,14 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import FestivalSentence from "./components/FestivalSentence";
 import BoothRanking from "./components/BoothRanking";
+import LineUp from "./components/LineUp";
 
 const Container = styled.div`
   margin: 0 auto;
   width: ${(props) => props.theme.sizes.layoutWidth};
   background: ${(props) => props.theme.colors.layoutBackground};
-`;
+  overflow: hidden;
+  `;
 
 export default function App() {
 	return (
@@ -22,7 +24,8 @@ export default function App() {
 			<Reset />
 			<GlobalStyle />
 			<Container>
-				<Header />
+				{/* <Header /> */}
+				<LineUp />
 				<FestivalSentence />
 				<BoothRanking />
 				<Navbar />
