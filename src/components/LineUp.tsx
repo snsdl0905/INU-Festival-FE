@@ -2,14 +2,15 @@ import styled from "styled-components";
 import Header from "./Header";
 
 const Content = styled.div`
-    width: 375px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;       
     height: 27rem;
     border-radius: 0.87rem;
     box-shadow: 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
     position: absolute;
     overflow: hidden;
     z-index: 100;
-
 
     ::before {
         background-image: url("BOL4.png");

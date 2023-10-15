@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const Boothranking= styled.div`
-        width: 390px;
+        width: 100%;
         height: 558px;
         flex-shrink: 0;
         border-radius: 12px;

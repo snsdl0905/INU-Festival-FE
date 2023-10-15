@@ -3,13 +3,13 @@ import styled from "styled-components"
 const FestivalSentenceBox =styled.div`
     margin-top: 10rem;
     background-color: #F8F8FA;
-    width: 390px;
+    width: 100%;
     height: 73px;
     top: 483px;
     left: 20px;
     border-radius: 12px;
     display:flex;
-    justify-around:space-between;
+    align-items: center;
     align-items:center;
 `
 152

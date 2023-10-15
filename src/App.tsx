@@ -5,7 +5,6 @@ import { Reset } from "styled-reset";
 import GlobalStyle from "./styles/GlobalStyle";
 import defaultTheme from "./styles/defaultTheme";
 
-import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import FestivalSentence from "./components/FestivalSentence";
 import BoothRanking from "./components/BoothRanking";
@@ -13,10 +12,15 @@ import LineUp from "./components/LineUp";
 
 const Container = styled.div`
   margin: 0 auto;
-  width: ${(props) => props.theme.sizes.layoutWidth};
+  width: 100%;
   background: ${(props) => props.theme.colors.layoutBackground};
   overflow: hidden;
   `;
+
+  const Main = styled.div`
+	display: flex;
+	flex-direction: column;
+`
 
 export default function App() {
 	return (
@@ -24,11 +28,14 @@ export default function App() {
 			<Reset />
 			<GlobalStyle />
 			<Container>
-				{/* <Header /> */}
-				<LineUp />
-				<FestivalSentence />
-				<BoothRanking />
-				<Navbar />
+				<Main>
+					<>
+						<LineUp />
+						<FestivalSentence />
+						<BoothRanking />					
+					</>
+					<Navbar />
+				</Main>
 			</Container>
 		</ThemeProvider>
 	);
