@@ -5,9 +5,6 @@ const FestivalSentenceBox =styled.div`
     background-color: #F8F8FA;
     width: 335px;
     height: 61px;
-
-    top: 483px;
-    left: 20px;
     border-radius: 12px;
     display:flex;
     align-items: center;
@@ -15,7 +12,7 @@ const FestivalSentenceBox =styled.div`
     margin-left:20px;
     margin-right:20px;
 `
-152
+
 const BallonBox = styled.div`
         display:flex;
         flex-direction:column;
