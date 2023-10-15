@@ -14,6 +14,7 @@ const BoothRankingTitle = styled.div`
         margin-bottom:16px;
         `
 
+
 const UpdateDate=styled.span`
             color: #A9A9A9;
             font-family: SF Pro;

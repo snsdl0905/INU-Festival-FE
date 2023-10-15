@@ -1,14 +1,16 @@
 import styled from "styled-components"
 
 const FestivalSentenceBox =styled.div`
+    margin-top: 10rem;
     background-color: #F8F8FA;
     width: 335px;
     height: 61px;
+
     top: 483px;
     left: 20px;
     border-radius: 12px;
     display:flex;
-    justify-around:space-between;
+    align-items: center;
     align-items:center;
     margin-left:20px;
     margin-right:20px;
