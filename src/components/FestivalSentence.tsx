@@ -3,8 +3,9 @@ import styled from "styled-components"
 const FestivalSentenceBox =styled.div`
     margin-top: 10rem;
     background-color: #F8F8FA;
-    width: 100%;
-    height: 73px;
+    width: 335px;
+    height: 61px;
+
     top: 483px;
     left: 20px;
     border-radius: 12px;
