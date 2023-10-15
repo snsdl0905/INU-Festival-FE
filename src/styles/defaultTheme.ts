@@ -1,11 +1,10 @@
 const defaultTheme = {
     colors: {
         background: '#FFFFFF',
-        layoutBackground: '#616161', 
+        layoutBackground: '#FFFFFF', 
         text: '#000000',
       },
       sizes: {
-        layoutWidth:'375px',
         contentPadding: '3rem',
         contentBorderRadius: '8rem',
     }
