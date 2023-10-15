@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 const BoothRankingTitle = styled.div`
         color: #000;
@@ -147,58 +147,6 @@ export default function BoothRanking()
                         </BoothHeart>
                 </Booth>
 
-                <Booth>
-                    <BoothDetail>
-                        <BoothRank src="Rank1.png" />
-                        <BoothImg src="BoothDefault.png"/>
-                            <BoothTitle>
-                                <div>교내</div>
-                                <div>취업경력개발원</div>
-                            </BoothTitle>
-                    </BoothDetail>
-                        <div>
-
-                        </div>
-                </Booth>
-
-                <Booth>
-                    <BoothDetail>
-                        <BoothRank src="Rank1.png" />
-                        <BoothImg src="BoothDefault.png"/>
-                            <BoothTitle>
-                                <div>교내</div>
-                                <div>취업경력개발원</div>
-                            </BoothTitle>
-                    </BoothDetail>
-                        <BoothHeart>
-                        </BoothHeart>
-                </Booth>
-
-                <Booth>
-                    <BoothDetail>
-                        <BoothRank src="Rank1.png" />
-                        <BoothImg src="BoothDefault.png"/>
-                            <BoothTitle>
-                                <div>교내</div>
-                                <div>취업경력개발원</div>
-                            </BoothTitle>
-                    </BoothDetail>
-                        <BoothHeart src="BoothHeart.png">
-                        </BoothHeart>
-                </Booth>
-
-                <Booth>
-                    <BoothDetail>
-                        <BoothRank src="Rank1.png" />
-                        <BoothImg src="BoothDefault.png"/>
-                            <BoothTitle>
-                                <div>교내</div>
-                                <div>취업경력개발원</div>
-                            </BoothTitle>
-                    </BoothDetail>
-                        <BoothHeart src="BoothHeart.png">
-                        </BoothHeart>
-                </Booth>
                 </BoothWrapper>
             </BoothRankingContainer>        
         </>    
