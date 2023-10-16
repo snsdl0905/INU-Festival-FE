@@ -5,12 +5,14 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: .6em;
+    padding-inline: ${(props) => props.theme.sizes.contentPadding};
+    margin-top: .7em;
+    margin-bottom: .7em;
 
     img {
         display: block;        
-        width: 28px;
-        height: 19px;
+        width: 24px;
+        height: 17px;
     }
 `
 
@@ -19,17 +21,17 @@ const Title = styled.div`
     align-items: center;
 
     span {
-        font-size: 1.3rem;
+        font-size: 1.8rem;
         font-weight: bold;
         color: #FFFFFF;
-        padding-block: 1.2em;
+        padding-block: 1.4em;
         padding-inline: .4em;
         line-height: 100%;
     }
     
     img {
-        width: 45px;
-        height: 38px;
+        width: 32px;
+        height: 27px;
     }
 `;
 

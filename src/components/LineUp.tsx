@@ -26,12 +26,11 @@ const Content = styled.div`
     }
 
     p {
-        z-index: 100;
         position: relative;
         color: white;
-        padding: 1.5rem;
+        padding-inline: ${(props) => props.theme.sizes.contentPadding};
         font-weight: bold;
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
 `
@@ -40,7 +39,7 @@ const BannerContainer = styled.div`
     display: flex;
     position: relative;
     margin-left: 0.9rem;
-    top: 9rem;
+    top: 12rem;
 
     img{
         width: 21rem;

@@ -5,7 +5,7 @@ const defaultTheme = {
         text: '#000000',
       },
       sizes: {
-        contentPadding: '3rem',
+        contentPadding: '2rem',
         contentBorderRadius: '8rem',
     }
 }
