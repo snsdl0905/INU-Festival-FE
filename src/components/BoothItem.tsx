@@ -1,31 +1,33 @@
-import styled  from "styled-components"
+import styled  from "styled-components";
 
 const Booth = styled.div`
         display: flex;
         align-items: center;
         align-self: stretch;
         gap: 14px;
-`
-const BoothDetail =styled.div`
+`;
+
+const BoothDetail = styled.div`
 display: flex;
 width: 100%;
 justify-content: space-between;
 align-items: center;
-`
-const BoothRank =styled.img`
+`;
+
+const BoothRank = styled.img`
     width: 28px;
     height: 28px;
     flex-shrink: 0;
-`
+`;
 
 const BoothImg = styled.img`
             width: 48px;
             height: 48px;
             left: 45px;
-            border-radius:50%
-`
-const BoothTitle =styled.div`
+            border-radius:50%;
+`;
 
+const BoothTitle = styled.div`
         div{
             &:first-child{
                         color: #B6BBC4;
@@ -44,8 +46,9 @@ const BoothTitle =styled.div`
                     letter-spacing: -0.32px;
             }
     }
-`
-const BoothHeart=styled.div`
+`;
+
+const BoothHeart = styled.div`
         width: 64px;
         height: 32px;
         flex-shrink: 0;
@@ -61,6 +64,7 @@ const BoothHeart=styled.div`
             height: 10px;
             flex-shrink: 0;
         }
+
         div
         {
             font-family: SF Pro;
@@ -71,9 +75,8 @@ const BoothHeart=styled.div`
             text-align: left;
             color: rgba(0, 71, 201, 1);
             width:19px;
-            }
-
-`
+        }
+`;
 
 
 export default function BoothItem(){
