@@ -71,7 +71,7 @@ gap:36px;
 
 
 export default function BoothRanking()
-{``
+{
     return(
         <>
             <BoothRankingTitle>

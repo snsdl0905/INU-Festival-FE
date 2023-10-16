@@ -32,8 +32,7 @@ const Content = styled.div`
         font-weight: bold;
         font-size: 2.2rem;
     }
-
-`
+`;
 
 const BannerContainer = styled.div`
     display: flex;
@@ -50,9 +49,7 @@ const BannerContainer = styled.div`
         margin-bottom: 20px;
         border-radius: 0.9rem;
     }
-
-
-`
+`;
 
 export default function LineUp(){
     return (
