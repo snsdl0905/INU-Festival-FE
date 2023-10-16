@@ -6,7 +6,8 @@ const Content = styled.div`
     width: 100%;
     flex-direction: column;       
     height: 27rem;
-    border-radius: 0.87rem;
+    border-bottom-left-radius: 0.9rem;
+        border-bottom-right-radius: 0.9rem;
     box-shadow: 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
     position: absolute;
     overflow: hidden;
@@ -47,8 +48,7 @@ const BannerContainer = styled.div`
         z-index: 100;
         position: relative;
         margin-bottom: 20px;
-        border-bottom-left-radius: 0.9rem;
-        border-bottom-right-radius: 0.9rem;
+        border-radius: 0.9rem;
         box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
     }
 `;
