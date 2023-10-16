@@ -10,7 +10,7 @@ const BoothRankingTitle = styled.div`
         line-height: 30px; /* 142.857% */
         letter-spacing: -0.42px;
         margin-top:36px;
-        margin-left:20px;
+        padding-inline: ${(props) => props.theme.sizes.contentPadding};
         margin-bottom:16px;
         `
 
@@ -23,7 +23,7 @@ const UpdateDate=styled.span`
             font-weight: 400;
             line-height: 15px; /* 100% */
             letter-spacing: -0.45px;
-            margin-left:20px;
+            padding-inline: ${(props) => props.theme.sizes.contentPadding};
     `
 
 const BoothRankingContainer= styled.div`
@@ -37,8 +37,11 @@ const BoothRankingContainer= styled.div`
             border-radius: 12px;
             background: #FFF;
             box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
-            margin: 36px 20px 36px 20px;
-`
+            margin-top: 36px;
+            margin-bottom: 36px;
+            margin-inline: ${(props) => props.theme.sizes.contentPadding};
+`;
+
 const BoothWrapper = styled.div`
             display: flex;
             flex-direction: column;

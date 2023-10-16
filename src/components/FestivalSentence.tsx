@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 const FestivalSentenceBox =styled.div`
-    margin-top: 10rem;
+    margin-top: 13rem;
     background-color: #F8F8FA;
     width: 335px;
     height: 61px;
@@ -62,7 +62,7 @@ const SentenceBox =styled.div`
 `
 const WordContainer=styled.div`
         display:flex;
-        margin-left:20px;
+        padding-inline: ${(props) => props.theme.sizes.contentPadding};
         margin-top:12px;
 `
 

@@ -17,12 +17,14 @@ const Container = styled.div`
   overflow: hidden;
   `;
 
-  const Main = styled.div`
+  const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 `
-const Wrapper = styled.div`
-		margin:0 auto;
+const Main = styled.div`
+	display: flex;
+	flex-direction: column;
+		margin: 0 auto;
 `
 
 export default function App() {
@@ -31,14 +33,14 @@ export default function App() {
 			<Reset />
 			<GlobalStyle />
 			<Container>
-				<Main>
-					<LineUp />
-					<Wrapper>
+				<Wrapper>
+						<LineUp />
+					<Main>
 						<FestivalSentence />
 						<BoothRanking />					
-					</Wrapper>
-					<Navbar />
-				</Main>
+					</Main>
+						<Navbar />
+				</Wrapper>
 			</Container>
 		</ThemeProvider>
 	);
