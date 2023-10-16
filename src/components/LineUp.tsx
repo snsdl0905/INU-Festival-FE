@@ -48,6 +48,7 @@ const BannerContainer = styled.div`
         position: relative;
         margin-bottom: 20px;
         border-radius: 0.9rem;
+        box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
     }
 `;
 
