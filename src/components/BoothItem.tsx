@@ -4,7 +4,7 @@ const Booth = styled.div`
         display: flex;
         align-items: center;
         align-self: stretch;
-        gap: 14px;
+        gap: 3rem;
 `;
 
 const BoothDetail = styled.div`
