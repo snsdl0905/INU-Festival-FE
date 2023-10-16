@@ -3,14 +3,11 @@ import styled from "styled-components"
 const FestivalSentenceBox =styled.div`
     margin-top: 13rem;
     background-color: #F8F8FA;
-    width: 335px;
+    width: 100%;
     height: 61px;
     border-radius: 12px;
     display:flex;
     align-items: center;
-    align-items:center;
-    margin-left:20px;
-    margin-right:20px;
 `
 
 const BallonBox = styled.div`
@@ -62,7 +59,6 @@ const SentenceBox =styled.div`
 `
 const WordContainer=styled.div`
         display:flex;
-        padding-inline: ${(props) => props.theme.sizes.contentPadding};
         margin-top:12px;
 `
 
@@ -102,6 +98,7 @@ export default function FestivalSentence(){
                 <Word>양꼬치</Word>
                 <Word>족발</Word>
                 <Word>찜/탕</Word>
+
             </WordContainer>
         </>
     )
