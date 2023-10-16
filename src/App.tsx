@@ -21,6 +21,9 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 `
+const Wrapper = styled.div`
+		margin:0 auto;
+`
 
 export default function App() {
 	return (
@@ -29,11 +32,11 @@ export default function App() {
 			<GlobalStyle />
 			<Container>
 				<Main>
-					<>
-						<LineUp />
+					<LineUp />
+					<Wrapper>
 						<FestivalSentence />
 						<BoothRanking />					
-					</>
+					</Wrapper>
 					<Navbar />
 				</Main>
 			</Container>

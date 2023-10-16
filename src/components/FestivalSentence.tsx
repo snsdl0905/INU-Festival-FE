@@ -3,10 +3,8 @@ import styled from "styled-components"
 const FestivalSentenceBox =styled.div`
     margin-top: 10rem;
     background-color: #F8F8FA;
-    width: 100%;
-    height: 73px;
-    top: 483px;
-    left: 20px;
+    width: 335px;
+    height: 61px;
     border-radius: 12px;
     display:flex;
     align-items: center;
@@ -14,7 +12,7 @@ const FestivalSentenceBox =styled.div`
     margin-left:20px;
     margin-right:20px;
 `
-152
+
 const BallonBox = styled.div`
         display:flex;
         flex-direction:column;
