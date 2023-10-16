@@ -24,7 +24,7 @@ const Container = styled.div`
 const Main = styled.div`
 	display: flex;
 	flex-direction: column;
-		margin: 0 auto;
+	margin: 0 auto;
 `
 
 export default function App() {

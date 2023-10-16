@@ -3,12 +3,12 @@ import styled  from "styled-components"
 const Booth = styled.div`
         display: flex;
         align-items: center;
-        gap: 14px;
         align-self: stretch;
+        gap: 14px;
 `
 const BoothDetail =styled.div`
 display: flex;
-width: 214px;
+width: 100%;
 justify-content: space-between;
 align-items: center;
 `
@@ -76,24 +76,22 @@ const BoothHeart=styled.div`
 `
 
 
-
-
 export default function BoothItem(){
     return(
         <Booth>
-        <BoothDetail>
-            <BoothRank src="Rank1.png" />
-            <BoothImg src="BoothDefault.png"/>
-                <BoothTitle>
-                    <div>교내</div>
-                    <div>취업경력개발원</div>
-                </BoothTitle>
-        </BoothDetail>
-        
-            <BoothHeart>
-                <img src="heart.png"></img>
-                <div>3K</div>
-            </BoothHeart>
-    </Booth>
+            <BoothDetail>
+                <BoothRank src="Rank1.png" />
+                <BoothImg src="BoothDefault.png"/>
+                    <BoothTitle>
+                        <div>교내</div>
+                        <div>취업경력개발원</div>
+                    </BoothTitle>
+            </BoothDetail>
+            
+                <BoothHeart>
+                    <img src="heart.png"></img>
+                    <div>3K</div>
+                </BoothHeart>
+        </Booth>
     )
 }
