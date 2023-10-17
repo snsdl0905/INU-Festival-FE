@@ -76,7 +76,7 @@ export default function BoothRanking()
         <>
             <BoothRankingTitle>
                 축제에서 가장<br />
-                인기있는 부스를 확인하세요
+                인기있는 부스를 확인하세요!
             </BoothRankingTitle>
 
             <UpdateDate>
