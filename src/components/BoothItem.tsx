@@ -8,10 +8,10 @@ const Booth = styled.div`
 `;
 
 const BoothDetail = styled.div`
-display: flex;
-width: 100%;
-justify-content: space-between;
-align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 const BoothRank = styled.img`
