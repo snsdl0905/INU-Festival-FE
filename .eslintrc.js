@@ -1,32 +1,35 @@
 module.exports = {
-	env: {
-	  browser: true,
-	  es2021: true,
-	  jest: true,
-	},
-	extends: [
+  env: {
+	browser: true,
+	es2021: true,
+	jest: true,
+  },
+  extends: [
 	  'airbnb',
 	  'plugin:@typescript-eslint/recommended',
 	  'plugin:react/recommended',
 	  'plugin:react/jsx-runtime',
-	],
-	parser: '@typescript-eslint/parser',
-	parserOptions: {
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+	  ecmaFeatures: {
+      jsx: true,
+	  },
 	  ecmaVersion: 'latest',
 	  sourceType: 'module',
-	},
-	plugins: [
+  },
+  plugins: [
 	  'react',
 	  '@typescript-eslint',
-	],
-	settings: {
+  ],
+  settings: {
 	  'import/resolver': {
-		node: {
+      node: {
 		  extensions: ['.js', '.jsx', '.ts', '.tsx'],
-		},
+      },
 	  },
-	},
-	rules: {
+  },
+  rules: {
 	  indent: ['error', 2],
 	  'no-trailing-spaces': 'error',
 	  curly: 'error',
@@ -48,23 +51,22 @@ module.exports = {
 	  'key-spacing': ['error', { mode: 'strict' }],
 	  'arrow-spacing': ['error', { before: true, after: true }],
 	  'import/no-extraneous-dependencies': ['error', {
-		devDependencies: [
+      devDependencies: [
 		  '**/*.test.js',
 		  '**/*.test.jsx',
 		  '**/*.test.ts',
 		  '**/*.test.tsx',
-		],
+      ],
 	  }],
 	  'import/extensions': ['error', 'ignorePackages', {
-		js: 'never',
-		jsx: 'never',
-		ts: 'never',
-		tsx: 'never',
+      js: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never',
 	  }],
 	  'react/jsx-filename-extension': [2, {
-		extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
 	  }],
 	  'jsx-a11y/label-has-associated-control': ['error', { assert: 'either' }],
-	},
-  };
-  
+  },
+};

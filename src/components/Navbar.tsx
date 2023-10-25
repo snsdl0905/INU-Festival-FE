@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const MiniBox = styled.div`
     align-items: center;
@@ -12,7 +12,7 @@ const MiniBox = styled.div`
         display: block;
         padding-bottom: 0.9em;         
     }
-`
+`;
 
 const Box = styled.div`
     display: flex;
@@ -24,35 +24,35 @@ const Box = styled.div`
     color: lightgrey;
     background-color: white;
     box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
-`
+`;
 
-export default function Navbar(){
-    return (
-        <Box>
-            <MiniBox>
-                <img src="home.png" alt="홈" />
-                <span>홈</span>
-            </MiniBox>
+export default function Navbar() {
+  return (
+    <Box>
+      <MiniBox>
+        <img src="home.png" alt="홈" />
+        <span>홈</span>
+      </MiniBox>
 
-            <MiniBox>
-                <img src="map.png" alt="지도" />
-                <span>지도</span>
-            </MiniBox>
+      <MiniBox>
+        <img src="map.png" alt="지도" />
+        <span>지도</span>
+      </MiniBox>
 
-            <MiniBox>
-                <img src="timetable.png" alt="타임테이블" />
-                <span>타임테이블</span>
-            </MiniBox>
+      <MiniBox>
+        <img src="timetable.png" alt="타임테이블" />
+        <span>타임테이블</span>
+      </MiniBox>
 
-            <MiniBox>
-                <img src="board.png" alt="방명록" />
-                <span>방명록</span>
-            </MiniBox>
+      <MiniBox>
+        <img src="board.png" alt="방명록" />
+        <span>방명록</span>
+      </MiniBox>
 
-            <MiniBox>
-                <img src="profile.png" alt="프로필" />
-                <span>프로필</span>
-            </MiniBox>
-        </Box>
-	);
+      <MiniBox>
+        <img src="profile.png" alt="프로필" />
+        <span>프로필</span>
+      </MiniBox>
+    </Box>
+  );
 }

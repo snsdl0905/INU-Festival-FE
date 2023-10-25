@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-const FestivalSentenceBox =styled.div`
+const FestivalSentenceBox = styled.div`
     margin-top: 13rem;
     background-color: #F8F8FA;
     width: 100%;
@@ -8,7 +8,7 @@ const FestivalSentenceBox =styled.div`
     border-radius: 12px;
     display:flex;
     align-items: center;
-`
+`;
 
 const BallonBox = styled.div`
         display:flex;
@@ -34,9 +34,9 @@ const BallonBox = styled.div`
             left: 44px;
             margin-left:16px;
         }
-`
+`;
 
-const SentenceBox =styled.div`
+const SentenceBox = styled.div`
         color: #0042B9;
         font-family: SF Pro;
         font-size: 16px;
@@ -56,11 +56,11 @@ const SentenceBox =styled.div`
             line-height: 100%; /* 12px */
             letter-spacing: -0.36px;
         }
-`
-const WordContainer=styled.div`
+`;
+const WordContainer = styled.div`
         display:flex;
         margin-top:12px;
-`
+`;
 
 const Word = styled.div`
     width: 64px;
@@ -77,29 +77,36 @@ const Word = styled.div`
     line-height: 36px;
     letter-spacing: -0.24px;
     margin-right:8px;
-`
+`;
 
-export default function FestivalSentence(){
-    return(
-        <>
-            <FestivalSentenceBox>
-                <BallonBox>
-                    <img src="ballon.png" alt="말풍선"/> {/* 데이터 들어오면 바뀜 */}
-                </BallonBox>
-                <SentenceBox>
-                      <span>201902929</span><br />
-                      퇴근길에 이런 글을 보니 기분이 좋네요. {/* 데이터 들어오면 바뀜 */}
-                </SentenceBox>
-            </FestivalSentenceBox>
+export default function FestivalSentence() {
+  return (
+    <>
+      <FestivalSentenceBox>
+        <BallonBox>
+          <img src="ballon.png" alt="말풍선" />
+          {' '}
+          {/* 데이터 들어오면 바뀜 */}
+        </BallonBox>
+        <SentenceBox>
+          <span>201902929</span>
+          <br />
+          퇴근길에 이런 글을 보니 기분이 좋네요.
+          {' '}
+          {/* 데이터 들어오면 바뀜 */}
+        </SentenceBox>
+      </FestivalSentenceBox>
 
-            <WordContainer>  {/* 데이터 들어오면 바뀜 */}
-                <Word>아이브</Word>
-                <Word>주점</Word>
-                <Word>양꼬치</Word>
-                <Word>족발</Word>
-                <Word>찜/탕</Word>
+      <WordContainer>
+        {' '}
+        {/* 데이터 들어오면 바뀜 */}
+        <Word>아이브</Word>
+        <Word>주점</Word>
+        <Word>양꼬치</Word>
+        <Word>족발</Word>
+        <Word>찜/탕</Word>
 
-            </WordContainer>
-        </>
-    )
+      </WordContainer>
+    </>
+  );
 }
