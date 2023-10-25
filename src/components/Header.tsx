@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Container = styled.div`
     width: 100%;
@@ -14,7 +14,7 @@ const Container = styled.div`
         width: 24px;
         height: 17px;
     }
-`
+`;
 
 const Title = styled.div`
     display: flex;
@@ -36,13 +36,13 @@ const Title = styled.div`
 `;
 
 export default function Header() {
-	return (
-        <Container>
-            <Title>
-                <img src="logo.png" alt="로고" />
-                <span>희희낙락</span>
-            </Title>
-            <img src="notification.png" alt="공지사항" />
-        </Container>
-	);
+  return (
+    <Container>
+      <Title>
+        <img src="logo.png" alt="로고" />
+        <span>희희낙락</span>
+      </Title>
+      <img src="notification.png" alt="공지사항" />
+    </Container>
+  );
 }
