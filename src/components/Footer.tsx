@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   color: ${(props) => props.theme.colors.subText};
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   
   h1, h2 {
       font-weight: bold;
