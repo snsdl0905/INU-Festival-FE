@@ -24,6 +24,9 @@ const Box = styled.div`
     color: lightgrey;
     background-color: white;
     box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
 `;
 
 export default function Navbar() {
