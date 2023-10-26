@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Header from "./Header";
+import styled from 'styled-components';
+import Header from './Header';
 
 const Content = styled.div`
     display: flex;
@@ -53,18 +53,18 @@ const BannerContainer = styled.div`
     }
 `;
 
-export default function LineUp(){
-    return (
-        <>
-            <Content>
-                <Header />
-                <p>오늘의 라인업</p>
-            </Content>
-            <BannerContainer>
-                    <img src="BOL4.png" alt="BOL4" />
-                    <img src="DAMONS.png" alt="DAYMONS YEAR" /> 
-            </BannerContainer>
-        
-        </>
-	);
+export default function LineUp() {
+  return (
+    <>
+      <Content>
+        <Header />
+        <p>오늘의 라인업</p>
+      </Content>
+      <BannerContainer>
+        <img src="BOL4.png" alt="BOL4" />
+        <img src="DAMONS.png" alt="DAYMONS YEAR" />
+      </BannerContainer>
+
+    </>
+  );
 }
