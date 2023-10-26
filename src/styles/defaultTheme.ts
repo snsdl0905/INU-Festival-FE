@@ -1,14 +1,14 @@
 const defaultTheme = {
-    colors: {
-        background: '#FFFFFF',
-        layoutBackground: '#616161', 
-        text: '#000000',
-      },
-      sizes: {
-        layoutWidth:'375px',
-        contentPadding: '3rem',
-        contentBorderRadius: '8rem',
-    }
-}
+  colors: {
+    background: '#FFFFFF',
+    layoutBackground: '#FFFFFF',
+    text: '#000000',
+    subText: '#8E8E8E',
+  },
+  sizes: {
+    contentPadding: '2rem',
+    contentBorderRadius: '8rem',
+  },
+};
 
 export default defaultTheme;
