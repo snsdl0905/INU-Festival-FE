@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 const MiniBox = styled.div`
-    align-items: center;
-    padding-inline: .6em;
-    text-align: center;
-    font-size: 0.86rem;
+  align-items: center;
+  padding-inline: .6em;
+  text-align: center;
+  font-size: 0.86rem;
 
-    img {
-        color: white;
-        margin: auto;
-        display: block;
-        padding-bottom: 0.9em;         
-    }
+  img {
+    color: white;
+    margin: auto;
+    display: block;
+    padding-bottom: 0.9em;         
+  }
 `
 
 const Box = styled.div`
@@ -24,7 +24,11 @@ const Box = styled.div`
     color: lightgrey;
     background-color: white;
     box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
-`
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    `;
+
 
 export default function Navbar(){
     return (
