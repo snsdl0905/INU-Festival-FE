@@ -1,12 +1,13 @@
-import styled from "styled-components";
-import Header from "./Header";
+import styled from 'styled-components';
+import Header from './Header';
 
 const Content = styled.div`
     display: flex;
     width: 100%;
     flex-direction: column;       
     height: 27rem;
-    border-radius: 0.87rem;
+    border-bottom-left-radius: 0.9rem;
+        border-bottom-right-radius: 0.9rem;
     box-shadow: 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
     position: absolute;
     overflow: hidden;
@@ -52,18 +53,18 @@ const BannerContainer = styled.div`
     }
 `;
 
-export default function LineUp(){
-    return (
-        <>
-            <Content>
-                <Header />
-                <p>오늘의 라인업</p>
-            </Content>
-            <BannerContainer>
-                    <img src="BOL4.png" alt="BOL4" />
-                    <img src="DAMONS.png" alt="DAYMONS YEAR" /> 
-            </BannerContainer>
-        
-        </>
-	);
+export default function LineUp() {
+  return (
+    <>
+      <Content>
+        <Header />
+        <p>오늘의 라인업</p>
+      </Content>
+      <BannerContainer>
+        <img src="BOL4.png" alt="BOL4" />
+        <img src="DAMONS.png" alt="DAYMONS YEAR" />
+      </BannerContainer>
+
+    </>
+  );
 }

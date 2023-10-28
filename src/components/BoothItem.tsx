@@ -1,4 +1,4 @@
-import styled  from "styled-components";
+import styled from 'styled-components';
 
 const Booth = styled.div`
         display: flex;
@@ -8,10 +8,10 @@ const Booth = styled.div`
 `;
 
 const BoothDetail = styled.div`
-display: flex;
-width: 100%;
-justify-content: space-between;
-align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 `;
 
 const BoothRank = styled.img`
@@ -78,23 +78,22 @@ const BoothHeart = styled.div`
         }
 `;
 
+export default function BoothItem() {
+  return (
+    <Booth>
+      <BoothDetail>
+        <BoothRank src="Rank1.png" />
+        <BoothImg src="BoothDefault.png" />
+        <BoothTitle>
+          <div>교내</div>
+          <div>취업경력개발원</div>
+        </BoothTitle>
+      </BoothDetail>
 
-export default function BoothItem(){
-    return(
-        <Booth>
-            <BoothDetail>
-                <BoothRank src="Rank1.png" />
-                <BoothImg src="BoothDefault.png"/>
-                    <BoothTitle>
-                        <div>교내</div>
-                        <div>취업경력개발원</div>
-                    </BoothTitle>
-            </BoothDetail>
-            
-                <BoothHeart>
-                    <img src="heart.png"></img>
-                    <div>3K</div>
-                </BoothHeart>
-        </Booth>
-    )
+      <BoothHeart>
+        <img src="heart.png" />
+        <div>3K</div>
+      </BoothHeart>
+    </Booth>
+  );
 }

@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import BoothItem from "./BoothItem";
+import styled from 'styled-components';
+
+import BoothItem from './BoothItem';
 
 const BoothRankingTitle = styled.div`
         width: 100%;
@@ -12,10 +13,9 @@ const BoothRankingTitle = styled.div`
         letter-spacing: -0.42px;
         margin-top:36px;
         margin-bottom:16px;
-        `
+        `;
 
-
-const UpdateDate=styled.span`
+const UpdateDate = styled.span`
             color: #A9A9A9;
             font-family: SF Pro;
             font-size: 15px;
@@ -23,9 +23,9 @@ const UpdateDate=styled.span`
             font-weight: 400;
             line-height: 15px; /* 100% */
             letter-spacing: -0.45px;
-    `
+    `;
 
-const BoothRankingContainer= styled.div`
+const BoothRankingContainer = styled.div`
             display: flex;
             width: 100%;
             height: 492px;
@@ -54,50 +54,47 @@ const BoothRankingCrown = styled.div`
             font-weight: 590;
             line-height: normal;
             letter-spacing: -0.4px;
-`
+`;
 const LineDiv = styled.div`   
     width: 100%;
     height: 1px;
     background-color: #CEDCEA;
     margin-bottom:24px;
     margin-top:12px;
-`
+`;
 const BoothList = styled.div`
 width: 100%;
 display:flex;
 flex-direction:column;
 gap:36px;
-`
+`;
 
+export default function BoothRanking() {
+  return (
+    <>
+      <BoothRankingTitle>
+        축제에서 가장
+        <br />
+        인기있는 부스를 확인하세요
+      </BoothRankingTitle>
 
-export default function BoothRanking()
-{
-    return(
-        <>
-            <BoothRankingTitle>
-                축제에서 가장<br />
-                인기있는 부스를 확인하세요!
-            </BoothRankingTitle>
+      <UpdateDate>
+        실시간 업데이트(2023.09.07)
+      </UpdateDate>
 
-            <UpdateDate>
-                실시간 업데이트(2023.09.07)
-            </UpdateDate>
-
-            <BoothRankingContainer>
-            <BoothWrapper>
-                <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
-                <LineDiv />
-                <BoothList>
-                        <BoothItem />
-                        <BoothItem />
-                        <BoothItem />
-                        <BoothItem />
-                        <BoothItem />
-                </BoothList>
-            </BoothWrapper>
-            </BoothRankingContainer>        
-        </>    
-    )
-       
-    
+      <BoothRankingContainer>
+        <BoothWrapper>
+          <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
+          <LineDiv />
+          <BoothList>
+            <BoothItem />
+            <BoothItem />
+            <BoothItem />
+            <BoothItem />
+            <BoothItem />
+          </BoothList>
+        </BoothWrapper>
+      </BoothRankingContainer>
+    </>
+  );
 }
