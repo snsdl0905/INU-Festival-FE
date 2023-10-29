@@ -1,17 +1,22 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-
 const MiniBox = styled.div`
-    align-items: center;
-    padding-inline: .6em;
-    text-align: center;
-    font-size: 0.86rem;
+align-items: center;
+padding-inline: .6em;
+text-align: center;
+font-size: 0.86rem;
 
-    img {
-        color: white;
-        margin: auto;
-        display: block;
-        padding-bottom: 0.9em;         
-    }
+img {
+    margin: auto;
+    display: block;
+    padding-bottom: 0.9em;       
+}
+&:hover{
+  filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
+}
+.Click{
+  filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
+}
 `;
 
 const Box = styled.div`
@@ -27,33 +32,39 @@ const Box = styled.div`
     position: fixed;
     width: 100%;
     bottom: 0px;
+    &:hover{
+      img:hover{
+        filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
+      }
+    }
 `;
 
 export default function Navbar() {
+
   return (
     <Box>
-      <MiniBox>
-        <img src="home.png" alt="홈" />
-        <span>홈</span>
+      <MiniBox >
+        <img src="Home.svg" className ="Click" alt="홈"/>
+        <span className ="Click">홈</span>
       </MiniBox>
 
       <MiniBox>
-        <img src="map.png" alt="지도" />
+        <img src="map.svg" alt="지도"  />
         <span>지도</span>
       </MiniBox>
 
       <MiniBox>
-        <img src="timetable.png" alt="타임테이블" />
+        <img src="TimeTable.svg" alt="타임테이블" />
         <span>타임테이블</span>
       </MiniBox>
 
       <MiniBox>
-        <img src="board.png" alt="방명록" />
+        <img src="board.svg" alt="방명록" />
         <span>방명록</span>
       </MiniBox>
 
       <MiniBox>
-        <img src="profile.png" alt="프로필" />
+        <img src="profile.svg" alt="프로필" /> 
         <span>프로필</span>
       </MiniBox>
     </Box>
