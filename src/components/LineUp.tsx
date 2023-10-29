@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import 'swiper/components/navigation/navigation.min.css'
-import 'swiper/components/pagination/pagination.min.css'
-
 import Header from './Header';
+import LineupItem from './LineupItem';
 
-const demoImgList = ["BOL1.jpeg", "BOL2.jpeg", "DAMONS3.png", "DAMONS4.png", "DAMONS4.png"];
+import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
+
+const demoImgList = ["BOL1.jpeg", "BOL2.jpeg", "DAMONS3.png", "DAMONS4.png"];
+// const demoImgList = ["BOL1.jpeg", "BOL2.jpeg"];
+
 
 const Content = styled.div`
     display: flex;
@@ -52,86 +51,12 @@ const BannerContainer = styled.div`
     z-index: 100;
 `;
 
-type ResizedComponentProps = {
-  setPerView: (value: number) => void;
-  setSpaceBetween: (value: number) => void;
-}
-
-const ResizedComponent = ({setPerView, setSpaceBetween}: ResizedComponentProps) => {
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const handleResize = () => {
-    setWindowSize({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    }
-  }, []);
-
-  if(windowSize.width < 376)  { setPerView(2); setSpaceBetween(100); }
-  else if(windowSize.width < 580)  { setPerView(2); setSpaceBetween(50);}
-  else if (windowSize.width < 850) { setPerView(3); setSpaceBetween(100); }
-  else if (windowSize.width < 1200) { setPerView(4); setSpaceBetween(50);}
-  else { setPerView(5); setSpaceBetween(50); }
-  console.log(`${windowSize.width} ${windowSize.height}`);
-  return <div>{windowSize.width} {windowSize.height}</div>
-}
-
-type LineUpItemProps = {
-  perView: number;
-  spaceBetween: number;
-}
-
-function LineUpItem({perView, spaceBetween}: LineUpItemProps) {
-  const LineupImg = styled.div`
-    width: 224px;
-    height: 21rem;
-    margin: 0.8rem;
-    position: relative;
-    margin-bottom: 20px;
-
-  img {
-    width: 100%;
-    height: 21rem;
-    border-radius: 0.9rem;
-    box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
-  }
-  `;
-
-  const check = perView > demoImgList.length ? false : true;
-  return ( 
-    <Swiper
-      spaceBetween={spaceBetween}
-      slidesPerView={Math.min(perView, demoImgList.length)}
-      pagination={{ clickable: true }}
-      loop={check}
-      hashNavigation={true}
-    >
-      {demoImgList.map((img, index) => {
-        const key = `${index}-${img}`
-        return (
-          <SwiperSlide key={key}>
-            <LineupImg data-hash={key}>
-              <img src={img} />
-            </LineupImg>
-          </SwiperSlide>)
-      })}
-    </Swiper>
-  );
-}
 
 export default function LineUp() {
   const [perView, setPerView] = useState(3);
   const [spaceBetween, setSpaceBetween] = useState(50);
+
+  useCheckScreenWidth({setPerView, setSpaceBetween});
 
   return (
     <>
@@ -140,8 +65,11 @@ export default function LineUp() {
         <p>오늘의 라인업</p>
       </Content>
       <BannerContainer>
-        <ResizedComponent setPerView={setPerView} setSpaceBetween={setSpaceBetween}/>
-        <LineUpItem perView={perView} spaceBetween={spaceBetween} />
+        <LineupItem 
+          perView={perView} 
+          spaceBetween={spaceBetween}
+          demoImgList={demoImgList} 
+        />
       </BannerContainer>
     </>
   );
