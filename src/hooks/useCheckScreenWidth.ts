@@ -15,10 +15,12 @@ export default function useCheckScreenWidth({setPerView, setSpaceBetween}: useCh
     setWindowSize({
       width: window.innerWidth,
     });
-    console.log("Hello")
-    if(window.innerWidth < 376)  { setPerView(2); setSpaceBetween(100); }
-    else if(window.innerWidth < 580)  { setPerView(2); setSpaceBetween(50);}
-    else if (window.innerWidth < 850) { setPerView(3); setSpaceBetween(100); }
+    console.log(window.innerWidth);
+    if(window.innerWidth < 300)  { setPerView(1); setSpaceBetween(50); }
+    else if(window.innerWidth < 400)  { setPerView(2); setSpaceBetween(150); }
+    else if(window.innerWidth < 500)  { setPerView(2); setSpaceBetween(100); }
+    else if(window.innerWidth < 750)  { setPerView(2); setSpaceBetween(50);}
+    else if (window.innerWidth < 1100) { setPerView(3); setSpaceBetween(50); }
     else if (window.innerWidth < 1200) { setPerView(4); setSpaceBetween(50);}
     else { setPerView(5); setSpaceBetween(50); }
   }
