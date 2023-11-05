@@ -23,6 +23,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 `;
 const Main = styled.div`
+  width: 375px; 
 	display: flex;
 	flex-direction: column;
 	margin: 0 auto;

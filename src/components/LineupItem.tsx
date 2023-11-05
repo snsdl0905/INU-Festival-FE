@@ -36,7 +36,6 @@ export default function LineupItem({perView, spaceBetween, demoImgList}: LineupI
         speed={300}
         pagination={{ clickable: true }}
         loop={check}
-        hashNavigation={true}
         allowTouchMove={true}
       >
         {demoImgList.map((img, index) => {
