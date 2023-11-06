@@ -92,10 +92,15 @@ const BoothList = styled.div`
 export default function BoothItem() {
   const booths = useFetchBooths();
   booths.sort((a, b) => b.liked - a.liked);
-  const [sortedBooths, setSortedBooths] = useState(booths);
-    
+  const [sortedBooths, setSortedBooths] = useState([...booths]);
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
-    
+
+  useEffect(() => {
+    const fetchedBooths = booths.slice();
+    fetchedBooths.sort((a, b) => b.liked - a.liked);
+    setSortedBooths(fetchedBooths);
+  }, [booths]);
+
   const handleLikeClicked = (index: number) => {
     const updatedBooths = [...sortedBooths];
     updatedBooths[index].liked += 1;
