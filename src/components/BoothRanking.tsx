@@ -80,9 +80,7 @@ export default function BoothRanking() {
         <BoothWrapper>
           <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
           <LineDiv />
-          <BoothList>
-            <BoothItem />
-          </BoothList>
+          <BoothItem />
         </BoothWrapper>
       </BoothRankingContainer>
     </>
