@@ -91,7 +91,7 @@ export default function BoothItem() {
       </BoothDetail>
 
       <BoothHeart>
-        <img src="heart.png" />
+        <img src="heart.png" alt="" />
         <div>3K</div>
       </BoothHeart>
     </Booth>

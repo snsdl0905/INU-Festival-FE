@@ -4,7 +4,7 @@ const sentences = [
   ['201902929', '퇴근길에 이런 글을 보니 기분이 좋네요.', 'ballon.png'],
   ['202101555', '축제 재밌어요~~', 'ballon.png'],
   ['202101556', '굿굿', 'ballon.png'],
-  ['202124345', '집가고싶다~', 'ballon.png']
+  ['202124345', '집가고싶다~', 'ballon.png'],
 ];
 
 const MainSentenceBox = styled.div`
@@ -95,11 +95,11 @@ const SentenceBox = styled.ul`
       top: 0px;
     }
   }
-`
+`;
 
-export default function MainSentence(){
-    return (
-      <SentenceBox>
+export default function MainSentence() {
+  return (
+    <SentenceBox>
       {sentences.map((sentence, index) => (
         <li key={index}>
           <div>
@@ -115,5 +115,5 @@ export default function MainSentence(){
         </li>
       ))}
     </SentenceBox>
-    );
-  }
+  );
+}

@@ -7,9 +7,8 @@ import LineupItem from './LineupItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
 
-const demoImgList = ["BOL1.jpeg", "BOL2.jpeg", "DAMONS3.png", "DAMONS4.png"];
+const demoImgList = ['BOL1.jpeg', 'BOL2.jpeg', 'DAMONS3.png', 'DAMONS4.png'];
 // const demoImgList = ["BOL1.jpeg", "BOL2.jpeg"];
-
 
 const Content = styled.div`
     display: flex;
@@ -51,12 +50,11 @@ const BannerContainer = styled.div`
     z-index: 100;
 `;
 
-
 export default function LineUp() {
   const [perView, setPerView] = useState(3);
   const [spaceBetween, setSpaceBetween] = useState(50);
 
-  useCheckScreenWidth({setPerView, setSpaceBetween});
+  useCheckScreenWidth({ setPerView, setSpaceBetween });
 
   return (
     <>
@@ -65,10 +63,10 @@ export default function LineUp() {
         <p>오늘의 라인업</p>
       </Content>
       <BannerContainer>
-        <LineupItem 
-          perView={perView} 
+        <LineupItem
+          perView={perView}
           spaceBetween={spaceBetween}
-          demoImgList={demoImgList} 
+          demoImgList={demoImgList}
         />
       </BannerContainer>
     </>
