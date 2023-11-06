@@ -16,14 +16,14 @@ const Container = styled.div`
   width: 100%;
   background: ${(props) => props.theme.colors.layoutBackground};
   overflow: hidden;
-  `;
+`;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const Main = styled.div`
-  width: 375px; 
+  width: 375px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;

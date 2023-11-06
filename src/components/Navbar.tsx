@@ -7,26 +7,26 @@ const MiniBox = styled.div`
     font-size: 0.86rem;
 
     img {
-        color: white;
-        margin: auto;
-        display: block;
-        padding-bottom: 0.9em;         
+      color: white;
+      margin: auto;
+      display: block;
+      padding-bottom: 0.9em;         
     }
 `;
 
 const Box = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: 1.0em;
-    padding-inline: 1.8em;
-    border-radius: 1.45rem 1.45rem 0 0;
-    color: lightgrey;
-    background-color: white;
-    box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.0em;
+  padding-inline: 1.8em;
+  border-radius: 1.45rem 1.45rem 0 0;
+  color: lightgrey;
+  background-color: white;
+  box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
 `;
 
 export default function Navbar() {
