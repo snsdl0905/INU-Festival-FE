@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { useEffect } from 'react';
+import useFetchBooths from '../hooks/useFetchBooths';
+
 const Booth = styled.div`
         display: flex;
         align-items: center;
@@ -79,21 +82,26 @@ const BoothHeart = styled.div`
 `;
 
 export default function BoothItem() {
+  const booths = useFetchBooths();
+  console.log(booths);
   return (
-    <Booth>
-      <BoothDetail>
-        <BoothRank src="Rank1.png" />
-        <BoothImg src="BoothDefault.png" />
-        <BoothTitle>
-          <div>교내</div>
-          <div>취업경력개발원</div>
-        </BoothTitle>
-      </BoothDetail>
-
-      <BoothHeart>
-        <img src="heart.png" alt="" />
-        <div>3K</div>
-      </BoothHeart>
-    </Booth>
+    <>
+      {booths.map((booth) => (
+        <Booth key={booth.name}>
+          <BoothDetail>
+            <BoothRank src="Rank1.png" />
+            <BoothImg src="BoothDefault.png" />
+            <BoothTitle>
+              <div>{booth.category}</div>
+              <div>{booth.name}</div>
+            </BoothTitle>
+          </BoothDetail>
+          <BoothHeart>
+            <img src="heart.png" alt="" />
+            <div>3K</div>
+          </BoothHeart>
+        </Booth>
+      ))}
+    </>
   );
 }

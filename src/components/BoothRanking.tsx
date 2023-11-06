@@ -88,10 +88,6 @@ export default function BoothRanking() {
           <LineDiv />
           <BoothList>
             <BoothItem />
-            <BoothItem />
-            <BoothItem />
-            <BoothItem />
-            <BoothItem />
           </BoothList>
         </BoothWrapper>
       </BoothRankingContainer>
