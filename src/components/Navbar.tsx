@@ -6,37 +6,27 @@ padding-inline: .6em;
 text-align: center;
 font-size: 0.86rem;
 
-img {
-    margin: auto;
-    display: block;
-    padding-bottom: 0.9em;       
-}
-&:hover{
-  filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
-}
-.Click{
-  filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
-}
+    img {
+      color: white;
+      margin: auto;
+      display: block;
+      padding-bottom: 0.9em;         
+    }
 `;
 
 const Box = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: 1.0em;
-    padding-inline: 1.8em;
-    border-radius: 1.45rem 1.45rem 0 0;
-    color: lightgrey;
-    background-color: white;
-    box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    &:hover{
-      img:hover{
-        filter: invert(20%) sepia(85%) saturate(7295%) hue-rotate(214deg) brightness(80%) contrast(104%);
-      }
-    }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 1.0em;
+  padding-inline: 1.8em;
+  border-radius: 1.45rem 1.45rem 0 0;
+  color: lightgrey;
+  background-color: white;
+  box-shadow: 0px -0.3rem 1.3rem 0px rgba(0, 0, 0, 0.08);
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
 `;
 
 export default function Navbar() {

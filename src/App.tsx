@@ -16,16 +16,17 @@ const Container = styled.div`
   width: 100%;
   background: ${(props) => props.theme.colors.layoutBackground};
   overflow: hidden;
-  `;
+`;
 
 const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 const Main = styled.div`
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 `;
 
 export default function App() {
@@ -47,4 +48,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
