@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import useFetchBooths from '../hooks/useFetchBooths';
+import Booth from '../types/Booth';
 
 import styled from 'styled-components';
 
@@ -91,17 +92,17 @@ const BoothList = styled.div`
 
 export default function BoothItem() {
   const booths = useFetchBooths();
-  booths.sort((a, b) => b.liked - a.liked);
-  const [sortedBooths, setSortedBooths] = useState([...booths]);
+  const [sortedBooths, setSortedBooths] = useState<Booth[]>([]);
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
   useEffect(() => {
-    const fetchedBooths = booths.slice();
+    const fetchedBooths = [...booths];
     fetchedBooths.sort((a, b) => b.liked - a.liked);
-    setSortedBooths(fetchedBooths);
+    setSortedBooths(fetchedBooths.slice(0,5));
   }, [booths]);
 
   const handleLikeClicked = (index: number) => {
+    console.log('Clicked');
     const updatedBooths = [...sortedBooths];
     updatedBooths[index].liked += 1;
     updatedBooths.sort((a, b) => b.liked - a.liked);
