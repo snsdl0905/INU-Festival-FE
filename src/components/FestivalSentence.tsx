@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+
 import MainSentence from './MainSentence';
 
 const FestivalSentenceBox = styled.div`
@@ -27,7 +33,7 @@ const Word = styled.div`
     margin-right:8px;
 `;
 
-
+const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
 
 export default function FestivalSentence() {
     
@@ -35,16 +41,22 @@ export default function FestivalSentence() {
     <>
       <FestivalSentenceBox>
         <MainSentence/>
-        <WordContainer>
-          {' '}
-          {/* 데이터 들어오면 바뀜 */}
-          <Word>아이브</Word>
-          <Word>주점</Word>
-          <Word>양꼬치</Word>
-          <Word>족발</Word>
-          <Word>찜/탕</Word>
-        </WordContainer>
       </FestivalSentenceBox>
+      <WordContainer>
+        <Swiper
+          spaceBetween={50}
+          slidesPerView={6}
+          allowTouchMove
+          freeMode
+          freeModeMinimumVelocity={0.01}
+        >
+          {wordList.map((word) => (
+            <SwiperSlide key={word}>
+              <Word>{word}</Word>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </WordContainer>
     </>
   );
 }
