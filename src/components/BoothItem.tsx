@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 const initialBooths = [
@@ -95,21 +95,20 @@ const BoothHeart = styled.div`
   gap:2.62px;
 
   img{
-      width: 12px;
-      height: 10px;
-      flex-shrink: 0;
+    width: 12px;
+    height: 10px;
+    flex-shrink: 0;
   }
-
   div
   {
-      font-family: SF Pro;
-      font-size: 14px;
-      font-weight: 590;
-      line-height: 17px;
-      letter-spacing: -0.02em;
-      text-align: left;
-      color: rgba(0, 71, 201, 1);
-      width:19px;
+    font-family: SF Pro;
+    font-size: 14px;
+    font-weight: 590;
+    line-height: 17px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: rgba(0, 71, 201, 1);
+    width:19px;
   }
 `;
 
@@ -135,10 +134,10 @@ export default function BoothItem() {
   return (
     <BoothList>
       {booths.map((booth, index) => (
-        <Booth>
+        <Booth key={index}>
           <BoothDetail>
-            <BoothRank src={`Rank${index+1}.png`} />
-            <BoothImg src="BoothDefault.png" />
+            <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
+            <BoothImg src="BoothDefault.png" alt="부스이미지" />
             <BoothTitle>
               <div>{booth.category}</div>
               <div>{booth.name}</div>
