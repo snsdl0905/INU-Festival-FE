@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
-import 'swiper/components/navigation/navigation.min.css'
-import 'swiper/components/pagination/pagination.min.css'
-
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/pagination/pagination.min.css';
 
 const FestivalSentenceBox = styled.div`
     margin-top: 13rem;
@@ -86,7 +85,7 @@ const Word = styled.div`
     margin-right:8px;
 `;
 
-const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', "짬뽕", '퇴근', '교수님', '실시간']
+const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
 
 export default function FestivalSentence() {
   return (
@@ -108,13 +107,14 @@ export default function FestivalSentence() {
 
       <WordContainer>
         <Swiper
-          slidesPerView={5}
-          allowTouchMove={true}
-          freeMode={true}
+          spaceBetween={50}
+          slidesPerView={6}
+          allowTouchMove
+          freeMode
           freeModeMinimumVelocity={0.01}
         >
           {wordList.map((word) => (
-            <SwiperSlide>
+            <SwiperSlide key={word}>
               <Word>{word}</Word>
             </SwiperSlide>
           ))}
