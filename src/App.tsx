@@ -19,14 +19,14 @@ const Container = styled.div`
   `;
 
 const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 const Main = styled.div`
   width: 375px; 
-	display: flex;
-	flex-direction: column;
-	margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
 `;
 
 export default function App() {
@@ -48,4 +48,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
