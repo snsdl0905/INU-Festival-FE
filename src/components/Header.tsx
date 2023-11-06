@@ -10,9 +10,9 @@ const Container = styled.div`
     margin-bottom: .7em;
 
     img {
-        display: block;        
-        width: 24px;
-        height: 17px;
+      display: block;        
+      width: 24px;
+      height: 17px;
     }
 `;
 
@@ -21,17 +21,17 @@ const Title = styled.div`
     align-items: center;
 
     span {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #FFFFFF;
-        padding-block: 1.4em;
-        padding-inline: .4em;
-        line-height: 100%;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #FFFFFF;
+      padding-block: 1.4em;
+      padding-inline: .4em;
+      line-height: 100%;
     }
     
     img {
-        width: 32px;
-        height: 27px;
+      width: 32px;
+      height: 27px;
     }
 `;
 

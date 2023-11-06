@@ -8,77 +8,77 @@ const sentences = [
 ];
 
 const MainSentenceBox = styled.div`
-        color: #0042B9;
-        font-family: SF Pro;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 21px; /* 131.25% */
-        letter-spacing: -0.48px;
-        margin-left:6px;
+  color: #0042B9;
+  font-family: SF Pro;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px; /* 131.25% */
+  letter-spacing: -0.48px;
+  margin-left:6px;
 
 
-        span{
-            color: #939393;
-            font-family: SF Pro;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 510;
-            line-height: 100%; /* 12px */
-            letter-spacing: -0.36px;
-        }
+  span{
+    color: #939393;
+    font-family: SF Pro;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 510;
+    line-height: 100%; /* 12px */
+    letter-spacing: -0.36px;
+  }
 
 `;
 
 const BallonBox = styled.div`
-        display:flex;
-        flex-direction:column;
-        justify-content: center;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
 
-        div{
-           color: rgba(147, 147, 147, 1);
-            font-family: SF Pro;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 510;
-            line-height: 21px; /* 175% */
-            letter-spacing: -0.36px;
-            margin-left:12px;
-            margin-right:10px;
-        }
+  div{
+    color: rgba(147, 147, 147, 1);
+    font-family: SF Pro;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 510;
+    line-height: 21px; /* 175% */
+    letter-spacing: -0.36px;
+    margin-left:12px;
+    margin-right:10px;
+  }
 
-        img{
-            width: 34px;
-            height: 30.16px;
-            top: 496px;
-            left: 44px;
-            margin-left:16px;
-        }
+  img{
+    width: 34px;
+    height: 30.16px;
+    top: 496px;
+    left: 44px;
+    margin-left:16px;
+  }
 `;
 
 const SentenceBox = styled.ul`
-    margin-top: 13rem;
-    background-color: #F8F8FA;
-    width: 100%;
-    height: 61px;
-    border-radius: 12px;
-    align-items: center;
+  margin-top: 13rem;
+  background-color: #F8F8FA;
+  width: 100%;
+  height: 61px;
+  border-radius: 12px;
+  align-items: center;
+  overflow: hidden;
+
+
+  li > div{
+    display: flex;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  li{
+    position: relative;
     overflow: hidden;
+    animation: slideUp 12s linear infinite;
+  }
 
-
-    li > div{
-      display: flex;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    li{
-      position: relative;
-      overflow: hidden;
-      animation: slideUp 12s linear infinite;
-    }
-
-    @keyframes slideUp {
+  @keyframes slideUp {
     0%, 14% {
       top: 0;
     }

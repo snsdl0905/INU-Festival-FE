@@ -7,9 +7,9 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 type LineupItemProps = {
-    perView: number;
-    spaceBetween: number;
-    demoImgList: string[];
+  perView: number;
+  spaceBetween: number;
+  demoImgList: string[];
   }
 
 export default function LineupItem({ perView, spaceBetween, demoImgList }: LineupItemProps) {
