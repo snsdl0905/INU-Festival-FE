@@ -6,31 +6,31 @@ const initialBooths = [
     boothImg: 'BoothDefault.png',
     category: '교내',
     name: '취업경력개발원',
-    liked: 5,
+    liked: 500000,
   },
   {
     boothImg: 'BoothDefault.png',
     category: '교내',
     name: '학생지원부',
-    liked: 3,
+    liked: 3000,
   },
   {
     boothImg: 'BoothDefault.png',
     category: '교내',
     name: '다크호스',
-    liked: 4,
+    liked: 400,
   },
   {
     boothImg: 'BoothDefault.png',
     category: '교외',
     name: '카카오워크',
-    liked: 1,
+    liked: 1000000,
   },
   {
     boothImg: 'BoothDefault.png',
     category: '교내',
     name: '총학생회',
-    liked: 2,
+    liked: 2000,
   },
 ];
 
@@ -90,9 +90,9 @@ const BoothHeart = styled.div`
   border-radius: 21px;
   background: #EBF2FF;
   display:flex;
-  justify-content:center;
   align-items:center;
   gap:2.62px;
+  padding-left: 0.95rem;
 
   img{
       width: 12px;
@@ -124,6 +124,7 @@ export default function BoothItem() {
   initialBooths.sort((a, b) => b.liked - a.liked);
 
   const [booths, setBooths] = useState(initialBooths);
+  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
   const handleLikeClicked = (index: number) => {
     const updatedBooths = [...booths];
@@ -147,7 +148,7 @@ export default function BoothItem() {
 
           <BoothHeart onClick={() => handleLikeClicked(index)}>
             <img src="heart.png" />
-            <div>{booth.liked}</div>
+            <div>{formatter.format(booth.liked)}</div>
           </BoothHeart>
         </Booth>
       ))}
