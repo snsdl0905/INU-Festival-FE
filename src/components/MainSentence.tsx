@@ -94,7 +94,7 @@ const SentenceBox = styled.ul`
     100%{
       top: 0px;
     }
-  } 
+  }
 `;
 
 export default function MainSentence() {

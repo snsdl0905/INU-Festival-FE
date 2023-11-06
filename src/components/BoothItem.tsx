@@ -144,7 +144,6 @@ export default function BoothItem() {
               <div>{booth.name}</div>
             </BoothTitle>
           </BoothDetail>
-
           <BoothHeart onClick={() => handleLikeClicked(index)}>
             <img src="heart.png" />
             <div>{formatter.format(booth.liked)}</div>

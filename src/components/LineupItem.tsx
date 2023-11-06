@@ -14,10 +14,10 @@ type LineupItemProps = {
 
 export default function LineupItem({ perView, spaceBetween, demoImgList }: LineupItemProps) {
   const Container = styled.div`
-    width: 224px;
-    height: 21rem;
-    position: relative;
-    margin-bottom: 20px;
+      width: 224px;
+      height: 21rem;
+      position: relative;
+      margin-bottom: 20px;
   
     img {
       width: 100%;
@@ -35,7 +35,6 @@ export default function LineupItem({ perView, spaceBetween, demoImgList }: Lineu
       speed={300}
       pagination={{ clickable: true }}
       loop={check}
-      hashNavigation
       allowTouchMove
     >
       {demoImgList.map((img, index) => {
@@ -43,7 +42,7 @@ export default function LineupItem({ perView, spaceBetween, demoImgList }: Lineu
         return (
           <SwiperSlide key={key}>
             <Container data-hash={key}>
-              <img src={img} alt="Lineup" />
+              <img src={img} alt="" />
             </Container>
           </SwiperSlide>
         );
