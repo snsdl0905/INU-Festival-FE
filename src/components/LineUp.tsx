@@ -6,9 +6,16 @@ import Header from './Header';
 import LineupItem from './LineupItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
+import useFetchLineup from '../hooks/useFetchLineup';
 
-const demoImgList = ['BOL1.jpeg', 'BOL2.jpeg', 'DAMONS3.png', 'DAMONS4.png'];
-// const demoImgList = ["BOL1.jpeg", "BOL2.jpeg"];
+
+const demoImgList:string[] = [];
+
+const lists = useFetchLineup();
+// const lists =["temp.img"]
+lists.map(lineup => demoImgList.push(lineup.img));
+console.log(demoImgList);
+
 
 const Content = styled.div`
   display: flex;
