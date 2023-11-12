@@ -8,14 +8,12 @@ import LineupItem from './LineupItem';
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
 import useFetchLineup from '../hooks/useFetchLineup';
 
-
 const demoImgList:string[] = [];
 
 const lists = useFetchLineup();
 // const lists =["temp.img"]
-lists.map(lineup => demoImgList.push(lineup.img));
+lists.map((lineup) => demoImgList.push(lineup.img));
 console.log(demoImgList);
-
 
 const Content = styled.div`
   display: flex;

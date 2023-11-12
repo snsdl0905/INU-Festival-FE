@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import styled from 'styled-components';
+
 const MiniBox = styled.div`
 align-items: center;
 padding-inline: .6em;
@@ -30,16 +30,15 @@ const Box = styled.div`
 `;
 
 export default function Navbar() {
-
   return (
     <Box>
-      <MiniBox >
-        <img src="Home.svg" className ="Click" alt="홈"/>
-        <span className ="Click">홈</span>
+      <MiniBox>
+        <img src="Home.svg" className="Click" alt="홈" />
+        <span className="Click">홈</span>
       </MiniBox>
 
       <MiniBox>
-        <img src="map.svg" alt="지도"  />
+        <img src="map.svg" alt="지도" />
         <span>지도</span>
       </MiniBox>
 
@@ -54,7 +53,7 @@ export default function Navbar() {
       </MiniBox>
 
       <MiniBox>
-        <img src="profile.svg" alt="프로필" /> 
+        <img src="profile.svg" alt="프로필" />
         <span>프로필</span>
       </MiniBox>
     </Box>
