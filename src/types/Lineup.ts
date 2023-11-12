@@ -1,5 +1,5 @@
 interface LineUp {
-    id : number;
+    id : string;
     name : string;
     date:string;
     day:string;

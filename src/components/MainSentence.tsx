@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
-const sentences = [
-  ['201902929', '퇴근길에 이런 글을 보니 기분이 좋네요.', 'ballon.png'],
-  ['202101555', '축제 재밌어요~~', 'ballon.png'],
-  ['202101556', '굿굿', 'ballon.png'],
-  ['202124345', '집가고싶다~', 'ballon.png'],
-];
+// const sentences = [
+//   ['201902929', '퇴근길에 이런 글을 보니 기분이 좋네요.', 'ballon.png'],
+//   ['202101555', '축제 재밌어요~~', 'ballon.png'],
+//   ['202101556', '굿굿', 'ballon.png'],
+//   ['202124345', '집가고싶다~', 'ballon.png'],
+// ];
+import useFetchSentence from '../hooks/useFetchSentence';
+
+const sentences = useFetchSentence();
 
 const MainSentenceBox = styled.div`
   color: #0042B9;
@@ -100,16 +103,16 @@ const SentenceBox = styled.ul`
 export default function MainSentence() {
   return (
     <SentenceBox>
-      {sentences.map((sentence, index) => (
-        <li key={index}>
+      {sentences.map((sentence) => (
+        <li key={sentence.id}>
           <div>
             <BallonBox>
-              <img src={sentence[2]} alt="말풍선" />
+              <img src={sentence.emoji} alt="말풍선" />
             </BallonBox>
             <MainSentenceBox>
-              <span>{sentence[0]}</span>
+              <span>{sentence.studentId}</span>
               <br />
-              {sentence[1]}
+              {sentence.content}
             </MainSentenceBox>
           </div>
         </li>
