@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -8,14 +8,7 @@ import LineupItem from './LineupItem';
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
 import useFetchLineup from '../hooks/useFetchLineup';
 
-const demoImgList:string[] = [];
-
-const lists = useFetchLineup();
-// const lists =["temp.img"]
-lists.map((lineup) => demoImgList.push(lineup.img));
-console.log(demoImgList);
-
-const Content = styled.div`
+const Content = styled.div<{ demoImgList: string[] }>`
   display: flex;
   width: 100%;
   flex-direction: column;       
@@ -27,7 +20,11 @@ const Content = styled.div`
   z-index: 100;
 
   ::before {
-    background-image: url(${demoImgList[0]});
+    background-image:${(props) => (
+    props.demoImgList && props.demoImgList.length > 0
+      ? `url(${props.demoImgList[0]})`
+      : 'none'
+  )};
     background-size: cover;
     content: "";
     position: absolute;
@@ -47,7 +44,6 @@ const Content = styled.div`
     font-size: 2.2rem;
   }
 `;
-
 const BannerContainer = styled.div`
   position: relative;
   margin-left: 0.9rem;
@@ -58,12 +54,18 @@ const BannerContainer = styled.div`
 export default function LineUp() {
   const [perView, setPerView] = useState(3);
   const [spaceBetween, setSpaceBetween] = useState(50);
+  const [demoImgList, setDemoImgList] = useState<string[]>([]);
+  const lineupList = useFetchLineup();
 
   useCheckScreenWidth({ setPerView, setSpaceBetween });
+  useEffect(() => {
+    const imgList = lineupList.map((lineup) => lineup.img);
+    setDemoImgList(imgList);
+  }, [lineupList]);
 
   return (
     <>
-      <Content>
+      <Content demoImgList={demoImgList}>
         <Header />
         <p>오늘의 라인업</p>
       </Content>

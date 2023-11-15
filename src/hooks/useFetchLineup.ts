@@ -2,10 +2,10 @@ import { useFetch } from 'usehooks-ts';
 
 import LineUp from '../types/Lineup';
 
-const url = 'http://43.201.95.140:5000/lineup';
+const url = 'http://13.124.57.234:5000/lineup';
 
 type LineupList = {
-    lists: LineUp[];
+    lineups: LineUp[];
 }
 
 export default function useFetchLineup() {
@@ -13,5 +13,5 @@ export default function useFetchLineup() {
   if (!data) {
     return [];
   }
-  return data.lists;
+  return data.lineups;
 }

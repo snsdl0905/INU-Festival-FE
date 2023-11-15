@@ -6,9 +6,8 @@ import styled from 'styled-components';
 //   ['202101556', '굿굿', 'ballon.png'],
 //   ['202124345', '집가고싶다~', 'ballon.png'],
 // ];
-import useFetchSentence from '../hooks/useFetchSentence';
 
-const sentences = useFetchSentence();
+import useFetchSentence from '../hooks/useFetchSentence';
 
 const MainSentenceBox = styled.div`
   color: #0042B9;
@@ -101,6 +100,7 @@ const SentenceBox = styled.ul`
 `;
 
 export default function MainSentence() {
+  const sentences = useFetchSentence();
   return (
     <SentenceBox>
       {sentences.map((sentence) => (
