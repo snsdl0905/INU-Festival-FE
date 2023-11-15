@@ -2,7 +2,7 @@ interface Shouts{
     id:string;
     content:string;
     emoji:string;
-    studentId:number;
+    studentID:number;
 }
 
 export default Shouts;

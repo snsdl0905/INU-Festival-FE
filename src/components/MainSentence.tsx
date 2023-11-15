@@ -101,6 +101,7 @@ const SentenceBox = styled.ul`
 
 export default function MainSentence() {
   const sentences = useFetchSentence();
+
   return (
     <SentenceBox>
       {sentences.map((sentence) => (
@@ -110,7 +111,7 @@ export default function MainSentence() {
               <img src={sentence.emoji} alt="말풍선" />
             </BallonBox>
             <MainSentenceBox>
-              <span>{sentence.studentId}</span>
+              <span>{sentence.studentID}</span>
               <br />
               {sentence.content}
             </MainSentenceBox>

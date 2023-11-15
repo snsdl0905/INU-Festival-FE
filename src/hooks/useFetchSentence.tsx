@@ -2,15 +2,15 @@ import { useFetch } from 'usehooks-ts';
 
 import Shouts from '../types/Shouts';
 
-const url = 'http://43.201.95.140:5000/shouts';
+const url = 'http://13.124.57.234:5000/shout';
 
 type Sentences = {
-    sentences : Shouts[];
+  shouts : Shouts[];
 }
 
 export default function useFetchSentence() {
   const { data } = useFetch<Sentences>(url);
 
   if (!data) return [];
-  return data.sentences;
+  return data.shouts;
 }
