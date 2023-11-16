@@ -7,6 +7,7 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
 import MainSentence from './MainSentence';
+import useFetchKeyword from '../hooks/useFetchWords';
 
 const FestivalSentenceBox = styled.div`
 `;
@@ -33,10 +34,10 @@ const Word = styled.div`
     margin-right:8px;
 `;
 
-const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
+//const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
 
 export default function FestivalSentence() {
-    
+  const wordList = useFetchKeyword();  
   return (
     <>
       <FestivalSentenceBox>
@@ -51,8 +52,8 @@ export default function FestivalSentence() {
           freeModeMinimumVelocity={0.01}
         >
           {wordList.map((word) => (
-            <SwiperSlide key={word}>
-              <Word>{word}</Word>
+            <SwiperSlide key={word.id}>
+              <Word>{word.word}</Word>
             </SwiperSlide>
           ))}
         </Swiper>
