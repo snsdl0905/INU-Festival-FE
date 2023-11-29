@@ -6,12 +6,27 @@ padding-inline: .6em;
 text-align: center;
 font-size: 0.86rem;
 
-    img {
-      color: white;
-      margin: auto;
-      display: block;
-      padding-bottom: 0.9em;         
+    svg {
+        margin: auto;
+        display: block;
+        width: 22px;
+        height: 17px;
+        margin-bottom: 0.4em;
     }
+`;
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: #BBC7D3;
+
+  &.active {
+    color: #0147C8;
+  }
+
+
+  &.active path {
+    fill: #0147C8;
+  }
 `;
 
 const Box = styled.div`
@@ -28,6 +43,8 @@ const Box = styled.div`
   width: 100%;
   bottom: 0px;
 `;
+
+const color = '#BBC7D3';
 
 export default function Navbar() {
 
@@ -57,6 +74,7 @@ export default function Navbar() {
         <img src="profile.svg" alt="프로필" /> 
         <span>프로필</span>
       </MiniBox>
+
     </Box>
   );
 }

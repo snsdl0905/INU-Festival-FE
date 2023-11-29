@@ -1,38 +1,9 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
-const initialBooths = [
-  {
-    boothImg: 'BoothDefault.png',
-    category: '교내',
-    name: '취업경력개발원',
-    liked: 500000,
-  },
-  {
-    boothImg: 'BoothDefault.png',
-    category: '교내',
-    name: '학생지원부',
-    liked: 3000,
-  },
-  {
-    boothImg: 'BoothDefault.png',
-    category: '교내',
-    name: '다크호스',
-    liked: 400,
-  },
-  {
-    boothImg: 'BoothDefault.png',
-    category: '교외',
-    name: '카카오워크',
-    liked: 1000000,
-  },
-  {
-    boothImg: 'BoothDefault.png',
-    category: '교내',
-    name: '총학생회',
-    liked: 2000,
-  },
-];
+import useFetchBooths from '../hooks/useFetchBooths';
+import Booth from '../types/Booth';
+
+import styled from 'styled-components';
 
 const Booth = styled.div`
   display: flex;
@@ -120,21 +91,27 @@ const BoothList = styled.div`
 `;
 
 export default function BoothItem() {
-  initialBooths.sort((a, b) => b.liked - a.liked);
-
-  const [booths, setBooths] = useState(initialBooths);
+  const booths = useFetchBooths();
+  const [sortedBooths, setSortedBooths] = useState<Booth[]>([]);
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
+  useEffect(() => {
+    const fetchedBooths = [...booths];
+    fetchedBooths.sort((a, b) => b.liked - a.liked);
+    setSortedBooths(fetchedBooths.slice(0,5));
+  }, [booths]);
+
   const handleLikeClicked = (index: number) => {
-    const updatedBooths = [...booths];
+    console.log('Clicked');
+    const updatedBooths = [...sortedBooths];
     updatedBooths[index].liked += 1;
     updatedBooths.sort((a, b) => b.liked - a.liked);
-    setBooths(updatedBooths);
+    setSortedBooths(updatedBooths);
   };
 
   return (
     <BoothList>
-      {booths.map((booth, index) => (
+      {sortedBooths.map((booth, index) => (
         <Booth key={index}>
           <BoothDetail>
             <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
