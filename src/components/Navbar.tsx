@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const MiniBox = styled.div`
+
     align-items: center;
     padding-inline: .6em;
     text-align: center;
