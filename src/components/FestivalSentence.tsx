@@ -6,8 +6,9 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
-import MainSentence from './MainSentence';
+import FestivalSentenceItem from './FestivalSentenceItem';
 import useFetchKeyword from '../hooks/useFetchWords';
+import useFetchSentence from '../hooks/useFetchSentence';
 
 const FestivalSentenceBox = styled.div`
 `;
@@ -34,16 +35,32 @@ const Word = styled.div`
     margin-right:8px;
 `;
 
+const SentenceBox = styled.ul`
+  margin-top: 13rem;
+  background-color: #F8F8FA;
+  width: 100%;
+  height: 61px;
+  border-radius: 12px;
+  align-items: center;
+  overflow: hidden;
+`;
+
+
 //const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
 
 export default function FestivalSentence() {
 
-  const wordList = useFetchKeyword();  
+  const wordList = useFetchKeyword();
+  const sentences = useFetchSentence();
 
   return (
     <>
       <FestivalSentenceBox>
-        <MainSentence />
+        <SentenceBox>
+            { sentences.map((sentence) => (
+                <FestivalSentenceItem sentence={sentence} />
+            ))}
+        </SentenceBox>
       </FestivalSentenceBox>
       <WordContainer>
         <Swiper
