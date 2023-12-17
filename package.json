@@ -1,5 +1,4 @@
-
- {
+{
     "source": "./index.html",
     "scripts": {
         "start": "parcel --port 8080",
