@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import Booth from '../types/Booth';
+
+type BoothItemProps ={
+  booth:Booth;
+  index:number;
+}
 
 const Booth = styled.div`
   display: flex;
@@ -56,7 +62,7 @@ const BoothList = styled.div`
   gap:36px;
 `;
 
-export default function BoothItem({ booth, index }) {
+export default function BoothItem({ booth, index }:BoothItemProps) {
   return (
     <BoothList>
       <Booth key={index}>
