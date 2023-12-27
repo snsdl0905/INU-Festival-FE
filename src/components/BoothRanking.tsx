@@ -1,6 +1,10 @@
 import styled from 'styled-components';
+import { useState, useEffect } from 'react';
 
 import BoothItem from './BoothItem';
+
+import useFetchBooths from '../hooks/useFetchBooths';
+import Booth from '../types/Booth';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -45,6 +49,7 @@ const BoothWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   flex: 1 0 0;
+  height:100%;
 `;
 const BoothRankingCrown = styled.div`
   color: #0047C9;
@@ -59,11 +64,78 @@ const LineDiv = styled.div`
   width: 100%;
   height: 1px;
   background-color: #CEDCEA;
-  margin-bottom:24px;
+  margin-bottom:20px;
   margin-top:12px;
 `;
 
+const BoothRank = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; 
+  width:98%;
+  height:100%;
+  margin-bottom: 1.5rem; 
+  min-height: 5rem;
+`;
+
+const BoothHeartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  gap: 0.5rem;
+  height: 100%; 
+`;
+
+const BoothHeart = styled.div`
+  width: 6.8rem; /* Adjusted width using rem */
+  height: 3rem; /* Adjusted height using rem */
+  flex-shrink: 0;
+  border-radius: 1.3125rem; /* Adjusted border-radius using rem */
+  background: #EBF2FF;
+  display: flex;
+  align-items:center;
+  gap:0.5rem;
+  padding-left: 0.95rem;
+
+
+  img {
+    width:1.4rem; /* Adjusted width using rem */
+    height: 3rem; /* Adjusted height using rem */
+    flex-shrink: 0;
+  }
+
+  div {
+    font-family: SF Pro;
+    font-size:1.3rem; /* Adjusted font-size using rem */
+    font-weight: 590;
+    line-height: 1.1875rem; /* Adjusted line-height using rem */
+    letter-spacing: 0.05em;
+    text-align: left;
+    color: rgba(0, 71, 201, 1);
+    width: 1.1875rem; /* Adjusted width using rem */
+  }
+`;
+
 export default function BoothRanking() {
+  const booths = useFetchBooths();
+  const [sortedBooths, setSortedBooths] = useState<Booth[]>([]);
+  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
+
+  useEffect(() => {
+    const fetchedBooths = [...booths];
+    fetchedBooths.sort((a, b) => b.liked - a.liked);
+    setSortedBooths(fetchedBooths.slice(0, 5));
+  }, [booths]);
+
+  const handleLikeClicked = (index: number) => {
+    console.log('Clicked');
+    const updatedBooths = [...sortedBooths];
+    updatedBooths[index].liked += 1;
+    updatedBooths.sort((a, b) => b.liked - a.liked);
+    setSortedBooths(updatedBooths);
+  };
+
   return (
     <>
       <BoothRankingTitle>
@@ -80,7 +152,17 @@ export default function BoothRanking() {
         <BoothWrapper>
           <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
           <LineDiv />
-          <BoothItem />
+          {sortedBooths.map((booth, index) => (
+            <BoothRank key={index}>
+              <BoothItem booth={booth} index={index} />
+              <BoothHeartContainer>
+                <BoothHeart onClick={() => handleLikeClicked(index)}>
+                  <img src="Heart.svg" />
+                  <div>{formatter.format(booth.liked)}</div>
+                </BoothHeart>
+              </BoothHeartContainer>
+            </BoothRank>
+          ))}
         </BoothWrapper>
       </BoothRankingContainer>
     </>
