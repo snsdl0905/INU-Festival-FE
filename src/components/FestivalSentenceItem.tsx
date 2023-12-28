@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Shouts from '../types/Shouts';
 
 const ContentBox = styled.div`
-flex-direction: column;
+  flex-direction: column;
   color: #0042B9;
   font-family: SF Pro;
   font-size: 16px;
@@ -90,7 +90,6 @@ const SentenceItemBox = styled.li`
 type SententenceItemProps = {
   sentence: Shouts;
 }
-
 
 export default function FestivalSentenceItem( { sentence }: SententenceItemProps ) {
   return (
