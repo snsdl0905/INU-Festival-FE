@@ -18,10 +18,9 @@ const SentenceBox = styled.ul`
 `;
 
 
-//const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
+// const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
 
 export default function FestivalSentence() {
-
 
   const sentences = useFetchSentence();
 

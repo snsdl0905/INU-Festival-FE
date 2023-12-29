@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 
 import Header from './Header';
-import LineupItem from './LineupItem';
+import LineUpItem from './LineUpItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
-import useFetchLineup from '../hooks/useFetchLineup';
+import useSetLineUpList from '../hooks/useSetLineUpList';
 
 const Content = styled.div<{ demoImgList: string[] }>`
   display: flex;
@@ -55,14 +55,9 @@ export default function LineUp() {
   const [perView, setPerView] = useState(3);
   const [spaceBetween, setSpaceBetween] = useState(50);
   const [demoImgList, setDemoImgList] = useState<string[]>([]);
-  const lineupList = useFetchLineup();
 
   useCheckScreenWidth({ setPerView, setSpaceBetween });
-  useEffect(() => {
-    const imgList = lineupList.map((lineup) => lineup.img);
-    setDemoImgList(imgList);
-  }, [lineupList]);
-
+  useSetLineUpList({ setDemoImgList });
   return (
     <>
       <Content demoImgList={demoImgList}>
@@ -70,7 +65,7 @@ export default function LineUp() {
         <p>오늘의 라인업</p>
       </Content>
       <BannerContainer>
-        <LineupItem
+        <LineUpItem
           perView={perView}
           spaceBetween={spaceBetween}
           demoImgList={demoImgList}
