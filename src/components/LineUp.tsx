@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Header from './Header';
-import LineupItem from './LineupItem';
+import LineUpItem from './LineUpItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
 import useSetLineUpList from '../hooks/useSetLineUpList';
@@ -58,7 +58,6 @@ export default function LineUp() {
 
   useCheckScreenWidth({ setPerView, setSpaceBetween });
   useSetLineUpList({ setDemoImgList });
-
   return (
     <>
       <Content demoImgList={demoImgList}>
@@ -66,7 +65,7 @@ export default function LineUp() {
         <p>오늘의 라인업</p>
       </Content>
       <BannerContainer>
-        <LineupItem
+        <LineUpItem
           perView={perView}
           spaceBetween={spaceBetween}
           demoImgList={demoImgList}
