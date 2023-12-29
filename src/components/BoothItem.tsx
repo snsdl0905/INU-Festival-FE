@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-
-import useFetchBooths from '../hooks/useFetchBooths';
+import styled from 'styled-components';
 import Booth from '../types/Booth';
 
-import styled from 'styled-components';
+type BoothItemProps ={
+  booth:Booth;
+  index:number;
+}
 
 const Booth = styled.div`
   display: flex;
@@ -45,41 +46,12 @@ const BoothTitle = styled.div`
     }
     &:last-child{
       color: #000;
-      font-size: 16px;
+      font-size: 17px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
       letter-spacing: -0.32px;
     }
-  }
-`;
-
-const BoothHeart = styled.div`
-  width: 64px;
-  height: 32px;
-  flex-shrink: 0;
-  border-radius: 21px;
-  background: #EBF2FF;
-  display:flex;
-  align-items:center;
-  gap:2.62px;
-  padding-left: 0.95rem;
-
-  img{
-    width: 12px;
-    height: 10px;
-    flex-shrink: 0;
-  }
-  div
-  {
-    font-family: SF Pro;
-    font-size: 14px;
-    font-weight: 590;
-    line-height: 17px;
-    letter-spacing: -0.02em;
-    text-align: left;
-    color: rgba(0, 71, 201, 1);
-    width:19px;
   }
 `;
 
@@ -90,43 +62,19 @@ const BoothList = styled.div`
   gap:36px;
 `;
 
-export default function BoothItem() {
-  const booths = useFetchBooths();
-  const [sortedBooths, setSortedBooths] = useState<Booth[]>([]);
-  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
-
-  useEffect(() => {
-    const fetchedBooths = [...booths];
-    fetchedBooths.sort((a, b) => b.liked - a.liked);
-    setSortedBooths(fetchedBooths.slice(0,5));
-  }, [booths]);
-
-  const handleLikeClicked = (index: number) => {
-    console.log('Clicked');
-    const updatedBooths = [...sortedBooths];
-    updatedBooths[index].liked += 1;
-    updatedBooths.sort((a, b) => b.liked - a.liked);
-    setSortedBooths(updatedBooths);
-  };
-
+export default function BoothItem({ booth, index }:BoothItemProps) {
   return (
     <BoothList>
-      {sortedBooths.map((booth, index) => (
-        <Booth key={index}>
-          <BoothDetail>
-            <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
-            <BoothImg src="BoothDefault.png" alt="부스이미지" />
-            <BoothTitle>
-              <div>{booth.category}</div>
-              <div>{booth.name}</div>
-            </BoothTitle>
-          </BoothDetail>
-          <BoothHeart onClick={() => handleLikeClicked(index)}>
-            <img src="heart.png" />
-            <div>{formatter.format(booth.liked)}</div>
-          </BoothHeart>
-        </Booth>
-      ))}
+      <Booth key={index}>
+        <BoothDetail>
+          <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
+          <BoothImg src="BoothDefault.png" alt="부스이미지" />
+          <BoothTitle>
+            <div>{booth.category}</div>
+            <div>{booth.name}</div>
+          </BoothTitle>
+        </BoothDetail>
+      </Booth>
     </BoothList>
   );
 }
