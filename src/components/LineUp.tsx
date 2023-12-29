@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -6,7 +6,7 @@ import Header from './Header';
 import LineUpItem from './LineUpItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
-import useFetchLineUp from '../hooks/useFetchLineUp';
+import useSetLineUpList from '../hooks/useSetLineUpList';
 
 const Content = styled.div<{ demoImgList: string[] }>`
   display: flex;
@@ -55,14 +55,9 @@ export default function LineUp() {
   const [perView, setPerView] = useState(3);
   const [spaceBetween, setSpaceBetween] = useState(50);
   const [demoImgList, setDemoImgList] = useState<string[]>([]);
-  const lineUpList = useFetchLineUp();
 
   useCheckScreenWidth({ setPerView, setSpaceBetween });
-  useEffect(() => {
-    const imgList = lineUpList.map((lineup) => lineup.img);
-    setDemoImgList(imgList);
-  }, [lineUpList]);
-
+  useSetLineUpList({ setDemoImgList });
   return (
     <>
       <Content demoImgList={demoImgList}>
