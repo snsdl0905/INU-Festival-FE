@@ -1,15 +1,16 @@
 import styled, { ThemeProvider } from 'styled-components';
-
 import { Reset } from 'styled-reset';
-
+import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import defaultTheme from './styles/defaultTheme';
 
-import LineUp from './components/LineUp';
-import FestivalSentence from './components/FestivalSentence';
-import BoothRanking from './components/BoothRanking';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+
+import MainPage from './pages/MainPage';
+import MapPage from './pages/MapPage';
+import ProfilePage from './pages/ProfilePage';
+import GuestBookPage from './pages/GuestBookPage';
+import TimeTablePage from './pages/TitmeTablePage';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -18,33 +19,36 @@ const Container = styled.div`
   overflow: hidden;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Main = styled.div`
-  width: 375px;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-`;
+function Layout() {
+  return (
+    <Container>
+      <Outlet />
+      <Navbar />
+    </Container>
+  );
+}
+
+const routes = [
+  {
+    element: <Layout />,
+    children: [
+      { path: '/', element: <MainPage /> },
+      { path: '/map', element: <MapPage /> },
+      { path: '/timetable', element: <TimeTablePage /> },
+      { path: '/guestbook', element: <GuestBookPage /> },
+      { path: '/profile', element: <ProfilePage /> },
+    ],
+  },
+];
+
+const router = createBrowserRouter(routes);
 
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Reset />
       <GlobalStyle />
-      <Container>
-        <Wrapper>
-          <LineUp />
-          <Main>
-            <FestivalSentence />
-            <BoothRanking />
-            <Footer />
-          </Main>
-          <Navbar />
-        </Wrapper>
-      </Container>
+      <RouterProvider router={router} />
     </ThemeProvider>
   );
 }
