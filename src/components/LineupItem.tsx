@@ -6,13 +6,13 @@ import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 
-type LineupItemProps = {
+type LineUpItemProps = {
   perView: number;
   spaceBetween: number;
   demoImgList: string[];
   }
 
-export default function LineupItem({ perView, spaceBetween, demoImgList }: LineupItemProps) {
+export default function LineUpItem({ perView, spaceBetween, demoImgList }: LineUpItemProps) {
   const Container = styled.div`
       width: 224px;
       height: 21rem;
