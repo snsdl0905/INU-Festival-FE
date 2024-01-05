@@ -13,10 +13,10 @@ import GuestBookPage from './pages/GuestBookPage';
 import TimeTablePage from './pages/TitmeTablePage';
 
 const Container = styled.div`
-  margin: 0 auto;
-  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding-bottom: 8rem;
   background: ${(props) => props.theme.colors.layoutBackground};
-  overflow: hidden;
 `;
 
 function Layout() {

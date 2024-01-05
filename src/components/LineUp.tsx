@@ -3,19 +3,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import Header from './Header';
-import LineUpItem from './LineUpItem';
+import LineUpItem from './LineupItem';
 
 import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
 import useSetLineUpList from '../hooks/useSetLineUpList';
 
 const Content = styled.div<{ demoImgList: string[] }>`
-  display: flex;
-  width: 100%;
-  flex-direction: column;       
+  width: 90%;
+  max-width: 600px;
   height: 27rem;
-  border-bottom-left-radius: 0.9rem;
-  border-bottom-right-radius: 0.9rem;
-  box-shadow: 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
   position: absolute;
   z-index: 100;
 
@@ -25,10 +21,13 @@ const Content = styled.div<{ demoImgList: string[] }>`
       ? `url(${props.demoImgList[0]})`
       : 'none'
   )};
+
     background-size: cover;
+    border-radius: 0px 0px 12px 12px;
+    box-shadow: -27.5px 27.5px 27.5px 0px rgba(255, 255, 255, 0.20) inset, 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
+    filter: blur(48.400001525878906px);
     content: "";
     position: absolute;
-    filter: blur(30px);
     top: 0px;
     left: 0px;
     right: 0px;

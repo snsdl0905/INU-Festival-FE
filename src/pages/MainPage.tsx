@@ -9,23 +9,22 @@ export default function MainPage() {
   const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
 
-  const Main = styled.div`
-  width: 375px; 
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-`;
+  main {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1.6rem;
+  }
+  `;
 
   return (
     <Wrapper>
-      <LineUp />
-      <Main>
+      <main>
+        <LineUp />
         <FestivalSentence />
         <BoothRanking />
         <Footer />
-      </Main>
+      </main>
     </Wrapper>
   );
 }
