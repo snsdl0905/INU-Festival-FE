@@ -19,10 +19,25 @@ const Container = styled.div`
   background: ${(props) => props.theme.colors.layoutBackground};
 `;
 
+const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1.6rem;
+}
+`;
+
 function Layout() {
   return (
     <Container>
-      <Outlet />
+      <Wrapper>
+        <main>
+          <Outlet />
+        </main>
+      </Wrapper>
       <Navbar />
     </Container>
   );
