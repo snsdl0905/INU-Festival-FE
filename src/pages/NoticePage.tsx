@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import PageHeader from '../components/PageHeader';
+import Header from '../components/Notice/Header';
 
 export default function NoticePage() {
   const Wrapper = styled.div`
@@ -9,7 +9,7 @@ export default function NoticePage() {
 
   return (
     <Wrapper>
-      <PageHeader>알림 센터</PageHeader>
+      <Header>알림 센터</Header>
     </Wrapper>
   );
 }
