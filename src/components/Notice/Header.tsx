@@ -5,7 +5,7 @@ type HeaderProps = {
 	children: React.ReactNode;
 }
 
-export default function PageHeader({ children }: HeaderProps) {
+export default function Header({ children }: HeaderProps) {
     const HeaderContainer = styled.div`
     width: 100%;
     display: flex;
