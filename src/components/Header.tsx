@@ -5,7 +5,6 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: ${(props) => props.theme.sizes.contentPadding};
     margin-top: .7em;
     margin-bottom: .7em;
 

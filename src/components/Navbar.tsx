@@ -21,7 +21,7 @@ const Nav = styled.nav`
   margin: 0px;
   padding: 0px;
   border: 0px;
-  font: inherit;
+  font-size: 1.5rem;
   vertical-align: baseline;
 
   ul {
@@ -46,6 +46,7 @@ const StyledNavLink = styled(NavLink)`
 
   svg {
     width: 2.4rem;
+    height: 2.4rem;
   }
 
   &.active {
