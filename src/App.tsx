@@ -11,6 +11,7 @@ import MapPage from './pages/MapPage';
 import ProfilePage from './pages/ProfilePage';
 import GuestBookPage from './pages/GuestBookPage';
 import TimeTablePage from './pages/TitmeTablePage';
+import NoticePage from './pages/NoticePage';
 
 const Container = styled.div`
   margin: 0 auto;
@@ -37,6 +38,7 @@ const routes = [
       { path: '/timetable', element: <TimeTablePage /> },
       { path: '/guestbook', element: <GuestBookPage /> },
       { path: '/profile', element: <ProfilePage /> },
+      { path: '/notices', element: <NoticePage /> },
     ],
   },
 ];
