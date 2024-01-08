@@ -13,11 +13,16 @@ const Content = styled.header`
   z-index: 1;
   color: #FFFFFF;
 
+  h1, ul, p {
+    padding-block: 1rem;
+  }
   h1 {
+    height: 40px;
     text-align: center;
     font-weight: 510;
     line-height: 21px;
-    padding-block: 1.4rem;
+    margin-top: 1rem;
+    
   }
   ul {
       display: flex;
@@ -28,8 +33,6 @@ const Content = styled.header`
       font-weight: 510;
       line-height: 21px;
       text-align: center;
-      padding-block: 1.4rem;
-
   }
   button {
     width: 104px;

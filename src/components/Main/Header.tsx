@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     max-width: 600px;
+    height: 69px;
     display: flex;
     justify-content: space-between;
     align-items: center;
