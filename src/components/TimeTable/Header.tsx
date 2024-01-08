@@ -35,7 +35,13 @@ const Content = styled.header`
       line-height: 21px;
       text-align: center;
   }
-  button {
+`;
+
+type ButtonProps = {
+  active: boolean;
+}
+
+const Button = styled.button<ButtonProps>`
     width: 104px;
     height: 37px;;
     border-radius: 20px;
