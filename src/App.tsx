@@ -15,6 +15,7 @@ import NoticePage from './pages/NoticePage';
 
 const Container = styled.div`
   max-width: 600px;
+  height: 100%;
   margin: auto;
   padding-bottom: 8rem;
   background: ${(props) => props.theme.colors.layoutBackground};
