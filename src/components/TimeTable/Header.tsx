@@ -1,5 +1,6 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
+import { useState } from 'react';
 import BlurContainer from '../../styles/BlurContainer';
 
 const TimeTableBlurContainer = styled(BlurContainer)`
@@ -38,13 +39,25 @@ const Content = styled.header`
     width: 104px;
     height: 37px;;
     border-radius: 20px;
-    background-color: #FFFFFF;
-    color: #000;
     border: 0;
-  }
+    background: transparent;
+    color: #FFFFFF;
+    cursor: pointer;
+
+    ${(props) => props.active && css`
+      background: #FFFFFF;
+      color: #000;
+      transition: .3s;
+    `};
 `;
 
 export default function Header() {
+  const [selectedDate, setDate] = useState('1');
+
+  const handleSetFilterDate = (category: string) => {
+    setDate(category);
+  };
+
   return (
     <TimeTableBlurContainer LineUpList={['BOL.jpeg']}>
       <Content>
@@ -52,15 +65,33 @@ export default function Header() {
         <ul>
           <li>
             <p>9</p>
-            <button type="button">Day 1</button>
+            <Button
+              type="button"
+              active={selectedDate === '1'}
+              onClick={() => handleSetFilterDate('1')}
+            >
+              Day 1
+            </Button>
           </li>
           <li>
             <p>10</p>
-            <button type="button">Day 2</button>
+            <Button
+              type="button"
+              active={selectedDate === '2'}
+              onClick={() => handleSetFilterDate('2')}
+            >
+              Day 1
+            </Button>
           </li>
           <li>
             <p>11</p>
-            <button type="button">Day 3</button>
+            <Button
+              type="button"
+              active={selectedDate === '3'}
+              onClick={() => handleSetFilterDate('3')}
+            >
+              Day 1
+            </Button>
           </li>
         </ul>
       </Content>
