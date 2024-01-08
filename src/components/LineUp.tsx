@@ -14,15 +14,11 @@ const Content = styled.div<{ demoImgList: string[] }>`
   max-width: 600px;
   margin: -1.6rem;
   padding-inline: 1.6rem;
-  height: 27rem;
-  background-image:${(props) => (
-    props.demoImgList && props.demoImgList.length > 0
-      ? `url(${props.demoImgList[0]})`
-      : 'none'
-  )};
+  height: 30rem;
   background-size: cover;
   box-shadow: -27.5px 27.5px 27.5px 0px rgba(255, 255, 255, 0.20) inset, 27.5px -27.5px 27.5px 0px rgba(99, 99, 99, 0.20) inset;
   border-radius: 0px 0px 12px 12px;
+  overflow: hidden;
 
   ::before {  
     position: absolute;
@@ -32,7 +28,13 @@ const Content = styled.div<{ demoImgList: string[] }>`
     left: 0px;
     right: 0px;
     bottom: 0px;
-    z-index: 1;
+    z-index: -1;
+    background-size: cover;
+    background-image:${(props) => (
+    props.demoImgList && props.demoImgList.length > 0
+      ? `url(${props.demoImgList[0]})`
+      : 'none'
+  )};
     /* background-color: rgba(255, 0, 0, 0.5); */
   }
 `;
@@ -41,7 +43,7 @@ const Textarea = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-
+  z-index: 1;
   p {
     color: white;
     font-weight: bold;
