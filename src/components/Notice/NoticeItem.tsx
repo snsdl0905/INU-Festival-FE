@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 import Notice from '../../types/Notice';
+import NoticeBottom from './NoticeBottom';
 import { useState } from 'react';
 
 
@@ -18,16 +19,6 @@ export default function NoticeItem( {notice} : NoticeItemProps ){
 
     const NoticeTop = styled.div`
         display: flex;
-    `;
-
-    const NoticeBottom = styled.div`
-        background-color: #EBF2FF;
-        margin-top: 2.3rem;
-        padding: 2rem;
-        border-radius: 10px;
-        font-weight: 350;
-        letter-spacing: -0.04348rem;
-        white-space: pre-line;
     `;
 
     const NoticeTitle = styled.div`
@@ -85,7 +76,7 @@ export default function NoticeItem( {notice} : NoticeItemProps ){
                     </svg>
                 </NoticeExtend>
             </NoticeTop>
-            {isVisible && <NoticeBottom>{notice.content}</NoticeBottom>}
+            {isVisible && <NoticeBottom notice={ notice } />}
         </NoticeBox>
     );
 }

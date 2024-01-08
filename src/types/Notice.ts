@@ -4,7 +4,7 @@ interface Notice {
     content: string;
     date: string;
     category: string;
-    img: string;
+    img: string[];
 }
 
 export default Notice;
