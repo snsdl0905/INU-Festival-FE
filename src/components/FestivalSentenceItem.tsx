@@ -91,7 +91,7 @@ type SententenceItemProps = {
   sentence: Shouts;
 }
 
-export default function FestivalSentenceItem( { sentence }: SententenceItemProps ) {
+export default function FestivalSentenceItem({ sentence }: SententenceItemProps) {
   return (
     <SentenceItemBox key={sentence.id}>
       <div>
@@ -107,4 +107,3 @@ export default function FestivalSentenceItem( { sentence }: SententenceItemProps
     </SentenceItemBox>
   );
 }
-
