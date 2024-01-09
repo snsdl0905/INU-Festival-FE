@@ -3,14 +3,14 @@ import { useEffect } from 'react';
 import useFetchLineup from './useFetchLineup';
 
 type useSetLineUpListProps = {
-    setDemoImgList: (value: string[]) => void;
+  setLineUpList: (value: string[]) => void;
   }
 
-export default function useSetLineUpList({ setDemoImgList }: useSetLineUpListProps) {
+export default function useSetLineUpList({ setLineUpList }: useSetLineUpListProps) {
   const lineupList = useFetchLineup();
 
   useEffect(() => {
     const imgList = lineupList.map((lineup) => lineup.img);
-    setDemoImgList(imgList);
+    setLineUpList(imgList);
   }, [lineupList]);
 }
