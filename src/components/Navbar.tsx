@@ -44,6 +44,7 @@ const Box = styled.div`
   position: fixed;
   width: 100%;
   bottom: 0px;
+  z-index: 99;
 `;
 
 const color = '#BBC7D3';
