@@ -14,16 +14,32 @@ import TimeTablePage from './pages/TitmeTablePage';
 import NoticePage from './pages/NoticePage';
 
 const Container = styled.div`
-  margin: 0 auto;
-  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+  padding-bottom: 8rem;
   background: ${(props) => props.theme.colors.layoutBackground};
-  overflow: hidden;
+`;
+
+const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1.6rem;
+}
 `;
 
 function Layout() {
   return (
     <Container>
-      <Outlet />
+      <Wrapper>
+        <main>
+          <Outlet />
+        </main>
+      </Wrapper>
       <Navbar />
     </Container>
   );
