@@ -2,6 +2,9 @@ import { styled } from 'styled-components';
 
 import Notice from '../../types/Notice';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/components/pagination/pagination.min.css';
+
 type NoticeItemProps = {
     notice: Notice;
 }
@@ -22,7 +25,6 @@ export default function NoticeBottom( {notice} : NoticeItemProps ){
     const NoticeImageContainer = styled.div`
         border-radius: 1rem;
         display: flex;
-        overflow: auto;
     `
 
     const NoticeImageBox = styled.img`
@@ -34,12 +36,26 @@ export default function NoticeBottom( {notice} : NoticeItemProps ){
     return(
         <NoticeContentBox>
             {notice.content}
+            <Swiper
+                spaceBetween={30}
+                slidesPerView={2}               
+                allowTouchMove
+                freeMode
+                freeModeMinimumVelocity={0.01}
+                breakpoints={{
+                    
+                }}
+            >
             <NoticeImageContainer>
             {
-                notice.img.map((imgsrc, index) => (
-                    <NoticeImageBox key={index} src={imgsrc} />
+                notice.img.map((imgsrc) => (
+                    <SwiperSlide key={notice.id}>
+                        <NoticeImageBox key={notice.id} src={imgsrc} />
+                    </SwiperSlide>
                 ))}                
             </NoticeImageContainer>
+            </Swiper>
+            
         </NoticeContentBox>
     )
 
