@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 
 import BoothItem from './BoothItem';
 
-import useFetchBooths from '../hooks/useFetchBooths';
-import Booth from '../types/Booth';
+import useFetchBooths from '../../hooks/useFetchBooths';
+import Booth from '../../types/Booth';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
