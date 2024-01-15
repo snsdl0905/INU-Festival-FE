@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import useFetchKeyword from '../hooks/useFetchWords';
+import useFetchKeyword from '../../hooks/useFetchWords';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';

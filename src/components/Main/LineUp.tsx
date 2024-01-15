@@ -2,14 +2,14 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import Header from './Main/Header';
+import Header from './Header';
 
 import LineUpItem from './LineupItem';
 
-import useCheckScreenWidth from '../hooks/useCheckScreenWidth';
-import useSetLineUpList from '../hooks/useSetLineUpList';
+import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
+import useSetLineUpList from '../../hooks/useSetLineUpList';
 
-import BlurContainer from '../styles/BlurContainer';
+import BlurContainer from '../../styles/BlurContainer';
 
 const Content = styled.div`
   position: relative;

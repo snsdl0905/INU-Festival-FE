@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import FestivalSentenceItem from './FestivalSentenceItem';
-import useFetchSentence from '../hooks/useFetchSentence';
+import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
 
 const FestivalSentenceBox = styled.div`

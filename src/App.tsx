@@ -4,7 +4,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import defaultTheme from './styles/defaultTheme';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/Main/Navbar';
 
 import MainPage from './pages/MainPage';
 import MapPage from './pages/MapPage';
