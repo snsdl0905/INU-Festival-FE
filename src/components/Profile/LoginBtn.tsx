@@ -10,11 +10,11 @@ border-radius: 12px;
 font-size:15px;
 color: #FFFFFF;
 border:none;
+margin-top:24px;
 `;
 
 export default function LoginBtn() {
-  const [IsLogin, setIsLogin] = useState(false);
   return (
-    <IsLoginBtn onClick={setIsLogin(!IsLogin)}>로그인</IsLoginBtn>
+    <IsLoginBtn>로그인</IsLoginBtn>
   );
 }
