@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import useFetchKeyword from '../../hooks/useFetchWords';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
-
 
 const WordContainer = styled.div`
     display:flex;
@@ -31,24 +31,24 @@ const WordContent = styled.div`
     margin-right:8px;
 `;
 
-export default function Word(){
-    const wordList = useFetchKeyword();
-    return (
-        <WordContainer>
-            <Swiper
-                spaceBetween={50}
-                slidesPerView={6}
-                allowTouchMove
-                freeMode
-                freeModeMinimumVelocity={0.01}
-            >
-                {wordList.map((word) => (
-                    <SwiperSlide key={word.id}>
-                        <WordContent>{word.word}</WordContent>
-                    </SwiperSlide>
-                ))}
-            </Swiper>
-      </WordContainer>
-    )
-    
+export default function Word() {
+  const wordList = useFetchKeyword();
+
+  return (
+    <WordContainer>
+      <Swiper
+        spaceBetween={50}
+        slidesPerView={6}
+        allowTouchMove
+        freeMode
+        freeModeMinimumVelocity={0.01}
+      >
+        {wordList.map((word) => (
+          <SwiperSlide key={word.id}>
+            <WordContent>{word.word}</WordContent>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </WordContainer>
+  );
 }

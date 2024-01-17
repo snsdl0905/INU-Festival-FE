@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type useCheckScreenWidthProps = {
-  setPerView: (value: number) => void;
-  setSpaceBetween: (value: number) => void;
-}
-
-export default function useCheckScreenWidth({
-  setPerView, setSpaceBetween,
-}: useCheckScreenWidthProps) {
+export default function useCheckScreenWidth(setPerView: (value: number) => void) {
   const [, setWindowSize] = useState({
     width: window.innerWidth,
   });
@@ -16,20 +9,12 @@ export default function useCheckScreenWidth({
     setWindowSize({
       width: window.innerWidth,
     });
-    if (window.innerWidth < 300) {
-      setPerView(1); setSpaceBetween(50);
-    } else if (window.innerWidth < 400) {
-      setPerView(2); setSpaceBetween(150);
-    } else if (window.innerWidth < 500) {
-      setPerView(2); setSpaceBetween(100);
-    } else if (window.innerWidth < 750) {
-      setPerView(2); setSpaceBetween(50);
-    } else if (window.innerWidth < 1100) {
-      setPerView(3); setSpaceBetween(50);
-    } else if (window.innerWidth < 1200) {
-      setPerView(4); setSpaceBetween(50);
+    if (window.innerWidth <= 420) {
+      setPerView(1.7);
+    } else if (window.innerWidth <= 600) {
+      setPerView(2);
     } else {
-      setPerView(5); setSpaceBetween(50);
+      setPerView(3);
     }
   };
 

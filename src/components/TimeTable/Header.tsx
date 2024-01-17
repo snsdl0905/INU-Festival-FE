@@ -10,11 +10,11 @@ const TimeTableBlurContainer = styled(BlurContainer)`
 `;
 
 export default function Header() {
-  const [categories, setFilterCateogry] = useState(['1', '2', '3']);
+  const [categories] = useState(['1', '2', '3']);
   const [filterCategory, setFilterCatergory] = useState<string>('1');
 
   return (
-    <TimeTableBlurContainer LineUpList={['BOL.jpeg']}>
+    <TimeTableBlurContainer $backgroundimg="BOL2.jpeg">
       <Categories
         categories={categories}
         filterCategory={filterCategory}
