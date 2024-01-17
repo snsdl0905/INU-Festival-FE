@@ -1,6 +1,6 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
-const BlurContainer = styled.div<{ LineUpList: string[] }>`
+const BlurContainer = styled.div<{$backgroundimg:string}>`
   position: absolute;
   width: 100%;
   max-width: 600px;
@@ -21,11 +21,7 @@ const BlurContainer = styled.div<{ LineUpList: string[] }>`
     bottom: 0px;
     z-index: -1;
     background-size: cover;
-    background-image:${(props) => (
-    props.LineUpList && props.LineUpList.length > 0
-      ? `url(${props.LineUpList[0]})`
-      : 'none'
-  )};
+    background-image: ${(props) => (props.$backgroundimg ? `url(${props.$backgroundimg})` : 'none')};
   }
 `;
 

@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components';
 
 type ButtonProps = {
-    active: boolean;
+    $active: boolean;
   }
 
 const Button = styled.button<ButtonProps>`
@@ -13,7 +13,7 @@ const Button = styled.button<ButtonProps>`
       color: #FFFFFF;
       cursor: pointer;
   
-      ${(props) => props.active && css`
+      ${(props) => props.$active && css`
         background: #FFFFFF;
         color: #000;
         transition: .3s;
@@ -32,7 +32,7 @@ export default function Category({ active, category, handleSetFilterCategory }: 
       <p>{9}</p>
       <Button
         type="button"
-        active={active}
+        $active={active}
         onClick={() => handleSetFilterCategory(category)}
       >
         Day

@@ -6,10 +6,9 @@ import Header from './Header';
 
 import LineUpItem from './LineupItem';
 
-import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
-import useSetLineUpList from '../../hooks/useSetLineUpList';
-
 import BlurContainer from '../../styles/BlurContainer';
+import useFetchLineUp from '../../hooks/useFetchPerforms';
+import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const Content = styled.div`
   position: relative;
@@ -25,21 +24,27 @@ const Content = styled.div`
 `;
 
 const BannerContainer = styled.div`
+  width: 100%;
+  height: 230px;
   position: relative;
   top: 12rem;
   z-index: 100;
 `;
 
 export default function LineUp() {
-  const [perView, setPerView] = useState(3);
-  const [spaceBetween, setSpaceBetween] = useState(50);
-  const [LineUpList, setLineUpList] = useState<string[]>([]);
+  const [perview, setPerView] = useState(3);
 
-  useCheckScreenWidth({ setPerView, setSpaceBetween });
-  useSetLineUpList({ setLineUpList });
+  const performs = useFetchLineUp();
+
+  const lineups = performs.filter((perform) => (
+    perform.category === '연예인'
+  ));
+
+  useCheckScreenWidth(setPerView);
+
   return (
     <>
-      <BlurContainer LineUpList={LineUpList}>
+      <BlurContainer $backgroundimg="BOL2.jpeg">
         <Content>
           <Header />
           <p>오늘의 라인업</p>
@@ -47,9 +52,9 @@ export default function LineUp() {
       </BlurContainer>
       <BannerContainer>
         <LineUpItem
-          perView={perView}
-          spaceBetween={spaceBetween}
-          demoImgList={LineUpList}
+          perView={perview}
+          spaceBetween={150}
+          lineups={lineups}
         />
       </BannerContainer>
     </>
