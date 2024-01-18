@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import LoginBtn from './LoginBtn';
 
 const UserInfoWrapper = styled.div`
 display: flex;
@@ -19,12 +18,6 @@ flex-direction: column;
 justify-content: space-between;
 
 `;
-const UserIcon = styled.img`
-width: 50%;
-height: auto;
-margin-top:-15px;
-flex-shrink: 1;
-`;
 
 export default function UserInfo() {
   const user = `즐거운 축제의 시작
@@ -33,9 +26,8 @@ export default function UserInfo() {
     <UserInfoWrapper>
       <UserSection>
         <span>{user}</span>
-        <LoginBtn />
       </UserSection>
-      <UserIcon src="default.svg" alt="major" />
+      {/* <UserIcon src="default.svg" alt="major" /> */}
     </UserInfoWrapper>
   );
 }
