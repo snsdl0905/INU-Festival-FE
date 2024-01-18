@@ -27,7 +27,6 @@ export default function UserInfo() {
       <UserSection>
         <span>{user}</span>
       </UserSection>
-      {/* <UserIcon src="default.svg" alt="major" /> */}
     </UserInfoWrapper>
   );
 }

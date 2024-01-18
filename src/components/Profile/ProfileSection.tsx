@@ -29,10 +29,10 @@ font-style: normal;
 font-weight: 600;
 `;
 const UserIcon = styled.img`
-width: 50%;
+width: 48%;
 height: auto;
-margin-top:-15px;
-flex-shrink: 0;
+margin-bottom:32px;
+flex-shrink: 1;
 `;
 
 export default function ProfileSection() {
