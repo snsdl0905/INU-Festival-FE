@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Shouts from '../types/Shouts';
+import Shouts from '../../types/Shouts';
 
 const ContentBox = styled.div`
   flex-direction: column;

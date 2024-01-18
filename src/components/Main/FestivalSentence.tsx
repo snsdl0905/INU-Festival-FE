@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import FestivalSentenceItem from './FestivalSentenceItem';
-import useFetchSentence from '../hooks/useFetchSentence';
+import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
 
 const FestivalSentenceBox = styled.div`
@@ -17,8 +17,6 @@ const SentenceBox = styled.ul`
   overflow: hidden;
 `;
 
-// const wordList = ['아이브', '주점', '족발', '찜/탕', '양꼬치', '짜장면', '짬뽕', '퇴근', '교수님', '실시간'];
-
 export default function FestivalSentence() {
   const sentences = useFetchSentence();
 
@@ -26,8 +24,11 @@ export default function FestivalSentence() {
     <>
       <FestivalSentenceBox>
         <SentenceBox>
-          { sentences.map((sentence) => (
-            <FestivalSentenceItem sentence={sentence} />
+          {sentences.map((sentence) => (
+            <FestivalSentenceItem
+              key={sentence.id}
+              sentence={sentence}
+            />
           ))}
         </SentenceBox>
       </FestivalSentenceBox>

@@ -4,25 +4,42 @@ import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import GlobalStyle from './styles/GlobalStyle';
 import defaultTheme from './styles/defaultTheme';
 
-import Navbar from './components/Navbar';
+import Navbar from './components/Main/Navbar';
 
 import MainPage from './pages/MainPage';
 import MapPage from './pages/MapPage';
 import ProfilePage from './pages/ProfilePage';
 import GuestBookPage from './pages/GuestBookPage';
 import TimeTablePage from './pages/TitmeTablePage';
+import NoticePage from './pages/NoticePage';
 
 const Container = styled.div`
-  margin: 0 auto;
-  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+  padding-bottom: 8rem;
   background: ${(props) => props.theme.colors.layoutBackground};
-  overflow: hidden;
+`;
+
+const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1.6rem;
+}
 `;
 
 function Layout() {
   return (
     <Container>
-      <Outlet />
+      <Wrapper>
+        <main>
+          <Outlet />
+        </main>
+      </Wrapper>
       <Navbar />
     </Container>
   );
@@ -37,6 +54,7 @@ const routes = [
       { path: '/timetable', element: <TimeTablePage /> },
       { path: '/guestbook', element: <GuestBookPage /> },
       { path: '/profile', element: <ProfilePage /> },
+      { path: '/notices', element: <NoticePage /> },
     ],
   },
 ];
