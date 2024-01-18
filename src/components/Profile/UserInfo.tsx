@@ -2,24 +2,28 @@ import styled from 'styled-components';
 import LoginBtn from './LoginBtn';
 
 const UserInfoWrapper = styled.div`
-display:flex;
-magin-top:16px;
-justify-content:space-between;
-margin-bottom:24px;
+display: flex;
+margin-top: 16px;
+justify-content: space-between;
 `;
 const UserSection = styled.div`
 color: #000;
 font-family: SF Pro;
-font-size: 16px;
+font-size: 1em; /* Adjust the font size to your preference */
 font-weight: 400;
-line-height: 137.5%;
+line-height: 1.5; /* Adjust line height for better readability */
 letter-spacing: -0.64px;
 white-space: pre-wrap;
-margin-top:16px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+
 `;
 const UserIcon = styled.img`
-width:13rem;
-height:13rem;
+width: 50%;
+height: auto;
+margin-top:-15px;
+flex-shrink: 1;
 `;
 
 export default function UserInfo() {
@@ -31,9 +35,7 @@ export default function UserInfo() {
         <span>{user}</span>
         <LoginBtn />
       </UserSection>
-
-      <UserIcon src="default.png" alt="major" />
+      <UserIcon src="default.svg" alt="major" />
     </UserInfoWrapper>
-  
   );
 }

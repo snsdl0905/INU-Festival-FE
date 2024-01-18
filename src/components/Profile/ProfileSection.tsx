@@ -9,7 +9,6 @@ background-color: #EBF2FF;
 padding-left:1.25em;
 padding-top:5em;
 padding-right:1.25em;
-padding-bottom:2em;
 `;
 const ProfileTitle = styled.div`
 color: #000;
