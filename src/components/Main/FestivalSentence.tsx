@@ -5,7 +5,6 @@ import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
 
 const FestivalSentenceBox = styled.div`
-  /* position: absolute; */
 `;
 
 const SentenceBox = styled.ul`
