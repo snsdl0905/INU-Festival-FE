@@ -2,11 +2,12 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
+import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
 import LineUpItem from './LineupItem';
 
-import BlurContainer from '../../styles/BlurContainer';
+import BlurContainer from '../BlurContainer';
 import useFetchLineUp from '../../hooks/useFetchPerforms';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
@@ -29,6 +30,7 @@ const BannerContainer = styled.div`
   position: relative;
   top: 12rem;
   z-index: 100;
+  cursor: pointer;
 `;
 
 export default function LineUp() {
