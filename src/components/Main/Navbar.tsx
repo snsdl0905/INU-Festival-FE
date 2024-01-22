@@ -9,12 +9,11 @@ const Container = styled.div`
   width: 100%;
   max-width: 600px;
   height: 8rem;
-  transform: translateX(-50%);
   padding-inline: 1.6rem;
-
   border-radius: 20px 20px 0px 0px;
   background: #FFF;
   box-shadow: 0px -3px 15px 0px rgba(1, 71, 200, 0.08);
+  transform: translateX(-50%);
 `;
 
 const Nav = styled.nav`
