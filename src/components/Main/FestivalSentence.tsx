@@ -8,7 +8,7 @@ const FestivalSentenceBox = styled.div`
 `;
 
 const SentenceBox = styled.ul`
-  margin-top: 13rem;
+  margin-top: 6rem;
   background-color: #F8F8FA;
   width: 100%;
   height: 61px;

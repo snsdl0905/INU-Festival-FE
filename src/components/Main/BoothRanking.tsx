@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 
 import BoothItem from './BoothItem';
 
 import useFetchBooths from '../../hooks/useFetchBooths';
-import Booth from '../../types/Booth';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -124,7 +122,6 @@ export default function BoothRanking() {
   const fetchedBooths = [...booths];
   fetchedBooths.sort((a, b) => b.liked - a.liked);
   const sortedBooths = (fetchedBooths.slice(0, 5));
-
 
   const handleLikeClicked = (index: number) => {
     const updatedBooths = [...sortedBooths];
