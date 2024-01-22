@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
 const BlurContainer = styled.div<{$backgroundimg:string}>`
-  position: absolute;
-  width: 100%;
-  max-width: 600px;
+  position: relative;
+  width: 600px;
   margin-left: -1.6rem;
   padding-inline: 1.6rem;
   height: 30rem;

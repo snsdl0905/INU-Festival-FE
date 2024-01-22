@@ -1,7 +1,7 @@
-import Header from '../components/TimeTable/Header';
+import FilterableTimeTable from '../components/TimeTable/FilterableTimeTable';
 
 export default function TimeTablePage() {
   return (
-    <Header />
+    <FilterableTimeTable />
   );
 }

@@ -19,6 +19,7 @@ flex-direction: column;
 main {
   display: flex;
   flex-direction: column;
+  position: relative;
   padding-inline: 1.6rem;
 }
 `;

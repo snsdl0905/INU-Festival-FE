@@ -2,13 +2,12 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 
 import LineUpItem from './LineupItem';
 
 import BlurContainer from '../BlurContainer';
-import useFetchLineUp from '../../hooks/useFetchPerforms';
+import useFetchPerforms from '../../hooks/useFetchPerforms';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const Content = styled.div`
@@ -27,7 +26,8 @@ const Content = styled.div`
 const BannerContainer = styled.div`
   width: 100%;
   height: 230px;
-  position: relative;
+  padding-right: 3.2rem;
+  position: absolute;
   top: 12rem;
   z-index: 100;
   cursor: pointer;
@@ -36,7 +36,7 @@ const BannerContainer = styled.div`
 export default function LineUp() {
   const [perview, setPerView] = useState(3);
 
-  const performs = useFetchLineUp();
+  const performs = useFetchPerforms();
 
   const lineups = performs.filter((perform) => (
     perform.category === '연예인'

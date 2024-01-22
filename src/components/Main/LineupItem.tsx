@@ -26,7 +26,11 @@ type LineUpItemProps = {
   lineups: Perform[];
   }
 
-export default function LineUpItem({ perView, spaceBetween, lineups }: LineUpItemProps) {
+export default function LineUpItem({
+  perView,
+  spaceBetween,
+  lineups,
+}: LineUpItemProps) {
   return (
     <Swiper
       spaceBetween={spaceBetween}
