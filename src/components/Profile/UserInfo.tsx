@@ -8,7 +8,7 @@ justify-content: space-between;
 const UserSection = styled.div`
 color: #000;
 font-family: SF Pro;
-font-size: 1em; /* Adjust the font size to your preference */
+font-size: 1.48rem; /* Adjust the font size to your preference */
 font-weight: 400;
 line-height: 1.5; /* Adjust line height for better readability */
 letter-spacing: -0.64px;

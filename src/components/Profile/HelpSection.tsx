@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const HelpWrapper = styled.div`
-width: 375px;
-height: 812px;
-margin-top:36px;
-margin-left:20px;
+const HelpWrapper = styled.li`
+width: 100%;
+padding-top:20px;
+padding-left:20px;
+list-style:none;
 `;
 const HelpTitle = styled.div`
 color: #000;
@@ -17,7 +17,7 @@ letter-spacing: -0.8px;
 margin-bottom: 24px;
 `;
 
-const HelpElement = styled.div`
+const HelpElement = styled.li`
 width: 100%;
 height: 19px;
 flex-shrink: 0;
@@ -32,7 +32,7 @@ flex-shrink: 0;
 margin-right:18px;
 `;
 
-const Helplink = styled.div`
+const Helplink = styled.button`
 color: #000;
 font-family: "SF Pro";
 font-size: 16px;
@@ -40,6 +40,8 @@ font-style: normal;
 font-weight: 400;
 letter-spacing: -0.64px;
 line-height: 24px;
+border:none;
+background-color:transparent;
 `;
 
 export default function HelpSectioin() {
@@ -52,7 +54,7 @@ export default function HelpSectioin() {
       </HelpElement>
       <HelpElement>
         <HelpIcon src="Contact.svg" />
-        <Helplink>문의 하기</Helplink>
+        <Helplink>문의하기</Helplink>
       </HelpElement>
       <HelpElement>
         <HelpIcon src="Link.svg" />
