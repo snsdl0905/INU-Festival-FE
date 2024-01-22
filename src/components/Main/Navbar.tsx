@@ -23,6 +23,7 @@ const Nav = styled.nav`
   border: 0px;
   font-size: 1.5rem;
   vertical-align: baseline;
+  cursor: pointer;
 
   ul {
     display: flex;

@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 
 import { useState } from 'react';
 
-import BlurContainer from '../../styles/BlurContainer';
+import BlurContainer from '../BlurContainer';
 import Categories from './Categories';
 
 const TimeTableBlurContainer = styled(BlurContainer)`
   height: 16rem;
+  cursor: pointer;
 `;
 
 export default function Header() {

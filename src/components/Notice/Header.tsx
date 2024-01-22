@@ -14,8 +14,6 @@ margin-top: .7em;
 margin-bottom: .7em;
 padding-block: 1.4em;
 box-shadow: 0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05);
-/* padding-bottom: 1rem; */
-
 
 span{
   margin: 0 auto;
