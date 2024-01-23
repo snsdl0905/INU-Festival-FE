@@ -38,7 +38,7 @@ type LineupProps = {
 
 export default function Lineup({ lineup }: LineupProps) {
   const {
-    name, startTime, endTime, img,
+    name, startTime, endTime,
   } = lineup;
 
   return (

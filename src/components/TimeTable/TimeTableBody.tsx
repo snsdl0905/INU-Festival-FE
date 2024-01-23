@@ -1,13 +1,7 @@
 import Lineups from './Lineups';
+import Schedule from './Schedule';
 
 import Perform from '../../types/Perform';
-
-function Schedule() {
-  return (
-    <>
-    </>
-  );
-}
 
 type TimeTableBodyProps = {
   performs: Perform[];
@@ -21,7 +15,7 @@ export default function TimeTableBody({ performs }: TimeTableBodyProps) {
   return (
     <div>
       <Lineups lineups={lineups} />
-      <Schedule />
+      <Schedule performs={performs} />
     </div>
   );
 }

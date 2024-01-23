@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Lineup from './Lineup';
 
 import Perform from '../../types/Perform';
+
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 type LineupsProps = {
@@ -14,7 +15,7 @@ type LineupsProps = {
 }
 
 const Section = styled.section`
-  h3 {
+  h1 {
     font-size: 20px;
     font-weight: bold;
     margin-top: 2rem;
@@ -30,7 +31,7 @@ export default function Lineups({ lineups }: LineupsProps) {
 
   return (
     <Section>
-      <h3>Lineup</h3>
+      <h1>Lineup</h1>
       <Swiper
         spaceBetween={100}
         slidesPerView={perview}
