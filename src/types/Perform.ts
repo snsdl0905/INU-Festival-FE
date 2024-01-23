@@ -3,6 +3,7 @@ interface Perform {
     name: string;
     category: string;
     detail: string;
+    date: string;
     day:string;
     startTime: string;
     endTime: string;

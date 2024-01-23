@@ -26,7 +26,10 @@ type CategoryProps = {
     handleSetFilterCategory: (category: string) => void;
   }
 
-export default function Category({ active, category, handleSetFilterCategory }: CategoryProps) {
+export default function Category({
+  active,
+  category, handleSetFilterCategory,
+}: CategoryProps) {
   return (
     <li key={category}>
       <p>{9}</p>
@@ -37,7 +40,7 @@ export default function Category({ active, category, handleSetFilterCategory }: 
       >
         Day
         {' '}
-        {category}
+        {category[category.length - 1]}
       </Button>
     </li>
   );
