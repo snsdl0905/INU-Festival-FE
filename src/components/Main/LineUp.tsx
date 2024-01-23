@@ -23,12 +23,14 @@ const Content = styled.div`
   }
 `;
 
+const MainBlurContainer = styled(BlurContainer)`
+`;
+
 const BannerContainer = styled.div`
   width: 100%;
   height: 230px;
-  padding-right: 3.2rem;
   position: absolute;
-  top: 12rem;
+  top: 13rem;
   z-index: 100;
   cursor: pointer;
 `;
@@ -46,12 +48,12 @@ export default function LineUp() {
 
   return (
     <>
-      <BlurContainer $backgroundimg="BOL2.jpeg">
+      <MainBlurContainer $backgroundimg="BOL2.jpeg">
         <Content>
           <Header />
           <p>오늘의 라인업</p>
         </Content>
-      </BlurContainer>
+      </MainBlurContainer>
       <BannerContainer>
         <LineUpItem
           perView={perview}

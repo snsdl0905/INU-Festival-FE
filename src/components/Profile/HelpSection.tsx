@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const HelpWrapper = styled.li`
 width: 100%;
 padding-top:20px;
-padding-left:20px;
 list-style:none;
 `;
 const HelpTitle = styled.div`

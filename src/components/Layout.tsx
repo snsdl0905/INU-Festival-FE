@@ -9,12 +9,11 @@ const Container = styled.div`
   max-width: 600px;
   height: 100%;
   background: ${(props) => props.theme.colors.layoutBackground};
-
+  
   main {
+    position: relative;
     display: flex;
     flex-direction: column;
-    position: relative;
-    padding-inline: 1.6rem;
   }
 `;
 
