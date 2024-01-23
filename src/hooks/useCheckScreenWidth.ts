@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 
-export default function useCheckScreenWidth(setPerView: (value: number) => void) {
+export default function useCheckScreenWidth(
+  defaultPerview: number,
+  setPerView: (value: number) => void,
+) {
   const [, setWindowSize] = useState({
     width: window.innerWidth,
   });
@@ -9,12 +12,12 @@ export default function useCheckScreenWidth(setPerView: (value: number) => void)
     setWindowSize({
       width: window.innerWidth,
     });
-    if (window.innerWidth <= 420) {
-      setPerView(1.7);
-    } else if (window.innerWidth <= 600) {
-      setPerView(2);
+    if (window.innerWidth <= 550) {
+      setPerView(defaultPerview - 1.3);
+    } else if (window.innerWidth <= 1200) {
+      setPerView(defaultPerview - 0.3);
     } else {
-      setPerView(3);
+      setPerView(defaultPerview);
     }
   };
 

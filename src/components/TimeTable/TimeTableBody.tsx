@@ -1,10 +1,13 @@
-import { styled } from 'styled-components';
+import Lineups from './Lineups';
+
 import Perform from '../../types/Perform';
 
-const Body = styled.div`
-  width: 100%;
-  height: 100%;
-`;
+function Schedule() {
+  return (
+    <>
+    </>
+  );
+}
 
 type TimeTableBodyProps = {
   performs: Perform[];
@@ -17,11 +20,8 @@ export default function TimeTableBody({ performs }: TimeTableBodyProps) {
 
   return (
     <div>
-      <Body>
-        {lineups.map((lineup) => (
-          <p key={lineup.name}>{lineup.name}</p>
-        ))}
-      </Body>
+      <Lineups lineups={lineups} />
+      <Schedule />
     </div>
   );
 }

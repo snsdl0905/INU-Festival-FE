@@ -36,8 +36,9 @@ type NoticeItemProps = {
 
 export default function NoticeBottom({ notice } : NoticeItemProps) {
   const [perview, setPerView] = useState(3);
+  const defaultPerview = 3;
 
-  useCheckScreenWidth(setPerView);
+  useCheckScreenWidth(defaultPerview, setPerView);
 
   return (
     <NoticeContentBox>
