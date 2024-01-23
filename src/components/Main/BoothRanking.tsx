@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
 
 import BoothItem from './BoothItem';
 
 import useFetchBooths from '../../hooks/useFetchBooths';
-import Booth from '../../types/Booth';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -119,21 +117,17 @@ const BoothHeart = styled.div`
 
 export default function BoothRanking() {
   const booths = useFetchBooths();
-  const [sortedBooths, setSortedBooths] = useState<Booth[]>([]);
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-  useEffect(() => {
-    const fetchedBooths = [...booths];
-    fetchedBooths.sort((a, b) => b.liked - a.liked);
-    setSortedBooths(fetchedBooths.slice(0, 5));
-  }, [booths]);
+  const fetchedBooths = [...booths];
+  fetchedBooths.sort((a, b) => b.liked - a.liked);
+  const sortedBooths = (fetchedBooths.slice(0, 5));
 
   const handleLikeClicked = (index: number) => {
-    console.log('Clicked');
     const updatedBooths = [...sortedBooths];
     updatedBooths[index].liked += 1;
     updatedBooths.sort((a, b) => b.liked - a.liked);
-    setSortedBooths(updatedBooths);
+    // setSortedBooths(updatedBooths);
   };
 
   return (
@@ -153,11 +147,11 @@ export default function BoothRanking() {
           <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
           <LineDiv />
           {sortedBooths.map((booth, index) => (
-            <BoothRank key={index}>
+            <BoothRank key={booth.id}>
               <BoothItem booth={booth} index={index} />
               <BoothHeartContainer>
                 <BoothHeart onClick={() => handleLikeClicked(index)}>
-                  <img src="Heart.svg" />
+                  <img src="Heart.svg" alt="" />
                   <div>{formatter.format(booth.liked)}</div>
                 </BoothHeart>
               </BoothHeartContainer>

@@ -1,57 +1,51 @@
-import { useState } from 'react';
+import { styled } from 'styled-components';
 
-import styled from 'styled-components';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Header from './Header';
+import Perform from '../../types/Perform';
 
-import LineUpItem from './LineupItem';
+const Container = styled.div`
+height: 21rem;
+position: relative;
+margin-bottom: 20px;
 
-import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
-import useSetLineUpList from '../../hooks/useSetLineUpList';
+img {
+width: 220px;
+height: 21rem;
+border-radius: 0.9rem;
+box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
+}
+`;
 
-import BlurContainer from '../../styles/BlurContainer';
-
-const Content = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-
-  p {
-    color: white;
-    font-weight: bold;
-    font-size: 2.2rem;
+type LineUpProps = {
+  perView: number;
+  spaceBetween: number;
+  lineups: Perform[];
   }
-`;
 
-const BannerContainer = styled.div`
-  position: relative;
-  top: 12rem;
-  z-index: 100;
-`;
-
-export default function LineUp() {
-  const [perView, setPerView] = useState(3);
-  const [spaceBetween, setSpaceBetween] = useState(50);
-  const [LineUpList, setLineUpList] = useState<string[]>([]);
-
-  useCheckScreenWidth({ setPerView, setSpaceBetween });
-  useSetLineUpList({ setLineUpList });
+export default function LineUp({
+  perView,
+  spaceBetween,
+  lineups,
+}: LineUpProps) {
   return (
-    <>
-      <BlurContainer LineUpList={LineUpList}>
-        <Content>
-          <Header />
-          <p>오늘의 라인업</p>
-        </Content>
-      </BlurContainer>
-      <BannerContainer>
-        <LineUpItem
-          perView={perView}
-          spaceBetween={spaceBetween}
-          demoImgList={LineUpList}
-        />
-      </BannerContainer>
-    </>
+    <Swiper
+      spaceBetween={spaceBetween}
+      slidesPerView={perView}
+      speed={300}
+      pagination={{ clickable: true }}
+      allowTouchMove
+    >
+      {lineups.map((lineup, index) => {
+        const key = `${index}-${lineup.id}`;
+        return (
+          <SwiperSlide key={key}>
+            <Container data-hash={key}>
+              <img src="BOL.jpeg" alt={lineup.img} />
+            </Container>
+          </SwiperSlide>
+        );
+      })}
+    </Swiper>
   );
 }

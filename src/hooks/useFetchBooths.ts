@@ -2,7 +2,7 @@ import { useFetch } from 'usehooks-ts';
 
 import Booth from '../types/Booth';
 
-const url = 'http://13.124.57.234:5000/ranking';
+const url = `${process.env.REACT_APP_URL}/booths/ranking`;
 
 type Booths = {
     booths: Booth[];
