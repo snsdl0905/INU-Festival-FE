@@ -6,7 +6,7 @@ const defaultTheme = {
     subText: '#8E8E8E',
   },
   sizes: {
-    contentPadding: '2rem',
+    contentPadding: '1.6rem',
     contentBorderRadius: '8rem',
   },
 };

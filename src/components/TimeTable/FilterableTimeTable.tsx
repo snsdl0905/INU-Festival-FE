@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 
 import { useState } from 'react';
 
+import Article from '../Article';
+
 import BlurContainer from '../BlurContainer';
 import Categories from './Categories';
 import TimeTableBody from './TimeTableBody';
@@ -30,9 +32,11 @@ export default function FilterableTimeTable() {
           setFilterCatergory={setFilterCatergory}
         />
       </TimeTableHedaer>
-      <TimeTableBody
-        performs={filteredPerforms}
-      />
+      <Article>
+        <TimeTableBody
+          performs={filteredPerforms}
+        />
+      </Article>
     </div>
   );
 }
