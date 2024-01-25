@@ -1,37 +1,62 @@
 import { styled } from 'styled-components';
 
+import { useState } from 'react';
 import Notice from '../../types/Notice';
 import NoticeBottom from './NoticeBottom';
 import NoticeTitle from './NoticeTitle';
 import { useState } from 'react';
 
 
-type NoticeItemProps = {
-    notice: Notice;
-}
-  
+const NoticeBox = styled.div`
+padding: 2.3rem;
+padding-inline: ${(props) => props.theme.sizes.contentPadding};
+`;
 
-export default function NoticeItem( {notice} : NoticeItemProps ){
+const NoticeTop = styled.div`
+  display: flex;
+  cursor: pointer;
+`;
 
-    const NoticeBox = styled.div`
-        padding: 2.3rem;
-        padding-inline: ${(props) => props.theme.sizes.contentPadding};
-    `;
-
-    const NoticeTop = styled.div`
-        display: flex;
-    `;
-
-    
-    const NoticeExtend = styled.div`
+const NoticeExtend = styled.div`
         margin: auto 0;
-    `;
+`;
 
-    const [isVisible, setVisible] = useState(false);
+const NoticeTitle = styled.div`
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
-    const toggleContent = () => {
-        setVisible(!isVisible);
-    };
+  span{
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  p {
+    padding: 1.4rem 0;
+    font-size: 1.7rem;
+  }
+
+  div {
+    color: #A9A9A9;
+    font-size: 1.4rem;
+  }
+`;
+
+type NoticeItemProps = {
+  notice: Notice;
+}
+
+const NoticeExtend = styled.div`
+  margin: auto 0;
+`;
+
+export default function NoticeItem({ notice } : NoticeItemProps) {
+  const [isVisible, setVisible] = useState(false);
+
+  const toggleContent = () => {
+    setVisible(!isVisible);
+  };
 
     return(
         <NoticeBox>

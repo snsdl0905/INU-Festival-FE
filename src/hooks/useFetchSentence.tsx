@@ -2,7 +2,7 @@ import { useFetch } from 'usehooks-ts';
 
 import Shouts from '../types/Shouts';
 
-const url = 'http://13.124.57.234:5000/shout';
+const url = `${process.env.REACT_APP_URL}/shout`;
 
 type Sentences = {
   shouts : Shouts[];

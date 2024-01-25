@@ -2,7 +2,7 @@ import { useFetch } from 'usehooks-ts';
 
 import Keyword from '../types/Keyword';
 
-const url = 'http://13.124.57.234:5000/keyword';
+const url = `${process.env.REACT_APP_URL}/keywords`;
 
 type Keywords = {
   keywords: Keyword[];
@@ -10,8 +10,8 @@ type Keywords = {
 
 export default function useFetchKeyword() {
   const { data } = useFetch<Keywords>(url);
+
   if (!data) return [];
+
   return data.keywords;
 }
-
-useFetchKeyword
