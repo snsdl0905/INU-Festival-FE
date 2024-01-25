@@ -2,6 +2,8 @@ import { styled } from 'styled-components';
 
 import { useState } from 'react';
 
+import Article from '../Article';
+
 import BlurContainer from '../BlurContainer';
 import Categories from './Categories';
 import TimeTableBody from './TimeTableBody';
@@ -15,8 +17,8 @@ const TimeTableHedaer = styled(BlurContainer)`
 `;
 
 export default function FilterableTimeTable() {
-  const [categories] = useState(['1', '2', '3']);
-  const [filterCategory, setFilterCatergory] = useState<string>('1');
+  const [categories] = useState(['day1', 'day2', 'day3']);
+  const [filterCategory, setFilterCatergory] = useState<string>('day1');
 
   const performs = useFetchPerforms();
   const filteredPerforms = filterPerforms(performs, filterCategory);
@@ -30,9 +32,11 @@ export default function FilterableTimeTable() {
           setFilterCatergory={setFilterCatergory}
         />
       </TimeTableHedaer>
-      <TimeTableBody
-        performs={filteredPerforms}
-      />
+      <Article>
+        <TimeTableBody
+          performs={filteredPerforms}
+        />
+      </Article>
     </div>
   );
 }
