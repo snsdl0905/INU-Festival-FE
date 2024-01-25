@@ -4,7 +4,7 @@ interface Notice {
     title: string
     content: string;
     updatedAt: string;
-    noticeImgs: string[];
+    noticeImgs: Array<{ id: number; img: string }>;
 }
 
 export default Notice;

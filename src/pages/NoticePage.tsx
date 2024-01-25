@@ -4,12 +4,11 @@ import Article from '../components/Article';
 import Header from '../components/Notice/Header';
 import NoticeItem from '../components/Notice/NoticeItem';
 
-import Notice from '../types/Notice';
 import useFetchNotices from '../hooks/useFetchNotice';
 
 const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
 `;
 
 const NoticeList = styled.div`

@@ -52,11 +52,11 @@ export default function NoticeBottom({ notice } : NoticeItemProps) {
       >
         <NoticeImageContainer>
           {
-            notice.img.map((imgsrc, index) => {
-              const key = `${imgsrc} + ${index}`;
+            notice.noticeImgs.map((img) => {
+              const key = `${img.id} + ${img.img}`;
               return (
                 <SwiperSlide key={key}>
-                  <NoticeImageBox src={imgsrc} />
+                  <NoticeImageBox src={img.img} />
                 </SwiperSlide>
               );
             })

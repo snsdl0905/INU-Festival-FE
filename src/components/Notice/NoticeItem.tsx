@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 
-import { useState } from 'react';
 import Notice from '../../types/Notice';
 import NoticeBottom from './NoticeBottom';
 import NoticeTitle from './NoticeTitle';
+
 import { useState } from 'react';
 
 
@@ -18,38 +18,12 @@ const NoticeTop = styled.div`
 `;
 
 const NoticeExtend = styled.div`
-        margin: auto 0;
-`;
-
-const NoticeTitle = styled.div`
-  padding-left: 1.3rem;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  span{
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-  
-  p {
-    padding: 1.4rem 0;
-    font-size: 1.7rem;
-  }
-
-  div {
-    color: #A9A9A9;
-    font-size: 1.4rem;
-  }
+    margin: auto 0;
 `;
 
 type NoticeItemProps = {
   notice: Notice;
 }
-
-const NoticeExtend = styled.div`
-  margin: auto 0;
-`;
 
 export default function NoticeItem({ notice } : NoticeItemProps) {
   const [isVisible, setVisible] = useState(false);
