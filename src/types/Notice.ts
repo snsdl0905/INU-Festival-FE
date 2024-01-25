@@ -1,10 +1,10 @@
 interface Notice {
     id: string;
+    category: string;
     title: string
     content: string;
-    date: string;
-    category: string;
-    img: string[];
+    updatedAt: string;
+    noticeImgs: string[];
 }
 
 export default Notice;

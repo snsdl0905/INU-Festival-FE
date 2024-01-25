@@ -48,7 +48,7 @@ export default function NoticeBottom( {notice} : NoticeItemProps ){
             >
             <NoticeImageContainer>
             {
-                notice.img.map((imgsrc) => (
+                notice.noticeImgs.map((imgsrc) => (
                     <SwiperSlide key={notice.id}>
                         <NoticeImageBox key={notice.id} src={imgsrc} />
                     </SwiperSlide>
