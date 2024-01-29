@@ -70,7 +70,7 @@ const MapButtonBox = styled.div`
     }
 `
 
-const MapInfoBottom = styled.div`
+const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
     display: flex;
     justify-content: space-between;
     button{
@@ -78,10 +78,14 @@ const MapInfoBottom = styled.div`
         border: none;
         background-color: #FFFFFF;
         padding: 2rem 6rem;
-        border-bottom: 1px solid #CEDCEA;
+        border-bottom: 2px solid ${(props) => (props.showInstruction ? '#0147C8' : '#CEDCEA')};
+        
+        &:last-child {
+            border-bottom: 2px solid ${(props) => (props.showInstruction ? '#CEDCEA' : '#0147C8')};
+        }
     }
+`;
 
-`
 
 export default function DetailedMapPage(){
 
@@ -116,7 +120,7 @@ export default function DetailedMapPage(){
                 </div>
             </MapButtonBox>
             <InfoWithIcon />
-            <MapInfoBottom>
+            <MapInfoBottom showInstruction={showInstruction}>
                 <button onClick={() => setShowInstruction(true)}>부스 소개</button>
                 <button onClick={() => setShowInstruction(false)}>댓글 100</button>
             </MapInfoBottom>
