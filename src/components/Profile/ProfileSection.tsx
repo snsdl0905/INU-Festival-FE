@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import UserInfo from './UserInfo';
 import { useState } from 'react';
+import UserInfo from './UserInfo';
 
 const ProfileWrapper = styled.div`
 display:flex;
@@ -62,7 +62,7 @@ export default function ProfileSection() {
     if (isLoggedIn) {
       setIsLoggdeIn(false);
     } else {
-      navigate('/Login');
+      navigate('/login');
     }
   };
   return (
