@@ -1,10 +1,7 @@
-import DetailedMapPage from "../components/Map/DetailedMapPage";
+import Map from '../components/Map/Map';
 
 export default function MapPage() {
   return (
-    <>
-      <p>MapPage</p>
-      <DetailedMapPage />
-    </>
+    <Map />
   );
 }
