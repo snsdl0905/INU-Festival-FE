@@ -1,7 +1,8 @@
 import { styled } from 'styled-components';
+import { useState } from 'react';
 import LoginBtn from './LoginBtn';
 
-const LoginWrapper = styled.div`
+const LoginWrapper = styled.form`
 display: flex;
 padding: 88px 20px 124px 20px;
 flex-direction: column;
@@ -78,11 +79,31 @@ export default function LoginContainer() {
   const handleLogin = () => {
     window.location.href = KakaoURL;
   };
+  const [Id, setId] = useState('');
+  const [Password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = { studentID: Id, Password };
+    console.log(user);
+  };
   return (
-    <LoginWrapper>
-      <img src="INUlogo.png" />
-      <IdInput placeholder="학번" />
-      <PwdInput placeholder="비밀번호" type="password" />
+    <LoginWrapper onSubmit={handleSubmit}>
+      <img src="INUlogo.png" alt="INU logo" />
+      <IdInput
+        value={Id}
+        onChange={(e) => {
+          setId(e.target.value);
+        }}
+        placeholder="학번"
+      />
+      <PwdInput
+        value={Password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+        placeholder="비밀번호"
+        type="password"
+      />
       <BtnWrapper>
         <LoginBtn />
         <KakaoBtn onClick={handleLogin}>카카오톡으로 로그인</KakaoBtn>
