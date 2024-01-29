@@ -5,7 +5,6 @@ display: flex;
 height: 48px;
 justify-content: center;
 align-items: center;
-gap: 10px;
 align-self: stretch;
 border-radius: 12px;
 border:none;

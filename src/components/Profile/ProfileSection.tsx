@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import UserInfo from './UserInfo';
-import LoginBtn from './LoginBtn';
 
 const ProfileWrapper = styled.div`
 display:flex;
@@ -35,14 +36,43 @@ height: auto;
 margin-bottom:32px;
 flex-shrink: 1;
 `;
+const IsLoginBtn = styled.button`
+display: flex;
+height: 48px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+align-self: stretch;
+border-radius: 12px;
+border:none;
+background: #0147C8;
+color: #FFF;
+font-family: "SF Pro";
+font-size: 15px;
+font-style: normal;
+font-weight: 510;
+line-height: normal;
+letter-spacing: -0.6px;
+`;
 
 export default function ProfileSection() {
+  const [isLoggedIn,setIsLoggdeIn] = useState(false);
+  const navigate = useNavigate();
+  const handleLogBtn = () => {
+    if (isLoggedIn) {
+      setIsLoggdeIn(false);
+    } else {
+      navigate('/login');
+    }
+  };
   return (
     <ProfileWrapper>
       <ProfileContainer>
         <ProfileTitle>프로필</ProfileTitle>
         <UserInfo />
-        <LoginBtn />
+        <IsLoginBtn onClick={handleLogBtn}>
+          {isLoggedIn ? '로그아웃' : '로그인'}
+        </IsLoginBtn>
       </ProfileContainer>
       <UserIcon src="default.svg" alt="major" />
     </ProfileWrapper>
