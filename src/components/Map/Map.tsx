@@ -18,6 +18,7 @@ export default function Map() {
       <MapContent />
       <ListButton />
       <BannerContent />
+
     </Container>
   );
 }
