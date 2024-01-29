@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
-
 import styled from 'styled-components';
 
-import Kakao from '../../utils/CreateKakaoMap';
+import MapContent from './MapContent';
 import ListButton from './ListButton';
 import BannerContent from './BannerContent';
 
@@ -14,21 +12,10 @@ const Container = styled.div`
     cursor: grab;
 `;
 
-const MapContent = styled.div`
-    max-width: 600px;
-    width: 100%;
-    position: absolute;
-    height: 49em;
-`;
-
 export default function Map() {
-  useEffect(() => {
-    Kakao();
-  }, []);
-
   return (
     <Container>
-      <MapContent id="map" />
+      <MapContent />
       <ListButton />
       <BannerContent />
     </Container>
