@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Bubbly', sans-serif;
         background: ${(props) => props.theme.colors.background};
         color: ${(props) => props.theme.colors.text};
-        padding-bottom: 64px;
+        padding-bottom: 80px;
     }
 
     *,
