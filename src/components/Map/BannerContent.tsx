@@ -5,7 +5,7 @@ const Container = styled.div`
     width: 100%;
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
     position: fixed;
-    bottom: 75px;
+    bottom: 65px;
     z-index: 1;
     height: 105px;
     background-color: #FFFFFF;
@@ -36,6 +36,7 @@ const FilterContainer = styled.div`
     margin-top: 5px;
 
     button {
+      height: 43px;
       border: 0px;
       border-radius: 30px;
       font-size: 13px;
@@ -57,7 +58,7 @@ const DayFilterContainer = styled.div`
 
   button {
     width: 50px;
-    height: 50px;
+
   }
 `;
 
@@ -68,7 +69,6 @@ const CategoryFilterContanier = styled.div`
 
   button {
     width: 90px;
-    height: 50px;
   }
 `;
 
