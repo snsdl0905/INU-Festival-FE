@@ -1,5 +1,8 @@
 import { styled } from 'styled-components';
 
+import BoothList from './BoothList';
+import { useState, useEffect } from 'react';
+
 const Container = styled.div`
     max-width: 600px;
     width: 100%;
@@ -17,6 +20,10 @@ const Container = styled.div`
     padding-left: 15px;
     padding-right: 15px;
     cursor: grab;
+
+    &.swiped-up {
+      height: 92vh !important;
+    }
 `;
 
 const SlideImg = styled.div`
@@ -26,6 +33,7 @@ const SlideImg = styled.div`
     width: 44px;
     height: 5.747px;
     margin: 11px;
+    padding-top: 4px;
 
 `;
 
@@ -34,6 +42,7 @@ const FilterContainer = styled.div`
     display: flex;
     align-items: center;
     margin-top: 5px;
+    padding-bottom: 20px;
 
     button {
       height: 43px;
@@ -73,8 +82,28 @@ const CategoryFilterContanier = styled.div`
 `;
 
 export default function BannerContent() {
+  const [isSwipedUp, setIsSwipedUp] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      if (scrollY > 0 && !isSwipedUp) {
+        setIsSwipedUp(true);
+      } else if (scrollY === 0 && isSwipedUp) {
+        setIsSwipedUp(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isSwipedUp]);
+
   return (
-    <Container>
+    <Container className={isSwipedUp ? 'swiped-up': ''}>
       <SlideImg />
       <FilterContainer>
         <DayFilterContainer>
@@ -88,6 +117,7 @@ export default function BannerContent() {
           <button type="button">🍕 푸드트럭</button>
         </CategoryFilterContanier>
       </FilterContainer>
+      <BoothList />
     </Container>
   );
 }
