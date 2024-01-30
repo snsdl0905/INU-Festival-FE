@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import { useState } from 'react';
-import LoginBtn from './LoginBtn';
 
 const LoginWrapper = styled.form`
 display: flex;
@@ -48,11 +47,15 @@ height: 48px;
 align-self: stretch;
 flex-shrink: 0;
 border-radius: 12px;
-background: #EBF2FF;
+background: #F3F3F5;
 border:none;
 &::placeholder {
  padding-left:10px;
  color:#B9B9B9;
+}
+&:focus{
+  background: #EBF2FF;
+  outline: none;
 }
 margin-top:20px;
 `;
@@ -68,6 +71,10 @@ border:none;
   padding-left:10px;
   color:#B9B9B9;
  }
+ &:focus{
+  background: #EBF2FF;
+  outline: none;
+}
 `;
 const BtnWrapper = styled.div`
 display:flex;
