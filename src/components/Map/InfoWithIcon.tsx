@@ -1,18 +1,42 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export default function InfoWithIcon(){
+interface InfoWithIconProps {
+    small?: boolean;
+}
+
+export default function InfoWithIcon(props: InfoWithIconProps){
     const MapInfoMiddle = styled.div`
-    padding: 1rem;
-    div{
-        display: flex;
         padding: 1rem;
-        align-items: center;
-        letter-spacing: -0.04348rem;
-    }
-    svg{
-        margin: 0 1.5rem;
-    }
-`
+        div{
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.04348rem;
+        }
+
+        ${ !props.small &&
+        css`
+            div{
+                padding: 1rem;
+            }
+            svg{
+            margin: 0 1.5rem;
+        }
+        ` }
+
+
+        ${ props.small &&
+        css`
+            font-size: 12px;
+            svg{
+                width: 13px;
+                margin-right: 1.2rem;
+            }
+            p{
+                letter-spacing: 0.01rem;
+            }
+
+        ` }
+    `
     return(
         <MapInfoMiddle>
             <div>
@@ -54,7 +78,7 @@ export default function InfoWithIcon(){
                         </linearGradient>
                     </defs>
                 </svg>
-                <p>10시-16시</p>
+                <p>10시 - 16시</p>
             </div>
         </MapInfoMiddle>
     )

@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router-dom';
 
 import Header from "../Notice/Header"
 import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
+import useFetchBooths from '../../hooks/useFetchBooths';
 
 const ImageBox = styled.div`
     height: 375px;
@@ -89,20 +91,25 @@ const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
 
 export default function DetailedMapPage(){
 
+    const { id } = useParams();
+    {console.log(id)};
     const [showInstruction, setShowInstruction] = useState(true);  
+    const booths = useFetchBooths();
+    const SelectedBooth = booths.find(booth => booth.id === id);
+    {console.log(SelectedBooth)}
 
     return(
         <>
             <Header> </Header>
             <ImageBox />
             <MapInfoTop>
-                <p>비주점</p>
-                <h2>취업경력개발원</h2>
+                <p>{SelectedBooth?.category}</p>
+                <h2>{SelectedBooth?.name}</h2>
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
                         <path d="M14.5572 1.64121C12.7348 0.00145993 9.82823 0.174949 8.06438 1.86506C8.02336 1.90424 7.95304 1.90424 7.90616 1.86506C6.13644 0.174949 3.22988 0.00145993 1.41328 1.64121C-0.403316 3.28096 -0.502936 6.1687 1.31366 7.90359L6.59352 12.946C7.36704 13.6847 8.61522 13.6847 9.38873 12.946L14.4518 8.11066L14.6627 7.90919C16.4793 6.1743 16.4442 3.34252 14.5631 1.6468L14.5572 1.64121Z" fill="#FF3D00"/>
                     </svg>
-                    <span>1,991</span>
+                    <span>{SelectedBooth?.liked}</span>
                 </button>
             </MapInfoTop>
             <MapButtonBox>
@@ -122,9 +129,10 @@ export default function DetailedMapPage(){
             <InfoWithIcon />
             <MapInfoBottom showInstruction={showInstruction}>
                 <button onClick={() => setShowInstruction(true)}>부스 소개</button>
-                <button onClick={() => setShowInstruction(false)}>댓글 100</button>
+                <button onClick={() => setShowInstruction(false)}>댓글 {SelectedBooth?.comment}</button>
             </MapInfoBottom>
-            {showInstruction ? <BoothInstruction /> : <BoothComment />}
+            {showInstruction ? (
+                <BoothInstruction description={SelectedBooth?.description || '' }/> ) : (<BoothComment />)}
         </>
     )
 }
