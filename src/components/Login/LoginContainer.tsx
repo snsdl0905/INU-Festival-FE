@@ -24,6 +24,7 @@ font-style: normal;
 font-weight: 510;
 line-height: normal;
 letter-spacing: -0.6px;
+cursor:pointer;
 `;
 const KakaoBtn = styled.button`
 display: flex;
@@ -41,6 +42,7 @@ font-style: normal;
 font-weight: 510;
 line-height: normal;
 letter-spacing: -0.6px;
+cursor:pointer;
 `;
 const IdInput = styled.input`
 height: 48px;
@@ -58,6 +60,7 @@ border:none;
   outline: none;
 }
 margin-top:20px;
+cursor:pointer;
 `;
 
 const PwdInput = styled.input`
@@ -74,6 +77,7 @@ border:none;
  &:focus{
   background: #EBF2FF;
   outline: none;
+  cursor:pointer;
 }
 `;
 const BtnWrapper = styled.div`
