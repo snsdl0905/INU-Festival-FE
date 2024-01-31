@@ -1,14 +1,31 @@
 import { styled } from 'styled-components';
-import LoginBtn from './LoginBtn';
+import { useState } from 'react';
 
-const LoginWrapper = styled.div`
+const LoginWrapper = styled.form`
 display: flex;
 padding: 88px 20px 124px 20px;
 flex-direction: column;
 align-items: center;
 gap: 10px;
 `;
-
+const IsLoginBtn = styled.button`
+display: flex;
+height: 48px;
+justify-content: center;
+align-items: center;
+align-self: stretch;
+border-radius: 12px;
+border:none;
+background: #0147C8;
+color: #FFF;
+font-family: "SF Pro";
+font-size: 15px;
+font-style: normal;
+font-weight: 510;
+line-height: normal;
+letter-spacing: -0.6px;
+cursor:pointer;
+`;
 const KakaoBtn = styled.button`
 display: flex;
 height: 48px;
@@ -25,19 +42,25 @@ font-style: normal;
 font-weight: 510;
 line-height: normal;
 letter-spacing: -0.6px;
+cursor:pointer;
 `;
 const IdInput = styled.input`
 height: 48px;
 align-self: stretch;
 flex-shrink: 0;
 border-radius: 12px;
-background: #EBF2FF;
+background: #F3F3F5;
 border:none;
 &::placeholder {
  padding-left:10px;
  color:#B9B9B9;
 }
+&:focus{
+  background: #EBF2FF;
+  outline: none;
+}
 margin-top:20px;
+cursor:pointer;
 `;
 
 const PwdInput = styled.input`
@@ -51,6 +74,11 @@ border:none;
   padding-left:10px;
   color:#B9B9B9;
  }
+ &:focus{
+  background: #EBF2FF;
+  outline: none;
+  cursor:pointer;
+}
 `;
 const BtnWrapper = styled.div`
 display:flex;
@@ -78,13 +106,33 @@ export default function LoginContainer() {
   const handleLogin = () => {
     window.location.href = KakaoURL;
   };
+  const [Id, setId] = useState('');
+  const [Password, setPassword] = useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const user = { studentID: Id, Password };
+    console.log(user);
+  };
   return (
-    <LoginWrapper>
-      <img src="INUlogo.png" />
-      <IdInput placeholder="학번" />
-      <PwdInput placeholder="비밀번호" type="password" />
+    <LoginWrapper onSubmit={handleSubmit}>
+      <img src="INUlogo.png" alt="INU logo" />
+      <IdInput
+        value={Id}
+        onChange={(e) => {
+          setId(e.target.value);
+        }}
+        placeholder="학번"
+      />
+      <PwdInput
+        value={Password}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
+        placeholder="비밀번호"
+        type="password"
+      />
       <BtnWrapper>
-        <LoginBtn />
+        <IsLoginBtn type="submit">로그인</IsLoginBtn>
         <KakaoBtn onClick={handleLogin}>카카오톡으로 로그인</KakaoBtn>
       </BtnWrapper>
       <Explain>

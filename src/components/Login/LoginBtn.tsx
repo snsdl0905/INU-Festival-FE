@@ -20,6 +20,6 @@ letter-spacing: -0.6px;
 
 export default function LoginBtn() {
   return (
-    <IsLoginBtn>로그인</IsLoginBtn>
+    <IsLoginBtn type="submit">로그인</IsLoginBtn>
   );
 }

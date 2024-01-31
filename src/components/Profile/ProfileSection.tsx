@@ -53,6 +53,7 @@ font-style: normal;
 font-weight: 510;
 line-height: normal;
 letter-spacing: -0.6px;
+cursor:pointer;
 `;
 
 export default function ProfileSection() {
