@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/components/pagination/pagination.min.css';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
@@ -10,7 +13,7 @@ import useFetchBooths from '../../hooks/useFetchBooths';
 
 const ImageBox = styled.div`
     height: 375px;
-    background-color: #D1D9F5;
+    
 `;
 
 const MapInfoTop = styled.div`
@@ -91,17 +94,42 @@ const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
         }
     }
 `;
+const MapImageContainer = styled.div`
+        padding: 0;
+    `;
+const MapImageBox = styled.div`
+        padding: 0;        
+    `;
 
 export default function DetailedMapPage() {
   const { id } = useParams();
   const [showInstruction, setShowInstruction] = useState(true);
   const booths = useFetchBooths();
   const SelectedBooth = booths.find((booth) => booth.id === id);
+  const imgArray: string[] = ['BOL.jpeg', 'BOL2.jpeg', 'DAMONS.png'];
 
   return (
     <>
       <Header> </Header>
-      <ImageBox />
+      <ImageBox>
+        <Swiper
+          slidesPerView={2}
+          spaceBetween={10}
+          allowTouchMove
+          freeMode
+          freeModeMinimumVelocity={0.01}
+        >
+          {imgArray.map((img) => (
+            <SwiperSlide key={img}>
+              <MapImageContainer>
+                <MapImageBox>
+                  <img src={img} alt={img} />
+                </MapImageBox>
+              </MapImageContainer>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </ImageBox>
       <MapInfoTop>
         {/* <p>{SelectedBooth?.category}</p> */}
         {/* <h2>{SelectedBooth?.name}</h2> */}
