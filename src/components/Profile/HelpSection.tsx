@@ -41,6 +41,7 @@ letter-spacing: -0.64px;
 line-height: 24px;
 border:none;
 background-color:transparent;
+cursor:pointer;
 `;
 
 export default function HelpSectioin() {

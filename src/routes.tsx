@@ -7,6 +7,7 @@ import GuestBookPage from './pages/GuestBookPage';
 import TimeTablePage from './pages/TitmeTablePage';
 import NoticePage from './pages/NoticePage';
 import DetailedMapPage from './components/Map/DetailedMapPage';
+import LoginPage from './pages/LoginPage';
 
 const routes = [
   {
@@ -19,6 +20,7 @@ const routes = [
       { path: '/profile', element: <ProfilePage /> },
       { path: '/notices', element: <NoticePage /> },
       { path: '/map/:id', element: <DetailedMapPage /> },
+      { path: '/login', element: <LoginPage /> },
     ],
   },
 ];
