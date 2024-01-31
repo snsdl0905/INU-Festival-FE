@@ -5,7 +5,6 @@ display: flex;
 height: 48px;
 justify-content: center;
 align-items: center;
-gap: 10px;
 align-self: stretch;
 border-radius: 12px;
 border:none;
@@ -21,6 +20,6 @@ letter-spacing: -0.6px;
 
 export default function LoginBtn() {
   return (
-    <IsLoginBtn>로그인</IsLoginBtn>
+    <IsLoginBtn type="submit">로그인</IsLoginBtn>
   );
 }
