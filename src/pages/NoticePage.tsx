@@ -15,9 +15,8 @@ const NoticeList = styled.div`
 `;
 
 export default function NoticePage() {
-
   const notices = useFetchNotices();
-  
+
   const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +24,7 @@ export default function NoticePage() {
 
   const NoticeList = styled.div`
 
-  `
+  `;
 
   return (
     <Wrapper>
