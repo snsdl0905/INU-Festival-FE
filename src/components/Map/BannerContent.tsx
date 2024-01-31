@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
-import BoothList from './BoothList';
 import { useState, useEffect } from 'react';
+import BoothList from './BoothList';
 
 const Container = styled.div`
     max-width: 600px;
@@ -83,10 +83,10 @@ const CategoryFilterContanier = styled.div`
 
 export default function BannerContent() {
   const [isSwipedUp, setIsSwipedUp] = useState(false);
-  
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const { scrollY } = window;
 
       if (scrollY > 0 && !isSwipedUp) {
         setIsSwipedUp(true);
@@ -103,7 +103,7 @@ export default function BannerContent() {
   }, [isSwipedUp]);
 
   return (
-    <Container className={isSwipedUp ? 'swiped-up': ''}>
+    <Container className={isSwipedUp ? 'swiped-up' : ''}>
       <SlideImg />
       <FilterContainer>
         <DayFilterContainer>
