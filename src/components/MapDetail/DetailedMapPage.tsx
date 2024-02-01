@@ -75,7 +75,7 @@ const MapButtonBox = styled.div`
     }
 `;
 
-const MapInfoBottom = styled.div<{ showinstruction: boolean | string }>`
+const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
     display: flex;
     justify-content: space-between;
 
@@ -103,25 +103,25 @@ const MapImageContainer = styled.div`
 const MapImageBox = styled.div`
         padding: 0;
         img{
-            width: 270px;
+            width: 300px;
             border-radius: 15px;
         }
     `;
 
 export default function DetailedMapPage() {
   const { id } = useParams();
-  const [showinstruction, setShowInstruction] = useState(true);
+  const [showInstruction, setShowInstruction] = useState(true);
   const booths = useFetchBooths();
   const SelectedBooth = booths.find((booth) => booth.id === id);
   const imgArray: string[] = ['/BOL.jpeg', '/BOL2.jpeg', '/DAMONS.png'];
 
   return (
     <>
-      <Header shadow="false"> </Header>
+      <Header shadow={false}> </Header>
       <ImageBox>
         <Swiper
           slidesPerView={2}
-          spaceBetween={180}
+          spaceBetween={250}
           allowTouchMove
           freeMode
           freeModeMinimumVelocity={0.01}
@@ -157,15 +157,15 @@ export default function DetailedMapPage() {
           </svg>
         </div>
       </MapButtonBox>
-      <InfoWithIcon small="false" />
-      <MapInfoBottom showinstruction={showinstruction.toString()}>
-        <button type="button" className={showinstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
-        <button type="button" className={showinstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>
+      <InfoWithIcon small={false} />
+      <MapInfoBottom showInstruction={showInstruction}>
+        <button type="button" className={showInstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
+        <button type="button" className={showInstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>
           댓글
           {SelectedBooth?.comment}
         </button>
       </MapInfoBottom>
-      {showinstruction ? (
+      {showInstruction ? (
         <BoothInstruction description={SelectedBooth?.description || ''} />) : (<BoothComment />)}
     </>
   );

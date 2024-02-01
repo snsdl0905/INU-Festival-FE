@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 
 interface InfoWithIconProps {
-  small: 'true' | 'false';
+  small: boolean;
 }
 
-const MapInfoMiddle = styled.div<{small: string }>`
+const MapInfoMiddle = styled.div<{small: boolean }>`
         padding: 1rem;
         div{
             display: flex;
@@ -12,7 +12,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             letter-spacing: -0.04348rem;
         }
 
-        ${(props) => (props.small === 'false') && css`
+        ${(props) => (props.small === false) && css`
             div{
                 padding: 1rem;
             }
@@ -21,7 +21,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             }
         `}
 
-        ${(props) => (props.small === 'true') && css`
+        ${(props) => (props.small === true) && css`
             font-size: 12px;
             svg{
                 width: 13px;

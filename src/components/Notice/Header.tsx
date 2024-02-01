@@ -4,15 +4,15 @@ import styled from 'styled-components';
 
 type HeaderProps = {
     children: React.ReactNode;
-    shadow: 'true' | 'false';
+    shadow: boolean;
 }
 
-const HeaderContainer = styled.div <{ shadow: string }>`
+const HeaderContainer = styled.div <{ shadow: boolean }>`
 display: flex;
 align-items: center;
 padding-inline: ${(props) => props.theme.sizes.contentPadding};
 padding-block: 1.4em;
-box-shadow: ${(props) => (props.shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
+box-shadow: ${(props) => (props.shadow ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
 
 span{
   margin: 0 auto;
