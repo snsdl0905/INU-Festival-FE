@@ -157,7 +157,7 @@ export default function DetailedMapPage() {
           </svg>
         </div>
       </MapButtonBox>
-      <InfoWithIcon small="false" />
+      <InfoWithIcon small={false} />
       <MapInfoBottom showInstruction={showInstruction}>
         <button type="button" className={showInstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
         <button type="button" className={showInstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>

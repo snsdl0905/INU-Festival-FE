@@ -77,7 +77,7 @@ export default function BoothList() {
             </LikedNumber>
           </BoothInfoBottom>
         </BoothContent>
-        <InfoWithIcon small="true" />
+        <InfoWithIcon small />
       </BoothContainer>
     </PreButton>
   );

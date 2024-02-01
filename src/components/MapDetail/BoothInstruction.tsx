@@ -3,8 +3,8 @@ import styled from 'styled-components';
 type BoothInstructionProps = {
     description: string;
   };
-export default function BoothInstruction({ description }: BoothInstructionProps) {
-  const InstrucionContainer = styled.div`
+
+const InstrucionContainer = styled.div`
         margin: 3rem;
         padding: 2rem;
         background-color: #EBF2FF;
@@ -16,6 +16,7 @@ export default function BoothInstruction({ description }: BoothInstructionProps)
         line-height: 1.5;
     `;
 
+export default function BoothInstruction({ description }: BoothInstructionProps) {
   return (
     <InstrucionContainer>
       {description}
