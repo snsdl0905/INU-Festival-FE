@@ -19,7 +19,7 @@ export default function NoticePage() {
 
   return (
     <Wrapper>
-      <Header to="/" shadow>알림 센터</Header>
+      <Header shadow>알림 센터</Header>
       <Article>
         <NoticeList>
           {

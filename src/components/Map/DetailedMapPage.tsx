@@ -113,7 +113,7 @@ export default function DetailedMapPage() {
 
   return (
     <>
-      <Header to="/map" shadow={false}> </Header>
+      <Header shadow={false}> </Header>
       <ImageBox>
         <Swiper
           slidesPerView={2}
