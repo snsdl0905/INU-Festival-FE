@@ -12,8 +12,7 @@ import InfoWithIcon from './InfoWithIcon';
 import useFetchBooths from '../../hooks/useFetchBooths';
 
 const ImageBox = styled.div`
-    height: 375px;
-    
+
 `;
 
 const MapInfoTop = styled.div`
@@ -95,10 +94,14 @@ const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
     }
 `;
 const MapImageContainer = styled.div`
-        padding: 0;
+    padding: 0 2rem ;
     `;
 const MapImageBox = styled.div`
-        padding: 0;        
+        padding: 0;
+        img{
+            width: 300px;
+            border-radius: 15px;
+        }
     `;
 
 export default function DetailedMapPage() {
@@ -106,15 +109,15 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState(true);
   const booths = useFetchBooths();
   const SelectedBooth = booths.find((booth) => booth.id === id);
-  const imgArray: string[] = ['BOL.jpeg', 'BOL2.jpeg', 'DAMONS.png'];
+  const imgArray: string[] = ['/BOL.jpeg', '/BOL2.jpeg', '/DAMONS.png'];
 
   return (
     <>
-      <Header> </Header>
+      <Header to="/map" shadow={false}> </Header>
       <ImageBox>
         <Swiper
           slidesPerView={2}
-          spaceBetween={10}
+          spaceBetween={250}
           allowTouchMove
           freeMode
           freeModeMinimumVelocity={0.01}
