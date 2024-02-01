@@ -36,12 +36,13 @@ export function useBottomSheet() {
     const canUserMoveBottomSheet = () => {
       const { touchMove, isContentAreaTouched } = metrics.current;
 
-      // 바텀시트에서 컨텐츠 영역이 아닌 부분을 터치하면 항상 바텀시트를 움직입니다. (수정)
+      // 바텀시트에서 컨텐츠 영역이 아닌 부분을 터치하면 항상 바텀시트를 움직입니다. (수정 -> 움직이지 않도록)
       if (!isContentAreaTouched) {
         return false;
       }
 
       // 바텀시트가 올라와있는 상태가 아닐 때는 컨텐츠 영역을 터치해도 바텀시트를 움직이는 것이 자연스럽습니다.
+      console.log(sheet.current);
       if (sheet.current?.getBoundingClientRect().y !== MIN_Y) {
         return true;
       }
@@ -49,7 +50,7 @@ export function useBottomSheet() {
       if (touchMove.movingDirection === 'down') {
       // 스크롤을 더 이상 올릴 것이 없다면, 바텀시트를 움직이는 것이 자연스럽습니다.
         // Safari 에서는 bounding 효과 때문에 scrollTop 이 음수가 될 수 있습니다. 따라서 0보다 작거나 같음 (<=)으로 검사합니다.
-        return content.current.scrollTop <= 0;
+        return content.current && content.current.scrollTop <= 0;
       }
 
       return false;

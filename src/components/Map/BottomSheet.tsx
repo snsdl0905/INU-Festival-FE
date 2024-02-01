@@ -42,10 +42,9 @@ const BottemSheetHeader = styled.div`
 
 const BottomSheetContent = styled.div`
     width: 100%;
-    height: 50px;
+    height: 100%;
+    margin-top: 7px;
     display: flex;
-    align-items: center;
-    margin-top: 5px;
 
     button {
       height: 43px;
@@ -87,7 +86,6 @@ const CategoryFilterContanier = styled.div`
 
 export default function BottomSheet() {
   const { sheet, content } = useBottomSheet();
-
   const [isSwipe, setIsSwipe] = useState(false);
 
   const handleClick = () => {
