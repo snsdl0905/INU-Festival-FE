@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import MapContent from './MapContent';
+import MapLayer from './MapLayer';
 import ListButton from './ListButton';
-import BannerContent from './BannerContent';
+import BottomSheet from './BottomSheet';
 
 const Container = styled.div`
     max-width: 600px;
@@ -15,10 +15,14 @@ const Container = styled.div`
 export default function Map() {
   return (
     <Container>
-      <MapContent />
-      <ListButton />
-      <BannerContent />
-
+      <MapLayer />
+      <BottomSheet />
     </Container>
   );
 }
+
+// MapContent - BaseLayer
+// BottomSheet
+
+// BottemSheetHeader
+// BottomSheetContent

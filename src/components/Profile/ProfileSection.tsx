@@ -57,7 +57,7 @@ cursor:pointer;
 `;
 
 export default function ProfileSection() {
-  const [isLoggedIn,setIsLoggdeIn] = useState(false);
+  const [isLoggedIn, setIsLoggdeIn] = useState(false);
   const navigate = useNavigate();
   const handleLogBtn = () => {
     if (isLoggedIn) {

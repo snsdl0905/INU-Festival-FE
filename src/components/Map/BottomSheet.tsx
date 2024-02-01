@@ -1,13 +1,26 @@
+import { useState } from 'react';
+
 import { styled } from 'styled-components';
 
-const Container = styled.div`
+import { BOTTOM_SHEET_HEIGHT } from './constants';
+import { useBottomSheet } from '../../hooks/useBottomSheet';
+import { useBottomSheetMouse } from '../../hooks/useBottomSheetMouse';
+
+const Wrapper = styled.div`
+    /* 추가  */
+    transition: transform 150ms ease-out;
+    
     max-width: 600px;
     width: 100%;
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
     position: fixed;
-    bottom: 65px;
+    /* bottom: 65px; */
+    bottom: -570px;
     z-index: 1;
-    height: 105px;
+    
+    /* height: ${BOTTOM_SHEET_HEIGHT}px; */
+    height: 750px;
+    
     background-color: #FFFFFF;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -17,9 +30,17 @@ const Container = styled.div`
     padding-left: 15px;
     padding-right: 15px;
     cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
-const SlideImg = styled.div`
+const BottemSheetHeader = styled.div`
+  /* 추가 */
+  overflow: auto; 
+  -webkit-overflow-scrolling: touch;
+
     border: 0px;
     background-color: #BBC7D3;
     border-radius: 12px;
@@ -29,7 +50,7 @@ const SlideImg = styled.div`
 
 `;
 
-const FilterContainer = styled.div`
+const BottomSheetContent = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
@@ -72,11 +93,23 @@ const CategoryFilterContanier = styled.div`
   }
 `;
 
-export default function BannerContent() {
+export default function BottomSheet() {
+  const { sheet, content } = useBottomSheet();
+
+  const [isSwipe, setIsSwipe] = useState(false);
+
+  const handleClick = () => {
+    setIsSwipe(true);
+  };
+
   return (
-    <Container>
-      <SlideImg />
-      <FilterContainer>
+    <Wrapper
+      ref={sheet}
+      onClick={handleClick}
+      className={isSwipe ? 'active' : ''}
+    >
+      <BottemSheetHeader />
+      <BottomSheetContent ref={content}>
         <DayFilterContainer>
           <button type="button">월</button>
           <button type="button">화</button>
@@ -87,7 +120,7 @@ export default function BannerContent() {
           <button type="button">🎡 비주점</button>
           <button type="button">🍕 푸드트럭</button>
         </CategoryFilterContanier>
-      </FilterContainer>
-    </Container>
+      </BottomSheetContent>
+    </Wrapper>
   );
 }
