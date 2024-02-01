@@ -78,18 +78,23 @@ const MapButtonBox = styled.div`
 const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
     display: flex;
     justify-content: space-between;
+
     button{
         flex: 1;
         border: none;
         background-color: #FFFFFF;
         padding: 1.3rem 6rem;
-        border-bottom: 2px solid ${(props) => (props.showInstruction ? '#0147C8' : '#CEDCEA')};
         font-weight: 700;
         font-size: 15px;
+        cursor: pointer;
+    }
 
-        &:last-child {
-            border-bottom: 2px solid ${(props) => (props.showInstruction ? '#CEDCEA' : '#0147C8')};
-        }
+    .selected{
+      border-bottom: 2px solid #0147C8;
+    }
+
+    .instructionSelected{
+      border-bottom: 2px solid #CEDCEA;
     }
 `;
 const MapImageContainer = styled.div`
@@ -154,8 +159,8 @@ export default function DetailedMapPage() {
       </MapButtonBox>
       <InfoWithIcon small="false" />
       <MapInfoBottom showInstruction={showInstruction}>
-        <button type="button" onClick={() => setShowInstruction(true)}>부스 소개</button>
-        <button type="button" onClick={() => setShowInstruction(false)}>
+        <button type="button" className={showInstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
+        <button type="button" className={showInstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>
           댓글
           {SelectedBooth?.comment}
         </button>
