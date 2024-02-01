@@ -6,7 +6,7 @@ import ProfilePage from './pages/ProfilePage';
 import GuestBookPage from './pages/GuestBookPage';
 import TimeTablePage from './pages/TitmeTablePage';
 import NoticePage from './pages/NoticePage';
-import DetailedMapPage from './components/Map/DetailedMapPage';
+import DetailedMapPage from './components/MapDetail/DetailedMapPage';
 
 const routes = [
   {

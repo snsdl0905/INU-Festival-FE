@@ -6,8 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/components/pagination/pagination.min.css';
 
 import Header from '../Notice/Header';
-import BoothInstruction from './BoothInstruction';
-import BoothComment from './BoothComment';
+import BoothInstruction from '../Map/BoothInstruction';
+import BoothComment from '../Map/BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooths from '../../hooks/useFetchBooths';
 
