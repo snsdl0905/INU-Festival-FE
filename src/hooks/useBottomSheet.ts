@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+
 import { MAX_Y, MIN_TOP, MIN_Y } from '../components/Map/constants';
 
 interface BottomSheetMetrics {
@@ -52,26 +53,26 @@ export function useBottomSheet() {
 
       return false;
     };
-    const handleTouchStart = (e: TouchEvent) => {
+    const handleTouchStart = (e: TouchEvent | MouseEvent) => {
       const { touchStart, touchMove } = metrics.current;
 
-      touchStart.sheetY = sheet.current.getBoundingClientRect().y;
-      touchStart.touchY = e.touches[0].clientY;
+      touchStart.sheetY = sheet.current?.getBoundingClientRect().y || 0;
+      touchStart.touchY = 'touches' in e ? e.touches[0].clientY : e.clientY;
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
+    const handleTouchMove = (e: TouchEvent | MouseEvent) => {
       const { touchStart, touchMove } = metrics.current;
-      const currentTouch = e.touches[0];
+      const currentTouchY = 'touches' in e ? e.touches[0].clientY : e.clientY;
 
       if (touchMove.prevTouchY === undefined) {
         touchMove.prevTouchY = touchStart.touchY;
       }
 
-      if (touchMove.prevTouchY < currentTouch.clientY) {
+      if (touchMove.prevTouchY < currentTouchY) {
         touchMove.movingDirection = 'down';
       }
 
-      if (touchMove.prevTouchY > currentTouch.clientY) {
+      if (touchMove.prevTouchY > currentTouchY) {
         touchMove.movingDirection = 'up';
       }
 
@@ -80,7 +81,7 @@ export function useBottomSheet() {
         e.preventDefault();
 
         // 터치 시작점에서부터 현재 터치 포인트까지의 변화된 y값
-        const touchOffset = currentTouch.clientY - touchStart.touchY;
+        const touchOffset = currentTouchY - touchStart.touchY;
         let nextSheetY = touchStart.sheetY + touchOffset;
 
         // nextSheetY 는 MIN_Y와 MAX_Y 사이의 값으로 clamp 되어야 한다
@@ -93,15 +94,14 @@ export function useBottomSheet() {
         }
 
         // sheet 위치 갱신.
-        sheet.current.style.setProperty('transform', `translateY(${nextSheetY - MAX_Y}px)`);
-        console.log(nextSheetY - MAX_Y);
+        sheet.current?.style.setProperty('transform', `translateY(${nextSheetY - MAX_Y}px)`);
       } else {
         // 컨텐츠를 스크롤하는 동안에는 body가 스크롤되는 것을 막습니다
         document.body.style.overflowY = 'hidden';
       }
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
+    const handleTouchEnd = (e: TouchEvent | MouseEvent) => {
       document.body.style.overflowY = 'auto';
 
       const { touchMove } = metrics.current;
@@ -133,13 +133,23 @@ export function useBottomSheet() {
       };
     };
 
-    // console.log(sheet);
-    sheet.current.addEventListener('touchstart', handleTouchStart);
-    sheet.current.addEventListener('touchmove', handleTouchMove);
-    sheet.current.addEventListener('touchend', handleTouchEnd);
+    sheet.current?.addEventListener('touchstart', handleTouchStart);
+    sheet.current?.addEventListener('touchmove', handleTouchMove);
+    sheet.current?.addEventListener('touchend', handleTouchEnd);
+
+    sheet.current?.addEventListener('mousedown', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('mousemove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+    document.addEventListener('mouseup', handleTouchEnd);
 
     return () => {
-      // console.log(sheet);
+      sheet.current?.removeEventListener('touchstart', handleTouchStart);
+      sheet.current?.removeEventListener('mousedown', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('mousemove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+      document.removeEventListener('mouseup', handleTouchEnd);
       // sheet.current?.removeEventListener('touchstart', handleTouchStart);
       // sheet.current?.removeEventListener('touchmove', handleTouchMove);
       // sheet.current?.removeEventListener('touchend', handleTouchEnd);
@@ -152,9 +162,17 @@ export function useBottomSheet() {
       metrics.current.isContentAreaTouched = true;
     };
 
-    content.current.addEventListener('touchstart', handleTouchStart);
+    const handleMouseDown = () => {
+      metrics.current.isContentAreaTouched = true;
+    };
 
-    // return () => content.current.removeEventListener('touchstart', handleTouchStart);
+    content.current?.addEventListener('touchstart', handleTouchStart);
+    content.current?.addEventListener('mousedown', handleMouseDown);
+
+    return () => {
+      content.current?.removeEventListener('touchstart', handleTouchStart);
+      content.current?.removeEventListener('mousedown', handleMouseDown);
+    };
   }, []);
 
   return { sheet, content };
