@@ -93,7 +93,7 @@ const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
       border-bottom: 2px solid #0147C8;
     }
 
-    .instructionSelected{
+    .notSelected{
       border-bottom: 2px solid #CEDCEA;
     }
 `;
