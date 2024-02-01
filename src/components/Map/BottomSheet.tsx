@@ -56,6 +56,10 @@ const BottomSheetContent = styled.div`
     align-items: center;
     margin-top: 5px;
 
+    /* 추가 */
+    overflow: auto; 
+     -webkit-overflow-scrolling: touch;
+
     button {
       height: 43px;
       border: 0px;
