@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/components/pagination/pagination.min.css';
+import styled from 'styled-components';
 
 import Header from '../Notice/Header';
-import BoothInstruction from '../Map/BoothInstruction';
+import BoothInstruction from './BoothInstruction';
 import BoothComment from '../Map/BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooths from '../../hooks/useFetchBooths';

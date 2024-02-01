@@ -1,6 +1,7 @@
+import { useState, useEffect } from 'react';
+
 import { styled } from 'styled-components';
 
-import { useState, useEffect } from 'react';
 import BoothList from './BoothList';
 
 const Container = styled.div`
