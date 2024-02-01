@@ -54,7 +54,7 @@ export default function NoticeBottom({ notice } : NoticeItemProps) {
               const key = `${img.id} + ${img.img}`;
               return (
                 <SwiperSlide key={key}>
-                  <NoticeImageBox src={img.img} />
+                  <NoticeImageBox src={img.img} alt={img.img} />
                 </SwiperSlide>
               );
             })
