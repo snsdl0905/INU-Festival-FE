@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import MapLayer from './MapLayer';
-import ListButton from './ListButton';
 import BottomSheet from './BottomSheet';
 
 const Container = styled.div`
@@ -20,9 +19,3 @@ export default function Map() {
     </Container>
   );
 }
-
-// MapContent - BaseLayer
-// BottomSheet
-
-// BottemSheetHeader
-// BottomSheetContent

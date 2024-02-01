@@ -14,6 +14,7 @@ interface BottomSheetMetrics {
   isContentAreaTouched: boolean; // 컨텐츠 영역을 터치하고 있음을 기록
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export function useBottomSheet() {
   const sheet = useRef<HTMLDivElement>(null);
   const content = useRef<HTMLDivElement>(null);
@@ -54,7 +55,7 @@ export function useBottomSheet() {
       return false;
     };
     const handleTouchStart = (e: TouchEvent | MouseEvent) => {
-      const { touchStart, touchMove } = metrics.current;
+      const { touchStart } = metrics.current;
 
       touchStart.sheetY = sheet.current?.getBoundingClientRect().y || 0;
       touchStart.touchY = 'touches' in e ? e.touches[0].clientY : e.clientY;
@@ -101,7 +102,7 @@ export function useBottomSheet() {
       }
     };
 
-    const handleTouchEnd = (e: TouchEvent | MouseEvent) => {
+    const handleTouchEnd = () => {
       document.body.style.overflowY = 'auto';
 
       const { touchMove } = metrics.current;
@@ -111,11 +112,11 @@ export function useBottomSheet() {
 
       if (currentSheetY !== MIN_TOP) {
         if (touchMove.movingDirection === 'down') {
-          sheet.current.style.setProperty('transform', 'translateY(0)');
+          sheet.current?.style.setProperty('transform', 'translateY(0)');
         }
 
         if (touchMove.movingDirection === 'up') {
-          sheet.current.style.setProperty('transform', `translateY(${MIN_Y - MAX_Y}px)`);
+          sheet.current?.style.setProperty('transform', `translateY(${MIN_Y - MAX_Y}px)`);
         }
       }
 

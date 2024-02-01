@@ -2,9 +2,7 @@ import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import { BOTTOM_SHEET_HEIGHT } from './constants';
 import { useBottomSheet } from '../../hooks/useBottomSheet';
-import { useBottomSheetMouse } from '../../hooks/useBottomSheetMouse';
 
 const Wrapper = styled.div`
     /* 추가  */
@@ -14,13 +12,9 @@ const Wrapper = styled.div`
     width: 100%;
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
     position: fixed;
-    /* bottom: 65px; */
-    bottom: -570px;
+    bottom: -600px;
     z-index: 1;
-    
-    /* height: ${BOTTOM_SHEET_HEIGHT}px; */
-    height: 750px;
-    
+    height: 780px;
     background-color: #FFFFFF;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -37,10 +31,6 @@ const Wrapper = styled.div`
 `;
 
 const BottemSheetHeader = styled.div`
-  /* 추가 */
-  overflow: auto; 
-  -webkit-overflow-scrolling: touch;
-
     border: 0px;
     background-color: #BBC7D3;
     border-radius: 12px;
@@ -52,13 +42,10 @@ const BottemSheetHeader = styled.div`
 
 const BottomSheetContent = styled.div`
     width: 100%;
+    height: 50px;
     display: flex;
     align-items: center;
     margin-top: 5px;
-
-    /* 추가 */
-    overflow: auto; 
-     -webkit-overflow-scrolling: touch;
 
     button {
       height: 43px;
@@ -72,6 +59,7 @@ const BottomSheetContent = styled.div`
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      height: 55px;
       cursor: pointer;
     }
 `;
