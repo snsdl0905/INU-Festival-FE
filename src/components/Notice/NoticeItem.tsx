@@ -1,6 +1,7 @@
+import { useState } from 'react';
+
 import { styled } from 'styled-components';
 
-import { useState } from 'react';
 import Notice from '../../types/Notice';
 import NoticeBottom from './NoticeBottom';
 import NoticeTitle from './NoticeTitle';

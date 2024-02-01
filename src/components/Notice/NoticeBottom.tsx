@@ -1,11 +1,9 @@
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { styled } from 'styled-components';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Notice from '../../types/Notice';
-
-import 'swiper/components/pagination/pagination.min.css';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const NoticeContentBox = styled.div`

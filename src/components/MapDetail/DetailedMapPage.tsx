@@ -1,19 +1,17 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/components/pagination/pagination.min.css';
+import styled from 'styled-components';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
-import BoothComment from './BoothComment';
+import BoothComment from '../Map/BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooths from '../../hooks/useFetchBooths';
 
 const ImageBox = styled.div`
-    height: 375px;
-    
+
 `;
 
 const MapInfoTop = styled.div`
@@ -80,25 +78,34 @@ const MapButtonBox = styled.div`
 const MapInfoBottom = styled.div<{ showInstruction: boolean }>`
     display: flex;
     justify-content: space-between;
+
     button{
         flex: 1;
         border: none;
         background-color: #FFFFFF;
         padding: 1.3rem 6rem;
-        border-bottom: 2px solid ${(props) => (props.showInstruction ? '#0147C8' : '#CEDCEA')};
         font-weight: 700;
         font-size: 15px;
+        cursor: pointer;
+    }
 
-        &:last-child {
-            border-bottom: 2px solid ${(props) => (props.showInstruction ? '#CEDCEA' : '#0147C8')};
-        }
+    .selected{
+      border-bottom: 2px solid #0147C8;
+    }
+
+    .instructionSelected{
+      border-bottom: 2px solid #CEDCEA;
     }
 `;
 const MapImageContainer = styled.div`
-        padding: 0;
+    padding: 0 2rem ;
     `;
 const MapImageBox = styled.div`
-        padding: 0;        
+        padding: 0;
+        img{
+            width: 300px;
+            border-radius: 15px;
+        }
     `;
 
 export default function DetailedMapPage() {
@@ -106,15 +113,15 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState(true);
   const booths = useFetchBooths();
   const SelectedBooth = booths.find((booth) => booth.id === id);
-  const imgArray: string[] = ['BOL.jpeg', 'BOL2.jpeg', 'DAMONS.png'];
+  const imgArray: string[] = ['/BOL.jpeg', '/BOL2.jpeg', '/DAMONS.png'];
 
   return (
     <>
-      <Header> </Header>
+      <Header shadow={false}> </Header>
       <ImageBox>
         <Swiper
           slidesPerView={2}
-          spaceBetween={10}
+          spaceBetween={250}
           allowTouchMove
           freeMode
           freeModeMinimumVelocity={0.01}
@@ -150,10 +157,10 @@ export default function DetailedMapPage() {
           </svg>
         </div>
       </MapButtonBox>
-      <InfoWithIcon small="false" />
+      <InfoWithIcon small={false} />
       <MapInfoBottom showInstruction={showInstruction}>
-        <button type="button" onClick={() => setShowInstruction(true)}>부스 소개</button>
-        <button type="button" onClick={() => setShowInstruction(false)}>
+        <button type="button" className={showInstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
+        <button type="button" className={showInstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>
           댓글
           {SelectedBooth?.comment}
         </button>

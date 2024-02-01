@@ -1,7 +1,8 @@
+import { NavLink } from 'react-router-dom';
+
 import { styled } from 'styled-components';
 
-import { NavLink } from 'react-router-dom';
-import InfoWithIcon from './InfoWithIcon';
+import InfoWithIcon from '../MapDetail/InfoWithIcon';
 
 const PreButton = styled(NavLink)`
   cursor: pointer;
@@ -76,7 +77,7 @@ export default function BoothList() {
             </LikedNumber>
           </BoothInfoBottom>
         </BoothContent>
-        <InfoWithIcon small="true" />
+        <InfoWithIcon small />
       </BoothContainer>
     </PreButton>
   );

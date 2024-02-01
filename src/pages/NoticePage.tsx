@@ -17,18 +17,9 @@ const NoticeList = styled.div`
 export default function NoticePage() {
   const notices = useFetchNotices();
 
-  const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-  const NoticeList = styled.div`
-
-  `;
-
   return (
     <Wrapper>
-      <Header>알림 센터</Header>
+      <Header shadow>알림 센터</Header>
       <Article>
         <NoticeList>
           {
