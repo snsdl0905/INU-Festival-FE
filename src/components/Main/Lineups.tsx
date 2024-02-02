@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Header from './Header';
 
-import LineUp from './Lineup';
+import LineUp from './LineUp';
 
 import BlurContainer from '../BlurContainer';
 import useFetchPerforms from '../../hooks/useFetchPerforms';

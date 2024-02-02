@@ -1,12 +1,14 @@
 import BoothDay from './BoothDay';
 
 interface Booth {
-    id: number;
+    id: string;
     name: string;
     category: string;
     department: string;
     description: string;
     liked: number;
+    img: string;
+    comment: number;
     boothDays: BoothDay[];
   }
 
