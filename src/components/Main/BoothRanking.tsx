@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import BoothItem from './BoothItem';
 
-import useFetchBooths from '../../hooks/useFetchBooths';
+import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -116,7 +116,7 @@ const BoothHeart = styled.div`
 `;
 
 export default function BoothRanking() {
-  const booths = useFetchBooths();
+  const booths = useFetchBoothsRanking();
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
   const fetchedBooths = [...booths];

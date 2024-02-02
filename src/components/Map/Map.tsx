@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 import MapLayer from './MapLayer';
-import BottomSheet from './BottomSheet';
+import BottomSheet from './BannerContent';
+
+import useFetchBooths from '../../hooks/useFetchBooths';
 
 const Container = styled.div`
     max-width: 600px;
@@ -12,6 +14,8 @@ const Container = styled.div`
 `;
 
 export default function Map() {
+  const booths = useFetchBooths();
+  console.log(booths);
   return (
     <Container>
       <MapLayer />
