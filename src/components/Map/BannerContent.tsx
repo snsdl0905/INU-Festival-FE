@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import BoothList from './BoothList';
+import { useBottomSheet } from '../../hooks/useBottomSheet';
 
-const Container = styled.div`
+const Wrapper = styled.div`
+    /* 추가  */
+    transition: transform 150ms ease-out;    
     max-width: 600px;
     width: 100%;
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
     position: fixed;
-    bottom: 65px;
+    bottom: -600px;
     z-index: 1;
-    height: 105px;
+    height: 780px;
     background-color: #FFFFFF;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -22,12 +24,13 @@ const Container = styled.div`
     padding-right: 15px;
     cursor: grab;
 
-    &.swiped-up {
-      height: 92vh !important;
-    }
+  &:active {
+    cursor: grabbing;
+  }
+
 `;
 
-const SlideImg = styled.div`
+const BottemSheetHeader = styled.div`
     border: 0px;
     background-color: #BBC7D3;
     border-radius: 12px;
@@ -38,12 +41,10 @@ const SlideImg = styled.div`
 
 `;
 
-const FilterContainer = styled.div`
+const BottomSheetContent = styled.div`
     width: 100%;
+    margin-top: 7px;
     display: flex;
-    align-items: center;
-    margin-top: 5px;
-    padding-bottom: 20px;
 
     button {
       height: 43px;
@@ -57,6 +58,7 @@ const FilterContainer = styled.div`
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      height: 55px;
       cursor: pointer;
     }
 `;
@@ -82,31 +84,22 @@ const CategoryFilterContanier = styled.div`
   }
 `;
 
-export default function BannerContent() {
-  const [isSwipedUp, setIsSwipedUp] = useState(false);
+export default function BottomSheet() {
+  const { sheet, content } = useBottomSheet();
+  const [isSwipe, setIsSwipe] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const { scrollY } = window;
-
-      if (scrollY > 0 && !isSwipedUp) {
-        setIsSwipedUp(true);
-      } else if (scrollY === 0 && isSwipedUp) {
-        setIsSwipedUp(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [isSwipedUp]);
+  const handleClick = () => {
+    setIsSwipe(true);
+  };
 
   return (
-    <Container className={isSwipedUp ? 'swiped-up' : ''}>
-      <SlideImg />
-      <FilterContainer>
+    <Wrapper
+      ref={sheet}
+      onClick={handleClick}
+      className={isSwipe ? 'active' : ''}
+    >
+      <BottemSheetHeader />
+      <BottomSheetContent ref={content}>
         <DayFilterContainer>
           <button type="button">월</button>
           <button type="button">화</button>
@@ -117,8 +110,7 @@ export default function BannerContent() {
           <button type="button">🎡 비주점</button>
           <button type="button">🍕 푸드트럭</button>
         </CategoryFilterContanier>
-      </FilterContainer>
-      <BoothList />
-    </Container>
+      </BottomSheetContent>
+    </Wrapper>
   );
 }

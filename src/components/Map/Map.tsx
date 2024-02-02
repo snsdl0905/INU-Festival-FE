@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-import MapContent from './MapContent';
-import ListButton from './ListButton';
-import BannerContent from './BannerContent';
+import MapLayer from './MapLayer';
+import BottomSheet from './BottomSheet';
 
 const Container = styled.div`
     max-width: 600px;
     width: 100%;
-    height: 50em;
+    height: 100%;
     overflow: hidden;
     cursor: grab;
 `;
@@ -15,10 +14,8 @@ const Container = styled.div`
 export default function Map() {
   return (
     <Container>
-      <MapContent />
-      <ListButton />
-      <BannerContent />
-
+      <MapLayer />
+      <BottomSheet />
     </Container>
   );
 }
