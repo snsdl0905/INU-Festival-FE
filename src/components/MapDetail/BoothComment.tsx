@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export default function BoothComment() {
-  const CommentTop = styled.div`
+const CommentTop = styled.div`
         display: flex;
         align-items: center;
         padding-bottom: 1rem;
@@ -10,7 +9,7 @@ export default function BoothComment() {
             margin-right: 1rem;
         }
     `;
-  const CommentBox = styled.div`
+const CommentBox = styled.div`
         padding: 3rem;
         //border-top: 1px solid rgba(150, 159, 169, 1);
 
@@ -29,6 +28,8 @@ export default function BoothComment() {
             font-size: 1.4rem;
         }
     `;
+
+export default function BoothComment() {
   return (
     <CommentBox>
       <CommentTop>
