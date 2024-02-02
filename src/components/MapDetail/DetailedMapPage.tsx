@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
-import BoothComment from '../Map/BoothComment';
+import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooths from '../../hooks/useFetchBooths';
 
