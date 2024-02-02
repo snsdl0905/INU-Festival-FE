@@ -6,7 +6,7 @@ import BottomSheet from './BottomSheet';
 const Container = styled.div`
     max-width: 600px;
     width: 100%;
-    height: 50em;
+    height: 100%;
     overflow: hidden;
     cursor: grab;
 `;

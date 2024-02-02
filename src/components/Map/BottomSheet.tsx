@@ -42,7 +42,6 @@ const BottemSheetHeader = styled.div`
 
 const BottomSheetContent = styled.div`
     width: 100%;
-    height: 100%;
     margin-top: 7px;
     display: flex;
 
