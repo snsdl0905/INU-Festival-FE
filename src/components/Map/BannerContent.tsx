@@ -6,8 +6,7 @@ import { useBottomSheet } from '../../hooks/useBottomSheet';
 
 const Wrapper = styled.div`
     /* 추가  */
-    transition: transform 150ms ease-out;
-    
+    transition: transform 150ms ease-out;    
     max-width: 600px;
     width: 100%;
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
@@ -28,6 +27,7 @@ const Wrapper = styled.div`
   &:active {
     cursor: grabbing;
   }
+
 `;
 
 const BottemSheetHeader = styled.div`
@@ -37,6 +37,7 @@ const BottemSheetHeader = styled.div`
     width: 44px;
     height: 5.747px;
     margin: 11px;
+    padding-top: 4px;
 
 `;
 
