@@ -8,14 +8,14 @@ import useFetchBooths from '../../hooks/useFetchBooths';
 const Container = styled.div`
     max-width: 600px;
     width: 100%;
-    height: 100%;
-    overflow: hidden;
     cursor: grab;
 `;
 
 export default function Map() {
   const booths = useFetchBooths();
+  const categories = ['월', '화', '수', '주점', '비주점', '푸드트럭'];
   console.log(booths);
+
   return (
     <Container>
       <MapLayer />

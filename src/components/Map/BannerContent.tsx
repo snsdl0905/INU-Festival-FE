@@ -43,7 +43,6 @@ const BottemSheetHeader = styled.div`
 
 const BottomSheetContent = styled.div`
     width: 100%;
-    margin-top: 7px;
     display: flex;
 
     button {
@@ -61,6 +60,19 @@ const BottomSheetContent = styled.div`
       height: 55px;
       cursor: pointer;
     }
+
+    button {
+      background-color: #FFFFFF;
+      border: 1px solid #d4d3d3;
+      color: #7e7d7d;
+    }
+    
+    .clicked {
+        background-color: #EBF2FF;
+        border: 1px solid #e6e5e5;
+        color: #000000;
+        
+    }
 `;
 
 const DayFilterContainer = styled.div`
@@ -70,8 +82,8 @@ const DayFilterContainer = styled.div`
 
   button {
     width: 50px;
-
   }
+
 `;
 
 const CategoryFilterContanier = styled.div`
@@ -86,10 +98,21 @@ const CategoryFilterContanier = styled.div`
 
 export default function BottomSheet() {
   const { sheet, content } = useBottomSheet();
-  const [isSwipe, setIsSwipe] = useState(false);
+  const [isSwipe, setIsSwipe] = useState<booelan>(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
+
+  const categories = ['월', '화', '수', '🍺 주점', '🎡 비주점', '🍕 푸드트럭'];
 
   const handleClick = () => {
     setIsSwipe(true);
+  };
+
+  const handleSetFilterCategory = (category: string) => {
+    const filteredCategories = selectedCategories.includes(category)
+      ? selectedCategories.filter((selectedCategory) => selectedCategory !== category)
+      : [...selectedCategories, category];
+
+    setSelectedCategories(filteredCategories);
   };
 
   return (
@@ -100,16 +123,29 @@ export default function BottomSheet() {
     >
       <BottemSheetHeader />
       <BottomSheetContent ref={content}>
-        <DayFilterContainer>
-          <button type="button">월</button>
-          <button type="button">화</button>
-          <button type="button">수</button>
-        </DayFilterContainer>
-        <CategoryFilterContanier>
-          <button type="button">🍺 주점</button>
-          <button type="button">🎡 비주점</button>
-          <button type="button">🍕 푸드트럭</button>
-        </CategoryFilterContanier>
+        {categories.slice(0, 3).map((category) => (
+          <DayFilterContainer key={category}>
+            <button
+              type="button"
+              onClick={() => handleSetFilterCategory(category)}
+              className={selectedCategories.includes(category) ? 'clicked' : ''}
+            >
+              {category}
+            </button>
+          </DayFilterContainer>
+        ))}
+        {categories.splice(3, 6).map((category) => (
+          <CategoryFilterContanier key={category}>
+            <button
+              type="button"
+              onClick={() => handleSetFilterCategory(category)}
+              className={selectedCategories.includes(category) ? 'clicked' : ''}
+            >
+              {category}
+            </button>
+
+          </CategoryFilterContanier>
+        ))}
       </BottomSheetContent>
     </Wrapper>
   );

@@ -8,7 +8,7 @@ const Container = styled.div`
     max-width: 600px;
     width: 100%;
     position: absolute;
-    height: 49em;
+    height: 42em;
 `;
 
 export default function MapLayer() {
