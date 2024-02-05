@@ -27,7 +27,6 @@ const Wrapper = styled.div`
   &:active {
     cursor: grabbing;
   }
-
 `;
 
 const BottemSheetHeader = styled.div`
@@ -43,7 +42,10 @@ const BottemSheetHeader = styled.div`
 
 const BottomSheetContent = styled.div`
     width: 100%;
+    height: 60px;
     display: flex;
+    overflow-x: scroll;
+    margin-top: 5px;
 
     button {
       height: 43px;
@@ -98,7 +100,7 @@ const CategoryFilterContanier = styled.div`
 
 export default function BottomSheet() {
   const { sheet, content } = useBottomSheet();
-  const [isSwipe, setIsSwipe] = useState<booelan>(false);
+  const [isSwipe, setIsSwipe] = useState<boolean>(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
 
   const categories = ['월', '화', '수', '🍺 주점', '🎡 비주점', '🍕 푸드트럭'];

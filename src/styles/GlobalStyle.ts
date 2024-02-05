@@ -19,6 +19,13 @@ const GlobalStyle = createGlobalStyle`
     *::before,
     *::after {
         box-sizing: inherit;
+        
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    *::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
 
     :lang(ko) {
