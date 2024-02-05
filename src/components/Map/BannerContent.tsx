@@ -98,10 +98,16 @@ const CategoryFilterContanier = styled.div`
   }
 `;
 
-export default function BottomSheet() {
+type BottomSheetProps = {
+  selectedCategories: string[];
+  setSelectedCategories: (value: string[]) => void;
+}
+export default function BottomSheet({
+  selectedCategories,
+  setSelectedCategories,
+}: BottomSheetProps) {
   const { sheet, content } = useBottomSheet();
   const [isSwipe, setIsSwipe] = useState<boolean>(false);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
 
   const categories = ['월', '화', '수', '🍺 주점', '🎡 비주점', '🍕 푸드트럭'];
 

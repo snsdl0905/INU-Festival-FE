@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { useState } from 'react';
 import MapLayer from './MapLayer';
 import BottomSheet from './BannerContent';
 
@@ -13,13 +14,21 @@ const Container = styled.div`
 
 export default function Map() {
   const booths = useFetchBooths();
-  const categories = ['월', '화', '수', '주점', '비주점', '푸드트럭'];
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
+
   console.log(booths);
+  // const filteredBooths = booths.filter((booth) =>
+  //   booth.boothDays
+  // );  console.log(selectedCategories);
 
   return (
     <Container>
       <MapLayer />
-      <BottomSheet />
+      <BottomSheet
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      />
     </Container>
   );
 }
