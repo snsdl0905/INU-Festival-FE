@@ -9,6 +9,12 @@ import { useBottomSheet } from '../../hooks/useBottomSheet';
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
 
+export const MIN_Y = 90; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
+export const MAX_Y = window.innerHeight - 80; // 바텀시트가 최소로 내려갔을 때의 y 값
+export const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이
+
+console.log(BOTTOM_SHEET_HEIGHT);
+
 const Wrapper = styled.div`
   touch-action: none;
   transition: transform 150ms ease-out;    
@@ -16,9 +22,9 @@ const Wrapper = styled.div`
   width: 100%;
   box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
   position: fixed;
-  bottom: -600px;
+  bottom: -730px;
   z-index: 1;
-  height: 780px;
+  height: 900px;
   background-color: #FFFFFF;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
