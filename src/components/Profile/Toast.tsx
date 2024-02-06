@@ -8,8 +8,9 @@ type ToastProps = {
 
 const ToastBox = styled.div`
     width: 100%;
+    max-width: 600px;
     position: fixed;
-    bottom: 100px;
+    bottom: 150px;
     display: flex;
     justify-content: center;
     p{
