@@ -11,7 +11,7 @@ const Container = styled.div`
     height: 49em;
 `;
 
-export default function MapContent() {
+export default function MapLayer() {
   useEffect(() => {
     Kakao();
   }, []);
