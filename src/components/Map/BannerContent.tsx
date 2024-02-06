@@ -109,7 +109,7 @@ export default function BottomSheet({
   const { sheet, content } = useBottomSheet();
   const [isSwipe, setIsSwipe] = useState<boolean>(false);
 
-  const categories = ['월', '화', '수', '🍺 주점', '🎡 비주점', '🍕 푸드트럭'];
+  const categories = ['월', '화', '수', '주점', '비주점', '푸드트럭'];
 
   const handleClick = () => {
     setIsSwipe(true);

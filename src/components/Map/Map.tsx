@@ -17,10 +17,21 @@ export default function Map() {
 
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
 
-  console.log(booths);
-  // const filteredBooths = booths.filter((booth) =>
-  //   booth.boothDays
-  // );  console.log(selectedCategories);
+  // console.log(booths);
+  // console.log(selectedCategories);
+
+  const filteredBooths = booths.filter(
+    (booth) => {
+      const isIncludedDays = booth.boothDays.filter(
+        ((dayInfo) => selectedCategories.includes(dayInfo.day)),
+      );
+
+      return isIncludedDays.length
+    || selectedCategories.includes(booth.category);
+    },
+  );
+
+  // console.log(filteredBooths);
 
   return (
     <Container>
