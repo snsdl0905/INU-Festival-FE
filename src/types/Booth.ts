@@ -8,7 +8,7 @@ interface Booth {
     description: string;
     liked: number;
     img: string;
-    comment: number;
+    comment?: number;
     boothDays: BoothDay[];
   }
 
