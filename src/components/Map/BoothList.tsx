@@ -111,7 +111,10 @@ export default function BoothList({ booths }: BoothListProps) {
                   </LikedNumber>
                 </BoothInfoBottom>
               </BoothContent>
-              <InfoWithIcon small="true" />
+              <InfoWithIcon
+                small="true"
+                booth={booth}
+              />
             </BoothContainer>
           </PreButton>
         );

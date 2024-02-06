@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
-
-interface InfoWithIconProps {
-  small: 'true' | 'false';
-}
+import Booth from '../../types/Booth';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
         padding: 1rem;
@@ -33,7 +30,17 @@ const MapInfoMiddle = styled.div<{$small: string }>`
         `}
     `;
 
-export default function InfoWithIcon({ small }: InfoWithIconProps) {
+type InfoWithIconProps = {
+  small: 'true' | 'false';
+  booth: Booth;
+}
+
+export default function InfoWithIcon({
+  small,
+  booth,
+}: InfoWithIconProps) {
+  // const { time } = booth.boothDays;
+  console.log(booth);
   return (
     <MapInfoMiddle $small={small}>
       <div>
@@ -75,7 +82,7 @@ export default function InfoWithIcon({ small }: InfoWithIconProps) {
             </linearGradient>
           </defs>
         </svg>
-        <p>10시 - 16시</p>
+        <p>시간</p>
       </div>
     </MapInfoMiddle>
   );
