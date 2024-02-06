@@ -4,7 +4,7 @@ interface InfoWithIconProps {
   small: 'true' | 'false';
 }
 
-const MapInfoMiddle = styled.div<{small: string }>`
+const MapInfoMiddle = styled.div<{$small: string }>`
         padding: 1rem;
         div{
             display: flex;
@@ -12,7 +12,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             letter-spacing: -0.04348rem;
         }
 
-        ${(props) => (props.small === 'false') && css`
+        ${(props) => (props.$small === 'false') && css`
             div{
                 padding: 1rem;
             }
@@ -21,7 +21,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             }
         `}
 
-        ${(props) => (props.small === 'true') && css`
+        ${(props) => (props.$small === 'true') && css`
             font-size: 12px;
             svg{
                 width: 13px;
@@ -35,7 +35,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
 
 export default function InfoWithIcon({ small }: InfoWithIconProps) {
   return (
-    <MapInfoMiddle small={small}>
+    <MapInfoMiddle $small={small}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
           <path d="M3.78027 17.684C3.78027 18.9627 4.88259 19.9999 6.24165 19.9999H9.68757C11.0466 19.9999 12.149 18.9627 12.149 17.684V16.4162C12.149 16.1636 11.9315 15.959 11.663 15.959H4.26618C3.99777 15.959 3.78027 16.1636 3.78027 16.4162V17.684Z" fill="url(#paint0_linear_546_1745)" />
