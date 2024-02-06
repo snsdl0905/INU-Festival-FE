@@ -2,8 +2,7 @@ import { useFetch } from 'usehooks-ts';
 
 import Notice from '../types/Notice';
 
-// const url = 'http://13.124.57.234:5000/notices';
-const url = `${process.env.REACT_APP_URL}/notices`;
+const url = `${process.env.REACT_APP_URL}/notice`;
 
 type Notices = {
     notices: Notice[];

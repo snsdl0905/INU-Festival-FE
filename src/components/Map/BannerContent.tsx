@@ -2,10 +2,13 @@ import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
+import BoothList from './BoothList';
+
 import { useBottomSheet } from '../../hooks/useBottomSheet';
 
+import Booth from '../../types/Booth';
+
 const Wrapper = styled.div`
-    /* 추가  */
     transition: transform 150ms ease-out;    
     max-width: 600px;
     width: 100%;
@@ -40,12 +43,13 @@ const BottemSheetHeader = styled.div`
 
 `;
 
-const BottomSheetContent = styled.div`
+const BottomSheetFilter = styled.div`
+    overflow: scroll;
     width: 100%;
     height: 60px;
     display: flex;
-    overflow-x: scroll;
     margin-top: 5px;
+    margin-bottom: 5px;
 
     button {
       height: 43px;
@@ -59,7 +63,7 @@ const BottomSheetContent = styled.div`
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
-      height: 55px;
+      height: 45px;
       cursor: pointer;
     }
 
@@ -83,7 +87,7 @@ const DayFilterContainer = styled.div`
   width: 40%;
 
   button {
-    width: 50px;
+    width: 45px;
   }
 
 `;
@@ -101,10 +105,12 @@ const CategoryFilterContanier = styled.div`
 type BottomSheetProps = {
   selectedCategories: string[];
   setSelectedCategories: (value: string[]) => void;
+  booths: Booth[];
 }
 export default function BottomSheet({
   selectedCategories,
   setSelectedCategories,
+  booths,
 }: BottomSheetProps) {
   const { sheet, content } = useBottomSheet();
   const [isSwipe, setIsSwipe] = useState<boolean>(false);
@@ -130,7 +136,7 @@ export default function BottomSheet({
       className={isSwipe ? 'active' : ''}
     >
       <BottemSheetHeader />
-      <BottomSheetContent ref={content}>
+      <BottomSheetFilter ref={content}>
         {categories.slice(0, 3).map((category) => (
           <DayFilterContainer key={category}>
             <button
@@ -151,10 +157,12 @@ export default function BottomSheet({
             >
               {category}
             </button>
-
           </CategoryFilterContanier>
         ))}
-      </BottomSheetContent>
+      </BottomSheetFilter>
+      <BoothList
+        booths={booths}
+      />
     </Wrapper>
   );
 }

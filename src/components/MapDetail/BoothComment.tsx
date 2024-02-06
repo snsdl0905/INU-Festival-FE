@@ -11,7 +11,6 @@ const CommentTop = styled.div`
     `;
 const CommentBox = styled.div`
         padding: 3rem;
-        //border-top: 1px solid rgba(150, 159, 169, 1);
 
         p{
             padding-left: 34px;

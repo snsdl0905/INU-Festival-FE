@@ -39,6 +39,7 @@ export default function Map() {
       <BottomSheet
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
+        booths={filteredBooths}
       />
     </Container>
   );
