@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 
 import { useBottomSheet } from '../../hooks/useBottomSheet';
+import BoothList from './BoothList';
 
 const Wrapper = styled.div`
     /* 추가  */
@@ -45,6 +46,7 @@ const BottomSheetContent = styled.div`
     width: 100%;
     margin-top: 7px;
     display: flex;
+    padding-bottom: 30px;
 
     button {
       height: 43px;
@@ -111,6 +113,7 @@ export default function BottomSheet() {
           <button type="button">🍕 푸드트럭</button>
         </CategoryFilterContanier>
       </BottomSheetContent>
+      <BoothList />
     </Wrapper>
   );
 }

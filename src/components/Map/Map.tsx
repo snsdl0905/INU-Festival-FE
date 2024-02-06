@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 import MapLayer from './MapLayer';
-import BottomSheet from './BottomSheet';
+import BottomSheet from './BannerContent';
+import BoothBanner from './BoothBanner';
 
 const Container = styled.div`
     max-width: 600px;
@@ -15,6 +16,7 @@ export default function Map() {
   return (
     <Container>
       <MapLayer />
+      <BoothBanner />
       <BottomSheet />
     </Container>
   );
