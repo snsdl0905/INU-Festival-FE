@@ -33,6 +33,7 @@ const BoothContainer = styled.div`
 `;
 
 const BoothContent = styled.div`
+    width: 35%;
     height: 100px;
     margin-left: 10px;
     margin-right: 10px;
@@ -51,11 +52,10 @@ const BoothInfoBottom = styled.div`
     font-size: 16px;
 
     div {
-
       display: inline-block;
       margin-top: 2.5px;
       margin-bottom: 2.5px;
-      margin-right: 10px;
+      margin-right: 5px;
     }
 `;
 
