@@ -15,30 +15,23 @@ const Container = styled.div`
 export default function Map() {
   const booths = useFetchBooths();
 
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(['월']);
+  const [selectedDay, setSelectedDay] = useState<string>('월');
+  const [selectedCategory, setSelectedCategory] = useState<string>('주점');
 
-  // console.log(booths);
-  // console.log(selectedCategories);
-
-  const filteredBooths = booths.filter(
-    (booth) => {
-      const isIncludedDays = booth.boothDays.filter(
-        ((dayInfo) => selectedCategories.includes(dayInfo.day)),
-      );
-
-      return isIncludedDays.length
-    || selectedCategories.includes(booth.category);
-    },
-  );
-
-  // console.log(filteredBooths);
+  const filteredBooths = booths.filter((booth) => {
+    const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);
+    return dayCount.length
+    || booth.category === selectedCategory;
+  });
 
   return (
     <Container>
       <MapLayer />
       <BottomSheet
-        selectedCategories={selectedCategories}
-        setSelectedCategories={setSelectedCategories}
+        setSelectedDay={setSelectedDay}
+        selectedDay={selectedDay}
+        setSelectedCategory={setSelectedCategory}
+        selectedCategory={selectedCategory}
         booths={filteredBooths}
       />
     </Container>

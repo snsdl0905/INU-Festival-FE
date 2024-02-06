@@ -7,25 +7,27 @@ import BoothList from './BoothList';
 import { useBottomSheet } from '../../hooks/useBottomSheet';
 
 import Booth from '../../types/Booth';
+import useFetchCategories from '../../hooks/useFetchCategories';
 
 const Wrapper = styled.div`
-    transition: transform 150ms ease-out;    
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
-    position: fixed;
-    bottom: -600px;
-    z-index: 1;
-    height: 780px;
-    background-color: #FFFFFF;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
-    cursor: grab;
+  touch-action: none;
+  transition: transform 150ms ease-out;    
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
+  position: fixed;
+  bottom: -600px;
+  z-index: 1;
+  height: 780px;
+  background-color: #FFFFFF;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: grab;
 
   &:active {
     cursor: grabbing;
@@ -51,6 +53,7 @@ const BottomSheetFilter = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
 
+
     button {
       height: 43px;
       border: 0px;
@@ -65,19 +68,21 @@ const BottomSheetFilter = styled.div`
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
       height: 45px;
       cursor: pointer;
-    }
-
-    button {
       background-color: #FFFFFF;
       border: 1px solid #d4d3d3;
       color: #7e7d7d;
     }
     
-    .clicked {
-        background-color: #EBF2FF;
-        border: 1px solid #e6e5e5;
-        color: #000000;
-        
+    .clickedDay {
+      background-color: #FFFFFF;
+      border: 1px solid #FB7876;
+      color: #FB7876;
+    }
+
+    .clickedCategory {
+      background-color: #FFFFFF;
+      border: 1px solid #0199FF;
+      color: #0199FF;
     }
 `;
 
@@ -103,30 +108,36 @@ const CategoryFilterContanier = styled.div`
 `;
 
 type BottomSheetProps = {
-  selectedCategories: string[];
-  setSelectedCategories: (value: string[]) => void;
+  setSelectedDay: (value: string) => void;
+  selectedDay: string;
+  setSelectedCategory: (value: string) => void;
+  selectedCategory: string;
   booths: Booth[];
 }
+
 export default function BottomSheet({
-  selectedCategories,
-  setSelectedCategories,
+  setSelectedDay,
+  selectedDay,
+  setSelectedCategory,
+  selectedCategory,
   booths,
 }: BottomSheetProps) {
   const { sheet, content } = useBottomSheet();
   const [isSwipe, setIsSwipe] = useState<boolean>(false);
 
-  const categories = ['월', '화', '수', '주점', '비주점', '푸드트럭'];
+  const categories = useFetchCategories();
+  const { days, filters } = categories;
 
   const handleClick = () => {
     setIsSwipe(true);
   };
 
-  const handleSetFilterCategory = (category: string) => {
-    const filteredCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter((selectedCategory) => selectedCategory !== category)
-      : [...selectedCategories, category];
+  const handleSetFilterDay = (category: string) => {
+    setSelectedDay(category);
+  };
 
-    setSelectedCategories(filteredCategories);
+  const handleSetFilterCategory = (category: string) => {
+    setSelectedCategory(category);
   };
 
   return (
@@ -137,28 +148,29 @@ export default function BottomSheet({
     >
       <BottemSheetHeader />
       <BottomSheetFilter ref={content}>
-        {categories.slice(0, 3).map((category) => (
+        {days && days.map((category: string) => (
           <DayFilterContainer key={category}>
             <button
               type="button"
-              onClick={() => handleSetFilterCategory(category)}
-              className={selectedCategories.includes(category) ? 'clicked' : ''}
+              onClick={() => handleSetFilterDay(category)}
+              className={selectedDay === category ? 'clickedDay' : ''}
             >
               {category}
             </button>
           </DayFilterContainer>
         ))}
-        {categories.splice(3, 6).map((category) => (
+        {filters && filters.map((category: string) => (
           <CategoryFilterContanier key={category}>
             <button
               type="button"
               onClick={() => handleSetFilterCategory(category)}
-              className={selectedCategories.includes(category) ? 'clicked' : ''}
+              className={selectedCategory === category ? 'clickedCategory' : ''}
             >
               {category}
             </button>
           </CategoryFilterContanier>
         ))}
+
       </BottomSheetFilter>
       <BoothList
         booths={booths}
