@@ -7,7 +7,8 @@ const Wapper = styled.div`
     box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
     position: fixed;
     bottom: 0;
-    z-index: 101;
+    /* z-index: 101; */
+    z-index: -1;
     height: fit-content;
     background-color: #FFFFFF;
     border-top-left-radius: 15px;
