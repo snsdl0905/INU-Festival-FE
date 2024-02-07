@@ -37,12 +37,13 @@ export function useBottomSheet() {
       const { touchMove, isContentAreaTouched } = metrics.current;
 
       // 바텀시트에서 컨텐츠 영역이 아닌 부분을 터치하면 항상 바텀시트를 움직입니다.
-      if (!isContentAreaTouched) {
-        return false; // 수정
+      if (isContentAreaTouched) { // 수정
+        return false;
       }
 
       // 바텀시트가 올라와있는 상태가 아닐 때는 컨텐츠 영역을 터치해도 바텀시트를 움직이는 것이 자연스럽습니다.
-      if (sheet.current?.getBoundingClientRect().y !== MIN_Y) {
+      // 수정 (MIN_Y -> 0)
+      if (sheet.current?.getBoundingClientRect().y !== 0) {
         return true;
       }
 
