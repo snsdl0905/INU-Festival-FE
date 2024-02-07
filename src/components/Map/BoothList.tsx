@@ -79,18 +79,28 @@ const LikedNumber = styled.div`
 
 type BoothListProps = {
   booths: Booth[];
+  selectedDay: string;
 };
 
-export default function BoothList({ booths }: BoothListProps) {
+export default function BoothList({
+  booths,
+  selectedDay,
+}: BoothListProps) {
   if (!booths) { return []; }
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
   return (
     <Container>
       {booths.map((booth) => {
+        console.log(booth);
+
         const {
-          id, name, category, liked,
+          id, name, category, liked, boothImgs,
         } = booth;
+
+        const boothDay = booth.boothDays.filter((
+          booth,
+        ) => booth.day === selectedDay);
 
         return (
           <PreButton
@@ -98,7 +108,7 @@ export default function BoothList({ booths }: BoothListProps) {
             key={id}
           >
             <BoothContainer>
-              <img src="boothImg.png" alt="boothImg.png" />
+              <img src={boothImgs[0].url} alt="boothImg.png" />
               <BoothContent>
                 <p>{name}</p>
                 <BoothInfoBottom>
@@ -114,6 +124,7 @@ export default function BoothList({ booths }: BoothListProps) {
               <InfoWithIcon
                 small="true"
                 booth={booth}
+                boothDay={boothDay}
               />
             </BoothContainer>
           </PreButton>

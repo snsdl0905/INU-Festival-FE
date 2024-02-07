@@ -150,6 +150,7 @@ export default function BottomSheet({
     setSelectedCategory(category);
   };
 
+  console.log(booths);
   return (
     <Wrapper
       ref={sheet}
@@ -184,6 +185,7 @@ export default function BottomSheet({
         </BottomSheetFilter>
         <BoothList
           booths={booths}
+          selectedDay={selectedDay}
         />
       </BottomSheetContent>
     </Wrapper>

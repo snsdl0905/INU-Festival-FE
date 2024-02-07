@@ -12,5 +12,6 @@ export default function useFetchBooths() {
   if (!data) {
     return [];
   }
+
   return data.booths;
 }
