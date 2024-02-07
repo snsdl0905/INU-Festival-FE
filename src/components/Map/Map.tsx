@@ -21,7 +21,7 @@ export default function Map() {
   const filteredBooths = booths.filter((booth) => {
     const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);
     return dayCount.length
-    || booth.category === selectedCategory;
+    && booth.category === selectedCategory;
   });
 
   return (

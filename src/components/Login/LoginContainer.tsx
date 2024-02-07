@@ -111,7 +111,7 @@ export default function LoginContainer() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = { studentID: Id, Password };
-    console.log(user);
+    // console.log(user);
   };
   return (
     <LoginWrapper onSubmit={handleSubmit}>
