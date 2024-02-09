@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import BoothList from './BoothList';
 
 import { useBottomSheet } from '../../hooks/useBottomSheet';
+import BoothList from './BoothList';
 
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
@@ -62,7 +63,6 @@ const BottomSheetFilter = styled.div`
     display: flex;
     margin-top: 5px;
     margin-bottom: 5px;
-
 
     button {
       height: 43px;
@@ -188,6 +188,7 @@ export default function BottomSheet({
           selectedDay={selectedDay}
         />
       </BottomSheetContent>
+      <BoothList />
     </Wrapper>
   );
 }

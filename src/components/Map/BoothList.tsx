@@ -19,6 +19,7 @@ const PreButton = styled(NavLink)`
 `;
 
 const BoothContainer = styled.div`
+    flex: 1;
     display: flex;
     align-items: center;
     padding: 10px;

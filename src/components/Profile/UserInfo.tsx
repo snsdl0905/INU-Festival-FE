@@ -19,13 +19,44 @@ justify-content: space-between;
 
 `;
 
-export default function UserInfo() {
+const UserDetail = styled.div`
+  div{
+    color: #0147C8;
+    font-weight: 400;
+  }
+  p{
+    font-weight: 500;
+    font-size: 16px;
+  }
+  span{
+    color: #0147C8;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+`;
+
+type UserInfoProps ={
+  isLoggedIn: boolean;
+}
+
+export default function UserInfo({ isLoggedIn }: UserInfoProps) {
   const user = `즐거운 축제의 시작
 희희낙락과 함께하세요!`;
   return (
     <UserInfoWrapper>
       <UserSection>
-        <span>{user}</span>
+        {
+          isLoggedIn
+            ? (
+              <UserDetail>
+                <div>예술체육대학 디자인학부</div>
+                <p>202100000</p>
+                <span>김횃불</span>
+              </UserDetail>
+            )
+            : <span>{user}</span>
+        }
       </UserSection>
     </UserInfoWrapper>
   );

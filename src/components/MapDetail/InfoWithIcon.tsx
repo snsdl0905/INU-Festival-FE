@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Booth from '../../types/Booth';
+import BoothDay from '../../types/BoothDay';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
         padding: 1rem;
@@ -33,14 +34,19 @@ const MapInfoMiddle = styled.div<{$small: string }>`
 type InfoWithIconProps = {
   small: 'true' | 'false';
   booth: Booth;
+  boothDay: BoothDay;
 }
 
 export default function InfoWithIcon({
   small,
   booth,
+  boothDay,
 }: InfoWithIconProps) {
-  // const { time } = booth.boothDays;
-  console.log(booth);
+  if (!booth || !boothDay) { return []; }
+
+  const { location, department } = booth;
+  const { time } = boothDay[0] || [];
+
   return (
     <MapInfoMiddle $small={small}>
       <div>
@@ -58,7 +64,7 @@ export default function InfoWithIcon({
             </linearGradient>
           </defs>
         </svg>
-        <p>교내 부서</p>
+        <p>{department}</p>
       </div>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20" fill="none">
@@ -70,7 +76,7 @@ export default function InfoWithIcon({
             </linearGradient>
           </defs>
         </svg>
-        <p>11호관과 16호관 사이</p>
+        <p>{location}</p>
       </div>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
@@ -82,7 +88,7 @@ export default function InfoWithIcon({
             </linearGradient>
           </defs>
         </svg>
-        <p>시간</p>
+        <p>{time}</p>
       </div>
     </MapInfoMiddle>
   );
