@@ -14,10 +14,8 @@ export default function useCheckScreenWidth(
     });
     if (window.innerWidth <= 550) {
       setPerView(defaultPerview - 1.3);
-    } else if (window.innerWidth <= 1200) {
-      setPerView(defaultPerview - 0.3);
     } else {
-      setPerView(defaultPerview);
+      setPerView(defaultPerview - 0.3);
     }
   };
 

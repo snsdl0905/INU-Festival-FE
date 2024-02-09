@@ -24,7 +24,7 @@ export default function Kakao() {
     mapTypeId: kakao.maps.MapTypeId.PLAN,
     $scale: false,
     // 지도의 중심 좌표 (x, y)
-    center: new kakao.maps.Coords(750, -700),
+    center: new kakao.maps.Coords(750, -400),
     level: 0,
   });
   const center = map.getCenter();

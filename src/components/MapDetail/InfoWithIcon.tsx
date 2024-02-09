@@ -1,10 +1,8 @@
 import styled, { css } from 'styled-components';
+import Booth from '../../types/Booth';
+import BoothDay from '../../types/BoothDay';
 
-interface InfoWithIconProps {
-  small: 'true' | 'false' | 'middle';
-}
-
-const MapInfoMiddle = styled.div<{small: string }>`
+const MapInfoMiddle = styled.div<{$small: string }>`
         padding: 1rem;
         div{
             display: flex;
@@ -12,7 +10,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             letter-spacing: -0.04348rem;
         }
 
-        ${(props) => (props.small === 'false') && css`
+        ${(props) => (props.$small === 'false') && css`
             div{
                 padding: 1rem;
             }
@@ -21,7 +19,7 @@ const MapInfoMiddle = styled.div<{small: string }>`
             }
         `}
 
-        ${(props) => (props.small === 'true') && css`
+        ${(props) => (props.$small === 'true') && css`
             font-size: 12px;
             svg{
                 width: 13px;
@@ -31,25 +29,26 @@ const MapInfoMiddle = styled.div<{small: string }>`
                 letter-spacing: 0.01rem;
             }
         `}
-
-        ${(props) => (props.small === 'middle') && css`
-            font-size: 13px;
-            svg{
-                width: 13px;
-                margin-right: 1.5rem;
-            }
-            p{
-                letter-spacing: 0.02rem;
-            }
-            div{
-              padding: 3px 0;
-            }
-        `}
     `;
 
-export default function InfoWithIcon({ small }: InfoWithIconProps) {
+type InfoWithIconProps = {
+  small: 'true' | 'false';
+  booth: Booth;
+  boothDay: BoothDay;
+}
+
+export default function InfoWithIcon({
+  small,
+  booth,
+  boothDay,
+}: InfoWithIconProps) {
+  if (!booth || !boothDay) { return []; }
+
+  const { location, department } = booth;
+  const { time } = boothDay[0] || [];
+
   return (
-    <MapInfoMiddle small={small}>
+    <MapInfoMiddle $small={small}>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20" fill="none">
           <path d="M3.78027 17.684C3.78027 18.9627 4.88259 19.9999 6.24165 19.9999H9.68757C11.0466 19.9999 12.149 18.9627 12.149 17.684V16.4162C12.149 16.1636 11.9315 15.959 11.663 15.959H4.26618C3.99777 15.959 3.78027 16.1636 3.78027 16.4162V17.684Z" fill="url(#paint0_linear_546_1745)" />
@@ -65,7 +64,7 @@ export default function InfoWithIcon({ small }: InfoWithIconProps) {
             </linearGradient>
           </defs>
         </svg>
-        <p>교내 부서</p>
+        <p>{department}</p>
       </div>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="20" viewBox="0 0 17 20" fill="none">
@@ -77,7 +76,7 @@ export default function InfoWithIcon({ small }: InfoWithIconProps) {
             </linearGradient>
           </defs>
         </svg>
-        <p>11호관과 16호관 사이</p>
+        <p>{location}</p>
       </div>
       <div>
         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
@@ -89,7 +88,7 @@ export default function InfoWithIcon({ small }: InfoWithIconProps) {
             </linearGradient>
           </defs>
         </svg>
-        <p>10시 - 16시</p>
+        <p>{time}</p>
       </div>
     </MapInfoMiddle>
   );

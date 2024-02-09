@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import Toast from './Toast';
 
-const HelpWrapper = styled.li`
+const HelpWrapper = styled.ul`
 width: 100%;
 padding-top:20px;
 list-style:none;
