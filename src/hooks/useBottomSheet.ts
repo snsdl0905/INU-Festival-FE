@@ -42,7 +42,6 @@ export function useBottomSheet() {
       }
 
       // 바텀시트가 올라와있는 상태가 아닐 때는 컨텐츠 영역을 터치해도 바텀시트를 움직이는 것이 자연스럽습니다.
-      console.log(sheet.current);
       if (sheet.current?.getBoundingClientRect().y !== MIN_Y) {
         return true;
       }

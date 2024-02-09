@@ -8,7 +8,7 @@ import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
-import useFetchBooths from '../../hooks/useFetchBooths';
+import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
 
 const ImageBox = styled.div`
 
@@ -111,7 +111,7 @@ const MapImageBox = styled.div`
 export default function DetailedMapPage() {
   const { id } = useParams();
   const [showinstruction, setShowInstruction] = useState(true);
-  const booths = useFetchBooths();
+  const booths = useFetchBoothsRanking();
   const SelectedBooth = booths.find((booth) => booth.id === id);
   const imgArray: string[] = ['/BOL.jpeg', '/BOL2.jpeg', '/DAMONS.png'];
 

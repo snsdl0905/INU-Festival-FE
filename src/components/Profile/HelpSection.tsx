@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const HelpWrapper = styled.li`
+const HelpWrapper = styled.ul`
 width: 100%;
 padding-top:20px;
 list-style:none;
