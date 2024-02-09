@@ -8,7 +8,9 @@ import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
-import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
+
+import useFetchBooth from '../../hooks/useFetchBooth';
+import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const ImageBox = styled.div`
 
@@ -102,35 +104,57 @@ const MapImageContainer = styled.div`
     `;
 const MapImageBox = styled.div`
         padding: 0;
+
         img{
-            width: 270px;
+            width: 200px;
             border-radius: 15px;
         }
     `;
 
 export default function DetailedMapPage() {
-  const { id } = useParams();
-  const [showinstruction, setShowInstruction] = useState(true);
-  const booths = useFetchBoothsRanking();
-  const SelectedBooth = booths.find((booth) => booth.id === id);
-  const imgArray: string[] = ['/BOL.jpeg', '/BOL2.jpeg', '/DAMONS.png'];
+  const { id } = useParams<{ id: string }>();
+  const [showInstruction, setShowInstruction] = useState<boolean>(true);
+  const booth = useFetchBooth(id);
+
+  if (!booth) {
+    return null; // 데이터가 로드되지 않았을 때의 처리
+  }
+
+  const defaultPerView = 3;
+  const [perView, setPerView] = useState(defaultPerView);
+  useCheckScreenWidth(defaultPerView, setPerView);
+
+  console.log(booth);
+
+  const {
+    name,
+    category,
+    department,
+    description,
+    liked,
+    boothDays,
+    boothImgs,
+    boothComments,
+    location,
+  } = booth;
 
   return (
     <>
-      <Header shadow="false"> </Header>
+      <Header shadow="false" />
       <ImageBox>
         <Swiper
-          slidesPerView={2}
-          spaceBetween={250}
+          slidesPerView={perView}
+          spaceBetween={10}
           allowTouchMove
           freeMode
-          freeModeMinimumVelocity={0.01}
         >
-          {imgArray.map((img) => (
-            <SwiperSlide key={img}>
+          {boothImgs && boothImgs.map((boothImg) => (
+            <SwiperSlide
+              key={boothImg.id}
+            >
               <MapImageContainer>
                 <MapImageBox>
-                  <img src={img} alt={img} />
+                  <img src={`/${boothImg.url}`} alt={boothImg.url} />
                 </MapImageBox>
               </MapImageContainer>
             </SwiperSlide>
@@ -138,18 +162,22 @@ export default function DetailedMapPage() {
         </Swiper>
       </ImageBox>
       <MapInfoTop>
-        {/* <p>{SelectedBooth?.category}</p> */}
-        {/* <h2>{SelectedBooth?.name}</h2> */}
-        <h2>취업경력개발원</h2>
-        <p>비주점</p>
+        <h2>{name}</h2>
+        <p>{category}</p>
       </MapInfoTop>
+      <div>
+        <p>{department}</p>
+        {boothDays && boothDays.map((boothDay) => (
+          <p key={boothDay.id}>{boothDay.time}</p>
+        ))}
+        <p>{location}</p>
+      </div>
       <MapButtonBox>
         <button type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
             <path d="M14.5572 1.64121C12.7348 0.00145993 9.82823 0.174949 8.06438 1.86506C8.02336 1.90424 7.95304 1.90424 7.90616 1.86506C6.13644 0.174949 3.22988 0.00145993 1.41328 1.64121C-0.403316 3.28096 -0.502936 6.1687 1.31366 7.90359L6.59352 12.946C7.36704 13.6847 8.61522 13.6847 9.38873 12.946L14.4518 8.11066L14.6627 7.90919C16.4793 6.1743 16.4442 3.34252 14.5631 1.6468L14.5572 1.64121Z" fill="#FF3D00" />
           </svg>
-          {/* <span>{SelectedBooth?.liked}</span> */}
-          <span>1,992</span>
+          <span>{liked}</span>
         </button>
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
@@ -158,15 +186,28 @@ export default function DetailedMapPage() {
         </div>
       </MapButtonBox>
       <InfoWithIcon small="false" />
-      <MapInfoBottom showinstruction={showinstruction.toString()}>
-        <button type="button" className={showinstruction ? 'selected' : 'notSelected'} onClick={() => setShowInstruction(true)}>부스 소개</button>
-        <button type="button" className={showinstruction ? 'notSelected' : 'selected'} onClick={() => setShowInstruction(false)}>
+      <MapInfoBottom showinstruction={showInstruction.toString()}>
+        <button
+          type="button"
+          className={showInstruction
+            ? 'selected' : 'notSelected'}
+          onClick={() => setShowInstruction(true)}
+        >
+          부스 소개
+        </button>
+        <button
+          type="button"
+          className={showInstruction
+            ? 'notSelected' : 'selected'}
+          onClick={() => setShowInstruction(false)}
+        >
           댓글
-          {SelectedBooth?.comment}
+          {}
         </button>
       </MapInfoBottom>
-      {showinstruction ? (
-        <BoothInstruction description={SelectedBooth?.description || ''} />) : (<BoothComment />)}
+      {showInstruction ? (
+        <BoothInstruction description={description || ''} />)
+        : (<BoothComment boothComments={boothComments} />)}
     </>
   );
 }
