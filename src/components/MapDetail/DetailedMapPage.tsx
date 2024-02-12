@@ -8,9 +8,9 @@ import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
-
 import useFetchBooth from '../../hooks/useFetchBooth';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
+import boothImg from '../../types/boothImg';
 
 const ImageBox = styled.div`
 
@@ -114,7 +114,7 @@ const MapImageBox = styled.div`
 export default function DetailedMapPage() {
   const { id } = useParams<{ id: string }>();
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
-  const booth = useFetchBooth(id);
+  const booth = id ? useFetchBooth(id) : '';
 
   if (!booth) {
     return null; // 데이터가 로드되지 않았을 때의 처리
@@ -129,18 +129,15 @@ export default function DetailedMapPage() {
   const {
     name,
     category,
-    department,
     description,
     liked,
-    boothDays,
     boothImgs,
     boothComments,
-    location,
   } = booth;
 
   return (
     <>
-      <Header shadow="false" />
+      <Header shadow="false"> </Header>
       <ImageBox>
         <Swiper
           slidesPerView={perView}
@@ -148,13 +145,13 @@ export default function DetailedMapPage() {
           allowTouchMove
           freeMode
         >
-          {boothImgs && boothImgs.map((boothImg) => (
+          {boothImgs && boothImgs.map((img: boothImg) => (
             <SwiperSlide
-              key={boothImg.id}
+              key={img.id}
             >
               <MapImageContainer>
                 <MapImageBox>
-                  <img src={`/${boothImg.url}`} alt={boothImg.url} />
+                  <img src={`/${img.url}`} alt={img.url} />
                 </MapImageBox>
               </MapImageContainer>
             </SwiperSlide>
@@ -165,13 +162,6 @@ export default function DetailedMapPage() {
         <h2>{name}</h2>
         <p>{category}</p>
       </MapInfoTop>
-      <div>
-        <p>{department}</p>
-        {boothDays && boothDays.map((boothDay) => (
-          <p key={boothDay.id}>{boothDay.time}</p>
-        ))}
-        <p>{location}</p>
-      </div>
       <MapButtonBox>
         <button type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
@@ -185,7 +175,7 @@ export default function DetailedMapPage() {
           </svg>
         </div>
       </MapButtonBox>
-      <InfoWithIcon small="false" />
+      <InfoWithIcon small="false" booth={booth} selectedDay="월" />
       <MapInfoBottom showinstruction={showInstruction.toString()}>
         <button
           type="button"

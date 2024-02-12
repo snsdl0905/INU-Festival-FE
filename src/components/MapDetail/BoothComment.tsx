@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import BoothComment from '../../types/BoothComment';
 
 const CommentTop = styled.div`
     display: flex;
@@ -30,10 +31,14 @@ const CommentBox = styled.div`
 `;
 
 type BoothCommentProps = {
-    boothComments: Comment[];
+    boothComments: BoothComment[] ;
 }
 
 export default function BoothComment({ boothComments }: BoothCommentProps) {
+  if (!boothComments) {
+    return null;
+  }
+
   return (
     <>
       {boothComments.map((boothComment) => {

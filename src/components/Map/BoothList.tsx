@@ -93,15 +93,9 @@ export default function BoothList({
   return (
     <Container>
       {booths.map((booth) => {
-        console.log(booth);
-
         const {
           id, name, category, liked, boothImgs,
         } = booth;
-
-        const boothDay = booth.boothDays.filter((
-          booth,
-        ) => booth.day === selectedDay);
 
         return (
           <PreButton
@@ -125,7 +119,7 @@ export default function BoothList({
               <InfoWithIcon
                 small="true"
                 booth={booth}
-                boothDay={boothDay}
+                selectedDay={selectedDay}
               />
             </BoothContainer>
           </PreButton>
