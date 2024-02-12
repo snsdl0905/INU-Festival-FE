@@ -1,5 +1,6 @@
 import BoothDay from './BoothDay';
 import boothImg from './boothImg';
+import BoothComment from './BoothComment';
 
 interface Booth {
     id: string;
@@ -12,6 +13,7 @@ interface Booth {
     img: string;
     boothDays: BoothDay[];
     boothImgs: boothImg[];
+    boothComments: BoothComment[];
   }
 
 export default Booth;

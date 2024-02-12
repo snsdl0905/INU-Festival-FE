@@ -2,11 +2,8 @@ import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import BoothList from './BoothList';
-
 import { useBottomSheet } from '../../hooks/useBottomSheet';
 import BoothList from './BoothList';
-
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
 
@@ -150,7 +147,6 @@ export default function BottomSheet({
     setSelectedCategory(category);
   };
 
-  console.log(booths);
   return (
     <Wrapper
       ref={sheet}
@@ -188,7 +184,6 @@ export default function BottomSheet({
           selectedDay={selectedDay}
         />
       </BottomSheetContent>
-      <BoothList />
     </Wrapper>
   );
 }
