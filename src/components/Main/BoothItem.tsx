@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router';
+
 import styled from 'styled-components';
+
 import Booth from '../../types/Booth';
 
 type BoothItemProps ={
@@ -63,8 +66,14 @@ const BoothList = styled.div`
 `;
 
 export default function BoothItem({ booth, index }:BoothItemProps) {
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/map/${id}`);
+  };
+
   return (
-    <BoothList>
+    <BoothList onClick={() => handleClick(booth.id)}>
       <Booth key={index}>
         <BoothDetail>
           <BoothRank src={`Rank${index + 1}.png`} alt="순위" />

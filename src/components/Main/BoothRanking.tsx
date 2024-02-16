@@ -117,6 +117,7 @@ const BoothHeart = styled.div`
 
 export default function BoothRanking() {
   const booths = useFetchBoothsRanking();
+  console.log(booths);
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
   const fetchedBooths = [...booths];
@@ -148,7 +149,11 @@ export default function BoothRanking() {
           <LineDiv />
           {sortedBooths.map((booth, index) => (
             <BoothRank key={booth.id}>
-              <BoothItem booth={booth} index={index} />
+              <BoothItem
+                booth={booth}
+                index={index}
+                id={booth.id}
+              />
               <BoothHeartContainer>
                 <BoothHeart onClick={() => handleLikeClicked(index)}>
                   <img src="Heart.svg" alt="" />
