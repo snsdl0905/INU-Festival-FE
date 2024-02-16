@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router';
+
 import styled from 'styled-components';
 
 import Header from './Header';
-
 import LineUp from './LineUp';
-
 import BlurContainer from '../BlurContainer';
 import useFetchPerforms from '../../hooks/useFetchPerforms';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
@@ -47,6 +47,11 @@ export default function Lineups() {
 
   useCheckScreenWidth(defaultPerview, setPerView);
 
+  const naviagetor = useNavigate();
+
+  const handleClick = () => {
+    naviagetor('/timetable');
+  };
   return (
     <>
       <MainBlurContainer $backgroundimg="BOL2.jpeg">
@@ -55,7 +60,7 @@ export default function Lineups() {
           <p>오늘의 라인업</p>
         </Content>
       </MainBlurContainer>
-      <BannerContainer>
+      <BannerContainer onClick={handleClick}>
         <LineUp
           perView={perview}
           spaceBetween={10}
