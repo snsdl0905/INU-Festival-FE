@@ -5,16 +5,23 @@ import styled from 'styled-components';
 const Container = styled.div`
   margin-block: .5rem;
 
-  label {
-    display: inline-block;
-    width: 10rem;
-    margin-right: .5rem;
-    text-align: right;
-    vertical-align: middle;
-  }
-
   input {
-    width: 20rem;
+    width: 100%;
+    align-self: stretch;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #F3F3F5;
+    border:none;
+    
+    &::placeholder {
+      padding-left:10px;
+      color:#B9B9B9;
+    }
+    &:focus{
+      background: #EBF2FF;
+      outline: none;
+    }
   }
 `;
 
@@ -37,9 +44,6 @@ export default function TextBox({
 
   return (
     <Container>
-      <label htmlFor={id.current}>
-        {label}
-      </label>
       <input
         id={id.current}
         type={type}

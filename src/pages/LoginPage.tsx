@@ -18,13 +18,12 @@ export default function LoginPage() {
   useEffect(() => {
     if (accessToken) {
       store.reset();
-      navigate('/');
+      navigate('/profile');
     }
   }, [accessToken]);
 
   return (
     <Article>
-      <p>로그인</p>
       <LoginForm />
     </Article>
   );

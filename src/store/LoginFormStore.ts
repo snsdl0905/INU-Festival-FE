@@ -1,10 +1,13 @@
 import { singleton } from 'tsyringe';
 
-import { Store, Action } from 'usestore-ts';
+import { Action, Store } from 'usestore-ts';
+
+import { apiService } from '../services/ApiService';
 
 @singleton()
 @Store()
-export default class LoginFormStore {
+// eslint-disable-next-line import/prefer-default-export
+export class LoginFormStore {
   email = '';
 
   password = '';
@@ -14,7 +17,8 @@ export default class LoginFormStore {
   accessToken = '';
 
   get valid() {
-    return this.email.includes('@') && !!this.password;
+    return true;
+    // return this.email.includes('@') && !!this.password;
   }
 
   @Action()
@@ -28,12 +32,12 @@ export default class LoginFormStore {
   }
 
   @Action()
-  private setAccessToken(accessToken: string) {
+  setAccessToken(accessToken: string) {
     this.accessToken = accessToken;
   }
 
   @Action()
-  private setError() {
+  setError() {
     this.error = true;
   }
 
@@ -45,13 +49,22 @@ export default class LoginFormStore {
     this.accessToken = '';
   }
 
-  async login() {
+  async lmsLogin() {
     try {
-      const accessToken = await apiService.login({
+      const accessToken = await apiService.lmsLogin({
         email: this.email,
         password: this.password,
       });
 
+      this.setAccessToken(accessToken);
+    } catch (e) {
+      this.setError();
+    }
+  }
+
+  async kakaoLogin() {
+    try {
+      const accessToken = await apiService.kakaoLogin();
       this.setAccessToken(accessToken);
     } catch (e) {
       this.setError();
