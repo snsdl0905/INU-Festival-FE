@@ -50,9 +50,9 @@ export default class ApiService {
     return accessToken;
   }
 
-  kakaoLogin() {
-    this.code = new URL(window.location.href).searchParams.get('code');
-    const { accessToken } = code;
+  async kakaoLogin() {
+    const { data } = await this.instance.post('/auth/kakao');
+    const { accessToken } = data;
     return accessToken;
   }
 }
