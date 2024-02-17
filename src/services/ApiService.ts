@@ -23,10 +23,9 @@ export default class ApiService {
     this.accessToken = accessToken;
   }
 
-  // 로그아웃
-  // async logout(): Promise<void> {
-  //   await this.instance.delete('/sesstion');
-  // }
+  async logout(): Promise<void> {
+    await this.instance.delete('/logout');
+  }
 
   async fetchCurrentUser(): Promise<{
     id: string;

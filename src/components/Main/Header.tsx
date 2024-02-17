@@ -27,7 +27,7 @@ const Title = styled.div`
     
     img {
       width: 100px;
-      height: 45px;
+      height: 55px;
     }
 `;
 
