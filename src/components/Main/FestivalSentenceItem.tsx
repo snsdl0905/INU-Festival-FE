@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import Shouts from '../../types/Shouts';
 
 const SentenceItemBox = styled.li`
@@ -33,6 +34,7 @@ const SentenceItemBox = styled.li`
 `;
 
 const BallonBox = styled.div`
+    width: 50px;
     color: rgba(147, 147, 147, 1);
     font-family: SF Pro;
     font-size: 12px;
@@ -42,7 +44,6 @@ const BallonBox = styled.div`
     margin-right: 10px;
 
   img{
-    width: 34px;
     height: 30.16px;
     top: 496px;
     left: 44px;

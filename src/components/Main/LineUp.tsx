@@ -4,11 +4,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Perform from '../../types/Perform';
 import useLoadingStore from '../../hooks/useLoadingStore';
-import Skeleton from '../Loding/Skeleton';
+import SkeletonLineUp from '../Loding/Skeleton';
 
 const Container = styled.div`
 height: 21rem;
 position: relative;
+padding-inline: 1.6rem;
 margin-bottom: 20px;
 
 img {
@@ -33,7 +34,7 @@ export default function LineUp({
   const [, store] = useLoadingStore();
   const { loading } = store;
 
-  const { SkeletonImg } = Skeleton;
+  const { SkeletonImg } = SkeletonLineUp;
 
   return (
     <Swiper

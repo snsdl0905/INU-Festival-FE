@@ -15,7 +15,7 @@ export default function MainPage() {
 
     setTimeout(() => {
       store.changeLoading(false);
-    }, 2000);
+    }, 10000);
   }, []);
 
   return (
