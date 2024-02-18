@@ -14,7 +14,7 @@ export const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트�
 const Wrapper = styled.div`
   touch-action: none;
   transition: transform 150ms ease-out;    
-  /* max-width: 600px; */
+  max-width: 600px;
   width: 100%;
   box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
   position: fixed;
