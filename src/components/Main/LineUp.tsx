@@ -3,6 +3,8 @@ import { styled } from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Perform from '../../types/Perform';
+import useLoadingStore from '../../hooks/useLoadingStore';
+import Skeleton from '../Loding/Skeleton';
 
 const Container = styled.div`
 height: 21rem;
@@ -10,10 +12,10 @@ position: relative;
 margin-bottom: 20px;
 
 img {
-width: 220px;
-height: 21rem;
-border-radius: 0.9rem;
-box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
+  width: 220px;
+  height: 21rem;
+  border-radius: 0.9rem;
+  box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
 }
 `;
 
@@ -28,6 +30,11 @@ export default function LineUp({
   spaceBetween,
   lineups,
 }: LineUpProps) {
+  const [, store] = useLoadingStore();
+  const { loading } = store;
+
+  const { SkeletonImg } = Skeleton;
+
   return (
     <Swiper
       spaceBetween={spaceBetween}
@@ -41,7 +48,9 @@ export default function LineUp({
         return (
           <SwiperSlide key={key}>
             <Container data-hash={key}>
-              <img src="BOL.jpeg" alt={lineup.img} />
+              {loading
+                ? <SkeletonImg />
+                : <img src="BOL.jpeg" alt={lineup.img} />}
             </Container>
           </SwiperSlide>
         );
