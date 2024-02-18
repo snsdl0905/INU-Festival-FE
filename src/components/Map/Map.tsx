@@ -27,7 +27,8 @@ export default function Map() {
 
   return (
     <Container>
-      <MapLayer />
+      {/* <MapLayer booths={filteredBooths}, selectedDay={selectedDay} /> */}
+      <MapLayer selectedDay={selectedDay} />
       <BottomSheet
         setSelectedDay={setSelectedDay}
         selectedDay={selectedDay}
