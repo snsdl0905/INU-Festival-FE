@@ -63,6 +63,7 @@ const BoothList = styled.div`
   display:flex;
   flex-direction:column;
   gap:36px;
+  cursor: pointer;
 `;
 
 export default function BoothItem({ booth, index }:BoothItemProps) {

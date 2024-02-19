@@ -32,6 +32,7 @@ export default class ApiService {
     name: string;
   }> {
     const { data } = await this.instance.get('/login/me');
+    console.log(data)
     const { id, name } = data;
     return { id, name };
   }
