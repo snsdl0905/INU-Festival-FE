@@ -20,6 +20,7 @@ const Section = styled.section`
     font-weight: bold;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    width: 100%;
   }
 `;
 
@@ -38,6 +39,8 @@ export default function Lineups({ lineups }: LineupsProps) {
         speed={300}
         pagination={{ clickable: true }}
         allowTouchMove
+        slidesOffsetAfter={90}
+
       >
         {lineups.map((lineup) => (
           <SwiperSlide key={lineup.id}>
