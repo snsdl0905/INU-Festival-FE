@@ -12,7 +12,7 @@ export default function useCheckAccessToken(): void {
       try {
         await apiService.fetchCurrentUser();
       } catch (e) {
-        // setAccessToken('');
+        setAccessToken('');
       }
     };
 

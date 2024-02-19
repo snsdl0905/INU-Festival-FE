@@ -24,14 +24,14 @@ export default class ApiService {
   }
 
   async logout(): Promise<void> {
-    await this.instance.delete('/logout');
+    await this.instance.delete('/user/logout');
   }
 
   async fetchCurrentUser(): Promise<{
     id: string;
     name: string;
   }> {
-    const { data } = await this.instance.get('/login/me');
+    const { data } = await this.instance.get('/user/me');
     const { id, name } = data;
     return { id, name };
   }
@@ -41,7 +41,7 @@ export default class ApiService {
         password: string;
       }): Promise<string> {
     const studentId = email;
-    const { data } = await this.instance.post('/login/lms', { studentId, password });
+    const { data } = await this.instance.post('/user/lms', { studentId, password });
     const { accessToken } = data;
     return accessToken;
   }
