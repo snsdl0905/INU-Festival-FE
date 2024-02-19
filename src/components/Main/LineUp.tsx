@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Perform from '../../types/Perform';
 import useLoadingStore from '../../hooks/useLoadingStore';
-import SkeletonLineUp from '../Loding/Skeleton';
+import SkeletonLineUp from '../Loading/Skeleton';
 
 const Container = styled.div`
 height: 21rem;
@@ -50,7 +50,7 @@ export default function LineUp({
           <SwiperSlide key={key}>
             <Container data-hash={key}>
               {loading
-                ? <SkeletonImg />
+                ? <SkeletonImg $width={200} $height={210} />
                 : <img src="BOL.jpeg" alt={lineup.img} />}
             </Container>
           </SwiperSlide>

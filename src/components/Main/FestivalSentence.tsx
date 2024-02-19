@@ -1,9 +1,13 @@
 import styled from 'styled-components';
+
 import FestivalSentenceItem from './FestivalSentenceItem';
 import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
+
 import useLoadingStore from '../../hooks/useLoadingStore';
-import SkeletonFestivalSentenceItem from '../Loding/SkeletonFestivalSentenceItem';
+
+import SkeletonFestivalSentenceItem from '../Loading/SkeletonFestivalSentenceItem';
+import SkeletonLineUp from '../Loading/Skeleton';
 
 const FestivalSentenceBox = styled.div``;
 
@@ -18,18 +22,21 @@ const SentenceBox = styled.ul`
 `;
 
 export default function FestivalSentence() {
-  const sentences = useFetchSentence();
-  const [, store] = useLoadingStore();
-  const { loading } = store;
+  const { data: sentences, error } = useFetchSentence();
+
+  // const [, store] = useLoadingStore();
+  // const { loading } = store;
+
+  const { SkeletonImg } = SkeletonLineUp;
 
   return (
     <>
       <FestivalSentenceBox>
         <SentenceBox>
-          {loading ? (
-            <SkeletonFestivalSentenceItem />
+          {sentences === undefined ? (
+            <SkeletonImg $width={50} $height={50} />
           ) : (
-            sentences.map((sentence) => (
+            sentences.shouts.map((sentence) => (
               <FestivalSentenceItem
                 key={sentence.id}
                 sentence={sentence}
@@ -42,3 +49,6 @@ export default function FestivalSentence() {
     </>
   );
 }
+
+// useFetch -> react query
+// error 처리 -> HTTP Status Code 500같은, null <- naver

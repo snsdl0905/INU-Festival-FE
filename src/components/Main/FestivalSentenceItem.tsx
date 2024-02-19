@@ -8,6 +8,7 @@ const SentenceItemBox = styled.li`
   position: relative;
   overflow: hidden;
   height: 100%;
+  padding-left: 16px;
 
   /* animation: slideUp 12s linear infinite; */
 
@@ -41,13 +42,11 @@ const BallonBox = styled.div`
     font-style: normal;
     font-weight: 510;
     letter-spacing: -0.36px;
-    margin-right: 10px;
 
   img{
     height: 30.16px;
     top: 496px;
     left: 44px;
-    margin-left:16px;
   }
 `;
 
@@ -59,10 +58,9 @@ const ContentBox = styled.div`
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 25px; /* 131.25% */
+  line-height: 25px;
   letter-spacing: -0.48px;
-  margin-left: 6px;
-
+  margin-left: 10px;
 
   span{
     color: #939393;
