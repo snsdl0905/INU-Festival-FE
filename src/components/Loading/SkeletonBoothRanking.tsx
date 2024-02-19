@@ -8,7 +8,7 @@ const SkeletonItem = styled.li`
   position: relative;
   overflow: hidden;
   height: 100%;
-  padding-left: 16px;
+  padding-left: 35px;
 
 `;
 
@@ -20,7 +20,6 @@ const SkeletonImg = styled(Skeleton.SkeletonBox)`
 const SkeletonInfo = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
   width: 100%;
 `;
 
@@ -35,13 +34,13 @@ const SkeletonContent = styled(Skeleton.SkeletonBox)`
     margin-top: 2.5px;
 `;
 
-export default function SkeletonFestivalSentence() {
+export default function SkeletonBoothRanking() {
   return (
     <SkeletonItem>
       <SkeletonImg
-        $width={45}
-        $height={45}
-        $radius={50}
+        $width={70}
+        $height={50}
+        $radius={100}
       />
       <SkeletonInfo>
         <SkeletonName

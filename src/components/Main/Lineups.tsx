@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import LineUp from './LineUp';
 import BlurContainer from '../BlurContainer';
-import useFetchPerforms from '../../hooks/useFetchPerforms';
+
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const Content = styled.div`
@@ -39,12 +39,6 @@ export default function Lineups() {
   const defaultPerview = 3;
   const [perview, setPerView] = useState(defaultPerview);
 
-  const performs = useFetchPerforms();
-
-  const lineups = performs.filter((perform) => (
-    perform.category === '연예인'
-  ));
-
   useCheckScreenWidth(defaultPerview, setPerView);
 
   const naviagetor = useNavigate();
@@ -64,7 +58,6 @@ export default function Lineups() {
         <LineUp
           perView={perview}
           spaceBetween={10}
-          lineups={lineups}
         />
       </BannerContainer>
     </>

@@ -9,9 +9,5 @@ type Booths = {
 }
 
 export default function useFetchBoothsRanking() {
-  const { data } = useFetch<Booths>(url);
-  if (!data) {
-    return [];
-  }
-  return data.booths;
+  return useFetch<Booths>(url);
 }
