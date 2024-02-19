@@ -97,7 +97,7 @@ const BoothHeart = styled.div`
   align-items:center;
   gap:0.5rem;
   padding-left: 0.95rem;
-
+  cursor: pointer;
 
   img {
     width:1.4rem; /* Adjusted width using rem */
