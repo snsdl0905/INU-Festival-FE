@@ -23,16 +23,16 @@ export default class ApiService {
     this.accessToken = accessToken;
   }
 
-  // 로그아웃
-  // async logout(): Promise<void> {
-  //   await this.instance.delete('/sesstion');
-  // }
+  async logout(): Promise<void> {
+    await this.instance.delete('/logout');
+  }
 
   async fetchCurrentUser(): Promise<{
     id: string;
     name: string;
   }> {
     const { data } = await this.instance.get('/login/me');
+    console.log(data)
     const { id, name } = data;
     return { id, name };
   }

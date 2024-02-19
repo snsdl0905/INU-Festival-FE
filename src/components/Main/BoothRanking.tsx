@@ -95,7 +95,7 @@ const BoothHeart = styled.div`
   align-items:center;
   gap:0.5rem;
   padding-left: 0.95rem;
-
+  cursor: pointer;
 
   img {
     width:1.4rem; /* Adjusted width using rem */
@@ -148,7 +148,10 @@ export default function BoothRanking() {
           <LineDiv />
           {sortedBooths.map((booth, index) => (
             <BoothRank key={booth.id}>
-              <BoothItem booth={booth} index={index} />
+              <BoothItem
+                booth={booth}
+                index={index}
+              />
               <BoothHeartContainer>
                 <BoothHeart onClick={() => handleLikeClicked(index)}>
                   <img src="Heart.svg" alt="" />
