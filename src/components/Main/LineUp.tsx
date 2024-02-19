@@ -35,6 +35,7 @@ export default function LineUp({
       speed={300}
       pagination={{ clickable: true }}
       allowTouchMove
+      slidesOffsetBefore={17}
     >
       {lineups.map((lineup, index) => {
         const key = `${index}-${lineup.id}`;
