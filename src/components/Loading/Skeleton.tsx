@@ -5,12 +5,11 @@ type SkeletonImgProps = {
   $height: number;
 }
 
-const SkeletonLineUp = {
+const Skeleton = {
   SkeletonImg: styled.div<SkeletonImgProps>`
     position: relative;
     overflow: hidden;
-    background-color: #f2f2f2;
-    background-color: red;
+    background-color: ${(props) => props.theme.colors.skeletonBackground};
     width: ${(props) => props.$width}px;
     height: ${(props) => props.$height}px;
     border-radius: 0.9rem;
@@ -18,4 +17,4 @@ const SkeletonLineUp = {
   `,
 };
 
-export default SkeletonLineUp;
+export default Skeleton;
