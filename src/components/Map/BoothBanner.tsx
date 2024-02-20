@@ -108,7 +108,7 @@ const ButtonContainer = styled.div`
 export default function BoothBanner() {
   const booth = useFetchBooth('1');
   return (
-    <Wapper>
+    <Wapper id="booth-banner">
       <BottomSheetHeader />
       <ContentContainer>
         <Content>

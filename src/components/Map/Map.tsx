@@ -5,6 +5,7 @@ import MapLayer from './MapLayer';
 import BottomSheet from './BannerContent';
 
 import useFetchBooths from '../../hooks/useFetchBooths';
+import BoothBanner from './BoothBanner';
 
 const Container = styled.div`
     max-width: 600px;
@@ -26,7 +27,8 @@ export default function Map() {
 
   return (
     <Container>
-      <MapLayer />
+      {/* <MapLayer booths={filteredBooths}, selectedDay={selectedDay} /> */}
+      <MapLayer selectedDay={selectedDay} />
       <BottomSheet
         setSelectedDay={setSelectedDay}
         selectedDay={selectedDay}
@@ -34,6 +36,7 @@ export default function Map() {
         selectedCategory={selectedCategory}
         booths={filteredBooths}
       />
+      <BoothBanner />
     </Container>
   );
 }

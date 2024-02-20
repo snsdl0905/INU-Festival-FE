@@ -8,8 +8,8 @@ import Booth from '../../types/Booth';
 const Container = styled.div`
   overflow-y: scroll;
   width: 100%;
-  height: 80%;
-  margin-bottom: 100px;
+  height: 100%;
+  /* margin-bottom: 100px; */
 `;
 
 const PreButton = styled(NavLink)`

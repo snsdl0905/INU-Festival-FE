@@ -1,8 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import { styled } from 'styled-components';
 
-import { useBottomSheet } from '../../hooks/useBottomSheet';
+// import { useBottomSheet } from '../../hooks/useBottomSheet';
 import BoothList from './BoothList';
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
@@ -18,9 +18,9 @@ const Wrapper = styled.div`
   width: 100%;
   box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
   position: fixed;
-  bottom: -740px;
-  z-index: 1;
-  height: 900px;
+  /* bottom: -740px; */
+  bottom: 0;
+  height: 66%;
   background-color: #FFFFFF;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -30,28 +30,31 @@ const Wrapper = styled.div`
   padding-left: 15px;
   padding-right: 15px;
   cursor: grab;
+  padding-top: 15px;
 
-  &:active {
+  /* &:active {
     cursor: grabbing;
-  }
+  } */
 `;
 
 const BottomSheetContent = styled.div`
   overflow: auto;
   width: 100%;
-  height: 68%;
+  height: 85%;
+  position: relative;
+  padding-bottom: 50px;
 `;
 
-const BottomSheetHeader = styled.div`
-    border: 0px;
-    background-color: #BBC7D3;
-    border-radius: 12px;
-    width: 60px;
-    height: 6.747px;
-    margin: 25px;
-    padding-top: 4px;
+// const BottomSheetHeader = styled.div`
+//     border: 0px;
+//     background-color: #BBC7D3;
+//     border-radius: 12px;
+//     width: 60px;
+//     height: 6.747px;
+//     margin: 25px;
+//     padding-top: 4px;
 
-`;
+// `;
 
 const BottomSheetFilter = styled.div`
     overflow: scroll;
@@ -129,15 +132,15 @@ export default function BottomSheet({
   selectedCategory,
   booths,
 }: BottomSheetProps) {
-  const { sheet, content } = useBottomSheet();
-  const [isSwipe, setIsSwipe] = useState<boolean>(false);
+  // const { sheet, content } = useBottomSheet();
+  // const [isSwipe, setIsSwipe] = useState<boolean>(false);
 
   const categories = useFetchCategories();
   const { days, filters } = categories;
 
-  const handleClick = () => {
-    setIsSwipe(true);
-  };
+  // const handleClick = () => {
+  //   setIsSwipe(true);
+  // };
 
   const handleSetFilterDay = (category: string) => {
     setSelectedDay(category);
@@ -148,13 +151,15 @@ export default function BottomSheet({
   };
 
   return (
-    <Wrapper
-      ref={sheet}
-      onClick={handleClick}
-      className={isSwipe ? 'active' : ''}
-    >
-      <BottomSheetHeader />
-      <BottomSheetContent ref={content}>
+    <Wrapper>
+      {
+      // ref={sheet}
+      // onClick={handleClick}
+      // className={isSwipe ? 'active' : ''}
+      }
+      {/* <BottomSheetHeader /> */}
+      {/* <BottomSheetContent ref={content}> */}
+      <BottomSheetContent>
         <BottomSheetFilter>
           {days && days.map((category: string) => (
             <DayFilterContainer key={category}>
