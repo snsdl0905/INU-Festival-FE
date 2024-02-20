@@ -139,7 +139,6 @@ export default function LoginForm() {
           )}
         </BtnWrapper>
       </form>
-      <KakaoButton onClick={handleClickKakaoLogin}>카카오톡으로 로그인</KakaoButton>
       <Details>
         로그인 정보는 포탈과 동일합니다.
         <br />

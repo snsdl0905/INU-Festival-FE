@@ -6,6 +6,8 @@ import useAccessToken from '../../hooks/useAccessToken';
 
 import UserInfo from './UserInfo';
 
+import { apiService } from '../../services/ApiService';
+
 const ProfileWrapper = styled.div`
 display:flex;
 width: 100%;
@@ -86,7 +88,7 @@ export default function ProfileSection() {
   const navigate = useNavigate();
 
   const handleClickLogout = async () => {
-    // await apiService.logout();
+    await apiService.logout();
     setAccessToken('');
     navigate('/profile');
   };

@@ -6,7 +6,6 @@ export default function useAccessToken() {
   const [accessToken, setAccessToken] = useLocalStorage('accessToken', '');
 
   useEffect(() => {
-    console.log('Hello');
     apiService.setAccessToken(accessToken);
   }, [accessToken]);
 
