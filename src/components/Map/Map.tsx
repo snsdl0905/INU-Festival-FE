@@ -18,7 +18,7 @@ export default function Map() {
 
   const [selectedDay, setSelectedDay] = useState<string>('월');
   const [selectedCategory, setSelectedCategory] = useState<string>('주점');
-
+  console.log(booths);
   const filteredBooths = booths.filter((booth) => {
     const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);
     return dayCount.length
@@ -27,8 +27,7 @@ export default function Map() {
 
   return (
     <Container>
-      {/* <MapLayer booths={filteredBooths}, selectedDay={selectedDay} /> */}
-      <MapLayer selectedDay={selectedDay} />
+      <MapLayer filteredBooths={filteredBooths} selectedDay={selectedDay} />
       <BottomSheet
         setSelectedDay={setSelectedDay}
         selectedDay={selectedDay}

@@ -114,7 +114,7 @@ const MapImageBox = styled.div`
 export default function DetailedMapPage() {
   const { id } = useParams<{ id: string }>();
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
-  const booth = id ? useFetchBooth(id) : '';
+  const booth = useFetchBooth(id);
 
   if (!booth) {
     return null; // 데이터가 로드되지 않았을 때의 처리
@@ -123,8 +123,6 @@ export default function DetailedMapPage() {
   const defaultPerView = 3;
   const [perView, setPerView] = useState(defaultPerView);
   useCheckScreenWidth(defaultPerView, setPerView);
-
-  console.log(booth);
 
   const {
     name,
