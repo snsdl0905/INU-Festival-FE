@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { styled } from 'styled-components';
 import Kakao from '../../utils/CreateKakaoMap';
-// import Booth from '../../types/Booth';
+import Booth from '../../types/Booth';
+import BoothList from './BoothList';
 
 const Container = styled.div`
     max-width: 600px;
@@ -63,6 +64,7 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
 
   const [kakaoMap, setKakaoMap] = useState(null);
   const [markers, setMarkers] = useState<any[]>([]);
+  const [selectedBooth, setSelectedBooth] = useState<Booth | null>(null);
 
   useEffect(() => {
     const map = Kakao;
@@ -169,12 +171,14 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
     },
   ];
 
+  const handleBoothClick = (clickedBooth : Booth[], date: string) => (
+    <BoothList
+      booths={clickedBooth}
+      selectedDay={date}
+    />
+  );
+
   const createMarkers = (booth : TempBooth) => {
-    markers.forEach((marker) => {
-      marker.setMap(null);
-      setMarkers(() => markers.filter((mark) => mark !== marker));
-    });
-    setMarkers([]);
     console.log(markers);
     // setMarkers((prevMarkers) => {
     //   prevMarkers.forEach((marker) => marker.setMap(null)); // 이전 마커들 지우기
@@ -184,7 +188,6 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
     booth.boothDays.forEach((boothDay: BoothDay) => {
       if (boothDay.day === selectedDay) {
         const latlang = new kakao.maps.LatLng(boothDay.x, boothDay.y);
-
         const imageSize = new kakao.maps.Size(29, 35);
         const imageOption = { offset: new kakao.maps.Point(16, 34) };
         let imageSrc;
@@ -212,8 +215,14 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
         marker.setMap(kakaoMap);
         // newMarkers.push(marker);
         // setMarkers([...markers, marker]);
-        setMarkers(() => [...markers, marker]);
+
         console.log(markers);
+
+        kakao.maps.event.addListener(marker, 'click', () => {
+          setSelectedBooth(booth);
+        });
+
+        setMarkers(() => [...markers, marker]);
       }
     });
     // console.log(markers);
@@ -222,6 +231,11 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
 
   useEffect(() => {
     if (!kakaoMap) return;
+    markers.forEach((marker) => {
+      marker.setMap(null);
+      setMarkers(() => markers.filter((mark) => mark !== marker));
+    });
+    setMarkers([]);
     console.log(markers);
 
     filteredBooths.forEach((booth) => {
@@ -240,6 +254,13 @@ export default function MapLayer({ selectedDay }: MapLayerProps) {
   // }, [showBooth]);
 
   return (
-    <Container id="map" />
+    <Container id="map">
+      {selectedBooth && (
+        <BoothList
+          booths={[selectedBooth]}
+          selectedDay={selectedDay}
+        />
+      )}
+    </Container>
   );
 }
