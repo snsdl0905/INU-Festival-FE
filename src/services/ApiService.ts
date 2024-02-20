@@ -24,7 +24,7 @@ export default class ApiService {
   }
 
   async logout(): Promise<void> {
-    await this.instance.delete('/user/logout');
+    await this.instance.get('/user/logout');
   }
 
   async fetchCurrentUser(): Promise<{
