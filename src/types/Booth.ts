@@ -7,7 +7,6 @@ interface Booth {
     name: string;
     category: string;
     department: string;
-    location: string;
     description: string;
     liked: number;
     img: string;
