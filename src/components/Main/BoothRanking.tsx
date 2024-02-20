@@ -4,6 +4,8 @@ import BoothItem from './BoothItem';
 
 import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
 
+import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
+
 const BoothRankingTitle = styled.div`
   width: 100%;
   color: #000;
@@ -116,19 +118,9 @@ const BoothHeart = styled.div`
 `;
 
 export default function BoothRanking() {
-  const booths = useFetchBoothsRanking();
+  const { data } = useFetchBoothsRanking();
+
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
-
-  const fetchedBooths = [...booths];
-  fetchedBooths.sort((a, b) => b.liked - a.liked);
-  const sortedBooths = (fetchedBooths.slice(0, 5));
-
-  const handleLikeClicked = (index: number) => {
-    const updatedBooths = [...sortedBooths];
-    updatedBooths[index].liked += 1;
-    updatedBooths.sort((a, b) => b.liked - a.liked);
-    // setSortedBooths(updatedBooths);
-  };
 
   return (
     <>
@@ -146,20 +138,27 @@ export default function BoothRanking() {
         <BoothWrapper>
           <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
           <LineDiv />
-          {sortedBooths.map((booth, index) => (
-            <BoothRank key={booth.id}>
-              <BoothItem
-                booth={booth}
-                index={index}
+          {data === undefined
+            ? new Array(5).fill(1).map((_, i) => (
+              <SkeletonBoothRanking
+                key={i}
               />
-              <BoothHeartContainer>
-                <BoothHeart onClick={() => handleLikeClicked(index)}>
-                  <img src="Heart.svg" alt="" />
-                  <div>{formatter.format(booth.liked)}</div>
-                </BoothHeart>
-              </BoothHeartContainer>
-            </BoothRank>
-          ))}
+            ))
+            : data?.booths.map((booth, index) => (
+              <BoothRank key={booth.id}>
+                <BoothItem
+                  booth={booth}
+                  index={index}
+                />
+
+                <BoothHeartContainer>
+                  <BoothHeart>
+                    <img src="Heart.svg" alt="" />
+                    <div>{formatter.format(booth.liked)}</div>
+                  </BoothHeart>
+                </BoothHeartContainer>
+              </BoothRank>
+            ))}
         </BoothWrapper>
       </BoothRankingContainer>
     </>

@@ -9,8 +9,9 @@ type Sentences = {
 }
 
 export default function useFetchSentence() {
-  const { data } = useFetch<Sentences>(url);
+  return useFetch<Sentences>(url);
 
-  if (!data) return [];
-  return data.shouts;
+  // if (!data) return [];
+  // return data;
+  // return data.shouts;
 }
