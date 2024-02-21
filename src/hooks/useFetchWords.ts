@@ -9,9 +9,5 @@ type Keywords = {
 }
 
 export default function useFetchKeyword() {
-  const { data } = useFetch<Keywords>(url);
-
-  if (!data) return [];
-
-  return data.keywords;
+  return useFetch<Keywords>(url);
 }

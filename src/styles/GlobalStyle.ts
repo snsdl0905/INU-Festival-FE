@@ -33,6 +33,16 @@ const GlobalStyle = createGlobalStyle`
             word-break: keep-all;
         }
     }
+
+    @keyframes loading {
+        0% {
+            transform: translateX(0);
+        }
+        50%,
+        100% {
+            transform: translateX(460px);
+        }
+    }
 `;
 
 export default GlobalStyle;

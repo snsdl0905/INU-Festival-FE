@@ -10,12 +10,6 @@ const Container = styled.div`
     align-items: center;
     margin-top: .7em;
     margin-bottom: .7em;
-
-    img {
-      display: block;        
-      width: 24px;
-      height: 17px;
-    }
 `;
 
 const Title = styled.div`
@@ -32,8 +26,8 @@ const Title = styled.div`
     }
     
     img {
-      width: 32px;
-      height: 27px;
+      width: 100px;
+      height: 55px;
     }
 `;
 
@@ -45,8 +39,7 @@ export default function Header() {
   return (
     <Container>
       <Title>
-        <img src="logo.png" alt="로고" />
-        <span>희희낙락</span>
+        <img src="UNION/water_mark.png" alt="로고" />
       </Title>
       <PreButton to="/notices">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">

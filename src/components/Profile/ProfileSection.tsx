@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+
+import useAccessToken from '../../hooks/useAccessToken';
+
 import UserInfo from './UserInfo';
+
+import { apiService } from '../../services/ApiService';
 
 const ProfileWrapper = styled.div`
 display:flex;
@@ -78,24 +83,29 @@ const LogoutBtn = styled.button`
 `;
 
 export default function ProfileSection() {
-  const [isLoggedIn, setIsLoggdeIn] = useState(true);
+  const { accessToken, setAccessToken } = useAccessToken();
+
   const navigate = useNavigate();
-  const handleLogBtn = () => {
-    if (isLoggedIn) {
-      setIsLoggdeIn(false);
-    } else {
-      navigate('/login');
-    }
+
+  const handleClickLogout = async () => {
+    await apiService.logout();
+    setAccessToken('');
+    navigate('/profile');
   };
+
+  const handleClickLogIn = () => {
+    navigate('/login');
+  };
+
   return (
     <ProfileWrapper>
       <ProfileContainer>
         <ProfileTitle>프로필</ProfileTitle>
-        <UserInfo isLoggedIn={isLoggedIn} />
-        {isLoggedIn ? (
-          <LogoutBtn onClick={handleLogBtn}>로그아웃</LogoutBtn>
+        <UserInfo isLoggedIn={!!accessToken} />
+        {accessToken ? (
+          <LogoutBtn onClick={handleClickLogout}>로그아웃</LogoutBtn>
         ) : (
-          <LoginBtn onClick={handleLogBtn}>로그인</LoginBtn>
+          <LoginBtn onClick={handleClickLogIn}>로그인</LoginBtn>
         )}
       </ProfileContainer>
       <UserIcon src="default.svg" alt="major" />
