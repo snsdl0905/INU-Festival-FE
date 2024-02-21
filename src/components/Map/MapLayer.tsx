@@ -69,6 +69,7 @@ export default function MapLayer({ filteredBooths, selectedDay } : MapLayerProps
           position: latlang,
           title: booth.name,
           image: markerImage,
+          clickable: true,
         });
         marker.setMap(null);
         marker.setMap(kakaoMap);
@@ -97,7 +98,7 @@ export default function MapLayer({ filteredBooths, selectedDay } : MapLayerProps
     });
 
     // Kakao({ showBooth, setShowBooth });
-  }, [selectedDay, kakaoMap, markers]);
+  }, [selectedDay, filteredBooths, kakaoMap]);
 
   // useEffect(() => {
   //   console.log(showBooth);
