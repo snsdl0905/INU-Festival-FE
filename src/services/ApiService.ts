@@ -45,12 +45,6 @@ export default class ApiService {
     const { accessToken } = data;
     return accessToken;
   }
-
-  async kakaoLogin() {
-    const { data } = await this.instance.post('/auth/kakao');
-    const { accessToken } = data;
-    return accessToken;
-  }
 }
 
 export const apiService = new ApiService();

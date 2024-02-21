@@ -39,24 +39,6 @@ const LmsButton = styled(Button)`
   letter-spacing: -0.6px;
 `;
 
-const KakaoButton = styled.button`
-  display: flex;
-  height: 48px;
-  justify-content: center;
-  align-items: center;
-  align-self: stretch;
-  border-radius: 12px;
-  border:none;
-  background: #F7E600;
-  color:#3A1D1D;
-  font-family: "SF Pro";
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 510;
-  line-height: normal;
-  letter-spacing: -0.6px;
-`;
-
 const BtnWrapper = styled.div`
   display:flex;
   flex-direction:column;
@@ -79,10 +61,6 @@ const Details = styled.div`
 `;
 
 export default function LoginForm() {
-  const RestAPIKey = '641457a0e25cbce8346a2c6c48d7179a';
-  const RedirectURL = 'http://3.35.50.94:4000/auth/kakao/callback';
-  const KakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${RestAPIKey}&redirect_uri=${RedirectURL}&response_type=code`;
-
   const { setAccessToken } = useAccessToken();
 
   const [{
@@ -106,11 +84,6 @@ export default function LoginForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     store.lmsLogin();
-  };
-
-  const handleClickKakaoLogin = () => {
-    window.location.href = KakaoURL;
-    store.kakaoLogin();
   };
 
   return (
