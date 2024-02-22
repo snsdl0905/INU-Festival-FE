@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { styled } from 'styled-components';
 
@@ -77,16 +77,18 @@ type ScheduleProps = {
 export default function Schedule({ performs }: ScheduleProps) {
   const [id, setId] = useState('-1');
 
-  useInterval(() => {
+  useEffect(() => {
     const match = (perform: Perform) => (
       perform.startTime <= '20:00'
       && perform.endTime >= '20:00'
     );
+
     const artist = performs.find(match);
+
     if (artist) {
       setId(artist.id);
     }
-  }, 1000);
+  }, [performs]);
 
   return (
     <Section>
