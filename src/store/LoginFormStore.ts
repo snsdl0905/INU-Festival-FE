@@ -16,6 +16,7 @@ export class LoginFormStore {
 
   accessToken = '';
 
+  // eslint-disable-next-line class-methods-use-this
   get valid() {
     return true;
     // return this.email.includes('@') && !!this.password;
@@ -56,15 +57,6 @@ export class LoginFormStore {
         password: this.password,
       });
 
-      this.setAccessToken(accessToken);
-    } catch (e) {
-      this.setError();
-    }
-  }
-
-  async kakaoLogin() {
-    try {
-      const accessToken = await apiService.kakaoLogin();
       this.setAccessToken(accessToken);
     } catch (e) {
       this.setError();
