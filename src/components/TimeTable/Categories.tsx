@@ -33,27 +33,29 @@ type CategoriesProps = {
     categories: string[];
     filterCategory: string;
     setFilterCatergory: (category: string) => void;
+    dates: string[];
   }
 
 export default function Categories({
   categories,
   filterCategory,
   setFilterCatergory,
+  dates,
 }: CategoriesProps) {
   const handleSetFilterCategory = (category: string) => {
     setFilterCatergory(category);
   };
-
   return (
     <Content>
       <h1>타임테이블</h1>
       <ul>
-        {categories.map((category: string) => (
+        {categories.map((category: string, index) => (
           <Category
             key={category}
             active={category === filterCategory}
             category={category}
             handleSetFilterCategory={handleSetFilterCategory}
+            date={dates[index]}
           />
         ))}
       </ul>
