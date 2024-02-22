@@ -24,15 +24,17 @@ type CategoryProps = {
     active: boolean;
     category: string;
     handleSetFilterCategory: (category: string) => void;
+    date: string;
   }
 
 export default function Category({
   active,
   category, handleSetFilterCategory,
+  date,
 }: CategoryProps) {
   return (
     <li key={category}>
-      <p>{9}</p>
+      <p>{date}</p>
       <Button
         type="button"
         $active={active}

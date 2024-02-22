@@ -11,10 +11,19 @@ import TimeTableBody from './TimeTableBody';
 import filterPerforms from '../../utils/filterPerforms';
 
 import useFetchPerforms from '../../hooks/useFetchPerforms';
+import Perform from '../../types/Perform';
 
 const TimeTableHedaer = styled(BlurContainer)`
   height: 16rem;
 `;
+
+function selectDates(filteredPerforms: Perform[]) {
+  return filteredPerforms.reduce((acc: string[], perform: Perform) => {
+    const { date } = perform;
+    const day = date.slice(4, 6);
+    return acc.includes(day) ? acc : [...acc, day];
+  }, []);
+}
 
 export default function FilterableTimeTable() {
   const [categories] = useState(['day1', 'day2', 'day3']);
@@ -22,6 +31,7 @@ export default function FilterableTimeTable() {
 
   const { data } = useFetchPerforms();
   const filteredPerforms = data ? filterPerforms(data.performs, filterCategory) : [];
+  const dates = data ? selectDates(data.performs) : [];
 
   return (
     <div>
@@ -30,6 +40,7 @@ export default function FilterableTimeTable() {
           categories={categories}
           filterCategory={filterCategory}
           setFilterCatergory={setFilterCatergory}
+          dates={dates}
         />
       </TimeTableHedaer>
       <Article>
