@@ -30,8 +30,7 @@ const NoticeTitleBox = styled.div`
     `;
 
 export default function NoticeTitle({ notice } : NoticeItemProps) {
-  const category = notice.category === '공지' ? '공지사항' : '이벤트';
-
+  const { category } = notice;
   return (
     <>
       { category === '공지사항' ? (
