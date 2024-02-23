@@ -28,10 +28,30 @@ export default function Kakao() {
     level: 0,
   });
   const center = map.getCenter();
-  const marker = new kakao.maps.Marker({
+  // const marker = new kakao.maps.Marker({
+  //   position: center,
+  // });
+  // marker.setMap(map);
+
+  const mark = new kakao.maps.Marker({
+    // 지도 중심좌표에 마커를 생성합니다
     position: center,
   });
-  marker.setMap(map);
+
+  mark.setMap(map);
+
+  kakao.maps.event.addListener(map, 'click', (mouseEvent) => {
+    // 클릭한 위도, 경도 정보를 가져옵니다
+    const latlng = mouseEvent.latLng;
+
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    mark.setPosition(latlng);
+
+    let message = `(${latlng.getLat()}, `;
+    message += `${latlng.getLng()})`;
+
+    console.log(message);
+  });
 
   // // 커스텀 오버레이에 표시할 내용입니다
   // // HTML 문자열 또는 Dom Element 입니다
