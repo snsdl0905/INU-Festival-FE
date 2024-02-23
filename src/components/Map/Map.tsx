@@ -17,7 +17,7 @@ export default function Map() {
   const booths = useFetchBooths();
   const [selectedDay, setSelectedDay] = useState<string>('월');
   const [selectedCategory, setSelectedCategory] = useState<string>('주점');
-  const [selectedBooth, setSelectedBooth] = useState<Booth[]>();
+  const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
 
   const filtered = booths.filter((booth) => {
     const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);

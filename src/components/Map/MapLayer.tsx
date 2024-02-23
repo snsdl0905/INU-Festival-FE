@@ -19,8 +19,8 @@ const Container = styled.div`
 type MapLayerProps = {
   filteredBooths: Booth[];
   selectedDay: string;
-  selectedBooth: Booth[];
-  setSelectedBooth: (value: Booth[]) => void;
+  selectedBooth: Booth[] | null;
+  setSelectedBooth: (value: Booth[] | null) => void;
 };
 
 export default function MapLayer({
@@ -106,6 +106,10 @@ export default function MapLayer({
       createMarkers(booth);
     });
   }, [selectedDay, filteredBooths, kakaoMap]);
+
+  useEffect(() => {
+    setSelectedBooth(null);
+  }, filteredBooths);
 
   return (
     <Container id="map" />
