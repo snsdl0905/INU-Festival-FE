@@ -77,7 +77,7 @@ const MapButtonBox = styled.div`
     }
 `;
 
-const MapInfoBottom = styled.div<{ showinstruction: boolean | string }>`
+const MapInfoBottom = styled.div`
     display: flex;
     justify-content: space-between;
 
@@ -174,7 +174,7 @@ export default function DetailedMapPage() {
         </div>
       </MapButtonBox>
       <InfoWithIcon small="false" booth={booth} selectedDay="월" />
-      <MapInfoBottom showinstruction={showInstruction.toString()}>
+      <MapInfoBottom>
         <button
           type="button"
           className={showInstruction
