@@ -19,12 +19,14 @@ const Container = styled.div`
 type MapLayerProps = {
   filteredBooths: Booth[];
   selectedDay: string;
+  selectedBooth: Booth[];
   setSelectedBooth: (value: Booth[]) => void;
 };
 
 export default function MapLayer({
   filteredBooths,
   selectedDay,
+  selectedBooth,
   setSelectedBooth,
 } : MapLayerProps) {
   const { kakao } = window;
@@ -36,6 +38,15 @@ export default function MapLayer({
     const map = Kakao;
     setKakaoMap(map);
   }, []);
+
+  const resetMarkers = () => {
+    setMarkers((prevMarkers) => {
+      prevMarkers.forEach((marker) => marker.setMap(null));
+      return [];
+    });
+
+    setMarkers(() => []);
+  };
 
   const createMarkers = (booth : Booth) => {
     booth.boothDays.forEach((boothDay: BoothDay) => {
@@ -74,6 +85,7 @@ export default function MapLayer({
           const newMarker: Booth[] = [];
           newMarker.push(booth);
           setSelectedBooth(newMarker);
+          setMarkers((prevMarkers) => [...prevMarkers, marker]);
         });
       }
     });
@@ -86,14 +98,11 @@ export default function MapLayer({
       setSelectedBooth(null);
     });
 
-    setMarkers((prevMarkers) => {
-      prevMarkers.forEach((marker) => marker.setMap(null));
-      return [];
-    });
+    resetMarkers();
 
-    setMarkers(() => []);
+    const booths: Booth[] = selectedBooth || filteredBooths;
 
-    filteredBooths.forEach((booth) => {
+    booths.forEach((booth) => {
       createMarkers(booth);
     });
   }, [selectedDay, filteredBooths, kakaoMap]);

@@ -29,6 +29,7 @@ export default function Map() {
       <MapLayer
         filteredBooths={filtered}
         selectedDay={selectedDay}
+        selectedBooth={selectedBooth}
         setSelectedBooth={setSelectedBooth}
       />
       <BottomSheet
