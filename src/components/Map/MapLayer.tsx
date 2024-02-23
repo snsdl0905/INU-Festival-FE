@@ -109,7 +109,7 @@ export default function MapLayer({
 
   useEffect(() => {
     setSelectedBooth(null);
-  }, filteredBooths);
+  }, [Object.keys(filteredBooths).join()]);
 
   return (
     <Container id="map" />
