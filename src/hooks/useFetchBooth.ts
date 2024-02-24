@@ -3,7 +3,7 @@ import { useFetch } from 'usehooks-ts';
 import Booth from '../types/Booth';
 
 type BoothType = {
-    booth: Booth;
+booth: Booth;
 }
 
 export default function useFetchBooth(id: string) {

@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import Booth from '../../types/Booth';
-import BoothDay from '../../types/BoothDay';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
         padding: 1rem;
@@ -29,24 +28,36 @@ const MapInfoMiddle = styled.div<{$small: string }>`
                 letter-spacing: 0.01rem;
             }
         `}
+
+        ${(props) => (props.$small === 'middle') && css`
+            font-size: 14px;
+            svg{
+                width: 13px;
+                margin-right: 1.2rem;
+            }
+            p{
+                letter-spacing: 0.01rem;
+            }
+        `}
     `;
 
 type InfoWithIconProps = {
-  small: 'true' | 'false';
+  small: 'true' | 'false' | 'middle';
   booth: Booth;
-  boothDay: BoothDay;
+  selectedDay: string;
 }
 
 export default function InfoWithIcon({
   small,
   booth,
-  boothDay,
+  selectedDay,
 }: InfoWithIconProps) {
-  if (!booth || !boothDay) { return []; }
+  if (!booth || !selectedDay || !booth.boothDays) { return null; }
 
-  const { location, department } = booth;
-  const { time } = boothDay[0] || [];
-
+  const { department } = booth;
+  const selectedBooth = booth.boothDays.find((boothDay) => boothDay.day === selectedDay);
+  const location = selectedBooth ? selectedBooth.location : '';
+  const time = selectedBooth ? selectedBooth.time : '';
   return (
     <MapInfoMiddle $small={small}>
       <div>

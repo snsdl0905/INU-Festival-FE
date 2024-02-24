@@ -8,8 +8,8 @@ import Booth from '../../types/Booth';
 const Container = styled.div`
   overflow-y: scroll;
   width: 100%;
-  height: 80%;
-  margin-bottom: 100px;
+  height: 100%;
+  /* margin-bottom: 100px; */
 `;
 
 const PreButton = styled(NavLink)`
@@ -93,16 +93,9 @@ export default function BoothList({
   return (
     <Container>
       {booths.map((booth) => {
-        console.log(booth);
-
         const {
           id, name, category, liked, boothImgs,
         } = booth;
-
-        const boothDay = booth.boothDays.filter((
-          booth,
-        ) => booth.day === selectedDay);
-
         return (
           <PreButton
             to={`/map/${id}`}
@@ -125,7 +118,7 @@ export default function BoothList({
               <InfoWithIcon
                 small="true"
                 booth={booth}
-                boothDay={boothDay}
+                selectedDay={selectedDay}
               />
             </BoothContainer>
           </PreButton>

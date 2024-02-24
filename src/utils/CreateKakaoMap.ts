@@ -27,11 +27,11 @@ export default function Kakao() {
     center: new kakao.maps.Coords(750, -400),
     level: 0,
   });
-  const center = map.getCenter();
-  const marker = new kakao.maps.Marker({
-    position: center,
-  });
-  marker.setMap(map);
+  // const center = map.getCenter();
+  // const marker = new kakao.maps.Marker({
+  //   position: center,
+  // });
+  // marker.setMap(map);
 
   // // 커스텀 오버레이에 표시할 내용입니다
   // // HTML 문자열 또는 Dom Element 입니다
@@ -55,4 +55,7 @@ export default function Kakao() {
   //   content: '커스텀 타일셋?',
   // });
   // infowindow.open(map, marker);
+  return map;
 }
+
+// export { kakao };

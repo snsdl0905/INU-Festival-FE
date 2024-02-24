@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import InfoWithIcon from '../MapDetail/InfoWithIcon';
+import useFetchBooth from '../../hooks/useFetchBooth';
 
 const Wapper = styled.div`  
     max-width: 600px;
@@ -105,8 +106,9 @@ const ButtonContainer = styled.div`
 `;
 
 export default function BoothBanner() {
+  const booth = useFetchBooth('1');
   return (
-    <Wapper>
+    <Wapper id="booth-banner">
       <BottomSheetHeader />
       <ContentContainer>
         <Content>
@@ -121,7 +123,7 @@ export default function BoothBanner() {
               <span>1,992</span>
             </button>
           </HeartButtonBox>
-          <InfoWithIcon small="middle" />
+          <InfoWithIcon small="middle" booth={booth} selectedDay="월" />
         </Content>
         <ImgBox>
           <img src="BOL.jpeg" alt="img" />
