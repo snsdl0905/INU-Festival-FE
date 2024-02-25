@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import useUserStore from '../../hooks/useUserStore';
+
 const UserInfoWrapper = styled.div`
 display: flex;
 margin-top: 16px;
@@ -19,13 +21,49 @@ justify-content: space-between;
 
 `;
 
-export default function UserInfo() {
-  const user = `즐거운 축제의 시작
-희희낙락과 함께하세요!`;
+const Container = styled.div`
+  div{
+    color: #0147C8;
+    font-weight: 400;
+  }
+  p{
+    font-weight: 500;
+    font-size: 16px;
+  }
+  span{
+    color: #0147C8;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  
+`;
+
+type UserInfoProps ={
+  isLoggedIn: boolean;
+}
+
+function UserDetail() {
+  const [, store] = useUserStore();
+  store.fetchCurrentUser();
+  return (
+    <Container>
+      <div>안녕하세요!</div>
+      <p>
+        {store.name}
+        {' '}
+        님
+      </p>
+    </Container>
+  );
+}
+
+export default function UserInfo({ isLoggedIn }: UserInfoProps) {
   return (
     <UserInfoWrapper>
       <UserSection>
-        <span>{user}</span>
+        {isLoggedIn
+          ? <UserDetail />
+          : <span>즐거운 축제의 시작 희희낙락과 함께하세요!</span>}
       </UserSection>
     </UserInfoWrapper>
   );

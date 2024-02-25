@@ -1,11 +1,9 @@
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { styled } from 'styled-components';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Notice from '../../types/Notice';
-
-import 'swiper/components/pagination/pagination.min.css';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const NoticeContentBox = styled.div`
@@ -52,11 +50,11 @@ export default function NoticeBottom({ notice } : NoticeItemProps) {
       >
         <NoticeImageContainer>
           {
-            notice.img.map((imgsrc, index) => {
-              const key = `${imgsrc} + ${index}`;
+            notice.noticeImgs.map((img) => {
+              const key = `${img.id} + ${img.img}`;
               return (
                 <SwiperSlide key={key}>
-                  <NoticeImageBox src={imgsrc} />
+                  <NoticeImageBox src={img.img} alt={img.img} />
                 </SwiperSlide>
               );
             })

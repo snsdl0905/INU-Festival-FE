@@ -1,39 +1,64 @@
+// import { useState } from 'react';
+
 import { styled } from 'styled-components';
 
-const Container = styled.div`
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
-    position: fixed;
-    bottom: 65px;
-    z-index: 1;
-    height: 105px;
-    background-color: #FFFFFF;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-left: 15px;
-    padding-right: 15px;
-    cursor: grab;
+// import { useBottomSheet } from '../../hooks/useBottomSheet';
+import BoothList from './BoothList';
+import Booth from '../../types/Booth';
+import useFetchCategories from '../../hooks/useFetchCategories';
+
+export const MIN_Y = 90; // 바텀시트가 최대로 높이 올라갔을 때의 y 값
+export const MAX_Y = window.innerHeight - 80; // 바텀시트가 최소로 내려갔을 때의 y 값
+export const BOTTOM_SHEET_HEIGHT = window.innerHeight - MIN_Y; // 바텀시트의 세로 길이
+
+const Wrapper = styled.div`
+  touch-action: none;
+  transition: transform 150ms ease-out;    
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
+  bottom: 0;
+  height: 55%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: grab;
+  padding-top: 15px;
+
+  /* &:active {
+    cursor: grabbing;
+  } */
 `;
 
-const SlideImg = styled.div`
-    border: 0px;
-    background-color: #BBC7D3;
-    border-radius: 12px;
-    width: 44px;
-    height: 5.747px;
-    margin: 11px;
-
+const BottomSheetContent = styled.div`
+  overflow: auto;
+  width: 100%;
+  height: 85%;
+  position: relative;
+  padding-bottom: 50px;
 `;
 
-const FilterContainer = styled.div`
+// const BottomSheetHeader = styled.div`
+//     border: 0px;
+//     background-color: #BBC7D3;
+//     border-radius: 12px;
+//     width: 60px;
+//     height: 6.747px;
+//     margin: 25px;
+//     padding-top: 4px;
+
+// `;
+
+const BottomSheetFilter = styled.div`
+    overflow: scroll;
     width: 100%;
+    height: 60px;
     display: flex;
-    align-items: center;
     margin-top: 5px;
+    margin-bottom: 5px;
 
     button {
       height: 43px;
@@ -47,7 +72,23 @@ const FilterContainer = styled.div`
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      height: 45px;
       cursor: pointer;
+      background-color: #FFFFFF;
+      border: 1px solid #d4d3d3;
+      color: #7e7d7d;
+    }
+    
+    .clickedDay {
+      background-color: #FFFFFF;
+      border: 1px solid #FB7876;
+      color: #FB7876;
+    }
+
+    .clickedCategory {
+      background-color: #FFFFFF;
+      border: 1px solid #0199FF;
+      color: #0199FF;
     }
 `;
 
@@ -57,9 +98,9 @@ const DayFilterContainer = styled.div`
   width: 40%;
 
   button {
-    width: 50px;
-
+    width: 45px;
   }
+
 `;
 
 const CategoryFilterContanier = styled.div`
@@ -72,22 +113,78 @@ const CategoryFilterContanier = styled.div`
   }
 `;
 
-export default function BannerContent() {
+type BottomSheetProps = {
+  setSelectedDay: (value: string) => void;
+  selectedDay: string;
+  setSelectedCategory: (value: string) => void;
+  selectedCategory: string;
+  booths: Booth[];
+}
+
+export default function BottomSheet({
+  setSelectedDay,
+  selectedDay,
+  setSelectedCategory,
+  selectedCategory,
+  booths,
+}: BottomSheetProps) {
+  // const { sheet, content } = useBottomSheet();
+  // const [isSwipe, setIsSwipe] = useState<boolean>(false);
+
+  const categories = useFetchCategories();
+  const { days, filters } = categories;
+
+  // const handleClick = () => {
+  //   setIsSwipe(true);
+  // };
+
+  const handleSetFilterDay = (category: string) => {
+    setSelectedDay(category);
+  };
+
+  const handleSetFilterCategory = (category: string) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <Container>
-      <SlideImg />
-      <FilterContainer>
-        <DayFilterContainer>
-          <button type="button">월</button>
-          <button type="button">화</button>
-          <button type="button">수</button>
-        </DayFilterContainer>
-        <CategoryFilterContanier>
-          <button type="button">🍺 주점</button>
-          <button type="button">🎡 비주점</button>
-          <button type="button">🍕 푸드트럭</button>
-        </CategoryFilterContanier>
-      </FilterContainer>
-    </Container>
+    <Wrapper>
+      {
+      // ref={sheet}
+      // onClick={handleClick}
+      // className={isSwipe ? 'active' : ''}
+      }
+      {/* <BottomSheetHeader /> */}
+      {/* <BottomSheetContent ref={content}> */}
+      <BottomSheetContent>
+        <BottomSheetFilter>
+          {days && days.map((category: string) => (
+            <DayFilterContainer key={category}>
+              <button
+                type="button"
+                onClick={() => handleSetFilterDay(category)}
+                className={selectedDay === category ? 'clickedDay' : ''}
+              >
+                {category}
+              </button>
+            </DayFilterContainer>
+          ))}
+          {filters && filters.map((category: string) => (
+            <CategoryFilterContanier key={category}>
+              <button
+                type="button"
+                onClick={() => handleSetFilterCategory(category)}
+                className={selectedCategory === category ? 'clickedCategory' : ''}
+              >
+                {category}
+              </button>
+            </CategoryFilterContanier>
+          ))}
+        </BottomSheetFilter>
+        <BoothList
+          booths={booths}
+          selectedDay={selectedDay}
+        />
+      </BottomSheetContent>
+    </Wrapper>
   );
 }

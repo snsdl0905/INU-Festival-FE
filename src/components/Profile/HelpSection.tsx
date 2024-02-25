@@ -1,6 +1,10 @@
+import { useState } from 'react';
+
 import styled from 'styled-components';
 
-const HelpWrapper = styled.li`
+import Toast from './Toast';
+
+const HelpWrapper = styled.ul`
 width: 100%;
 padding-top:20px;
 list-style:none;
@@ -22,6 +26,7 @@ height: 19px;
 flex-shrink: 0;
 margin-bottom:32px;
 display:flex;
+cursor: pointer;
 `;
 
 const HelpIcon = styled.img`
@@ -41,23 +46,44 @@ letter-spacing: -0.64px;
 line-height: 24px;
 border:none;
 background-color:transparent;
+cursor:pointer;
 `;
 
-export default function HelpSectioin() {
+export default function HelpSection() {
+  const [toast, setToast] = useState(false);
+  const [toastText, setToastText] = useState('');
+
+  const handleCopyUrl = async (url: string) => {
+    await navigator.clipboard.writeText(url);
+    setToastText('클립보드에 복사되었습니다.');
+    setToast(true);
+  };
+
+  const handleCopyHelp = () => {
+    window.open('https://open.kakao.com/o/sNl4zf7f');
+  };
+
+  const handleClickFriend = () => {
+    setToastText('준비중입니다.');
+    setToast(true);
+  };
+
   return (
     <HelpWrapper>
       <HelpTitle>지원</HelpTitle>
-      <HelpElement>
+      <HelpElement onClick={() => handleClickFriend()}>
         <HelpIcon src="Human.svg" />
         <Helplink>친구 찾기</Helplink>
+        {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
-      <HelpElement>
+      <HelpElement onClick={handleCopyHelp}>
         <HelpIcon src="Contact.svg" />
         <Helplink>문의하기</Helplink>
       </HelpElement>
-      <HelpElement>
+      <HelpElement onClick={() => handleCopyUrl('http://localhost:8080/')}>
         <HelpIcon src="Link.svg" />
         <Helplink>링크 공유하기</Helplink>
+        {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
     </HelpWrapper>
   );
