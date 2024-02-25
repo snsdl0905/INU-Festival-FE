@@ -10,7 +10,7 @@ const Container = styled.div`
   z-index: 200;
   width: 100%;
   position: relative;
-  height: 480px;
+  height: 400px;
   margin-bottom: 20px;
   top: 0;
 `;

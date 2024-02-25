@@ -24,7 +24,6 @@ const BoothContainer = styled.div`
     align-items: center;
     padding: 10px;
     width: 100%;
-    justify-content: space-between;
     border-bottom: 1px solid #CEDCEA;
 
     img{
@@ -36,8 +35,8 @@ const BoothContainer = styled.div`
 const BoothContent = styled.div`
     width: 35%;
     height: 100px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     
     p {
         font-size: 17px;
