@@ -24,7 +24,6 @@ const BoothContainer = styled.div`
     align-items: center;
     padding: 10px;
     width: 100%;
-    justify-content: space-between;
     border-bottom: 1px solid #CEDCEA;
 
     img{
@@ -36,8 +35,8 @@ const BoothContainer = styled.div`
 const BoothContent = styled.div`
     width: 35%;
     height: 100px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
     
     p {
         font-size: 17px;
@@ -96,13 +95,15 @@ export default function BoothList({
         const {
           id, name, category, liked, boothImgs,
         } = booth;
+
+        // console.log(boothImgs);
         return (
           <PreButton
             to={`/map/${id}`}
             key={id}
           >
             <BoothContainer>
-              <img src={boothImgs[0].url} alt="boothImg.png" />
+              <img src={boothImgs && boothImgs[0].url} alt="boothImg.png" />
               <BoothContent>
                 <p>{name}</p>
                 <BoothInfoBottom>

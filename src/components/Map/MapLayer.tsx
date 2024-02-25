@@ -9,10 +9,9 @@ const Container = styled.div`
   max-width: 600px;
   z-index: 200;
   width: 100%;
-  /* position: absolute; */
-  position: fixed;
-  /* max-height: ; */
-  height: 34%;
+  position: relative;
+  height: 400px;
+  margin-bottom: 20px;
   top: 0;
 `;
 

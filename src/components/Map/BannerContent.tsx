@@ -17,13 +17,9 @@ const Wrapper = styled.div`
   max-width: 600px;
   width: 100%;
   box-shadow: 0px 2px 15px 5px rgba(1, 60, 169, 0.15);
-  position: fixed;
-  /* bottom: -740px; */
   bottom: 0;
-  height: 66%;
+  height: 55%;
   background-color: #FFFFFF;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
