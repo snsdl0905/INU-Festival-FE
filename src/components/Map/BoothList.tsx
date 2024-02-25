@@ -96,13 +96,15 @@ export default function BoothList({
         const {
           id, name, category, liked, boothImgs,
         } = booth;
+
+        // console.log(boothImgs);
         return (
           <PreButton
             to={`/map/${id}`}
             key={id}
           >
             <BoothContainer>
-              <img src={boothImgs[0].url} alt="boothImg.png" />
+              <img src={boothImgs && boothImgs[0].url} alt="boothImg.png" />
               <BoothContent>
                 <p>{name}</p>
                 <BoothInfoBottom>
