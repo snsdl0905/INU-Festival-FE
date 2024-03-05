@@ -29,9 +29,13 @@ const Section = styled.div`
 `;
 
 const Item = styled.div`
-  width: 50%;
+  width: fit-content;
   display: flex;
   justify-content: space-between;
+
+  h3{
+    margin-right: 8px;
+  }
 `;
 
 export default function Footer() {
@@ -41,11 +45,11 @@ export default function Footer() {
       <Section>
         <h2>우리의 소개</h2>
         <Item>
-          <div>
+          <h3>
             <p>Front End</p>
             <p>Back End</p>
             <p>Design</p>
-          </div>
+          </h3>
           <div>
             <p>유소정, 이의영, 이희주</p>
             <p>김선희, 이헌도</p>

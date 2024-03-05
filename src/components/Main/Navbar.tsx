@@ -35,6 +35,10 @@ const Nav = styled.nav`
       width: 25%;
     }
   }
+
+  span{
+    min-width: max-content;
+  }
 `;
 
 const StyledNavLink = styled(NavLink)`
