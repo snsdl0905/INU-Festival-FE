@@ -10,14 +10,12 @@ padding-top:20px;
 list-style:none;
 `;
 const HelpTitle = styled.div`
-color: #000;
-font-family: "SF Pro";
-font-size: 20px;
-font-style: normal;
-font-weight: 510;
-line-height: normal;
-letter-spacing: -0.8px;
-margin-bottom: 24px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.64px;
+  margin-bottom: 24px;
 `;
 
 const HelpElement = styled.li`
@@ -33,20 +31,18 @@ const HelpIcon = styled.img`
 width: 18px;
 height: 18px;
 flex-shrink: 0;
-margin-right:18px;
+margin-right: 12px;
 `;
 
 const Helplink = styled.button`
-color: #000;
-font-family: "SF Pro";
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-letter-spacing: -0.64px;
-line-height: 24px;
-border:none;
-background-color:transparent;
-cursor:pointer;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.64px;
+  line-height: normal;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 export default function HelpSection() {
