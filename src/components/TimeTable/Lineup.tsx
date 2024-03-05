@@ -22,13 +22,19 @@ div {
 `;
 
 const Title = styled.p`
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 21px;
+  letter-spacing: -0.45px;
 `;
 
 const Description = styled.p`
   display: flex;
   font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.39px;
   margin-top: 5px;
 `;
 

@@ -43,17 +43,16 @@ const BoothTitle = styled.div`
       color: #B6BBC4;
       font-size: 13px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: normal;
       letter-spacing: -0.26px;
     }
     &:last-child{
-      color: #000;
-      font-size: 17px;
+      font-size: 15px;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
       line-height: normal;
-      letter-spacing: -0.32px;
+      letter-spacing: -0.3px;
     }
   }
 `;

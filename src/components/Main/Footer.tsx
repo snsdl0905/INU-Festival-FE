@@ -3,25 +3,29 @@ import styled from 'styled-components';
 const Container = styled.div`
   color: ${(props) => props.theme.colors.subText};
   margin-bottom: 5rem;
+  font-style: normal;
+  font-weight: 510;
+  line-height: normal;
   
-  h1, h2 {
-      font-weight: bold;
-  }
   h1 {
-    font-size: 2rem;
+    font-size: 20px;
+    letter-spacing: -0.6px;
   }
   h2 {
-    font-size: 1.8rem;
+    font-size: 15px;
+    letter-spacing: -0.45px;
     margin-bottom: 1em;
   }
   p {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.39px;
+    margin-bottom: 5px;
   }
 `;
 
 const Section = styled.div`
-  margin-top: 2em;
+  margin-top: 18px;
 `;
 
 const Item = styled.div`
