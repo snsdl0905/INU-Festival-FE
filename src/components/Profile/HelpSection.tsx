@@ -35,6 +35,7 @@ margin-right: 12px;
 `;
 
 const Helplink = styled.button`
+  font-family: SUIT, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

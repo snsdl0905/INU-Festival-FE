@@ -80,7 +80,7 @@ const BottomSheetFilter = styled.div`
       background-color: #F3F3F5;
       /* border: 1px solid #d4d3d3; */
       /* color: #7e7d7d; */
-      font-family: SUIT;
+      font-family: SUIT, sans-serif;
     }
     
     .clickedDay {
