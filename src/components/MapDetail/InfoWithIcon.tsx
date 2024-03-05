@@ -2,44 +2,61 @@ import styled, { css } from 'styled-components';
 import Booth from '../../types/Booth';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
-        padding: 1rem;
-        div{
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.04348rem;
-        }
+  padding-left: 0;
+  padding-top: 10px;
+  width: max-content;
+  div{
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.04348rem;
+  }
 
-        ${(props) => (props.$small === 'false') && css`
-            div{
-                padding: 1rem;
-            }
-            svg{
-            margin: 0 1.5rem;
-            }
-        `}
+  p{
+    color: black;
+  }
 
-        ${(props) => (props.$small === 'true') && css`
-            font-size: 12px;
-            svg{
-                width: 13px;
-                margin-right: 1.2rem;
-            }
-            p{
-                letter-spacing: 0.01rem;
-            }
-        `}
+  ${(props) => (props.$small === 'false') && css`
+    div{
+      padding: 1rem;
+    }
+    svg{
+      margin: 0 1.5rem;
+    }
+    p{
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: -0.3px;
+    }
+  `}
 
-        ${(props) => (props.$small === 'middle') && css`
-            font-size: 14px;
-            svg{
-                width: 13px;
-                margin-right: 1.2rem;
-            }
-            p{
-                letter-spacing: 0.01rem;
-            }
-        `}
-    `;
+  ${(props) => (props.$small === 'true') && css`
+    font-size: 12px;
+    svg{
+      width: 13px;
+      margin-right: 1.2rem;
+    }
+    p{
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      letter-spacing: -0.26px;
+    }
+  `}
+
+  ${(props) => (props.$small === 'middle') && css`
+    font-size: 14px;
+    svg{
+      width: 13px;
+      margin-right: 1.2rem;
+    }
+    p{
+      letter-spacing: 0.01rem;
+    }
+  `}
+`;
 
 type InfoWithIconProps = {
   small: 'true' | 'false' | 'middle';
