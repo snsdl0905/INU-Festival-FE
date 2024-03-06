@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
 
 import styled from 'styled-components';
 
@@ -10,55 +8,48 @@ import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooth from '../../hooks/useFetchBooth';
-import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 import boothImg from '../../types/boothImg';
 
-const ImageBox = styled.div`
-  height: 376px;
-  background-color: #D1D9F5;;
-`;
-
 const MapInfoTop = styled.div`
-    margin: 0 auto;
-    padding: 3rem 0 0 0;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+
+  p{
+    font-size: 13px;
+    color: rgba(187, 199, 211, 1);
+    font-weight: 510;
+    padding-bottom: 8px;
+    padding-top: 30px;
+  }
+
+  h2{
+    font-size: 18px;
+    color: #0147C8;
+    font-weight: 620;
+    margin-bottom: 25px;
+  }
+
+  button{
+    background-color: #EBF2FF;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    flex-direction: column;
+    vertical-align: middle;
     text-align: center;
-    align-items: center;
 
-    p{
-      font-size: 13px;
-      color: rgba(187, 199, 211, 1);
-      font-weight: 510;
-      padding-bottom: 8px;
-      padding-top: 2rem;
-    }
-
-    h2{
-      font-size: 18px;
-      color: #0147C8;
-      font-weight: 620;
-      margin-bottom: 33px;
-    }
-
-    button{
-      background-color: #EBF2FF;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 15px;
-      flex-direction: column;
+    svg{
       vertical-align: middle;
-      text-align: center;
-
-      svg{
-        vertical-align: middle;
-      }
-      span{
-        vertical-align: middle;
-        font-size: 12px;
-        margin: 0 4px;
-        font-weight: 550;
-      }
     }
-    
+
+    span{
+      vertical-align: middle;
+      font-size: 12px;
+      margin: 0 4px;
+      font-weight: 550;
+    }
+  }
 `;
 
 const MapButtonBox = styled.div`
@@ -76,10 +67,10 @@ const MapButtonBox = styled.div`
   
   div{
     padding: 0 4rem;
-    padding-top: 36px;
+    padding-top: 30px;
     text-align: center;
     margin: 0 3rem;
-    padding-bottom: 1rem;
+    padding-bottom: 5px;
   }
   
   div > p {
@@ -88,37 +79,72 @@ const MapButtonBox = styled.div`
 `;
 
 const MapInfoBottom = styled.div`
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    button{
-        flex: 1;
-        border: none;
-        background-color: #FFFFFF;
-        padding: 1.3rem 6rem;
-        font-weight: 700;
-        font-size: 15px;
-        cursor: pointer;
-    }
+  button{
+    flex: 1;
+    border: none;
+    background-color: #FFFFFF;
+    padding: 1.3rem 6rem;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+  }
 
-    .selected{
-      border-bottom: 2px solid #0147C8;
-    }
+  .selected{
+    border-bottom: 2px solid #0147C8;
+  }
 
-    .notSelected{
-      border-bottom: 2px solid #CEDCEA;
-    }
+  .notSelected{
+    border-bottom: 2px solid #CEDCEA;
+  }
 `;
-const MapImageContainer = styled.div`
-    padding: 0 2rem ;
-    `;
-const MapImageBox = styled.div`
-    padding: 0;
 
-    img{
-        width: 200px;
-        border-radius: 15px;
-    }
+const MapImageContainer = styled.div<{translateImg: string}>`
+  /* padding: 0 2rem ; */
+  width: 800vw;
+  height: 90vw;
+  background-color: #D1D9F5;
+  transform: translateX(${(props) => props.translateImg});
+  /* transform: translate(-120vw); */
+    padding-top: 10vw;
+  `;
+
+const ImageBox = styled.div`
+  img{
+    width: 70vw;
+    float: left;
+    border-radius: 15px;
+    margin: 0 15vw;
+  }
+`;
+
+const Carousel = styled.div`
+  overflow: hidden;
+  position: relative;
+
+
+  button{
+    border: none;
+    /* background-color: ; */
+  }
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  transform: translateY(-50%); /* 버튼을 세로 중앙에 정확히 배치하기 위해 translateY(-50%); 설정 */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 3vw;
+  top: 50%; /* 부모 요소의 세로 중앙에 배치 */
+`;
+
+const Button = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;
 
 export default function DetailedMapPage() {
@@ -126,45 +152,61 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
   const booth = useFetchBooth(id);
 
+  const [translateImg, setTranslateImg] = useState<string>('0');
+
   if (!booth) {
     return null; // 데이터가 로드되지 않았을 때의 처리
   }
-
-  const defaultPerView = 3;
-  const [perView, setPerView] = useState(defaultPerView);
-  useCheckScreenWidth(defaultPerView, setPerView);
-
   const {
     name,
     category,
     description,
     liked,
-    boothImgs,
+    // boothImgs,
     boothComments,
   } = booth;
 
+  const boothImgs: boothImg[] = [];
+  boothImgs.push({ id: '4', url: 'BOL.jpeg' });
+  boothImgs.push({ id: '5', url: 'BOL2.jpeg' });
+  boothImgs.push({ id: '6', url: 'DAMONS.png' });
+  boothImgs.push({ id: '7', url: 'DAMONS4.png' });
+
+  const handleRightButton = () => {
+    const newPosition = parseInt(translateImg, 10) - 100;
+    const maxPosition = boothImgs.length * -100;
+    setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
+  };
+
+  const handleLeftButton = () => {
+    const newPosition = parseInt(translateImg, 10) + 100;
+    const maxPosition = boothImgs.length * -100;
+    setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
+  };
   return (
     <>
       <Header shadow="false"> </Header>
-      <ImageBox />
-      {/* <Swiper
-        slidesPerView={perView}
-        spaceBetween={10}
-        allowTouchMove
-        freeMode
-      >
-        {boothImgs && boothImgs.map((img: boothImg) => (
-          <SwiperSlide
-            key={img.id}
-          >
-            <MapImageContainer>
-              <MapImageBox>
-                <img src={`/${img.url}`} alt={img.url} />
-              </MapImageBox>
-            </MapImageContainer>
-          </SwiperSlide>
-        ))}
-      </Swiper> */}
+      <Carousel>
+        <MapImageContainer translateImg={translateImg}>
+          {boothImgs && boothImgs.map((img: boothImg) => (
+            <ImageBox key={img.id}>
+              <img src={`/${img.url}`} alt={img.url} />
+            </ImageBox>
+          ))}
+        </MapImageContainer>
+        <ButtonContainer>
+          <Button className="left" type="button" onClick={handleLeftButton}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="23" viewBox="0 0 12 23" fill="none">
+              <path fillRule="evenodd" clipRule="evenodd" d="M0.307017 11.0735C-0.0835074 11.464 -0.0835071 12.0972 0.307017 12.4877L10.1944 22.3751C10.5849 22.7656 11.2181 22.7656 11.6086 22.3751C11.9991 21.9845 11.9991 21.3514 11.6086 20.9608L2.42834 11.7806L11.6086 2.60032C11.9991 2.2098 11.9991 1.57663 11.6086 1.18611C11.2181 0.795586 10.5849 0.795586 10.1944 1.18611L0.307017 11.0735Z" fill="#000000" />
+            </svg>
+          </Button>
+          <Button className="right" type="button" onClick={handleRightButton}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="23" viewBox="0 0 13 23" fill="none">
+              <path fillRule="evenodd" clipRule="evenodd" d="M12.3065 12.1962C12.6971 11.8056 12.6971 11.1725 12.3065 10.7819L2.60872 1.08413C2.21819 0.693609 1.58503 0.693609 1.1945 1.08413C0.80398 1.47466 0.80398 2.10782 1.1945 2.49835L10.1852 11.4891L1.1945 20.4798C0.80398 20.8703 0.80398 21.5034 1.1945 21.894C1.58503 22.2845 2.21819 22.2845 2.60872 21.894L12.3065 12.1962Z" fill="#000000" />
+            </svg>
+          </Button>
+        </ButtonContainer>
+      </Carousel>
       <MapInfoTop>
         <p>{category}</p>
         <h2>{name}</h2>
