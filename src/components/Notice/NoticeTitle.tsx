@@ -7,26 +7,35 @@ type NoticeItemProps = {
 }
 
 const NoticeTitleBox = styled.div`
-        padding-left: 1.3rem;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+  padding-left: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-style: normal;
 
-    span{
-        font-size: 1.5rem;
-        font-weight: 600;
-        font-weight: 1000;
-    }
+  span{
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 100%;
+    letter-spacing: -0.52px;
+  }
 
-    p{
-        padding: 1.4rem 0;
-        font-size: 1.7rem;
-    }
+  p{
+    padding-top: 12px;
+    padding-bottom: 2px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: -0.64px;
+  }
 
-    div{
-        color: #A9A9A9;
-        font-size: 1.4rem;
-    }
+  div{
+    color: #A9A9A9;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 21px; /* 161.538% */
+    letter-spacing: -0.52px;
+  }
     `;
 
 export default function NoticeTitle({ notice } : NoticeItemProps) {
