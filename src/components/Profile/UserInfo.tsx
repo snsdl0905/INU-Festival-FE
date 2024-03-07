@@ -3,39 +3,45 @@ import styled from 'styled-components';
 import useUserStore from '../../hooks/useUserStore';
 
 const UserInfoWrapper = styled.div`
-display: flex;
-margin-top: 16px;
-justify-content: space-between;
+  display: flex;
+  margin-top: 16px;
+  justify-content: space-between;
 `;
 const UserSection = styled.div`
-color: #000;
-font-family: SF Pro;
-font-size: 1.48rem; /* Adjust the font size to your preference */
-font-weight: 400;
-line-height: 1.5; /* Adjust line height for better readability */
-letter-spacing: -0.64px;
-white-space: pre-wrap;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+  letter-spacing: -0.6px;
+  white-space: pre-wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 15px;
+  font-style: normal;
+  line-height: 20px;
+  letter-spacing: -0.6px;
 
+  span{
+    font-weight: 400;
+  }
+
+  b{
+    color: #0147C8;
+    font-weight: 800;
+  }
 `;
 
 const Container = styled.div`
+  font-size: 15px;
+  font-style: normal;
+  line-height: 18px;
+  letter-spacing: -0.6px;
+
   div{
-    color: #0147C8;
-    font-weight: 400;
-  }
-  p{
     font-weight: 500;
-    font-size: 16px;
   }
-  span{
+
+  p{
     color: #0147C8;
-    font-weight: 600;
-    font-size: 17px;
+    font-weight: 800;
   }
-  
 `;
 
 type UserInfoProps ={
@@ -63,7 +69,14 @@ export default function UserInfo({ isLoggedIn }: UserInfoProps) {
       <UserSection>
         {isLoggedIn
           ? <UserDetail />
-          : <span>즐거운 축제의 시작 희희낙락과 함께하세요!</span>}
+          : (
+            <span>
+              즐거운 축제의 시작
+              <br />
+              <b>희희낙락</b>
+              과 함께하세요!
+            </span>
+          )}
       </UserSection>
     </UserInfoWrapper>
   );

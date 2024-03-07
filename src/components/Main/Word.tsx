@@ -20,16 +20,16 @@ const WordContent = styled.div`
   height: 36px;
   flex-shrink: 0;
   border-radius: 33px;
-  background: #F7F7F7;
-  text-align:center;
+  background: #F5F5F5;
+  text-align: center;
+
   color: #4F4F4F;
-  font-family: SF Pro;
   font-size: 12px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 36px;
+  font-weight: 800;
+  line-height: normal;
   letter-spacing: -0.24px;
-  margin-right:8px;
+  margin-right: 8px;
 `;
 
 export default function Word() {

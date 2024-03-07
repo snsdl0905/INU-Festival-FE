@@ -41,75 +41,99 @@ const BottomSheetContent = styled.div`
   padding-bottom: 50px;
 `;
 
-// const BottomSheetHeader = styled.div`
-//     border: 0px;
-//     background-color: #BBC7D3;
-//     border-radius: 12px;
-//     width: 60px;
-//     height: 6.747px;
-//     margin: 25px;
-//     padding-top: 4px;
+const BottomSheetHeader = styled.div`
+    border: 0px;
+    background-color: #BBC7D3;
+    border-radius: 12px;
+    width: 60px;
+    height: 6.747px;
+    /* margin: 25px; */
+    margin: 5px 0;
 
-// `;
+
+`;
 
 const BottomSheetFilter = styled.div`
-    overflow: scroll;
+    /* overflow: scroll; */
     width: 100%;
-    height: 60px;
-    display: flex;
+    /* height: max-content; */
+    /* display: flex; */
     margin-top: 5px;
     margin-bottom: 5px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #CEDCEA;
 
     button {
       height: 43px;
       border: 0px;
-      border-radius: 30px;
+      border-radius: 999px;
       font-size: 13px;
       font-style: normal;
-      font-weight: 510;
-      line-height: normal;
-      letter-spacing: -0.2px;
+      font-weight: 800;
+      line-height: 21px; /* 161.538% */
+      letter-spacing: -0.52px;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+      /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12); */
       height: 45px;
       cursor: pointer;
-      background-color: #FFFFFF;
-      border: 1px solid #d4d3d3;
-      color: #7e7d7d;
+      background-color: #F3F3F5;
+      /* border: 1px solid #d4d3d3; */
+      /* color: #7e7d7d; */
+      font-family: SUIT, sans-serif;
     }
     
     .clickedDay {
-      background-color: #FFFFFF;
-      border: 1px solid #FB7876;
-      color: #FB7876;
+      background-color: #EBF2FF;
+      /* border: 1px solid #FB7876;
+      color: #FB7876; */
     }
 
     .clickedCategory {
-      background-color: #FFFFFF;
-      border: 1px solid #0199FF;
-      color: #0199FF;
+      background-color: #EBF2FF;
+      /* border: 1px solid #0199FF;
+      color: #0199FF; */
     }
+
+    :first-child{
+    margin-bottom: 5px;
+  }
 `;
 
 const DayFilterContainer = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 40%;
+  /* justify-content: space-around; */
+  /* width: 40%; */
 
   button {
-    width: 45px;
+    padding: 0 24px;
   }
 
 `;
 
 const CategoryFilterContanier = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 60%;
+  /* justify-content: space-around; */
+  /* width: 60%; */
 
   button {
-    width: 90px;
+    padding: 0 30px;
+  }
+`;
+
+const FilterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: max-content;
+  
+  p{
+    color: #969FA9;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: -0.52px;
+    padding-right: 10px;
   }
 `;
 
@@ -153,32 +177,38 @@ export default function BottomSheet({
       // onClick={handleClick}
       // className={isSwipe ? 'active' : ''}
       }
-      {/* <BottomSheetHeader /> */}
+      <BottomSheetHeader />
       {/* <BottomSheetContent ref={content}> */}
       <BottomSheetContent>
         <BottomSheetFilter>
-          {days && days.map((category: string) => (
-            <DayFilterContainer key={category}>
-              <button
-                type="button"
-                onClick={() => handleSetFilterDay(category)}
-                className={selectedDay === category ? 'clickedDay' : ''}
-              >
-                {category}
-              </button>
-            </DayFilterContainer>
-          ))}
-          {filters && filters.map((category: string) => (
-            <CategoryFilterContanier key={category}>
-              <button
-                type="button"
-                onClick={() => handleSetFilterCategory(category)}
-                className={selectedCategory === category ? 'clickedCategory' : ''}
-              >
-                {category}
-              </button>
-            </CategoryFilterContanier>
-          ))}
+          <FilterContainer>
+            <p>요일</p>
+            {days && days.map((category: string) => (
+              <DayFilterContainer key={category}>
+                <button
+                  type="button"
+                  onClick={() => handleSetFilterDay(category)}
+                  className={selectedDay === category ? 'clickedDay' : ''}
+                >
+                  {category}
+                </button>
+              </DayFilterContainer>
+            ))}
+          </FilterContainer>
+          <FilterContainer>
+            <p>분류</p>
+            {filters && filters.map((category: string) => (
+              <CategoryFilterContanier key={category}>
+                <button
+                  type="button"
+                  onClick={() => handleSetFilterCategory(category)}
+                  className={selectedCategory === category ? 'clickedCategory' : ''}
+                >
+                  {category}
+                </button>
+              </CategoryFilterContanier>
+            ))}
+          </FilterContainer>
         </BottomSheetFilter>
         <BoothList
           booths={booths}

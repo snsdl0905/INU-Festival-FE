@@ -35,14 +35,7 @@ const SentenceItemBox = styled.li`
 `;
 
 const BallonBox = styled.div`
-    width: 50px;
-    color: rgba(147, 147, 147, 1);
-    font-family: SF Pro;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 510;
-    letter-spacing: -0.36px;
-
+  width: 45px;
   img{
     height: 30.16px;
     top: 496px;
@@ -54,20 +47,17 @@ const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   color: #0042B9;
-  font-family: SF Pro;
-  font-size: 16px;
+  font-size: 15px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 25px;
-  letter-spacing: -0.48px;
-  margin-left: 10px;
+  font-weight: 800;
+  line-height: 21px;
+  letter-spacing: -0.45px;
 
   span{
     color: #939393;
-    font-family: SF Pro;
     font-size: 12px;
     font-style: normal;
-    font-weight: 510;
+    font-weight: 700;
     line-height: 100%; /* 12px */
     letter-spacing: -0.36px;
   }

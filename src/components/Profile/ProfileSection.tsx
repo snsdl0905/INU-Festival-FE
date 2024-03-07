@@ -23,43 +23,51 @@ position: relative;
 `;
 
 const ProfileContainer = styled.div`
-display: flex;
-width: 100%;
-flex-direction: column;
-align-items: flex-start;
-gap: 24px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
 `;
+
 const ProfileTitle = styled.div`
-color: #000;
-font-family: SF Pro;
-font-size: 1.5em;
-font-style: normal;
-font-weight: 600;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -0.96px;
+  align-items: center;
+  display: flex;
+
+  svg{
+    margin-left: 10px;
+  }
 `;
+
 const UserIcon = styled.img`
 width: 48%;
 height: auto;
 margin-bottom:32px;
 flex-shrink: 1;
 `;
+
 const LoginBtn = styled.button`
-display: flex;
-height: 48px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-align-self: stretch;
-border-radius: 12px;
-border:none;
-background: #0147C8;
-color: #FFF;
-font-family: "SF Pro";
-font-size: 15px;
-font-style: normal;
-font-weight: 510;
-line-height: normal;
-letter-spacing: -0.6px;
-cursor:pointer;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 12px;
+  border:none;
+  background: #0147C8;
+  color: #FFF;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -0.6px;
+  cursor:pointer;
 `;
 
 const LogoutBtn = styled.button`
@@ -69,17 +77,12 @@ const LogoutBtn = styled.button`
   border:none;
   background: #0147C8;
   color: #FFF;
-  font-family: "SF Pro";
   font-size: 15px;
   font-style: normal;
-  font-weight: 510;
+  font-weight: 800;
   line-height: normal;
   letter-spacing: -0.6px;
   cursor:pointer;
-  position: fixed;
-  bottom: 100px;
-  width: calc(100% - 2.5em);
-  max-width: 560px;
 `;
 
 export default function ProfileSection() {
@@ -100,7 +103,15 @@ export default function ProfileSection() {
   return (
     <ProfileWrapper>
       <ProfileContainer>
-        <ProfileTitle>프로필</ProfileTitle>
+        <ProfileTitle>
+          프로필
+          {accessToken && (
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 22 24" fill="none">
+              <path d="M10.9569 9.71113C13.5598 9.71113 15.6698 7.64915 15.6698 5.10557C15.6698 2.56198 13.5598 0.5 10.9569 0.5C8.35413 0.5 6.24414 2.56198 6.24414 5.10557C6.24414 7.64915 8.35413 9.71113 10.9569 9.71113Z" fill="#0147C8" />
+              <path d="M9.01057 12.0469H12.9894C17.9623 12.0469 22 15.9927 22 20.8524C22 22.3137 20.7862 23.4999 19.2908 23.4999H2.70916C1.21377 23.4999 0 22.3137 0 20.8524C0 15.9927 4.03773 12.0469 9.01057 12.0469Z" fill="#0147C8" />
+            </svg>
+          )}
+        </ProfileTitle>
         <UserInfo isLoggedIn={!!accessToken} />
         {accessToken ? (
           <LogoutBtn onClick={handleClickLogout}>로그아웃</LogoutBtn>

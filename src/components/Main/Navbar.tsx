@@ -20,7 +20,11 @@ const Nav = styled.nav`
   margin: 0px;
   padding: 0px;
   border: 0px;
-  font-size: 1.5rem;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.22px;
   vertical-align: baseline;
   cursor: pointer;
 
@@ -30,6 +34,10 @@ const Nav = styled.nav`
     li {
       width: 25%;
     }
+  }
+
+  span{
+    min-width: max-content;
   }
 `;
 
@@ -101,7 +109,7 @@ export default function Navbar() {
           <li>
             <StyledNavLink to="/timetable">
               <svg
-                viewBox="0 0 22 17"
+                viewBox="0 0 22 18"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
