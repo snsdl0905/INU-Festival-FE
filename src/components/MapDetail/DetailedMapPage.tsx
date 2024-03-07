@@ -108,15 +108,16 @@ const MapImageContainer = styled.div<{translateImg: string}>`
   background-color: #D1D9F5;
   transform: translateX(${(props) => props.translateImg});
   /* transform: translate(-120vw); */
-    padding-top: 10vw;
+    /* padding-top: 10vw; */
   `;
 
 const ImageBox = styled.div`
   img{
-    width: 70vw;
+    /* width: 70vw; */
+    width: 100vw;
     float: left;
-    border-radius: 15px;
-    margin: 0 15vw;
+    /* border-radius: 15px; */
+    /* margin: 0 15vw; */
   }
 `;
 
