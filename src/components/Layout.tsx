@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 import Navbar from './Main/Navbar';
+import useCheckAccessToken from '../hooks/useCheckAccessToken';
 
 const Container = styled.div`
   margin: auto;
@@ -18,6 +19,8 @@ const Container = styled.div`
 `;
 
 export default function Layout() {
+  useCheckAccessToken();
+
   return (
     <Container>
       <main>

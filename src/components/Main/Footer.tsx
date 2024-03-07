@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   color: ${(props) => props.theme.colors.subText};
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   
   h1, h2 {
       font-weight: bold;
@@ -55,7 +55,6 @@ export default function Footer() {
       </Section>
       <Section>
         <p>Copyrigth 2023 희희낙락 All rights reserved.</p>
-        <p>본 사이트는 경기청년갭이어의 지원을 받아 제작되었습니다.</p>
       </Section>
     </Container>
   );

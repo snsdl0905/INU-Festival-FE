@@ -4,12 +4,13 @@ import FestivalSentenceItem from './FestivalSentenceItem';
 import useFetchSentence from '../../hooks/useFetchSentence';
 import Word from './Word';
 
-const FestivalSentenceBox = styled.div`
-`;
+import SkeletonFestivalSentence from '../Loading/SkeletonFestivalSentenceItem';
+
+const FestivalSentenceBox = styled.div``;
 
 const SentenceBox = styled.ul`
   margin-top: 6rem;
-  background-color: #F8F8FA;
+  background-color: #f8f8fa;
   width: 100%;
   height: 61px;
   border-radius: 12px;
@@ -18,18 +19,21 @@ const SentenceBox = styled.ul`
 `;
 
 export default function FestivalSentence() {
-  const sentences = useFetchSentence();
-
+  const { data } = useFetchSentence();
   return (
     <>
       <FestivalSentenceBox>
         <SentenceBox>
-          {sentences.map((sentence) => (
-            <FestivalSentenceItem
-              key={sentence.id}
-              sentence={sentence}
-            />
-          ))}
+          {data === undefined ? (
+            <SkeletonFestivalSentence />
+          ) : (
+            data.shouts.map((sentence) => (
+              <FestivalSentenceItem
+                key={sentence.id}
+                sentence={sentence}
+              />
+            ))
+          )}
         </SentenceBox>
       </FestivalSentenceBox>
       <Word />

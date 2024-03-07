@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router';
+
 import styled from 'styled-components';
 
 import Header from './Header';
-
-import LineUp from './Lineup';
-
+import LineUp from './LineUp';
 import BlurContainer from '../BlurContainer';
-import useFetchPerforms from '../../hooks/useFetchPerforms';
+
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const Content = styled.div`
@@ -39,14 +39,13 @@ export default function Lineups() {
   const defaultPerview = 3;
   const [perview, setPerView] = useState(defaultPerview);
 
-  const performs = useFetchPerforms();
-
-  const lineups = performs.filter((perform) => (
-    perform.category === '연예인'
-  ));
-
   useCheckScreenWidth(defaultPerview, setPerView);
 
+  const naviagetor = useNavigate();
+
+  const handleClick = () => {
+    naviagetor('/timetable');
+  };
   return (
     <>
       <MainBlurContainer $backgroundimg="BOL2.jpeg">
@@ -55,11 +54,10 @@ export default function Lineups() {
           <p>오늘의 라인업</p>
         </Content>
       </MainBlurContainer>
-      <BannerContainer>
+      <BannerContainer onClick={handleClick}>
         <LineUp
           perView={perview}
           spaceBetween={10}
-          lineups={lineups}
         />
       </BannerContainer>
     </>

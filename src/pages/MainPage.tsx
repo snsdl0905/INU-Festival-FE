@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import Article from '../components/Article';
 import Footer from '../components/Main/Footer';
 import Lineups from '../components/Main/Lineups';

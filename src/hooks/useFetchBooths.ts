@@ -1,8 +1,7 @@
 import { useFetch } from 'usehooks-ts';
-
 import Booth from '../types/Booth';
 
-const url = `${process.env.REACT_APP_URL}/booths/ranking`;
+const url = `${process.env.REACT_APP_URL}/booth/all`;
 
 type Booths = {
     booths: Booth[];
@@ -10,8 +9,10 @@ type Booths = {
 
 export default function useFetchBooths() {
   const { data } = useFetch<Booths>(url);
+  console.log(data);
   if (!data) {
     return [];
   }
+
   return data.booths;
 }

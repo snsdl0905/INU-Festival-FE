@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 import BoothItem from './BoothItem';
 
-import useFetchBooths from '../../hooks/useFetchBooths';
+import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
+
+import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -95,7 +97,7 @@ const BoothHeart = styled.div`
   align-items:center;
   gap:0.5rem;
   padding-left: 0.95rem;
-
+  cursor: pointer;
 
   img {
     width:1.4rem; /* Adjusted width using rem */
@@ -116,19 +118,9 @@ const BoothHeart = styled.div`
 `;
 
 export default function BoothRanking() {
-  const booths = useFetchBooths();
+  const { data } = useFetchBoothsRanking();
+
   const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
-
-  const fetchedBooths = [...booths];
-  fetchedBooths.sort((a, b) => b.liked - a.liked);
-  const sortedBooths = (fetchedBooths.slice(0, 5));
-
-  const handleLikeClicked = (index: number) => {
-    const updatedBooths = [...sortedBooths];
-    updatedBooths[index].liked += 1;
-    updatedBooths.sort((a, b) => b.liked - a.liked);
-    // setSortedBooths(updatedBooths);
-  };
 
   return (
     <>
@@ -146,17 +138,27 @@ export default function BoothRanking() {
         <BoothWrapper>
           <BoothRankingCrown>부스 랭킹 👑</BoothRankingCrown>
           <LineDiv />
-          {sortedBooths.map((booth, index) => (
-            <BoothRank key={booth.id}>
-              <BoothItem booth={booth} index={index} />
-              <BoothHeartContainer>
-                <BoothHeart onClick={() => handleLikeClicked(index)}>
-                  <img src="Heart.svg" alt="" />
-                  <div>{formatter.format(booth.liked)}</div>
-                </BoothHeart>
-              </BoothHeartContainer>
-            </BoothRank>
-          ))}
+          {data === undefined
+            ? new Array(5).fill(1).map((_, i) => (
+              <SkeletonBoothRanking
+                key={i}
+              />
+            ))
+            : data?.booths.map((booth, index) => (
+              <BoothRank key={booth.id}>
+                <BoothItem
+                  booth={booth}
+                  index={index}
+                />
+
+                <BoothHeartContainer>
+                  <BoothHeart>
+                    <img src="Heart.svg" alt="" />
+                    <div>{formatter.format(booth.liked)}</div>
+                  </BoothHeart>
+                </BoothHeartContainer>
+              </BoothRank>
+            ))}
         </BoothWrapper>
       </BoothRankingContainer>
     </>

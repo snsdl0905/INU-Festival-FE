@@ -9,11 +9,5 @@ type Performs = {
 }
 
 export default function useFetchPerforms() {
-  const { data } = useFetch<Performs>(url);
-
-  if (!data) {
-    return [];
-  }
-
-  return data.performs;
+  return useFetch<Performs>(url);
 }

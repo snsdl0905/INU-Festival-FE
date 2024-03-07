@@ -12,18 +12,35 @@ const GlobalStyle = createGlobalStyle`
         font-family: 'Bubbly', sans-serif;
         background: ${(props) => props.theme.colors.background};
         color: ${(props) => props.theme.colors.text};
-        padding-bottom: 64px;
+        padding-bottom: 80px;
     }
 
     *,
     *::before,
     *::after {
         box-sizing: inherit;
+        
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    *::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
 
     :lang(ko) {
         h1, h2, h3 {
             word-break: keep-all;
+        }
+    }
+
+    @keyframes loading {
+        0% {
+            transform: translateX(0);
+        }
+        50%,
+        100% {
+            transform: translateX(460px);
         }
     }
 `;
