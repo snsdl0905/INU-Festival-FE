@@ -10,7 +10,6 @@ const Content = styled.header`
     padding-block: 1rem;
   }
   h1 {
-    height: 40px;
     text-align: center;
     font-size: 16px;
     font-style: normal;
@@ -18,7 +17,6 @@ const Content = styled.header`
     line-height: 15px; /* 93.75% */
     letter-spacing: -0.48px;
     margin-top: 19px;
-    
   }
   ul {
       display: flex;
