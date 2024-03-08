@@ -9,7 +9,7 @@ import SkeletonFestivalSentence from '../Loading/SkeletonFestivalSentenceItem';
 const FestivalSentenceBox = styled.div``;
 
 const SentenceBox = styled.ul`
-  margin-top: 6rem;
+  margin-top: 75px;
   background-color: #f8f8fa;
   width: 100%;
   height: 61px;

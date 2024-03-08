@@ -8,8 +8,8 @@ import 'swiper/components/pagination/pagination.min.css';
 import Skeleton from '../Loading/Skeleton';
 
 const WordContainer = styled.div`
-  display:flex;
-  margin-top:12px;
+  display: flex;
+  margin-top: 16px;
 `;
 
 const WordContent = styled.div`

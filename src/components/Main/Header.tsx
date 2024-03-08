@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     max-width: 600px;
-    height: 69px;
+    /* height: 69px; */
+    padding: 11px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: .7em;
-    margin-bottom: .7em;
+    margin: 5px 0;
 `;
 
 const Title = styled.div`
@@ -39,7 +39,7 @@ export default function Header() {
   return (
     <Container>
       <Title>
-        <img src="UNION/water_mark.png" alt="로고" />
+        <img src="UNION/svg/water_mark_digital.svg" alt="로고" />
       </Title>
       <PreButton to="/notices">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">

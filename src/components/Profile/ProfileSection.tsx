@@ -1,25 +1,22 @@
 import styled from 'styled-components';
-
 import { useNavigate } from 'react-router-dom';
 
 import useAccessToken from '../../hooks/useAccessToken';
-
 import UserInfo from './UserInfo';
-
 import { apiService } from '../../services/ApiService';
 
 const ProfileWrapper = styled.div`
-display:flex;
-width: 100%;
-height: 17.9em;
-border-radius:0px 0px 20px 20px;
-background-color: #EBF2FF;
-padding-top:5em;
-padding-right:1.25em;
-padding-left:1.25em;
-box-shadow: 0px 3px 13px 0px rgba(1, 71, 200, 0.10);
-justify-content : space-around;
-position: relative;
+  display:flex;
+  width: 100%;
+  height: 242px;
+  border-radius:0px 0px 20px 20px;
+  background-color: #EBF2FF;
+  padding-top: 52px;
+  padding-right: 1.6rem;
+  padding-left: 1.6rem;
+  box-shadow: 0px 3px 13px 0px rgba(1, 71, 200, 0.10);
+  justify-content : space-around;
+  position: relative;
 `;
 
 const ProfileContainer = styled.div`
@@ -27,7 +24,6 @@ const ProfileContainer = styled.div`
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  gap: 24px;
 `;
 
 const ProfileTitle = styled.div`
@@ -45,19 +41,17 @@ const ProfileTitle = styled.div`
 `;
 
 const UserIcon = styled.img`
-width: 48%;
-height: auto;
-margin-bottom:32px;
-flex-shrink: 1;
+  width: 48%;
+  height: auto;
+  margin-bottom:32px;
+  flex-shrink: 1;
 `;
 
 const LoginBtn = styled.button`
+  width: max-content;
   display: flex;
-  height: 48px;
   justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
+  padding: 15px 60px;
   border-radius: 12px;
   border:none;
   background: #0147C8;
@@ -67,22 +61,7 @@ const LoginBtn = styled.button`
   font-weight: 800;
   line-height: normal;
   letter-spacing: -0.6px;
-  cursor:pointer;
-`;
-
-const LogoutBtn = styled.button`
-  height: 48px;
-  align-self: stretch;
-  border-radius: 12px;
-  border:none;
-  background: #0147C8;
-  color: #FFF;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  letter-spacing: -0.6px;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 export default function ProfileSection() {
@@ -114,7 +93,7 @@ export default function ProfileSection() {
         </ProfileTitle>
         <UserInfo isLoggedIn={!!accessToken} />
         {accessToken ? (
-          <LogoutBtn onClick={handleClickLogout}>로그아웃</LogoutBtn>
+          <LoginBtn onClick={handleClickLogout}>로그아웃</LoginBtn>
         ) : (
           <LoginBtn onClick={handleClickLogIn}>로그인</LoginBtn>
         )}

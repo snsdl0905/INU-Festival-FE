@@ -30,15 +30,15 @@ const BoothRankingContainer = styled.div`
   display: flex;
   width: 100%;
   height: 492px;
-  padding: 24px 22px;
+  padding: 24px 20px;
   align-items: flex-start;
   gap: 10px;
   flex-shrink: 0;
   border-radius: 12px;
   background: #FFF;
   box-shadow: 0px 2px 20px 0px rgba(0, 71, 201, 0.15);
-  margin-top: 36px;
-  margin-bottom: 36px;
+  margin-top: 28px;
+  margin-bottom: 40px;
 `;
 
 const BoothWrapper = styled.div`
