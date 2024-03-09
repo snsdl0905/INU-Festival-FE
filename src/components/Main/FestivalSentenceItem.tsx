@@ -71,7 +71,7 @@ export default function FestivalSentenceItem({ sentence }: SententenceItemProps)
   return (
     <SentenceItemBox key={sentence.id}>
       <BallonBox>
-        <img src={sentence.emoji} alt="말풍선" />
+        <img src={`${sentence.emoji}.svg`} alt="말풍선" />
       </BallonBox>
       <ContentBox>
         <span>{sentence.snsId}</span>
