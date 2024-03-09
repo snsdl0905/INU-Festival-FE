@@ -12,11 +12,11 @@ const Container = styled.div`
     flex-shrink: 0;
     border-radius: 12px;
     background: #F3F3F5;
-    border:none;
+    border: none;
+    padding-left: 15px;
     
     &::placeholder {
-      padding-left:10px;
-      color:#B9B9B9;
+      color: #B9B9B9;
     }
     &:focus{
       background: #EBF2FF;

@@ -11,9 +11,11 @@ background-color: #EBF2FF;
 margin-top: 2.3rem;
 padding: 2rem;
 border-radius: 10px;
-font-weight: 350;
-line-height: 2.5rem; /* 160% */
-letter-spacing: -0.04348rem;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: 24px;
+letter-spacing: -0.6px;
 white-space: pre-line;
 `;
 

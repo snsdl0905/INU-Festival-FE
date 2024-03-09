@@ -18,8 +18,11 @@ const Content = styled.div`
 
   p {
     color: white;
-    font-weight: bold;
-    font-size: 2.2rem;
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.42px;
   }
 `;
 

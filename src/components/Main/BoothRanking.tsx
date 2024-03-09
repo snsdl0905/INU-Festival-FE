@@ -8,23 +8,20 @@ import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
-  color: #000;
-  font-family: SF Pro;
   font-size: 21px;
   font-style: normal;
-  font-weight: 590;
+  font-weight: 800;
   line-height: 30px; /* 142.857% */
   letter-spacing: -0.42px;
-  margin-top:36px;
-  margin-bottom:16px;
+  margin-top: 36px;
+  margin-bottom: 16px;
 `;
 
 const UpdateDate = styled.span`
   color: #A9A9A9;
-  font-family: SF Pro;
   font-size: 15px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 15px; /* 100% */
   letter-spacing: -0.45px;
 `;
@@ -53,10 +50,9 @@ const BoothWrapper = styled.div`
 `;
 const BoothRankingCrown = styled.div`
   color: #0047C9;
-  font-family: SF Pro;
   font-size: 20px;
   font-style: normal;
-  font-weight: 590;
+  font-weight: 800;
   line-height: normal;
   letter-spacing: -0.4px;
 `;
@@ -88,32 +84,30 @@ const BoothHeartContainer = styled.div`
 `;
 
 const BoothHeart = styled.div`
-  width: 6.8rem; /* Adjusted width using rem */
-  height: 3rem; /* Adjusted height using rem */
+  width: 6.8rem;
+  height: 3rem;
   flex-shrink: 0;
-  border-radius: 1.3125rem; /* Adjusted border-radius using rem */
+  border-radius: 999px;
   background: #EBF2FF;
   display: flex;
-  align-items:center;
-  gap:0.5rem;
+  align-items: center;
+  gap: 0.5rem;
   padding-left: 0.95rem;
   cursor: pointer;
 
   img {
-    width:1.4rem; /* Adjusted width using rem */
-    height: 3rem; /* Adjusted height using rem */
-    flex-shrink: 0;
+    width: 12px;
+    height: 10px;
   }
 
   div {
-    font-family: SF Pro;
-    font-size:1.3rem; /* Adjusted font-size using rem */
-    font-weight: 590;
-    line-height: 1.1875rem; /* Adjusted line-height using rem */
-    letter-spacing: 0.05em;
     text-align: left;
-    color: rgba(0, 71, 201, 1);
-    width: 1.1875rem; /* Adjusted width using rem */
+    color: #0047C9;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: -0.26px;
   }
 `;
 

@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.6rem; // 1.6rem 은 16px 을 가리킨다.
         font-family: 'SF Pro Display', sans-serif;
         font-family: 'Bubbly', sans-serif;
+        font-family: 'SUIT', sans-serif;
         background: ${(props) => props.theme.colors.background};
         color: ${(props) => props.theme.colors.text};
         padding-bottom: 80px;

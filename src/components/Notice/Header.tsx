@@ -16,8 +16,11 @@ box-shadow: ${(props) => (props.$shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba
 
 span{
   margin: 0 auto;
-  font-weight: 700;
-  letter-spacing: -0.04638rem;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: -0.64px;
   flex-direction: column;
   padding-right: 11px;
 }
