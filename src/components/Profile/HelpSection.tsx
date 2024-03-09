@@ -46,6 +46,10 @@ const Helplink = styled.button`
   cursor: pointer;
 `;
 
+const CopyTextArea = styled.textarea`
+  opacity: 0;
+`;
+
 export default function HelpSection() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
@@ -58,16 +62,32 @@ export default function HelpSection() {
     };
 
     if (navigator.share) {
-      navigator.share(shareObject).then(() => {
-        alert('공유하기 성공');
-      })
-        .catch((error) => {
-          alert('에러가 발생했습니다.');
-        });
+      try {
+        navigator.share(shareObject);
+      } catch {
+        console.log('share 실패');
+      }
+    } else if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(url);
+        setToastText('클립보드에 복사되었습니다.');
+        setToast(true);
+      } catch {
+        console.log('clipboard 실패');
+      }
     } else {
-      await navigator.clipboard.writeText(url);
-      setToastText('클립보드에 복사되었습니다.');
-      setToast(true);
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        setToastText('복사되었습니다.');
+        setToast(true);
+      } catch {
+        alert('복사에 실패했습니다.');
+      }
     }
   };
 
@@ -95,6 +115,7 @@ export default function HelpSection() {
       <HelpElement onClick={() => handleShare('httplocalhost:8080/')}>
         <HelpIcon src="Link.svg" />
         <Helplink>링크 공유하기</Helplink>
+        <CopyTextArea id="copyTextArea" readOnly value="httplocalhost:8080/" />
         {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
     </HelpWrapper>
