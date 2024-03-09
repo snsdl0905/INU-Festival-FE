@@ -5,17 +5,17 @@ import styled from 'styled-components';
 import Toast from './Toast';
 
 const HelpWrapper = styled.ul`
-width: 100%;
-padding-top:20px;
-list-style:none;
+  width: 100%;
+  padding-top: 32px;
+  list-style: none;
 `;
 const HelpTitle = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 800;
   line-height: normal;
-  letter-spacing: -0.64px;
-  margin-bottom: 24px;
+  letter-spacing: -0.8px;
+  margin-bottom: 23px;
 `;
 
 const HelpElement = styled.li`
