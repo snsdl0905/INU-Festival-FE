@@ -61,22 +61,14 @@ export default function HelpSection() {
       url: window.location.href,
     };
 
-    if (navigator.share) {
-      try {
-        navigator.share(shareObject);
-      } catch {
-        console.log('share 실패');
-      }
-    } else if (navigator.clipboard) {
-      try {
+    try {
+      if (navigator.share) {
+        await navigator.share(shareObject);
+      } else if (navigator.clipboard) {
         await navigator.clipboard.writeText(url);
         setToastText('클립보드에 복사되었습니다.');
         setToast(true);
-      } catch {
-        console.log('clipboard 실패');
-      }
-    } else {
-      try {
+      } else {
         const textArea = document.createElement('textarea');
         textArea.value = url;
         document.body.appendChild(textArea);
@@ -85,9 +77,9 @@ export default function HelpSection() {
         document.body.removeChild(textArea);
         setToastText('복사되었습니다.');
         setToast(true);
-      } catch {
-        alert('복사에 실패했습니다.');
       }
+    } catch {
+      alert('복사에 실패했습니다.');
     }
   };
 
