@@ -9,6 +9,7 @@ import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooth from '../../hooks/useFetchBooth';
 import boothImg from '../../types/boothImg';
+import Toast from '../Profile/Toast';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -54,7 +55,6 @@ const MapInfoTop = styled.div`
 
 const MapButtonBox = styled.div`
   display: flex;
-  color: #BBC7D3;
   align-items: center;
   width: max-content;
   justify-content: space-between;
@@ -65,15 +65,19 @@ const MapButtonBox = styled.div`
   line-height: normal;
   letter-spacing: -0.6px;
   
-  div{
+  button{
     padding: 0 4rem;
     padding-top: 30px;
     text-align: center;
     margin: 0 3rem;
     padding-bottom: 5px;
+    border: none;
+    background-color: #FFFFFF;
+    color: #BBC7D3;
+    cursor: pointer;
   }
   
-  div > p {
+  button > p {
     margin: 1.5rem 0;
   }
 `;
@@ -184,6 +188,39 @@ export default function DetailedMapPage() {
     const maxPosition = boothImgs.length * -100;
     setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
   };
+
+  const [toast, setToast] = useState(false);
+  const [toastText, setToastText] = useState('');
+
+  const handleShare = async (url: string) => {
+    const shareObject: ShareData = {
+      title: '희희낙락',
+      text: '즐거운 축제의 시작, 희희낙락과 함께하세요!',
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareObject);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(url);
+        setToastText('클립보드에 복사되었습니다.');
+        setToast(true);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = url;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        setToastText('복사되었습니다.');
+        setToast(true);
+      }
+    } catch {
+      alert('복사에 실패했습니다.');
+    }
+  };
+
   return (
     <>
       <Header shadow="false"> </Header>
@@ -219,19 +256,20 @@ export default function DetailedMapPage() {
         </button>
       </MapInfoTop>
       <MapButtonBox>
-        <div>
+        <button type="button" onClick={() => handleShare(window.location.href)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
             <path d="M20.0487 15.0782C18.8702 15.0782 17.799 15.5375 17.0026 16.2864L9.38293 12.4089C9.39705 12.2627 9.40458 12.1146 9.40458 11.9646C9.40458 11.7911 9.39328 11.6213 9.37446 11.4534L16.9038 7.62114C17.7096 8.4257 18.8203 8.92372 20.0477 8.92372C22.5064 8.92372 24.5 6.926 24.5 4.46233C24.5 1.99866 22.5073 0 20.0487 0C17.59 0 15.5964 1.99772 15.5964 4.46139C15.5964 4.61607 15.6039 4.76793 15.6199 4.91884L8.05854 8.76715C7.25656 7.98428 6.16184 7.5023 4.95417 7.5023C2.49365 7.5023 0.5 9.50002 0.5 11.9637C0.5 14.4274 2.49365 16.4251 4.95229 16.4251C6.18443 16.4251 7.29892 15.9233 8.1056 15.1131L15.6359 18.9453C15.6105 19.1396 15.5954 19.3368 15.5954 19.5386C15.5954 22.0023 17.5891 24 20.0477 24C22.5064 24 24.5 22.0023 24.5 19.5386C24.5 17.0749 22.5064 15.0772 20.0477 15.0772L20.0487 15.0782Z" fill="#BBC7D3" />
           </svg>
           <p>공유하기</p>
-        </div>
-        <div>
+        </button>
+        <button type="button">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
             <path d="M21.8359 1.84349C19.1022 -0.805334 14.7424 -0.525083 12.0966 2.2051C12.035 2.26839 11.9296 2.26839 11.8592 2.2051C9.20466 -0.525083 4.84482 -0.805334 2.11992 1.84349C-0.604974 4.49231 -0.754403 9.15714 1.97049 11.9596L9.89028 20.105C11.0506 21.2983 12.9228 21.2983 14.0831 20.105L21.6777 12.2941L21.9941 11.9687C24.719 9.16618 24.6662 4.59176 21.8447 1.85253L21.8359 1.84349Z" fill="#BBC7D3" />
           </svg>
           <p>좋아요</p>
-        </div>
+        </button>
       </MapButtonBox>
+      {toast && <Toast setToast={setToast} text={toastText} />}
       <InfoWithIcon small="false" booth={booth} selectedDay="월" />
       <MapInfoBottom>
         <button
