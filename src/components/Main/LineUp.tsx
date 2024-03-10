@@ -11,6 +11,7 @@ const Container = styled.div`
 height: 21rem;
 position: relative;
 padding-inline: 1.6rem;
+margin-top: 6px;
 margin-bottom: 20px;
 
 img {

@@ -6,6 +6,7 @@ const UserInfoWrapper = styled.div`
   display: flex;
   margin-top: 16px;
   justify-content: space-between;
+  margin-bottom: 24px;
 `;
 const UserSection = styled.div`
   letter-spacing: -0.6px;

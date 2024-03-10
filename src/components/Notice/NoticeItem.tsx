@@ -7,8 +7,7 @@ import NoticeBottom from './NoticeBottom';
 import NoticeTitle from './NoticeTitle';
 
 const NoticeBox = styled.div`
-padding: 2.3rem;
-padding-inline: ${(props) => props.theme.sizes.contentPadding};
+  margin-bottom: 32px;
 `;
 
 const NoticeTop = styled.div`

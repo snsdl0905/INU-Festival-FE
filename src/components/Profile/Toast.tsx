@@ -10,12 +10,13 @@ const ToastBox = styled.div`
     width: 100%;
     max-width: 600px;
     position: fixed;
-    bottom: 150px;
+    bottom: 120px;
     display: flex;
-    justify-content: center;
+
     p{
-        padding: 0.3rem 0.6rem;
-        color: #a3afbc;
+      margin: 0 auto;
+      color: #a3afbc;
+      padding-right: 16px;
     }
 `;
 

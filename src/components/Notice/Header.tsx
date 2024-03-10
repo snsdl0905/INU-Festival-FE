@@ -11,9 +11,9 @@ const HeaderContainer = styled.div <{ $shadow: string }>`
 display: flex;
 align-items: center;
 padding-inline: ${(props) => props.theme.sizes.contentPadding};
-padding-block: 1.4em;
+padding-block: 12px;
 box-shadow: ${(props) => (props.$shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
-
+margin-top: 8px;
 span{
   margin: 0 auto;
   font-size: 16px;
