@@ -43,7 +43,7 @@ export default function Word() {
         slidesPerView={6}
         allowTouchMove
         freeMode
-        slidesOffsetAfter={50}
+        slidesOffsetAfter={65}
         freeModeMinimumVelocity={0.01}
       >
         {data === undefined ? (
