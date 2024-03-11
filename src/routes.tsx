@@ -8,6 +8,7 @@ import TimeTablePage from './pages/TitmeTablePage';
 import NoticePage from './pages/NoticePage';
 import DetailedMapPage from './components/MapDetail/DetailedMapPage';
 import LoginPage from './pages/LoginPage';
+import ErrorPage from './pages/ErrorPage';
 
 const routes = [
   {
@@ -21,6 +22,7 @@ const routes = [
       { path: '/notices', element: <NoticePage /> },
       { path: '/map/:id', element: <DetailedMapPage /> },
       { path: '/login', element: <LoginPage /> },
+      { path: '/*', element: <ErrorPage /> },
     ],
   },
 ];
