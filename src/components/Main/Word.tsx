@@ -39,7 +39,7 @@ export default function Word() {
   return (
     <WordContainer>
       <Swiper
-        spaceBetween={70}
+        spaceBetween={65}
         slidesPerView={6}
         allowTouchMove
         freeMode
