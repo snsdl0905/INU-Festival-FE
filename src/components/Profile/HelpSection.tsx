@@ -20,9 +20,9 @@ const HelpTitle = styled.div`
 
 const HelpElement = styled.li`
 width: 100%;
-height: 19px;
+height: 23px;
 flex-shrink: 0;
-margin-bottom:32px;
+margin-bottom:27px;
 display:flex;
 cursor: pointer;
 `;
