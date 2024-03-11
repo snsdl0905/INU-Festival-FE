@@ -47,7 +47,7 @@ export default function Lineups({ lineups }: LineupsProps) {
       <h1>Lineup</h1>
       <h3>오늘의 신나는 라인업!</h3>
       <Swiper
-        spaceBetween={100}
+        spaceBetween={115}
         slidesPerView={perview}
         speed={300}
         pagination={{ clickable: true }}

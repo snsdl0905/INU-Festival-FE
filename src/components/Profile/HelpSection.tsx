@@ -54,23 +54,24 @@ export default function HelpSection() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
 
-  const handleShare = async (url: string) => {
+  const handleShare = async () => {
+    const currentUrl = window.location.host;
     const shareObject: ShareData = {
       title: '희희낙락',
       text: '즐거운 축제의 시작, 희희낙락과 함께하세요!',
-      url: window.location.href,
+      url: currentUrl,
     };
 
     try {
       if (navigator.share) {
         await navigator.share(shareObject);
       } else if (navigator.clipboard) {
-        await navigator.clipboard.writeText(url);
+        await navigator.clipboard.writeText(currentUrl);
         setToastText('클립보드에 복사되었습니다.');
         setToast(true);
       } else {
         const textArea = document.createElement('textarea');
-        textArea.value = url;
+        textArea.value = currentUrl;
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('copy');
@@ -104,7 +105,7 @@ export default function HelpSection() {
         <HelpIcon src="Contact.svg" />
         <Helplink>문의하기</Helplink>
       </HelpElement>
-      <HelpElement onClick={() => handleShare('httplocalhost:8080/')}>
+      <HelpElement onClick={() => handleShare()}>
         <HelpIcon src="Link.svg" />
         <Helplink>링크 공유하기</Helplink>
         <CopyTextArea id="copyTextArea" readOnly value="httplocalhost:8080/" />
