@@ -64,6 +64,7 @@ const BottomSheetFilter = styled.div`
     border-bottom: 1px dashed #CEDCEA;
 
     button {
+      color: #000;
       height: 43px;
       border: 0px;
       border-radius: 999px;
