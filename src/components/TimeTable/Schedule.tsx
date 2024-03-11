@@ -17,24 +17,14 @@ const Section = styled.div`
   }
 `;
 
-const Container = styled.div`
-    display: flex;
-`;
-
-const Line = styled.div`
-    border: dotted 3px #CEDCEA;
-    border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 25px;
-`;
-
 const Item = styled.div`
     background-color: #EBF2FF;
-    margin-bottom: 24px;
     padding: 20px;
+    margin-bottom: 24px;
     border-radius: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
+
 
     span{
       font-size: 15px;
@@ -131,8 +121,7 @@ export default function Schedule({ performs }: ScheduleProps) {
   return (
     <Section>
       <h1>전체 일정을 확인해보세요!</h1>
-      <Container>
-        <Line />
+      <div>
         <div>
           {performs.map((perform) => {
             const isActive = perform.id === id;
@@ -158,7 +147,7 @@ export default function Schedule({ performs }: ScheduleProps) {
             );
           })}
         </div>
-      </Container>
+      </div>
     </Section>
   );
 }
