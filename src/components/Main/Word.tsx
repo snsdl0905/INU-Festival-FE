@@ -8,8 +8,8 @@ import 'swiper/components/pagination/pagination.min.css';
 import Skeleton from '../Loading/Skeleton';
 
 const WordContainer = styled.div`
-  display:flex;
-  margin-top:12px;
+  display: flex;
+  margin-top: 16px;
 `;
 
 const WordContent = styled.div`
@@ -39,10 +39,11 @@ export default function Word() {
   return (
     <WordContainer>
       <Swiper
-        spaceBetween={50}
+        spaceBetween={70}
         slidesPerView={6}
         allowTouchMove
         freeMode
+        slidesOffsetAfter={50}
         freeModeMinimumVelocity={0.01}
       >
         {data === undefined ? (

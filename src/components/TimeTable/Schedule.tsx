@@ -12,8 +12,8 @@ const Section = styled.div`
     font-weight: 800;
     line-height: 28px;
     letter-spacing: -0.84px;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 41px;
+    margin-bottom: 24px;
   }
 `;
 

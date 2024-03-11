@@ -5,17 +5,17 @@ import styled from 'styled-components';
 import Toast from './Toast';
 
 const HelpWrapper = styled.ul`
-width: 100%;
-padding-top:20px;
-list-style:none;
+  width: 100%;
+  padding-top: 32px;
+  list-style: none;
 `;
 const HelpTitle = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 800;
   line-height: normal;
-  letter-spacing: -0.64px;
-  margin-bottom: 24px;
+  letter-spacing: -0.8px;
+  margin-bottom: 23px;
 `;
 
 const HelpElement = styled.li`
@@ -35,6 +35,7 @@ margin-right: 12px;
 `;
 
 const Helplink = styled.button`
+  color: #000;
   font-family: SUIT, sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -46,28 +47,41 @@ const Helplink = styled.button`
   cursor: pointer;
 `;
 
+const CopyTextArea = styled.textarea`
+  opacity: 0;
+`;
+
 export default function HelpSection() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
 
-  const handleShare = async (url: string) => {
+  const handleShare = async () => {
+    const currentUrl = window.location.host;
     const shareObject: ShareData = {
       title: '희희낙락',
       text: '즐거운 축제의 시작, 희희낙락과 함께하세요!',
-      url: window.location.href,
+      url: currentUrl,
     };
 
-    if (navigator.share) {
-      navigator.share(shareObject).then(() => {
-        alert('공유하기 성공');
-      })
-        .catch((error) => {
-          alert('에러가 발생했습니다.');
-        });
-    } else {
-      await navigator.clipboard.writeText(url);
-      setToastText('클립보드에 복사되었습니다.');
-      setToast(true);
+    try {
+      if (navigator.share) {
+        await navigator.share(shareObject);
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(currentUrl);
+        setToastText('클립보드에 복사되었습니다.');
+        setToast(true);
+      } else {
+        const textArea = document.createElement('textarea');
+        textArea.value = currentUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        setToastText('복사되었습니다.');
+        setToast(true);
+      }
+    } catch {
+      alert('복사에 실패했습니다.');
     }
   };
 
@@ -92,9 +106,10 @@ export default function HelpSection() {
         <HelpIcon src="Contact.svg" />
         <Helplink>문의하기</Helplink>
       </HelpElement>
-      <HelpElement onClick={() => handleShare('httplocalhost:8080/')}>
+      <HelpElement onClick={() => handleShare()}>
         <HelpIcon src="Link.svg" />
         <Helplink>링크 공유하기</Helplink>
+        <CopyTextArea id="copyTextArea" readOnly value="httplocalhost:8080/" />
         {toast && <Toast setToast={setToast} text={toastText} />}
       </HelpElement>
     </HelpWrapper>

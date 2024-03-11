@@ -14,7 +14,7 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 1;  
 
   p {
     color: white;
@@ -23,6 +23,7 @@ const Content = styled.div`
     font-weight: 800;
     line-height: normal;
     letter-spacing: -0.42px;
+    padding-top: 19px;
   }
 `;
 
@@ -60,7 +61,7 @@ export default function Lineups() {
       <BannerContainer onClick={handleClick}>
         <LineUp
           perView={perview}
-          spaceBetween={10}
+          spaceBetween={25}
         />
       </BannerContainer>
     </>
