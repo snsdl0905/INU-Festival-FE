@@ -48,16 +48,17 @@ const BtnWrapper = styled.div`
   margin-top:50px;
 `;
 
-const Details = styled.div`
+const Details = styled.span`
   color: #CFCFCF;
   text-align: center;
   font-family: "SF Pro";
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
-  line-height: 19px; /* 146.154% */
+  line-height: 19px; 
   letter-spacing: -0.52px;
   margin-top:60px;
+  white-space: pre-line;
 `;
 
 export default function LoginForm() {
@@ -113,14 +114,10 @@ export default function LoginForm() {
         </BtnWrapper>
       </form>
       <Details>
-        로그인 정보는 포탈과 동일합니다.
-        <br />
-        (학생은 학번, 교원은 교번, 직원은 사번입니다.)
-        <br />
+        {`로그인 정보는 포탈과 동일합니다
+        학생은 학번, 교원은 교번, 직원은 사번입니다.
         아이디 찾기 / 비밀번호 찾기는
-        <br />
-        PC에서 포탈을 이용하시기 바랍니다.
-        <br />
+        PC에서 포탈을 이용하시기 바랍니다.`}
       </Details>
     </Container>
   );
