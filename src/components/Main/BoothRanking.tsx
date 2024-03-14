@@ -6,12 +6,14 @@ import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
 
 import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 
+import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+
 const BoothRankingTitle = styled.div`
   width: 100%;
   font-size: 21px;
   font-style: normal;
   font-weight: 800;
-  line-height: 30px; /* 142.857% */
+  line-height: 30px; 
   letter-spacing: -0.42px;
   margin-top: 36px;
   margin-bottom: 16px;
@@ -22,7 +24,7 @@ const UpdateDate = styled.span`
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
-  line-height: 15px; /* 100% */
+  line-height: 15px;
   letter-spacing: -0.45px;
 `;
 
@@ -114,7 +116,7 @@ const BoothHeart = styled.div`
 export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
 
-  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
+  const formatter = getCompactNumberFormatter();
 
   return (
     <>
