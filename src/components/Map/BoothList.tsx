@@ -97,7 +97,6 @@ export default function BoothList({
           id, name, category, liked, boothImgs,
         } = booth;
 
-        // console.log(boothImgs);
         return (
           <PreButton
             to={`/map/${id}`}
