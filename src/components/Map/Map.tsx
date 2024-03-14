@@ -5,7 +5,6 @@ import MapLayer from './MapLayer';
 import BottomSheet from './BannerContent';
 import Booth from '../../types/Booth';
 import useFetchBooths from '../../hooks/useFetchBooths';
-import BoothBanner from './BoothBanner';
 
 const Container = styled.div`
     max-width: 600px;
@@ -39,7 +38,6 @@ export default function Map() {
         selectedCategory={selectedCategory}
         booths={selectedBooth || filtered}
       />
-      <BoothBanner />
     </Container>
   );
 }
