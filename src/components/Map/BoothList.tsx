@@ -5,6 +5,8 @@ import { styled } from 'styled-components';
 import InfoWithIcon from '../MapDetail/InfoWithIcon';
 import Booth from '../../types/Booth';
 
+import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+
 const Container = styled.div`
   overflow-y: scroll;
   width: 100%;
@@ -87,7 +89,8 @@ export default function BoothList({
   selectedDay,
 }: BoothListProps) {
   if (!booths) { return []; }
-  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
+
+  const formatter = getCompactNumberFormatter();
 
   return (
     <Container>
