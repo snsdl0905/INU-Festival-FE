@@ -59,5 +59,8 @@
         "tsyringe": "^4.8.0",
         "usehooks-ts": "^2.9.1",
         "usestore-ts": "^0.0.3"
-    }
+    },
+    "@parcel/resolver-default": {
+        "packageExports": true
+      }
 }
