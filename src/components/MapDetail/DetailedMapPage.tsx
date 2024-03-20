@@ -10,6 +10,7 @@ import InfoWithIcon from './InfoWithIcon';
 import useFetchBooth from '../../hooks/useFetchBooth';
 import boothImg from '../../types/boothImg';
 import Toast from '../Profile/Toast';
+import useLikeStore from '../../hooks/useLikeStore';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -106,22 +107,16 @@ const MapInfoBottom = styled.div`
 `;
 
 const MapImageContainer = styled.div<{translateImg: string}>`
-  /* padding: 0 2rem ; */
   width: 800vw;
   height: 90vw;
   background-color: #D1D9F5;
   transform: translateX(${(props) => props.translateImg});
-  /* transform: translate(-120vw); */
-    /* padding-top: 10vw; */
   `;
 
 const ImageBox = styled.div`
   img{
-    /* width: 70vw; */
     width: 100vw;
     float: left;
-    /* border-radius: 15px; */
-    /* margin: 0 15vw; */
   }
 `;
 
@@ -132,18 +127,17 @@ const Carousel = styled.div`
 
   button{
     border: none;
-    /* background-color: ; */
   }
 `;
 
 const ButtonContainer = styled.div`
   position: absolute;
-  transform: translateY(-50%); /* 버튼을 세로 중앙에 정확히 배치하기 위해 translateY(-50%); 설정 */
+  transform: translateY(-50%); 
   display: flex;
   justify-content: space-between;
   width: 100%;
   padding: 0 3vw;
-  top: 50%; /* 부모 요소의 세로 중앙에 배치 */
+  top: 50%;
 `;
 
 const Button = styled.button`
@@ -156,6 +150,7 @@ export default function DetailedMapPage() {
   const { id } = useParams<{ id: string }>();
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
   const booth = useFetchBooth(id);
+  const [, store] = useLikeStore();
 
   const [translateImg, setTranslateImg] = useState<string>('0');
 
@@ -192,6 +187,9 @@ export default function DetailedMapPage() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
 
+  const handleBoothLike = (value: string) => {
+    store.increase(value);
+  };
   const handleShare = async (url: string) => {
     const shareObject: ShareData = {
       title: '희희낙락',
@@ -262,7 +260,7 @@ export default function DetailedMapPage() {
           </svg>
           <p>공유하기</p>
         </button>
-        <button type="button">
+        <button type="button" onClick={() => handleBoothLike(id)}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
             <path d="M21.8359 1.84349C19.1022 -0.805334 14.7424 -0.525083 12.0966 2.2051C12.035 2.26839 11.9296 2.26839 11.8592 2.2051C9.20466 -0.525083 4.84482 -0.805334 2.11992 1.84349C-0.604974 4.49231 -0.754403 9.15714 1.97049 11.9596L9.89028 20.105C11.0506 21.2983 12.9228 21.2983 14.0831 20.105L21.6777 12.2941L21.9941 11.9687C24.719 9.16618 24.6662 4.59176 21.8447 1.85253L21.8359 1.84349Z" fill="#BBC7D3" />
           </svg>

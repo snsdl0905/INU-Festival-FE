@@ -118,8 +118,8 @@ const BoothHeart = styled.div`
 export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
   const [, store] = useLikeStore();
-
   const formatter = getCompactNumberFormatter();
+
   const handleBoothLike = (value: string) => {
     store.increase(value);
   };
@@ -154,7 +154,7 @@ export default function BoothRanking() {
                 />
 
                 <BoothHeartContainer>
-                  <BoothHeart onClick={handleBoothLike(booth.id)}>
+                  <BoothHeart onClick={() => handleBoothLike(booth.id)}>
                     <img src="Heart.svg" alt="" />
                     <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
