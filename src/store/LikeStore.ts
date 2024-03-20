@@ -9,14 +9,14 @@ import { apiService } from '../services/ApiService';
 
 // eslint-disable-next-line import/prefer-default-export
 export class LikeStore {
-  id = 0;
+  id = '';
 
   liked = 0;
 
   error = false;
 
   @Action()
-  increase(id : number) {
+  increase(id : string) {
     this.id = id;
     this.liked += 1;
   }
@@ -29,7 +29,7 @@ export class LikeStore {
   @Action()
   reset() {
     this.liked = 0;
-    this.id = 0;
+    this.id = '';
     this.error = false;
   }
 

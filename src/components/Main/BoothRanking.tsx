@@ -120,7 +120,7 @@ export default function BoothRanking() {
   const [, store] = useLikeStore();
 
   const formatter = getCompactNumberFormatter();
-  const handleBoothLike = (value: number) => {
+  const handleBoothLike = (value: string) => {
     store.increase(value);
   };
 
