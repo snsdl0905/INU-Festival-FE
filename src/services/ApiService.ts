@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://ec2-3-35-50-94.ap-northeast-2.compute.amazonaws.com:4000';
-
+const API_BASE_URL = process.env.REACT_APP_URL;
 export default class ApiService {
   private instance = axios.create({
     baseURL: API_BASE_URL,
