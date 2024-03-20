@@ -9,6 +9,7 @@ import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
 import useLikeStore from '../../hooks/useLikeStore';
+import { useEffect, useState } from 'react';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -119,8 +120,23 @@ export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
   const [, store] = useLikeStore();
   const formatter = getCompactNumberFormatter();
+  const [likeCounts, setLikeCounts] = useState<{ [key: string]: number }>({});
+
+  useEffect(() => {
+    if (data) {
+      const initialLikeCounts = {};
+      data.booths.forEach(booth => {
+        initialLikeCounts[booth.id] = booth.liked;
+      });
+      setLikeCounts(initialLikeCounts);
+    }
+  }, [data]);
 
   const handleBoothLike = (value: string) => {
+    setLikeCounts(prevCounts => ({
+      ...prevCounts,
+      [value]: prevCounts[value] + 1,
+    }));
     store.increase(value);
   };
 
@@ -156,7 +172,7 @@ export default function BoothRanking() {
                 <BoothHeartContainer>
                   <BoothHeart onClick={() => handleBoothLike(booth.id)}>
                     <img src="Heart.svg" alt="" />
-                    <div>{formatter.format(booth.liked)}</div>
+                    <div>{formatter.format(likeCounts[booth.id])}</div>
                   </BoothHeart>
                 </BoothHeartContainer>
               </BoothRank>

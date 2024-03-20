@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -151,6 +151,7 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
   const booth = useFetchBooth(id);
   const [, store] = useLikeStore();
+  
 
   const [translateImg, setTranslateImg] = useState<string>('0');
 
@@ -186,8 +187,16 @@ export default function DetailedMapPage() {
 
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
+  const [likeCount, setLikeCount] = useState<number>(0);
+  useEffect(() => {
+    if (booth && booth.liked) {
+      setLikeCount(booth.liked);
+    }
+  }, [booth]);
 
   const handleBoothLike = (value: string) => {
+    const newLikeCount = likeCount + 1;
+    setLikeCount(newLikeCount);
     store.increase(value);
   };
   const handleShare = async (url: string) => {
@@ -250,7 +259,7 @@ export default function DetailedMapPage() {
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
             <path d="M14.5572 1.64121C12.7348 0.00145993 9.82823 0.174949 8.06438 1.86506C8.02336 1.90424 7.95304 1.90424 7.90616 1.86506C6.13644 0.174949 3.22988 0.00145993 1.41328 1.64121C-0.403316 3.28096 -0.502936 6.1687 1.31366 7.90359L6.59352 12.946C7.36704 13.6847 8.61522 13.6847 9.38873 12.946L14.4518 8.11066L14.6627 7.90919C16.4793 6.1743 16.4442 3.34252 14.5631 1.6468L14.5572 1.64121Z" fill="#FF3D00" />
           </svg>
-          <span>{liked}</span>
+          <span>{likeCount}</span>
         </button>
       </MapInfoTop>
       <MapButtonBox>
