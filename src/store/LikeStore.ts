@@ -19,6 +19,7 @@ export class LikeStore {
   increase(id : string) {
     this.id = id;
     this.liked += 1;
+    console.log(id, this.liked);
   }
 
   @Action()
