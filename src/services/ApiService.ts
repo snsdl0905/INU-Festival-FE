@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://43.202.64.218.nip.io';
-
+const API_BASE_URL = process.env.REACT_APP_URL;
 export default class ApiService {
   private instance = axios.create({
     baseURL: API_BASE_URL,
