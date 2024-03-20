@@ -10,8 +10,4 @@ type Sentences = {
 
 export default function useFetchSentence() {
   return useFetch<Sentences>(url);
-
-  // if (!data) return [];
-  // return data;
-  // return data.shouts;
 }

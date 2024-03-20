@@ -39,10 +39,11 @@ export default function Word() {
   return (
     <WordContainer>
       <Swiper
-        spaceBetween={50}
+        spaceBetween={65}
         slidesPerView={6}
         allowTouchMove
         freeMode
+        slidesOffsetAfter={65}
         freeModeMinimumVelocity={0.01}
       >
         {data === undefined ? (
