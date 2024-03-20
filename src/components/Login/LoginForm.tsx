@@ -48,7 +48,7 @@ const BtnWrapper = styled.div`
   margin-top:50px;
 `;
 
-const Details = styled.span`
+const Details = styled.p`
   color: #CFCFCF;
   text-align: center;
   font-family: "SF Pro";

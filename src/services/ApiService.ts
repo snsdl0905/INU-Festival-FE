@@ -44,6 +44,10 @@ export default class ApiService {
     const { accessToken } = data;
     return accessToken;
   }
+
+  async fetchLike({ id, liked }):Promise<{ id: string; liked: number; }> {
+    return this.instance.post('/:id/liked', { liked }, { params: id });
+  }
 }
 
 export const apiService = new ApiService();
