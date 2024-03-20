@@ -3,17 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 type HeaderProps = {
-    children: React.ReactNode;
-    shadow: 'true' | 'false';
+  children: React.ReactNode;
+  shadow: 'true' | 'false';
 }
 
 const HeaderContainer = styled.div <{ $shadow: string }>`
-display: flex;
-align-items: center;
-padding-inline: ${(props) => props.theme.sizes.contentPadding};
-padding-block: 12px;
-box-shadow: ${(props) => (props.$shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
-margin-top: 8px;
+  position: fixed;
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  padding-inline: ${(props) => props.theme.sizes.contentPadding};
+  padding-block: 12px;
+  box-shadow: ${(props) => (props.$shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
+  padding-top: 8px;
+  background-color: #FFFFFF;
+
 span{
   margin: 0 auto;
   font-size: 16px;
