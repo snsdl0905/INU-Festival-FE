@@ -151,7 +151,6 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
   const booth = useFetchBooth(id);
   const [, store] = useLikeStore();
-  
 
   const [translateImg, setTranslateImg] = useState<string>('0');
 

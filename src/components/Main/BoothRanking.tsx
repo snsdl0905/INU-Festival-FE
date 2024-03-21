@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
-import BoothItem from './BoothItem';
+import { useEffect, useState } from 'react';
 
 import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
-
-import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
+import useLikeStore from '../../hooks/useLikeStore';
 
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
-import useLikeStore from '../../hooks/useLikeStore';
-import { useEffect, useState } from 'react';
+import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
+import BoothItem from './BoothItem';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -125,7 +124,7 @@ export default function BoothRanking() {
   useEffect(() => {
     if (data) {
       const initialLikeCounts = {};
-      data.booths.forEach(booth => {
+      data.booths.forEach((booth) => {
         initialLikeCounts[booth.id] = booth.liked;
       });
       setLikeCounts(initialLikeCounts);
@@ -133,7 +132,7 @@ export default function BoothRanking() {
   }, [data]);
 
   const handleBoothLike = (value: string) => {
-    setLikeCounts(prevCounts => ({
+    setLikeCounts((prevCounts) => ({
       ...prevCounts,
       [value]: prevCounts[value] + 1,
     }));
