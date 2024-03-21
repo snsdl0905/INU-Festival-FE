@@ -19,7 +19,6 @@ export class LoginFormStore {
   // eslint-disable-next-line class-methods-use-this
   get valid() {
     return true;
-    // return this.email.includes('@') && !!this.password;
   }
 
   @Action()
