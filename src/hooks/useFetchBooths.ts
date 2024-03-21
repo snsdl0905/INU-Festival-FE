@@ -9,7 +9,6 @@ type Booths = {
 
 export default function useFetchBooths() {
   const { data } = useFetch<Booths>(url);
-  console.log(data);
   if (!data) {
     return [];
   }

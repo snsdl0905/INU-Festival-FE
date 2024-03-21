@@ -5,11 +5,12 @@ import { styled } from 'styled-components';
 import InfoWithIcon from '../MapDetail/InfoWithIcon';
 import Booth from '../../types/Booth';
 
+import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+
 const Container = styled.div`
   overflow-y: scroll;
   width: 100%;
   height: 100%;
-  /* margin-bottom: 100px; */
 `;
 
 const PreButton = styled(NavLink)`
@@ -88,7 +89,8 @@ export default function BoothList({
   selectedDay,
 }: BoothListProps) {
   if (!booths) { return []; }
-  const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
+
+  const formatter = getCompactNumberFormatter();
 
   return (
     <Container>
@@ -97,7 +99,6 @@ export default function BoothList({
           id, name, category, liked, boothImgs,
         } = booth;
 
-        // console.log(boothImgs);
         return (
           <PreButton
             to={`/map/${id}`}
