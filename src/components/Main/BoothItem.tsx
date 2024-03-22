@@ -74,7 +74,7 @@ export default function BoothItem({ booth, index }:BoothItemProps) {
 
   return (
     <BoothList onClick={() => handleClick(booth.id)}>
-      <Booth key={index}>
+      <Booth>
         <BoothDetail>
           <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
           <BoothImg src="BoothDefault.png" alt="부스이미지" />

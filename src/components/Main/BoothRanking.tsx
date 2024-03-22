@@ -11,6 +11,8 @@ import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 import BoothItem from './BoothItem';
 import { useNavigate } from 'react-router';
 
+import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+
 const BoothRankingTitle = styled.div`
   width: 100%;
   font-size: 21px;
