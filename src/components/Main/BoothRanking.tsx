@@ -9,6 +9,7 @@ import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
 import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 import BoothItem from './BoothItem';
+import { useNavigate } from 'react-router';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -117,27 +118,12 @@ const BoothHeart = styled.div`
 
 export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
-  const [, store] = useLikeStore();
   const formatter = getCompactNumberFormatter();
-  const [likeCounts, setLikeCounts] = useState<{ [key: string]: number }>({});
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (data) {
-      const initialLikeCounts = {};
-      data.booths.forEach((booth) => {
-        initialLikeCounts[booth.id] = booth.liked;
-      });
-      setLikeCounts(initialLikeCounts);
-    }
-  }, [data]);
-
-  const handleBoothLike = (value: string) => {
-    setLikeCounts((prevCounts) => ({
-      ...prevCounts,
-      [value]: prevCounts[value] + 1,
-    }));
-    store.increase(value);
-  };
+  const handleClick = (id:string) => {
+    navigate(`map/${id}`);
+  }
 
   return (
     <>
@@ -169,9 +155,9 @@ export default function BoothRanking() {
                 />
 
                 <BoothHeartContainer>
-                  <BoothHeart onClick={() => handleBoothLike(booth.id)}>
+                  <BoothHeart onClick={() => handleClick(booth.id)}>
                     <img src="Heart.svg" alt="" />
-                    <div>{formatter.format(likeCounts[booth.id])}</div>
+                    <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
                 </BoothHeartContainer>
               </BoothRank>
