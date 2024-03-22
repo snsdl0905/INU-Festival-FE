@@ -7,31 +7,31 @@ import Notice from '../../types/Notice';
 import useCheckScreenWidth from '../../hooks/useCheckScreenWidth';
 
 const NoticeContentBox = styled.div`
-background-color: #EBF2FF;
-margin-top: 2.3rem;
-padding: 2rem;
-border-radius: 10px;
-font-size: 15px;
-font-style: normal;
-font-weight: 400;
-line-height: 24px;
-letter-spacing: -0.6px;
-white-space: pre-line;
+  background-color: #EBF2FF;
+  margin-top: 2.3rem;
+  padding: 2rem;
+  border-radius: 10px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.6px;
+  white-space: pre-line;
 `;
 
 const NoticeImageContainer = styled.div`
-border-radius: 1rem;
-display: flex;
+  border-radius: 1rem;
+  display: flex;
 `;
 
 const NoticeImageBox = styled.img`
-width: 15rem;
-border-radius: 1rem;
-margin: 2rem 0.6rem;
+  width: 15rem;
+  border-radius: 1rem;
+  margin: 2rem 0.6rem;
 `;
 
 type NoticeItemProps = {
-    notice: Notice;
+  notice: Notice;
 }
 
 export default function NoticeBottom({ notice } : NoticeItemProps) {
