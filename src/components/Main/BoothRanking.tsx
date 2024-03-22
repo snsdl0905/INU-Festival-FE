@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
-import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router';
 import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
-import useLikeStore from '../../hooks/useLikeStore';
 
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
 import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 import BoothItem from './BoothItem';
-import { useNavigate } from 'react-router';
-
-import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
