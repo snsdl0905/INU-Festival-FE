@@ -150,10 +150,9 @@ export default function BoothRanking() {
                   booth={booth}
                   index={index}
                 />
-
                 <BoothHeartContainer>
                   <BoothHeart onClick={() => handleClick(booth.id)}>
-                    <img src="Heart.svg" alt="" />
+                    <img src="Heart.svg" alt="좋아요 하트" />
                     <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
                 </BoothHeartContainer>
