@@ -170,9 +170,9 @@ export default function BoothRanking() {
                 />
 
                 <BoothHeartContainer>
-                  <BoothHeart onClick={() => handleBoothLike(booth.id)}>
-                    <img src="Heart.svg" alt="" />
-                    <div>{formatter.format(likeCounts[booth.id])}</div>
+                  <BoothHeart>
+                    <img src="Heart.svg" alt="좋아요" />
+                    <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
                 </BoothHeartContainer>
               </BoothRank>
