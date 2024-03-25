@@ -115,20 +115,11 @@ export default function GuestBook() {
   useEffect(() => {
     const handleNewMessage = (msg: Shouts) => {
       setMessageList((prevMessage) => [...prevMessage, msg]);
+      console.log(msg);
     };
 
     socket.on('update', handleNewMessage);
-
-    return () => {
-      socket.off('update', handleNewMessage);
-    };
-  }, [socket]);
-
-  socket.on('update', (msg: Shouts) => {
-    // handleNewMessage(msg);
-    console.log(`서버에서 받은: ${msg}`);
-    setMessageList((prevMessage) => [...prevMessage, msg]);
-  });
+  }, []);
 
   // 새로운 메세지를 보내는 경우
   const handleSendMessage = () => {
@@ -153,19 +144,20 @@ export default function GuestBook() {
       })
       .catch((error) => console.error('Error:', error));
 
-    const msg: Shouts = {
-      id: Math.random(),
-      userId: Math.random(),
-      studentId: '202100000',
-      content: contents,
-      emoji: 'happy',
-    };
-    setMessageList((prevMessage) => [...prevMessage, msg]);
+    // const msg: Shouts = {
+    //   id: Math.random(),
+    //   userId: Math.random(),
+    //   studentId: '202100000',
+    //   content: contents,
+    //   emoji: 'happy',
+    // };
+    // setMessageList((prevMessage) => [...prevMessage, msg]);
+    // console.log('이게문젠가');
     document.querySelector('input').value = '';
   };
 
   const handleWriteButton = () => {
-    if (accessToken?.trim) {
+    if (accessToken === '""') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
       return;
     }
