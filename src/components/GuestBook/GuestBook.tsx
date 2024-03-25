@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, useRef, useCallback,
+} from 'react';
 import { io } from 'socket.io-client';
 
 import Header from '../Notice/Header';
 import useFetchSentence from '../../hooks/useFetchSentence';
+import Shouts from '../../types/Shouts';
+import Message from './Message';
 
 const Container = styled.div`
   padding-inline: ${(props) => props.theme.sizes.contentPadding};
@@ -12,70 +16,6 @@ const Container = styled.div`
   min-height: 85vh;
   margin-top: 52px;
   display: block;
-`;
-
-const MessageBox = styled.div`
-  width: 100%;
-
-  &.received p{
-    border-radius: 900px 999px 999px 0px;
-    background: #FFF;
-    box-shadow: 0px 2px 20px 0px rgba(0, 66, 185, 0.15);
-    color: #0042B9;
-  }
-
-  &.sent{
-
-    div{
-      margin-left: auto;
-      flex-direction: row-reverse;
-    }
-
-    p{
-      border-radius: 999px 999px 0px 999px;
-      background: #80B2FF;
-      box-shadow: 0px 3px 20px 0px rgba(0, 66, 185, 0.15);
-      color: #FFFFFF;
-      margin-left: auto;
-    }
-  }
-`;
-
-const Message = styled.p`
-  padding: 14px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: fit-content;
-  margin-top: 8px;
-  margin-bottom: 12px;
-
-  span{
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 21px;
-    letter-spacing: -0.45px;
-  }
-`;
-
-const User = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-
-  img{
-    width: 20px;
-  }
-
-  b{
-    color: #0042B9;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 21px;
-    letter-spacing: -0.26px;
-    margin: 0 8px;
-  }
 `;
 
 const Button = styled.button`
@@ -131,7 +71,6 @@ const BottomBanner = styled.div`
     &:focus{
       outline: none;
     }
-
   }
 `;
 
@@ -139,10 +78,16 @@ const ServerURL = process.env.REACT_APP_URL;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
-
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || undefined);
   const { data } = useFetchSentence();
+  const [messageList, setMessageList] = useState<Shouts[]>(data?.shouts || []);
 
+  console.log(data?.shouts);
+  console.log(messageList);
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const chatWindow = useRef<HTMLDivElement>(null);
   const socket = io(ServerURL);
 
   useEffect(() => {
@@ -152,21 +97,42 @@ export default function GuestBook() {
   }, [accessToken]);
 
   useEffect(() => {
-    const handleNewMessage = (msg) => {
-      const chat = document.getElementsByClassName('Container');
-      const message = document.createElement('div');
-      const node = document.createTextNode(`${msg.emoji}: ${msg.studentId}: ${msg.content}`);
+    if (inputRef.current) {
+      inputRef.current?.focus();
+    }
+  }, []);
 
-      message.classList.add('received');
-      message.appendChild(node);
-      chat.appendChild(message);
+  // 새 메시지를 받으면 스크롤을 이동하는 함수
+  const moveScrollToReceiveMessage = useCallback(() => {
+    if (chatWindow.current) {
+      chatWindow.current.scrollTo({
+        top: chatWindow.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleNewMessage = (msg: Shouts) => {
+      setMessageList((prevMessage) => [...prevMessage, msg]);
     };
+
     socket.on('update', handleNewMessage);
+
+    return () => {
+      socket.off('update', handleNewMessage);
+    };
   }, [socket]);
 
+  socket.on('update', (msg: Shouts) => {
+    // handleNewMessage(msg);
+    console.log(`서버에서 받은: ${msg}`);
+    setMessageList((prevMessage) => [...prevMessage, msg]);
+  });
+
+  // 새로운 메세지를 보내는 경우
   const handleSendMessage = () => {
     const contents = document.querySelector('input').value;
-    document.querySelector('input').value = '';
 
     fetch(`${process.env.REACT_APP_URL}/shout/add`, {
       method: 'POST',
@@ -175,40 +141,46 @@ export default function GuestBook() {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify({
+        studentId: '202100000',
         content: contents,
         emoji: 'happy',
       }),
     })
       .then((response) => response.json())
-      .then((msg) => {
-        // const chat = document.getElementsByClassName('Container');
-        // const newMessage = document.createElement('div');
-        // const node = document.createTextNode(`${msg.emoji}: ${msg.studentId}: ${msg.content}`);
-
-        // newMessage.classList.add('sent');
-        // newMessage.appendChild(node);
-        // chat.appendChild(newMessage);
-        console.log(msg);
-
-        socket.emit('message', { type: 'message', msg });
+      .then(() => {
+        socket.emit('message', contents);
+        console.log(`보낸 내용: ${contents}`);
       })
       .catch((error) => console.error('Error:', error));
+
+    const msg: Shouts = {
+      id: Math.random(),
+      userId: Math.random(),
+      studentId: '202100000',
+      content: contents,
+      emoji: 'happy',
+    };
+    setMessageList((prevMessage) => [...prevMessage, msg]);
+    document.querySelector('input').value = '';
   };
 
   const handleWriteButton = () => {
-    console.log(accessToken);
-    // if (accessToken) {
-    //   alert('로그인 후에 메시지를 보낼 수 있습니다.');
-    //   return;
-    // }
+    if (accessToken?.trim) {
+      alert('로그인 후에 메시지를 보낼 수 있습니다.');
+      return;
+    }
     setBottomBannerZIndex(3000);
+  };
+
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') handleSendMessage();
   };
 
   return (
     <>
       <Header shadow="false">방명록</Header>
-      <Container>
-        {
+      <Container ref={chatWindow}>
+        {/* {
           data?.shouts.map((sentence) => (
             <MessageBox className="received" key={sentence.id}>
               <Message>
@@ -220,13 +192,15 @@ export default function GuestBook() {
               </User>
             </MessageBox>
           ))
-        }
+        } */}
+        {messageList.map((message) => (
+          <Message key={message.id} msg={message} />
+        ))}
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <input type="text" autoFocus />
+        <input type="text" ref={inputRef} onKeyDown={(e) => handleEnter(e)} />
         <button type="submit" onClick={handleSendMessage}>
-          {/* <button type="submit"> */}
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
             <circle cx="18" cy="18" r="18" fill="#0047C9" />
             <path fillRule="evenodd" clipRule="evenodd" d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z" fill="white" />
