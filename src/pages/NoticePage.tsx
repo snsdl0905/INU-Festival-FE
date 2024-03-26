@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 `;
 
 const NoticeList = styled.div`
-  margin-top: 84px;
+  padding-top: 32px;
 `;
 
 export default function NoticePage() {

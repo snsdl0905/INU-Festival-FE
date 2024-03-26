@@ -1,9 +1,8 @@
 interface Shouts{
-    id: number;
-    content: string;
-    emoji: string;
-    studentId: string;
-    userId: number;
+    id:string;
+    content:string;
+    emoji:string;
+    snsId:number;
 }
 
 export default Shouts;
