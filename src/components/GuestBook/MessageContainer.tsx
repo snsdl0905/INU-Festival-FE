@@ -4,6 +4,7 @@ import Message from '../../types/Message';
 const MessageBox = styled.div`
   width: 100%;
 
+  
   &.received p{
     border-radius: 900px 999px 999px 0px;
     background: #FFF;
