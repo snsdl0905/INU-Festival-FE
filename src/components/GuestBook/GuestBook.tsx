@@ -109,7 +109,6 @@ export default function GuestBook() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
-  // const [inputCount, setInputCount] = useState(0);
 
   const navigate = useNavigate();
 
