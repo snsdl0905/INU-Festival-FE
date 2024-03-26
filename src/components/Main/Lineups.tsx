@@ -42,6 +42,7 @@ const BannerContainer = styled.div`
 export default function Lineups() {
   const defaultPerview = 3;
   const [perview, setPerView] = useState(defaultPerview);
+  // const [loaded, setLoaded] = useState(false);
 
   useCheckScreenWidth(defaultPerview, setPerView);
 
@@ -50,9 +51,12 @@ export default function Lineups() {
   const handleClick = () => {
     naviagetor('/timetable');
   };
+  // const handleImageLoad = () => {
+  //   setLoaded(true);
+  // };
   return (
     <>
-      <MainBlurContainer $backgroundimg="BOL2.jpeg">
+      <MainBlurContainer>
         <Content>
           <Header />
           <p>오늘의 라인업</p>

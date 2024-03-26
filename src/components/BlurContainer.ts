@@ -19,7 +19,7 @@ const BlurContainer = styled.div<{$backgroundimg:string}>`
     bottom: 0px;
     z-index: -1;
     background-size: cover;
-    background-image: ${(props) => (props.$backgroundimg ? `url(${props.$backgroundimg})` : 'none')};
+    background-image: url("BOL2.jpeg")
   }
 `;
 
