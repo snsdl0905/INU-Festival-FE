@@ -187,7 +187,6 @@ export default function GuestBook() {
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
-    // if (e.keyCode === 229) return;
     if (e.key === 'Enter') handleSendMessage();
   };
 
