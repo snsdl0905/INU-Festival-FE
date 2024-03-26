@@ -1,15 +1,16 @@
-import styled from 'styled-components';
-
 import {
   useState, useEffect, useRef,
 } from 'react';
+import { useNavigate } from 'react-router';
+import styled from 'styled-components';
 import { io } from 'socket.io-client';
 
-import { useNavigate } from 'react-router';
 import Header from '../Notice/Header';
-import useFetchSentence from '../../hooks/useFetchSentence';
 import MessageContainer from './MessageContainer';
+
 import Message from '../../types/Message';
+
+import useFetchSentence from '../../hooks/useFetchSentence';
 import useUserStore from '../../hooks/useUserStore';
 
 const Container = styled.div`
@@ -105,16 +106,16 @@ const MAX_LENGTH = 16;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || undefined);
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [inputCount, setInputCount] = useState(0);
+  // const [inputCount, setInputCount] = useState(0);
 
   const navigate = useNavigate();
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const chatWindow = useRef<HTMLDivElement>(null);
-  const messageEndRef = useRef<HTMLDivElement | null>(null);
+  const messageEndRef = useRef<HTMLDivElement>(null);
 
   const [, store] = useUserStore();
   const { data } = useFetchSentence();
@@ -128,7 +129,7 @@ export default function GuestBook() {
   }, [messageList, data]);
 
   useEffect(() => {
-    if (accessToken !== undefined) {
+    if (accessToken) {
       localStorage.setItem('accessToken', accessToken);
       setAccessToken(() => accessToken);
     }
@@ -136,7 +137,7 @@ export default function GuestBook() {
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current?.focus();
+      inputRef.current.focus();
     }
   }, []);
 
@@ -149,7 +150,6 @@ export default function GuestBook() {
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputCount(e.target.value.length);
     setInputValue(e.target.value);
   };
 
@@ -178,7 +178,6 @@ export default function GuestBook() {
       .catch((error) => console.error('Error:', error));
 
     setInputValue('');
-    setInputCount(0);
   };
 
   const handleWriteButton = () => {
@@ -212,17 +211,17 @@ export default function GuestBook() {
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <TextBox $isMaximum={inputCount >= MAX_LENGTH}>
+        <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
           <input
             type="text"
             value={inputValue}
             maxLength={MAX_LENGTH}
             onChange={handleInputChange}
             ref={inputRef}
-            onKeyPress={(e) => handleEnter(e)}
+            onKeyUp={(e) => handleEnter(e)}
           />
           <span>
-            {inputCount}
+            {inputValue.length}
             /
             {MAX_LENGTH}
           </span>
