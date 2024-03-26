@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-import { useState, useEffect } from 'react';
+import {
+  useState, useEffect, useRef,
+} from 'react';
 import { io } from 'socket.io-client';
 
 import Header from '../Notice/Header';
 import useFetchSentence from '../../hooks/useFetchSentence';
+import MessageContainer from './MessageContainer';
+import Message from '../../types/Message';
+import useUserStore from '../../hooks/useUserStore';
 
 const Container = styled.div`
   padding-inline: ${(props) => props.theme.sizes.contentPadding};
@@ -12,70 +17,6 @@ const Container = styled.div`
   min-height: 85vh;
   margin-top: 52px;
   display: block;
-`;
-
-const MessageBox = styled.div`
-  width: 100%;
-
-  &.received p{
-    border-radius: 900px 999px 999px 0px;
-    background: #FFF;
-    box-shadow: 0px 2px 20px 0px rgba(0, 66, 185, 0.15);
-    color: #0042B9;
-  }
-
-  &.sent{
-
-    div{
-      margin-left: auto;
-      flex-direction: row-reverse;
-    }
-
-    p{
-      border-radius: 999px 999px 0px 999px;
-      background: #80B2FF;
-      box-shadow: 0px 3px 20px 0px rgba(0, 66, 185, 0.15);
-      color: #FFFFFF;
-      margin-left: auto;
-    }
-  }
-`;
-
-const Message = styled.p`
-  padding: 14px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: fit-content;
-  margin-top: 8px;
-  margin-bottom: 12px;
-
-  span{
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 21px;
-    letter-spacing: -0.45px;
-  }
-`;
-
-const User = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-
-  img{
-    width: 20px;
-  }
-
-  b{
-    color: #0042B9;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 21px;
-    letter-spacing: -0.26px;
-    margin: 0 8px;
-  }
 `;
 
 const Button = styled.button`
@@ -86,14 +27,12 @@ const Button = styled.button`
   background: #0047C9;
   box-shadow: 0px 3px 20px 0px rgba(0, 71, 201, 0.15);
   border: none;
-
   color: #FFF;
   font-size: 13px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   letter-spacing: -0.26px;
-
   position: fixed;
   bottom: calc(8rem + 32px);
   left: 50%;
@@ -114,36 +53,76 @@ const BottomBanner = styled.div`
   max-width: 600px;
   border-radius: 20px 20px 0px 0px;
 
-  input{
-    width: 70vw;
+  button{
     border: none;
-    border-bottom: 2px solid #0047C9;
+    background: none;
+    padding: 0;
+    padding-left: 10px;
 
     &:focus{
       outline: none;
     }
   }
 
-  button{
+  span{
+    padding: 0 10px;
+  }
+`;
+
+const TextBox = styled.div<{ isMaximum: boolean }>`
+  width: 100%;
+  border-bottom: 2px solid ${(props) => (props.isMaximum ? '#F00' : '#0047C9')};
+  padding-bottom: 5px;
+
+  span{
+    float: right;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: -0.33px;
+  }
+  
+  input{
     border: none;
-    background: none;
+    color: #0042B9;
+    font-family: SUIT, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 21px;
+    letter-spacing: -0.6px;
+    width: calc(100% - 50px);
 
     &:focus{
       outline: none;
     }
-
   }
 `;
 
 const ServerURL = process.env.REACT_APP_URL;
+const MAX_LENGTH = 16;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || undefined);
+  const [messageList, setMessageList] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [inputCount, setInputCount] = useState(0);
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const chatWindow = useRef<HTMLDivElement>(null);
+  const messageEndRef = useRef<HTMLDivElement | null>(null);
+
+  const [, store] = useUserStore();
   const { data } = useFetchSentence();
 
+  store.fetchCurrentUser();
+
   const socket = io(ServerURL);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messageList, data]);
 
   useEffect(() => {
     if (accessToken !== undefined) {
@@ -152,21 +131,33 @@ export default function GuestBook() {
   }, [accessToken]);
 
   useEffect(() => {
-    const handleNewMessage = (msg) => {
-      const chat = document.getElementsByClassName('Container');
-      const message = document.createElement('div');
-      const node = document.createTextNode(`${msg.emoji}: ${msg.studentId}: ${msg.content}`);
+    if (inputRef.current) {
+      inputRef.current?.focus();
+    }
+  }, []);
 
-      message.classList.add('received');
-      message.appendChild(node);
-      chat.appendChild(message);
+  useEffect(() => {
+    const handleNewMessage = (receivedData: Message) => {
+      setMessageList((prevMessages) => [...prevMessages, receivedData]);
     };
+
     socket.on('update', handleNewMessage);
-  }, [socket]);
+  }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputCount(e.target.value.length);
+    setInputValue(e.target.value);
+  };
 
   const handleSendMessage = () => {
-    const contents = document.querySelector('input').value;
-    document.querySelector('input').value = '';
+    const contents = inputValue;
+    if (contents === '') return;
+
+    const dataToSend: Message = {
+      studentId: store.name,
+      content: contents,
+      emoji: 'happy',
+    };
 
     fetch(`${process.env.REACT_APP_URL}/shout/add`, {
       method: 'POST',
@@ -174,59 +165,65 @@ export default function GuestBook() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({
-        content: contents,
-        emoji: 'happy',
-      }),
+      body: JSON.stringify(dataToSend),
     })
       .then((response) => response.json())
-      .then((msg) => {
-        // const chat = document.getElementsByClassName('Container');
-        // const newMessage = document.createElement('div');
-        // const node = document.createTextNode(`${msg.emoji}: ${msg.studentId}: ${msg.content}`);
-
-        // newMessage.classList.add('sent');
-        // newMessage.appendChild(node);
-        // chat.appendChild(newMessage);
-        console.log(msg);
-
-        socket.emit('message', { type: 'message', msg });
+      .then(() => {
+        socket.emit('message', dataToSend);
       })
       .catch((error) => console.error('Error:', error));
+
+    setInputValue('');
+    setInputCount(0);
   };
 
   const handleWriteButton = () => {
-    console.log(accessToken);
-    // if (accessToken) {
-    //   alert('로그인 후에 메시지를 보낼 수 있습니다.');
-    //   return;
-    // }
+    if (accessToken === '""') {
+      alert('로그인 후에 메시지를 보낼 수 있습니다.');
+      return;
+    }
     setBottomBannerZIndex(3000);
+  };
+
+  const handleEnter = (e: React.KeyboardEvent) => {
+    // if (e.keyCode === 229) return;
+    if (e.key === 'Enter') handleSendMessage();
   };
 
   return (
     <>
       <Header shadow="false">방명록</Header>
-      <Container>
+      <Container ref={chatWindow}>
         {
-          data?.shouts.map((sentence) => (
-            <MessageBox className="received" key={sentence.id}>
-              <Message>
-                <span>{sentence.content}</span>
-              </Message>
-              <User>
-                <img src={`${sentence.emoji}.svg`} alt="이모지" />
-                <b>{sentence.studentId}</b>
-              </User>
-            </MessageBox>
+          data?.shouts.map((message) => (
+            <MessageContainer msg={message} name={store.name} />
           ))
         }
+        {
+          messageList.map((message) => (
+            <MessageContainer msg={message} name={store.name} />
+          ))
+        }
+        <div ref={messageEndRef} />
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <input type="text" autoFocus />
+        <TextBox isMaximum={inputCount >= MAX_LENGTH}>
+          <input
+            type="text"
+            value={inputValue}
+            maxLength={MAX_LENGTH}
+            onChange={handleInputChange}
+            ref={inputRef}
+            onKeyPress={(e) => handleEnter(e)}
+          />
+          <span>
+            {inputCount}
+            /
+            {MAX_LENGTH}
+          </span>
+        </TextBox>
         <button type="submit" onClick={handleSendMessage}>
-          {/* <button type="submit"> */}
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
             <circle cx="18" cy="18" r="18" fill="#0047C9" />
             <path fillRule="evenodd" clipRule="evenodd" d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z" fill="white" />
