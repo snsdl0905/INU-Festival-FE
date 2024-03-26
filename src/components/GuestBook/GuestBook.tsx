@@ -127,6 +127,7 @@ export default function GuestBook() {
   useEffect(() => {
     if (accessToken !== undefined) {
       localStorage.setItem('accessToken', accessToken);
+      setAccessToken(() => accessToken);
     }
   }, [accessToken]);
 
