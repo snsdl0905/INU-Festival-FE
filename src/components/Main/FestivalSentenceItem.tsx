@@ -10,6 +10,8 @@ const SentenceItemBox = styled.li`
   height: 100%;
   padding-left: 16px;
 
+  /* animation: slideUp 12s linear infinite; */
+
   @keyframes slideUp {
     0%, 10% {
       top: -5px;
@@ -56,7 +58,7 @@ const ContentBox = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%;
+    line-height: 100%; /* 12px */
     letter-spacing: -0.36px;
   }
 `;
@@ -72,7 +74,7 @@ export default function FestivalSentenceItem({ sentence }: SententenceItemProps)
         <img src={`${sentence.emoji}.svg`} alt="말풍선" />
       </BallonBox>
       <ContentBox>
-        <span>{sentence.studentId}</span>
+        <span>{sentence.snsId}</span>
         {sentence.content}
       </ContentBox>
     </SentenceItemBox>
