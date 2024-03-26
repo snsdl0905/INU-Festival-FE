@@ -53,19 +53,45 @@ const BottomBanner = styled.div`
   max-width: 600px;
   border-radius: 20px 20px 0px 0px;
 
-  input{
-    width: 70vw;
+  button{
     border: none;
-    border-bottom: 2px solid #0047C9;
+    background: none;
+    padding: 0;
+    padding-left: 10px;
 
     &:focus{
       outline: none;
     }
   }
 
-  button{
+  span{
+    padding: 0 10px;
+  }
+`;
+
+const TextBox = styled.div<{ isMaximum: boolean }>`
+  width: 100%;
+  border-bottom: 2px solid ${(props) => (props.isMaximum ? '#F00' : '#0047C9')};
+  padding-bottom: 5px;
+
+  span{
+    float: right;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: -0.33px;
+  }
+  
+  input{
     border: none;
-    background: none;
+    color: #0042B9;
+    font-family: SUIT, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 21px;
+    letter-spacing: -0.6px;
+    width: calc(100% - 50px);
 
     &:focus{
       outline: none;
@@ -74,19 +100,23 @@ const BottomBanner = styled.div`
 `;
 
 const ServerURL = process.env.REACT_APP_URL;
+const MAX_LENGTH = 16;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || undefined);
-  const { data } = useFetchSentence();
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [, store] = useUserStore();
-  store.fetchCurrentUser();
+  const [inputCount, setInputCount] = useState(0);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
   const chatWindow = useRef<HTMLDivElement>(null);
   const messageEndRef = useRef<HTMLDivElement | null>(null);
+
+  const [, store] = useUserStore();
+  const { data } = useFetchSentence();
+
+  store.fetchCurrentUser();
 
   const socket = io(ServerURL);
 
@@ -115,6 +145,7 @@ export default function GuestBook() {
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputCount(e.target.value.length);
     setInputValue(e.target.value);
   };
 
@@ -143,6 +174,7 @@ export default function GuestBook() {
       .catch((error) => console.error('Error:', error));
 
     setInputValue('');
+    setInputCount(0);
   };
 
   const handleWriteButton = () => {
@@ -176,7 +208,21 @@ export default function GuestBook() {
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <input type="text" value={inputValue} onChange={handleInputChange} ref={inputRef} onKeyPress={(e) => handleEnter(e)} />
+        <TextBox isMaximum={inputCount >= MAX_LENGTH}>
+          <input
+            type="text"
+            value={inputValue}
+            maxLength={MAX_LENGTH}
+            onChange={handleInputChange}
+            ref={inputRef}
+            onKeyPress={(e) => handleEnter(e)}
+          />
+          <span>
+            {inputCount}
+            /
+            {MAX_LENGTH}
+          </span>
+        </TextBox>
         <button type="submit" onClick={handleSendMessage}>
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
             <circle cx="18" cy="18" r="18" fill="#0047C9" />
