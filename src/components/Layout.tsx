@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { styled } from 'styled-components';
 
@@ -26,6 +26,7 @@ export default function Layout() {
     store.boothLike();
   }
 
+  useCheckAccessToken();
   return (
     <Container>
       <main>
