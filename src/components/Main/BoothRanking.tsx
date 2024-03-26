@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import BoothItem from './BoothItem';
-
+import { useNavigate } from 'react-router';
 import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
 
-import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
-
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
+
+import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
+import BoothItem from './BoothItem';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -115,8 +115,12 @@ const BoothHeart = styled.div`
 
 export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
-
   const formatter = getCompactNumberFormatter();
+  const navigate = useNavigate();
+
+  const handleClick = (id:string) => {
+    navigate(`map/${id}`);
+  }
 
   return (
     <>
@@ -146,10 +150,9 @@ export default function BoothRanking() {
                   booth={booth}
                   index={index}
                 />
-
                 <BoothHeartContainer>
-                  <BoothHeart>
-                    <img src="Heart.svg" alt="좋아요" />
+                  <BoothHeart onClick={() => handleClick(booth.id)}>
+                    <img src="Heart.svg" alt="좋아요 하트" />
                     <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
                 </BoothHeartContainer>

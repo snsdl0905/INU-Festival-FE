@@ -44,6 +44,14 @@ export default class ApiService {
     const { accessToken } = data;
     return accessToken;
   }
+
+  async fetchLike({ id, liked }:{
+     id: string;
+     liked: number;
+    }): Promise<{ liked: number; }> {
+    const response = await this.instance.put(`booth/liked/${id}`, { likeCount: liked });
+    return response.data;
+  }
 }
 
 export const apiService = new ApiService();

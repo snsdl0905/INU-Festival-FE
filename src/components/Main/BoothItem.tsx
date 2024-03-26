@@ -68,7 +68,7 @@ const BoothList = styled.div`
 export default function BoothItem({ booth, index }:BoothItemProps) {
   const navigate = useNavigate();
 
-  const handleClick = (id) => {
+  const handleClick = (id:string) => {
     navigate(`/map/${id}`);
   };
 
