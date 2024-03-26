@@ -151,7 +151,6 @@ export default function DetailedMapPage() {
   const [showInstruction, setShowInstruction] = useState<boolean>(true);
   const booth = useFetchBooth(id);
   const [, store] = useLikeStore();
-  
 
   const [translateImg, setTranslateImg] = useState<string>('0');
 
@@ -193,6 +192,12 @@ export default function DetailedMapPage() {
       setLikeCount(booth.liked);
     }
   }, [booth]);
+
+  // useEffect(() => {
+  //   return(
+  //     store.boothLike()
+  //   )
+  // },[]);
 
   const handleBoothLike = (value: string) => {
     const newLikeCount = likeCount + 1;

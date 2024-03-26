@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 
 import Navbar from './Main/Navbar';
 import useCheckAccessToken from '../hooks/useCheckAccessToken';
+import useLikeStore from '../hooks/useLikeStore';
 
 const Container = styled.div`
   margin: auto;
@@ -19,7 +20,11 @@ const Container = styled.div`
 `;
 
 export default function Layout() {
+  const [, store] = useLikeStore();
   useCheckAccessToken();
+  if (store.liked) {
+    store.boothLike();
+  }
 
   return (
     <Container>
