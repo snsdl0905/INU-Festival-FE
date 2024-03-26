@@ -5,6 +5,7 @@ import {
 } from 'react';
 import { io } from 'socket.io-client';
 
+import { useNavigate } from 'react-router';
 import Header from '../Notice/Header';
 import useFetchSentence from '../../hooks/useFetchSentence';
 import MessageContainer from './MessageContainer';
@@ -109,6 +110,8 @@ export default function GuestBook() {
   const [inputValue, setInputValue] = useState('');
   const [inputCount, setInputCount] = useState(0);
 
+  const navigate = useNavigate();
+
   const inputRef = useRef<HTMLInputElement | null>(null);
   const chatWindow = useRef<HTMLDivElement>(null);
   const messageEndRef = useRef<HTMLDivElement | null>(null);
@@ -181,6 +184,7 @@ export default function GuestBook() {
   const handleWriteButton = () => {
     if (accessToken === '""') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
+      navigate('/login');
       return;
     }
     setBottomBannerZIndex(3000);
