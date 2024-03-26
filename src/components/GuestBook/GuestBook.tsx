@@ -69,9 +69,9 @@ const BottomBanner = styled.div`
   }
 `;
 
-const TextBox = styled.div<{ isMaximum: boolean }>`
+const TextBox = styled.div<{ $isMaximum: boolean }>`
   width: 100%;
-  border-bottom: 2px solid ${(props) => (props.isMaximum ? '#F00' : '#0047C9')};
+  border-bottom: 2px solid ${(props) => (props.$isMaximum ? '#F00' : '#0047C9')};
   padding-bottom: 5px;
 
   span{
@@ -127,6 +127,7 @@ export default function GuestBook() {
   useEffect(() => {
     if (accessToken !== undefined) {
       localStorage.setItem('accessToken', accessToken);
+      setAccessToken(() => accessToken);
     }
   }, [accessToken]);
 
@@ -196,19 +197,19 @@ export default function GuestBook() {
       <Container ref={chatWindow}>
         {
           data?.shouts.map((message) => (
-            <MessageContainer msg={message} name={store.name} />
+            <MessageContainer msg={message} name={store.name} key={message.id} />
           ))
         }
         {
-          messageList.map((message) => (
-            <MessageContainer msg={message} name={store.name} />
+          messageList.map((message, index) => (
+            <MessageContainer msg={message} name={store.name} key={index} />
           ))
         }
         <div ref={messageEndRef} />
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <TextBox isMaximum={inputCount >= MAX_LENGTH}>
+        <TextBox $isMaximum={inputCount >= MAX_LENGTH}>
           <input
             type="text"
             value={inputValue}
@@ -223,7 +224,7 @@ export default function GuestBook() {
             {MAX_LENGTH}
           </span>
         </TextBox>
-        <button type="submit" onClick={handleSendMessage}>
+        <button type="submit" onClick={handleSendMessage} aria-label="한줄외치기버튼">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
             <circle cx="18" cy="18" r="18" fill="#0047C9" />
             <path fillRule="evenodd" clipRule="evenodd" d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z" fill="white" />
