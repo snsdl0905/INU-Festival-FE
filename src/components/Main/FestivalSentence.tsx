@@ -20,7 +20,6 @@ const SentenceBox = styled.ul`
 
 export default function FestivalSentence() {
   const { data } = useFetchSentence();
-  console.log(data);
   return (
     <>
       <FestivalSentenceBox>
