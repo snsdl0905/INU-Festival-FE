@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Shouts from '../../types/Shouts';
+import Message from '../../types/Message';
 
 const MessageBox = styled.div`
   width: 100%;
@@ -65,13 +65,12 @@ const User = styled.div`
   }
 `;
 
-export default function Message({ msg }:{msg: Shouts}) {
+export default function MessageContainer({ msg, name }: {msg: Message, name: string}) {
   const {
-    id, content, emoji, studentId,
+    content, emoji, studentId,
   } = msg;
-  console.log(`Message에서 받은: ${msg}`);
   return (
-    <MessageBox className="received" key={id}>
+    <MessageBox className={studentId === name ? 'sent' : 'received'}>
       <Content>
         <span>{content}</span>
       </Content>

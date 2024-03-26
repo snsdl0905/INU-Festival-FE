@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 import {
-  useState, useEffect, useRef, useCallback,
+  useState, useEffect, useRef,
 } from 'react';
 import { io } from 'socket.io-client';
 
 import Header from '../Notice/Header';
 import useFetchSentence from '../../hooks/useFetchSentence';
-import Shouts from '../../types/Shouts';
-import Message from './Message';
+import MessageContainer from './MessageContainer';
+import Message from '../../types/Message';
+import useUserStore from '../../hooks/useUserStore';
 
 const Container = styled.div`
   padding-inline: ${(props) => props.theme.sizes.contentPadding};
@@ -26,14 +27,12 @@ const Button = styled.button`
   background: #0047C9;
   box-shadow: 0px 3px 20px 0px rgba(0, 71, 201, 0.15);
   border: none;
-
   color: #FFF;
   font-size: 13px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   letter-spacing: -0.26px;
-
   position: fixed;
   bottom: calc(8rem + 32px);
   left: 50%;
@@ -80,15 +79,20 @@ export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || undefined);
   const { data } = useFetchSentence();
-  const [messageList, setMessageList] = useState<Shouts[]>(data?.shouts || []);
-
-  console.log(data?.shouts);
-  console.log(messageList);
+  const [messageList, setMessageList] = useState<Message[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [, store] = useUserStore();
+  store.fetchCurrentUser();
 
   const inputRef = useRef<HTMLInputElement | null>(null);
-
   const chatWindow = useRef<HTMLDivElement>(null);
+  const messageEndRef = useRef<HTMLDivElement | null>(null);
+
   const socket = io(ServerURL);
+
+  useEffect(() => {
+    messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messageList, data]);
 
   useEffect(() => {
     if (accessToken !== undefined) {
@@ -102,28 +106,27 @@ export default function GuestBook() {
     }
   }, []);
 
-  // 새 메시지를 받으면 스크롤을 이동하는 함수
-  const moveScrollToReceiveMessage = useCallback(() => {
-    if (chatWindow.current) {
-      chatWindow.current.scrollTo({
-        top: chatWindow.current.scrollHeight,
-        behavior: 'smooth',
-      });
-    }
-  }, []);
-
   useEffect(() => {
-    const handleNewMessage = (msg: Shouts) => {
-      setMessageList((prevMessage) => [...prevMessage, msg]);
-      console.log(msg);
+    const handleNewMessage = (receivedData: Message) => {
+      setMessageList((prevMessages) => [...prevMessages, receivedData]);
     };
 
     socket.on('update', handleNewMessage);
   }, []);
 
-  // 새로운 메세지를 보내는 경우
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
   const handleSendMessage = () => {
-    const contents = document.querySelector('input').value;
+    const contents = inputValue;
+    if (contents === '') return;
+
+    const dataToSend: Message = {
+      studentId: store.name,
+      content: contents,
+      emoji: 'happy',
+    };
 
     fetch(`${process.env.REACT_APP_URL}/shout/add`, {
       method: 'POST',
@@ -131,29 +134,15 @@ export default function GuestBook() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({
-        studentId: '202100000',
-        content: contents,
-        emoji: 'happy',
-      }),
+      body: JSON.stringify(dataToSend),
     })
       .then((response) => response.json())
       .then(() => {
-        socket.emit('message', contents);
-        console.log(`보낸 내용: ${contents}`);
+        socket.emit('message', dataToSend);
       })
       .catch((error) => console.error('Error:', error));
 
-    // const msg: Shouts = {
-    //   id: Math.random(),
-    //   userId: Math.random(),
-    //   studentId: '202100000',
-    //   content: contents,
-    //   emoji: 'happy',
-    // };
-    // setMessageList((prevMessage) => [...prevMessage, msg]);
-    // console.log('이게문젠가');
-    document.querySelector('input').value = '';
+    setInputValue('');
   };
 
   const handleWriteButton = () => {
@@ -165,6 +154,7 @@ export default function GuestBook() {
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
+    // if (e.keyCode === 229) return;
     if (e.key === 'Enter') handleSendMessage();
   };
 
@@ -172,26 +162,21 @@ export default function GuestBook() {
     <>
       <Header shadow="false">방명록</Header>
       <Container ref={chatWindow}>
-        {/* {
-          data?.shouts.map((sentence) => (
-            <MessageBox className="received" key={sentence.id}>
-              <Message>
-                <span>{sentence.content}</span>
-              </Message>
-              <User>
-                <img src={`${sentence.emoji}.svg`} alt="이모지" />
-                <b>{sentence.studentId}</b>
-              </User>
-            </MessageBox>
+        {
+          data?.shouts.map((message) => (
+            <MessageContainer msg={message} name={store.name} />
           ))
-        } */}
-        {messageList.map((message) => (
-          <Message key={message.id} msg={message} />
-        ))}
+        }
+        {
+          messageList.map((message) => (
+            <MessageContainer msg={message} name={store.name} />
+          ))
+        }
+        <div ref={messageEndRef} />
         <Button onClick={handleWriteButton}>한 줄 외치기</Button>
       </Container>
       <BottomBanner style={{ zIndex: bottomBannerZIndex }}>
-        <input type="text" ref={inputRef} onKeyDown={(e) => handleEnter(e)} />
+        <input type="text" value={inputValue} onChange={handleInputChange} ref={inputRef} onKeyPress={(e) => handleEnter(e)} />
         <button type="submit" onClick={handleSendMessage}>
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
             <circle cx="18" cy="18" r="18" fill="#0047C9" />
