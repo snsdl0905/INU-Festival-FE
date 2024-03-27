@@ -1,9 +1,10 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import { styled } from 'styled-components';
 
 import Navbar from './Main/Navbar';
 import useCheckAccessToken from '../hooks/useCheckAccessToken';
+import useLikeStore from '../hooks/useLikeStore';
 
 const Container = styled.div`
   margin: auto;
@@ -19,8 +20,13 @@ const Container = styled.div`
 `;
 
 export default function Layout() {
-  useCheckAccessToken();
+  const [, store] = useLikeStore();
+  if (store.liked)
+  {
+    store.boothLike();
+  }
 
+  useCheckAccessToken();
   return (
     <Container>
       <main>

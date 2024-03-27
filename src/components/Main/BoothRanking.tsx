@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 
-import BoothItem from './BoothItem';
-
+import { useNavigate } from 'react-router';
 import useFetchBoothsRanking from '../../hooks/useFetchBoothsRanking';
-
-import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
 
 import getCompactNumberFormatter from '../../utils/getCompactNumberFormat';
 
-import useLikeStore from '../../hooks/useLikeStore';
-import { useEffect, useState } from 'react';
+import SkeletonBoothRanking from '../Loading/SkeletonBoothRanking';
+import BoothItem from './BoothItem';
 
 const BoothRankingTitle = styled.div`
   width: 100%;
@@ -118,27 +115,12 @@ const BoothHeart = styled.div`
 
 export default function BoothRanking() {
   const { data } = useFetchBoothsRanking();
-  const [, store] = useLikeStore();
   const formatter = getCompactNumberFormatter();
-  const [likeCounts, setLikeCounts] = useState<{ [key: string]: number }>({});
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (data) {
-      const initialLikeCounts = {};
-      data.booths.forEach(booth => {
-        initialLikeCounts[booth.id] = booth.liked;
-      });
-      setLikeCounts(initialLikeCounts);
-    }
-  }, [data]);
-
-  const handleBoothLike = (value: string) => {
-    setLikeCounts(prevCounts => ({
-      ...prevCounts,
-      [value]: prevCounts[value] + 1,
-    }));
-    store.increase(value);
-  };
+  const handleClick = (id:string) => {
+    navigate(`map/${id}`);
+  }
 
   return (
     <>
@@ -168,10 +150,9 @@ export default function BoothRanking() {
                   booth={booth}
                   index={index}
                 />
-
                 <BoothHeartContainer>
-                  <BoothHeart>
-                    <img src="Heart.svg" alt="좋아요" />
+                  <BoothHeart onClick={() => handleClick(booth.id)}>
+                    <img src="Heart.svg" alt="좋아요 하트" />
                     <div>{formatter.format(booth.liked)}</div>
                   </BoothHeart>
                 </BoothHeartContainer>

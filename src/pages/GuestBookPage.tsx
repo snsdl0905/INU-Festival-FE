@@ -1,5 +1,7 @@
+import GuestBook from '../components/GuestBook/GuestBook';
+
 export default function GuestBookPage() {
   return (
-    <p>GuestBookPage</p>
+    <GuestBook />
   );
 }
