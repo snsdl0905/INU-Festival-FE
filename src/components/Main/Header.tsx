@@ -3,32 +3,32 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
-    max-width: 600px;
-    /* height: 69px; */
-    padding: 11px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0;
+  max-width: 600px;
+  /* height: 69px; */
+  padding: 11px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
 `;
 
 const Title = styled.div`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    span {
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #FFFFFF;
-      padding-block: 1.4em;
-      padding-inline: .4em;
-      line-height: 100%;
-    }
-    
-    img {
-      width: 100px;
-      height: 45px;
-    }
+  span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    padding-block: 1.4em;
+    padding-inline: .4em;
+    line-height: 100%;
+  }
+  
+  img {
+    width: 100px;
+    height: 45px;
+  }
 `;
 
 const PreButton = styled(NavLink)`

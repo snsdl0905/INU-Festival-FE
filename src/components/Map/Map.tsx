@@ -5,7 +5,6 @@ import MapLayer from './MapLayer';
 import BottomSheet from './BannerContent';
 import Booth from '../../types/Booth';
 import useFetchBooths from '../../hooks/useFetchBooths';
-import BoothBanner from './BoothBanner';
 
 const Container = styled.div`
     max-width: 600px;
@@ -15,7 +14,7 @@ const Container = styled.div`
 
 export default function Map() {
   const booths = useFetchBooths();
-  const [selectedDay, setSelectedDay] = useState<string>('월');
+  const [selectedDay, setSelectedDay] = useState<string>('수');
   const [selectedCategory, setSelectedCategory] = useState<string>('주점');
   const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
 
@@ -39,7 +38,6 @@ export default function Map() {
         selectedCategory={selectedCategory}
         booths={selectedBooth || filtered}
       />
-      <BoothBanner />
     </Container>
   );
 }

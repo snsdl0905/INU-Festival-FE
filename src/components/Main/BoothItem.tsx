@@ -68,13 +68,13 @@ const BoothList = styled.div`
 export default function BoothItem({ booth, index }:BoothItemProps) {
   const navigate = useNavigate();
 
-  const handleClick = (id) => {
+  const handleClick = (id:string) => {
     navigate(`/map/${id}`);
   };
 
   return (
     <BoothList onClick={() => handleClick(booth.id)}>
-      <Booth key={index}>
+      <Booth>
         <BoothDetail>
           <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
           <BoothImg src="BoothDefault.png" alt="부스이미지" />

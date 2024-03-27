@@ -6,7 +6,6 @@ export default function Kakao() {
     const limit = Math.ceil(3 / 2 ** z);
     const path = 'split_map/';
 
-    console.log(z, x, y);
     if (y >= 0 && y < limit && x >= 0 && x < limit) {
       return `${path}planh${
         z}_${y}_${x}.png`;

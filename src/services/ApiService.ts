@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://ec2-3-35-50-94.ap-northeast-2.compute.amazonaws.com:4000';
-
+const API_BASE_URL = process.env.REACT_APP_URL;
 export default class ApiService {
   private instance = axios.create({
     baseURL: API_BASE_URL,
@@ -44,6 +43,14 @@ export default class ApiService {
     const { data } = await this.instance.post('/user/lms', { studentId, password });
     const { accessToken } = data;
     return accessToken;
+  }
+
+  async fetchLike({ id, liked }:{
+     id: string;
+     liked: number;
+    }): Promise<{ liked: number; }> {
+    const response = await this.instance.put(`booth/liked/${id}`, { likeCount: liked });
+    return response.data;
   }
 }
 
