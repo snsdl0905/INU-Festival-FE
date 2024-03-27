@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const BlurContainer = styled.div<{$backgroundimg:string}>`
+const BlurContainer = styled.div`
   max-width: 600px;
   width: 100%;
   padding-inline: ${(props) => props.theme.sizes.contentPadding};
