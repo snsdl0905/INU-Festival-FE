@@ -3,14 +3,16 @@ import { useParams, useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
 
+import useFetchBooth from '../../hooks/useFetchBooth';
+import useLikeStore from '../../hooks/useLikeStore';
+
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
 import BoothComment from './BoothComment';
-import InfoWithIcon from './InfoWithIcon';
-import useFetchBooth from '../../hooks/useFetchBooth';
-import boothImg from '../../types/boothImg';
 import Toast from '../Profile/Toast';
-import useLikeStore from '../../hooks/useLikeStore';
+import InfoWithIcon from './InfoWithIcon';
+
+import boothImg from '../../types/boothImg';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -173,15 +175,9 @@ export default function DetailedMapPage() {
     category,
     description,
     liked,
-    // boothImgs,
+    boothImgs,
     boothComments,
   } = booth;
-
-  const boothImgs: boothImg[] = [];
-  boothImgs.push({ id: '4', url: 'BOL.jpeg' });
-  boothImgs.push({ id: '5', url: 'BOL2.jpeg' });
-  boothImgs.push({ id: '6', url: 'DAMONS.png' });
-  boothImgs.push({ id: '7', url: 'DAMONS4.png' });
 
   const handleRightButton = () => {
     const newPosition = parseInt(translateImg, 10) - 100;
@@ -199,8 +195,8 @@ export default function DetailedMapPage() {
   const [toastText, setToastText] = useState('');
   const [likeCount, setLikeCount] = useState<number>(0);
   useEffect(() => {
-    if (booth && booth.liked) {
-      setLikeCount(booth.liked);
+    if (booth && liked) {
+      setLikeCount(liked);
     }
   }, [booth]);
 
