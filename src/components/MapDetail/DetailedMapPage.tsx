@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -162,6 +162,9 @@ export default function DetailedMapPage() {
   const [translateImg, setTranslateImg] = useState<string>('0');
   const [cliked, setClicked] = useState(false);
 
+  const location = useLocation();
+  const selectedDay = location.state.date;
+
   if (!booth) {
     return null; // 데이터가 로드되지 않았을 때의 처리
   }
@@ -294,7 +297,7 @@ export default function DetailedMapPage() {
         </button>
       </MapButtonBox>
       {toast && <Toast setToast={setToast} text={toastText} />}
-      <InfoWithIcon small="false" booth={booth} selectedDay="월" />
+      <InfoWithIcon small="false" booth={booth} selectedDay={selectedDay} />
       <MapInfoBottom>
         <button
           type="button"
