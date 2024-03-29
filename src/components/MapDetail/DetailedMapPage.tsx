@@ -164,9 +164,6 @@ export default function DetailedMapPage() {
   const [translateImg, setTranslateImg] = useState<string>('0');
   const [cliked, setClicked] = useState(false);
 
-  const location = useLocation();
-  const selectedDay = location.state.date;
-
   if (!booth) {
     return null; // 데이터가 로드되지 않았을 때의 처리
   }
@@ -177,7 +174,16 @@ export default function DetailedMapPage() {
     liked,
     boothImgs,
     boothComments,
+    boothDays,
   } = booth;
+
+  let selectedDay;
+  const location = useLocation();
+  if (location.state && location.state.date) {
+    selectedDay = location.state.date;
+  } else {
+    selectedDay = boothDays && boothDays['0'].day;
+  }
 
   const handleRightButton = () => {
     const newPosition = parseInt(translateImg, 10) - 100;
