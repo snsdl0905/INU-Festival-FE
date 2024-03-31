@@ -106,7 +106,6 @@ const MAX_LENGTH = 16;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -126,13 +125,6 @@ export default function GuestBook() {
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messageList, data]);
-
-  useEffect(() => {
-    if (accessToken) {
-      localStorage.setItem('accessToken', accessToken);
-      setAccessToken(() => accessToken);
-    }
-  }, [accessToken]);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -164,10 +156,6 @@ export default function GuestBook() {
 
     fetch(`${process.env.REACT_APP_URL}/shout/add`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
       body: JSON.stringify(dataToSend),
     })
       .then((response) => response.json())
@@ -180,7 +168,7 @@ export default function GuestBook() {
   };
 
   const handleWriteButton = () => {
-    if (accessToken === '""') {
+    if (store.name === '') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
       navigate('/login');
       return;
