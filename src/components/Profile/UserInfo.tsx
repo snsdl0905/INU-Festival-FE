@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { useEffect, useState } from 'react';
 import useUserStore from '../../hooks/useUserStore';
 
 const UserInfoWrapper = styled.div`
@@ -51,12 +52,19 @@ type UserInfoProps ={
 
 function UserDetail() {
   const [, store] = useUserStore();
+  const [name, setName] = useState('');
+
   store.fetchCurrentUser();
+
+  useEffect(() => {
+    setName(store.name);
+  }, [store.name]);
+
   return (
     <Container>
       <div>안녕하세요!</div>
       <p>
-        {store.name}
+        {name}
         {' '}
         님
       </p>
