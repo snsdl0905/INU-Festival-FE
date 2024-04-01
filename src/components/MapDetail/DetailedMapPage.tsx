@@ -5,12 +5,12 @@ import styled from 'styled-components';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
-import BoothComment from './BoothComment';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooth from '../../hooks/useFetchBooth';
 import boothImg from '../../types/boothImg';
 import Toast from '../Profile/Toast';
 import useLikeStore from '../../hooks/useLikeStore';
+import BoothComment from './BoothComment';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -201,12 +201,6 @@ export default function DetailedMapPage() {
     }
   }, [booth]);
 
-  // useEffect(() => {
-  //   return(
-  //     store.boothLike()
-  //   )
-  // },[]);
-
   const handleBoothLike = (value: string) => {
     const newLikeCount = likeCount + 1;
     setLikeCount(newLikeCount);
@@ -322,7 +316,7 @@ export default function DetailedMapPage() {
       </MapInfoBottom>
       {showInstruction ? (
         <BoothInstruction description={description || ''} />)
-        : (<BoothComment boothComments={boothComments} />)}
+        : (<BoothComment boothId={id} />)}
     </>
   );
 }

@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { styled } from 'styled-components';
+import useFetchBoothComment from '../../hooks/useFetchBoothComment';
 import BoothComment from '../../types/BoothComment';
 
 const CommentTop = styled.div`
@@ -9,8 +10,10 @@ const CommentTop = styled.div`
     svg{
         margin-right: 1rem;
     }
+    div{
+      margin-left:10px;
+    }
 `;
-
 const CommentBox = styled.div`
     padding: 3rem;
 
@@ -29,23 +32,30 @@ const CommentBox = styled.div`
         font-size: 1.4rem;
     }
 `;
-
-type BoothCommentProps = {
-    boothComments: BoothComment[] ;
-}
-
-export default function BoothComment({ boothComments }: BoothCommentProps) {
-  if (!boothComments) {
+// type boothCommentType = {
+//   boothComments: BoothComment ;
+// };
+export default function BoothComment({ boothId }: string) {
+  const boothComments = useFetchBoothComment(boothId);
+  if (!boothComments || !boothComments.boothComments) {
     return null;
   }
 
   return (
     <>
-      {boothComments.map((boothComment) => {
-        const { id, content } = boothComment;
+      {boothComments.boothComments.map((
+        boothCommentDetail:
+        { userId: string; content:string; createdAt:string; },
+      ) => {
+        const { userId, content, createdAt } = boothCommentDetail;
+        const createdAtDate = new Date(createdAt);
 
+        const formattedDateTime = createdAtDate.toLocaleString(undefined, {
+          dateStyle: 'short',
+          timeStyle: 'short'
+        });
         return (
-          <CommentBox key={id}>
+          <CommentBox key={userId}>
             <CommentTop>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z" fill="url(#paint0_linear_546_1836)" />
@@ -59,9 +69,8 @@ export default function BoothComment({ boothComments }: BoothCommentProps) {
                   </linearGradient>
                 </defs>
               </svg>
-              <h3>헌도오빠</h3>
-              <div>.</div>
-              <div>10000분전</div>
+              <h3>{userId}</h3>
+              <div>{formattedDateTime}</div>
             </CommentTop>
             <p>{content}</p>
           </CommentBox>
