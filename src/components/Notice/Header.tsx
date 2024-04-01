@@ -8,7 +8,7 @@ type HeaderProps = {
 }
 
 const HeaderContainer = styled.div <{ $shadow: string }>`
-max-width: 600px;
+  max-width: 600px;
   z-index: 3;
   position: fixed;
   width: 100%;

@@ -135,12 +135,6 @@ export default function GuestBook() {
   }, [accessToken]);
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
-
-  useEffect(() => {
     const handleNewMessage = (receivedData: Message) => {
       setMessageList((prevMessages) => [...prevMessages, receivedData]);
     };
@@ -185,7 +179,8 @@ export default function GuestBook() {
       navigate('/login');
       return;
     }
-    setBottomBannerZIndex(3000);
+    setBottomBannerZIndex(300);
+    inputRef.current?.focus();
   };
 
   const handleEnter = (e: React.KeyboardEvent) => {
