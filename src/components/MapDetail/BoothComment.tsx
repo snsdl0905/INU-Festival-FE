@@ -1,9 +1,6 @@
 import { styled } from 'styled-components';
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router';
 import useFetchBoothComment from '../../hooks/useFetchBoothComment';
 import BoothComment from '../../types/BoothComment';
-import SendComment from '../../types/SendComment';
 import CommentSend from './CommentSend';
 
 const CommentTop = styled.div`
@@ -36,58 +33,6 @@ const CommentBox = styled.div`
         font-size: 1.4rem;
     }
 `;
-
-const TextBox = styled.div<{ $isMaximum: boolean }>`
-  width: 100%;
-  border-bottom: 2px solid ${(props) => (props.$isMaximum ? '#F00' : '#0047C9')};
-  padding-bottom: 5px;
-
-  span{
-    float: right;
-    font-size: 11px;
-    font-weight: 600;
-    line-height: 21px;
-    letter-spacing: -0.33px;
-  }
-  
-  input{
-    border: none;
-    color: #0042B9;
-    font-family: SUIT, sans-serif;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 21px;
-    letter-spacing: -0.6px;
-    width: calc(100% - 50px);
-
-    &:focus{
-      outline: none;
-    }
-    }
-  }
-`;
-const TextWrapper = styled.div`
-  padding-inline: ${(props) => props.theme.sizes.contentPadding};
-  z-index: 300;
-  bottom: 0;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  background-color: #FFFFFF;
-  width: 100%;
-  max-width: 600px;
-  border-radius: 20px 20px 0px 0px;
-
-  button{
-    border: none;
-    background: none;
-    padding: 0;
-    padding-left: 10px;
-    outline: none;
-    }
-`;
-
 export default function BoothComment({ boothId }: string) {
   const boothComments = useFetchBoothComment(boothId);
   if (!boothComments || !boothComments.boothComments) {

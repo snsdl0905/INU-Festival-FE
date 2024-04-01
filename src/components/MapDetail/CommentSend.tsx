@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
 import { styled } from "styled-components";
+
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+
 import SendComment from '../../types/SendComment';
 
 const TextBox = styled.div<{ $isMaximum: boolean }>`
