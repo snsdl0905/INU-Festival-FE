@@ -162,7 +162,7 @@ export default function GuestBook() {
       emoji: 'happy',
     };
 
-    fetch(`${process.env.REACT_APP_URL}/shout/add`, {
+    fetch(`${process.env.REACT_APP_URL}/sentence`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
