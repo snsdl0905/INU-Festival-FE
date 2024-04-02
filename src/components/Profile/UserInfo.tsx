@@ -60,16 +60,14 @@ function UserDetail() {
   }, []);
 
   return (
-    store.error && (
-      <Container>
-        <div>안녕하세요!</div>
-        <p>
-          {store.name}
-          {' '}
-          님
-        </p>
-      </Container>
-    )
+    <Container>
+      <div>안녕하세요!</div>
+      <p>
+        {store.name}
+        {' '}
+        님
+      </p>
+    </Container>
   );
 }
 
