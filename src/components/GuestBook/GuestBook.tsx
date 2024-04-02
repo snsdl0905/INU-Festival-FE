@@ -226,6 +226,7 @@ export default function GuestBook() {
               onChange={handleInputChange}
               ref={inputRef}
               onKeyUp={(e) => handleEnter(e)}
+              spellCheck="false"
             />
             <span>
               {inputValue.length}
