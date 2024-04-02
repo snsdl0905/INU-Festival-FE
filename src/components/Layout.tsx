@@ -24,11 +24,11 @@ const Container = styled.div`
 export default function Layout() {
   const [, store] = useLikeStore();
 
+  useCheckAccessToken();
+
   if (store.liked) {
     store.boothLike();
   }
-
-  useCheckAccessToken();
   
   return (
     <Container>
