@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useUserStore from '../../hooks/useUserStore';
+import useCheckAccessToken from '../../hooks/useCheckAccessToken';
 
 const UserInfoWrapper = styled.div`
   display: flex;
@@ -51,8 +52,12 @@ type UserInfoProps ={
 }
 
 function UserDetail() {
+  useCheckAccessToken();
   const [, store] = useUserStore();
-  store.fetchCurrentUser();
+
+  useEffect(() => {
+    store.fetchCurrentUser();
+  }, []);
 
   return (
     store.error && (
