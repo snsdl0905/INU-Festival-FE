@@ -106,6 +106,7 @@ const MAX_LENGTH = 16;
 
 export default function GuestBook() {
   const [bottomBannerZIndex, setBottomBannerZIndex] = useState(-1);
+  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
   const [messageList, setMessageList] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
 
@@ -168,7 +169,7 @@ export default function GuestBook() {
   };
 
   const handleWriteButton = () => {
-    const userAccessToken = JSON.parse(localStorage.getItem('accessToken') || '');
+    const userAccessToken = JSON.parse(accessToken);
     if (userAccessToken === '') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
       navigate('/login');
