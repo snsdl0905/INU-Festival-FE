@@ -206,6 +206,12 @@ export default function DetailedMapPage() {
     }
   }, [booth]);
 
+  // useEffect(() => {
+  //   return(
+  //     store.boothLike()
+  //   )
+  // },[]);
+
   const handleBoothLike = (value: string) => {
     const newLikeCount = likeCount + 1;
     setLikeCount(newLikeCount);
