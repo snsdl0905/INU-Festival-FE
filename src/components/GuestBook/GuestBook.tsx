@@ -168,7 +168,8 @@ export default function GuestBook() {
   };
 
   const handleWriteButton = () => {
-    if (store.name === '') {
+    const userAccessToken = JSON.parse(localStorage.getItem('accessToken') || '');
+    if (userAccessToken === '') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
       navigate('/login');
       return;

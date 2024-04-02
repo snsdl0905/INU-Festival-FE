@@ -52,23 +52,19 @@ type UserInfoProps ={
 
 function UserDetail() {
   const [, store] = useUserStore();
-  const [name, setName] = useState('');
-
   store.fetchCurrentUser();
 
-  useEffect(() => {
-    setName(store.name);
-  }, [store.name]);
-
   return (
-    <Container>
-      <div>안녕하세요!</div>
-      <p>
-        {name}
-        {' '}
-        님
-      </p>
-    </Container>
+    store.error && (
+      <Container>
+        <div>안녕하세요!</div>
+        <p>
+          {store.name}
+          {' '}
+          님
+        </p>
+      </Container>
+    )
   );
 }
 
