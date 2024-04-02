@@ -121,6 +121,7 @@ const MapImageContainer = styled.div<{translateImg: string}>`
   height: 90vw;
   background-color: #D1D9F5;
   transform: translateX(${(props) => props.translateImg});
+  margin-top: 52px;
   `;
 
 const ImageBox = styled.div`
