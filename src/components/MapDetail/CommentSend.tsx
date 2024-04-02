@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import SendComment from '../../types/SendComment';
@@ -61,15 +61,8 @@ const emojis = ['happy', 'funny', 'trilling', 'excited'];
 
 export default function CommentSend({ boothId }: string) {
   const [inputValue, setInputValue] = useState('');
-  const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
+  const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (accessToken) {
-      localStorage.setItem('accessToken', accessToken);
-      setAccessToken(() => accessToken);
-    }
-  }, [accessToken]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

@@ -1,9 +1,9 @@
 import { useFetch } from 'usehooks-ts';
 
-import BoothComment from '../types/BoothComment';
+import BoothComments from '../types/BoothComment';
 
 type BoothCommentType = {
-    boothComment: BoothComment;
+    boothComments: BoothComments;
     };
 
 export default function useFetchBoothComment(id: string) {
@@ -15,5 +15,7 @@ export default function useFetchBoothComment(id: string) {
     return [];
   }
 
-  return data;
+  console.log(data.boothComments);
+
+  return data.boothComments;
 }

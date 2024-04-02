@@ -41,7 +41,8 @@ const NoCommentBox = styled.div`
 `;
 export default function BoothComment({ boothId }: string) {
   const boothComments = useFetchBoothComment(boothId);
-  if (!boothComments || !boothComments.boothComments) {
+
+  if (boothComments.length === 0) {
     return (
       <>
         <NoCommentBox>
@@ -53,7 +54,7 @@ export default function BoothComment({ boothId }: string) {
   }
   return (
     <>
-      {boothComments.boothComments.map((
+      {boothComments.map((
         boothCommentDetail:
         { userId: string; content:string; createdAt:string; },
       ) => {

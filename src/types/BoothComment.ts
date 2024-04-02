@@ -1,4 +1,4 @@
-interface BoothComment {
+interface BoothComments {
     id: string;
     content: string;
     userId: number;
@@ -6,4 +6,4 @@ interface BoothComment {
     updatedAt: string;
 }
 
-export default BoothComment;
+export default BoothComments;
