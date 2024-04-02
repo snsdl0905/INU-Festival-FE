@@ -156,10 +156,14 @@ export default function GuestBook() {
     const contents = inputValue;
     if (contents === '') return;
 
+    const emojiArray = ['happy', 'thrilling', 'funny', 'excited'];
+    const randomIndex = Math.floor(Math.random() * emojiArray.length);
+    const emoji = emojiArray[randomIndex];
+
     const dataToSend: Message = {
       studentId: store.name,
       content: contents,
-      emoji: 'happy',
+      emoji,
     };
 
     fetch(`${process.env.REACT_APP_URL}/sentence`, {
