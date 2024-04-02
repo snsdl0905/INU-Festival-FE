@@ -19,6 +19,7 @@ const HeaderContainer = styled.div <{ $shadow: string }>`
   box-shadow: ${(props) => (props.$shadow === 'true' ? '0px 0.3rem 0.3rem 0px rgba(0, 0, 0, 0.05)' : 'none')};
   padding-top: 8px;
   background-color: #FFFFFF;
+  max-width: 600px;
   
   span{
     margin: 0 auto;
