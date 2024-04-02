@@ -33,10 +33,23 @@ const CommentBox = styled.div`
         font-size: 1.4rem;
     }
 `;
+const NoCommentBox = styled.div`
+    height: 300px; /* 일정 높이 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 export default function BoothComment({ boothId }: string) {
   const boothComments = useFetchBoothComment(boothId);
   if (!boothComments || !boothComments.boothComments) {
-    return null;
+    return (
+      <>
+        <NoCommentBox>
+          실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !
+        </NoCommentBox>
+        <CommentSend boothId={boothId} />
+      </>
+    );
   }
   return (
     <>

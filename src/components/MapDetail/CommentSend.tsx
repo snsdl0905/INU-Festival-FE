@@ -55,9 +55,10 @@ const TextWrapper = styled.div`
     outline: none;
     }
 `;
-const MAX_LENGTH = 50;
 
+const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'trilling', 'excited'];
+
 export default function CommentSend({ boothId }: string) {
   const [inputValue, setInputValue] = useState('');
   const [accessToken, setAccessToken] = useState(localStorage.getItem('accessToken') || '');
@@ -88,7 +89,7 @@ export default function CommentSend({ boothId }: string) {
       emoji: randomEmoji,
       boothId,
     };
-    fetch(`${process.env.REACT_APP_URL}/booth/commnet/${boothId}`, {
+    fetch(`${process.env.REACT_APP_URL}/booth/comment/${boothId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +98,6 @@ export default function CommentSend({ boothId }: string) {
       body: JSON.stringify(dataToSend),
     })
       .catch((error) => console.error('Error:', error));
-
     setInputValue('');
   };
   return (

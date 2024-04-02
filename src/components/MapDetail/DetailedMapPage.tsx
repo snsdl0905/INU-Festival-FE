@@ -171,7 +171,6 @@ export default function DetailedMapPage() {
     description,
     liked,
     // boothImgs,
-    boothComments,
   } = booth;
 
   const boothImgs: boothImg[] = [];
