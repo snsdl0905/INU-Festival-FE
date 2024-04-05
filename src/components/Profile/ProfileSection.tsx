@@ -41,8 +41,7 @@ const ProfileTitle = styled.div`
 `;
 
 const UserIcon = styled.img`
-  width: 48%;
-  height: auto;
+  width: 95gpx;
   margin-bottom:32px;
   flex-shrink: 1;
 `;
@@ -72,10 +71,9 @@ export default function ProfileSection() {
   const handleClickLogout = async () => {
     const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
     if (confirmLogout) {
-      await apiService.logout();
-      setAccessToken('');
-      navigate('/profile');
-    }
+    await apiService.logout();
+    setAccessToken('');
+    navigate('/profile');}
   };
 
   const handleClickLogIn = () => {
@@ -101,7 +99,8 @@ export default function ProfileSection() {
           <LoginBtn onClick={handleClickLogIn}>로그인</LoginBtn>
         )}
       </ProfileContainer>
-      <UserIcon src="default.svg" alt="major" />
+      {/* <UserIcon src="default.svg" alt="major" /> */}
+      <UserIcon src="profileImg.png" alt="major" />
     </ProfileWrapper>
   );
 }
