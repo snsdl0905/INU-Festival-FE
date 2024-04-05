@@ -70,9 +70,12 @@ export default function ProfileSection() {
   const navigate = useNavigate();
 
   const handleClickLogout = async () => {
-    await apiService.logout();
-    setAccessToken('');
-    navigate('/profile');
+    const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
+    if (confirmLogout) {
+      await apiService.logout();
+      setAccessToken('');
+      navigate('/profile');
+    }
   };
 
   const handleClickLogIn = () => {
