@@ -48,7 +48,7 @@ const UserIcon = styled.img`
 `;
 
 const LoginBtn = styled.button`
-  width: max-content;
+  width: 11.3em;
   display: flex;
   justify-content: center;
   padding: 15px 60px;
