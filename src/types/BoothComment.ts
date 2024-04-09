@@ -1,4 +1,4 @@
-interface BoothComments {
+interface BoothComment {
     id: string;
     content: string;
     userId: number;
@@ -7,4 +7,4 @@ interface BoothComments {
     emoji: string;
 }
 
-export default BoothComments;
+export default BoothComment;

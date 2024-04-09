@@ -2,9 +2,10 @@ import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import useFetchBoothComment from '../../hooks/useFetchBoothComment';
-import BoothComment from '../../types/BoothComment';
 import CommentSend from './CommentSend';
 import SendComment from '../../types/SendComment';
+import BoothComment from '../../types/BoothComment';
+import useUserStore from '../../hooks/useUserStore';
 
 const CommentTop = styled.div`
     display: flex;
@@ -71,7 +72,6 @@ const TextBox = styled.div<{ $isMaximum: boolean }>`
     &:focus{
       outline: none;
     }
-    }
   }
 `;
 const TextWrapper = styled.div`
@@ -97,20 +97,28 @@ const TextWrapper = styled.div`
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
-export default function BoothComment({ boothId }: string) {
+export default function BoothComment({ boothId }: { boothId: string }) {
   // const [boothComments, setBoothComments] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const boothComments = useFetchBoothComment(boothId);
+  const boothComments: BoothComment[] = useFetchBoothComment(boothId);
+  console.log(boothComments);
+  const [newBoothComment, setNewBoothComment] = useState<SendComment[]>([]);
+  const [, store] = useUserStore();
+
+  // setboothCommentsArr(() => boothComments);
   // useEffect(() => {
   //   const data = useFetchBoothComment(boothId);
   //   setBoothComments(data);
   // }, [boothId]);
 
-  // useEffect(() => {
-  //   setBoothComments(boothCommentsData);
-  // }, []);
+  useEffect(() => {
+  }, [newBoothComment]);
+
+  useEffect(() => {
+    store.fetchCurrentUser();
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -140,6 +148,8 @@ export default function BoothComment({ boothId }: string) {
       .catch((error) => console.error('Error:', error));
 
     setInputValue('');
+
+    setNewBoothComment([...newBoothComment, dataToSend]);
   };
 
   if (boothComments.length === 0) {
@@ -164,12 +174,29 @@ export default function BoothComment({ boothId }: string) {
           dateStyle: 'short',
           timeStyle: 'short',
         });
+
         return (
           <CommentBox key={index}>
             <CommentTop>
               <img src={`/${emoji}.svg`} alt={`${emoji}`} />
               <h3>{userId}</h3>
               <div>{formattedDateTime}</div>
+            </CommentTop>
+            <p>{content}</p>
+          </CommentBox>
+        );
+      })}
+      {newBoothComment.map((boothCommentDetail, index:number) => {
+        const {
+          content, emoji,
+        } = boothCommentDetail;
+
+        return (
+          <CommentBox key={index}>
+            <CommentTop>
+              <img src={`/${emoji}.svg`} alt={`${emoji}`} />
+              <h3>{store.name}</h3>
+              <div>방금전</div>
             </CommentTop>
             <p>{content}</p>
           </CommentBox>
