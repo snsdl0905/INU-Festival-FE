@@ -41,7 +41,7 @@ const ProfileTitle = styled.div`
 `;
 
 const UserIcon = styled.img`
-  width: 95px;
+  width: 108px;
   margin-bottom:32px;
   flex-shrink: 1;
 `;
@@ -100,7 +100,6 @@ export default function ProfileSection() {
           <LoginBtn onClick={handleClickLogIn}>로그인</LoginBtn>
         )}
       </ProfileContainer>
-      {/* <UserIcon src="default.svg" alt="major" /> */}
       <UserIcon src="profileImg.png" alt="major" />
     </ProfileWrapper>
   );
