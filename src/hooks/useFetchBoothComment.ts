@@ -15,7 +15,5 @@ export default function useFetchBoothComment(id: string) {
     return [];
   }
 
-  console.log(data.boothComments);
-
   return data.boothComments;
 }

@@ -1,7 +1,7 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import SendComment from '../../types/SendComment';
 
@@ -59,9 +59,10 @@ const TextWrapper = styled.div`
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'trilling', 'excited'];
 
-export default function CommentSend({ boothId }: string) {
+export default function CommentSend({ boothId }) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
+
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
