@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import useFetchBoothComment from '../../hooks/useFetchBoothComment';
-import CommentSend from './CommentSend';
 import SendComment from '../../types/SendComment';
 import BoothComment from '../../types/BoothComment';
 import useUserStore from '../../hooks/useUserStore';
@@ -97,46 +96,99 @@ const TextWrapper = styled.div`
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
+function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
+  return (
+    <TextWrapper>
+      <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
+        <input
+          type="text"
+          value={inputValue}
+          maxLength={MAX_LENGTH}
+          onChange={handleInputChange}
+        />
+        <span>
+          {inputValue.length}
+          /
+          {MAX_LENGTH}
+        </span>
+      </TextBox>
+      <button type="submit" onClick={handleSendComment} aria-label="한줄외치기버튼">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="#0047C9" />
+          <path
+            fillRule="evenodd"
+            clipRule="evenodd"
+            d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z"
+            fill="white"
+          />
+          <path
+            d="M17.0521 27.041C17.0521 27.5933 17.4998 28.041 18.0521 28.041C18.6044 28.041 19.0521 27.5933 19.0521 27.041L17.0521 27.041ZM17.0521 11.041L17.0521 27.041L19.0521 27.041L19.0521 11.041L17.0521 11.041Z"
+            fill="white"
+          />
+        </svg>
+      </button>
+    </TextWrapper>
+  );
+}
+
+const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentDetail, index) => {
+  const {
+    userId, content, createdAt, emoji,
+  } = boothCommentDetail;
+  const createdAtDate = new Date(createdAt);
+
+  const formattedDateTime = createdAtDate.toLocaleString(undefined, {
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
+
+  return (
+    <CommentBox key={index}>
+      <CommentTop>
+        <img src={`/${emoji}.svg`} alt={`${emoji}`} />
+        <h3>{userId}</h3>
+        <div>{formattedDateTime}</div>
+      </CommentTop>
+      <p>{content}</p>
+    </CommentBox>
+  );
+});
+
 export default function BoothComment({ boothId }: { boothId: string }) {
-  // const [boothComments, setBoothComments] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
   const boothComments: BoothComment[] = useFetchBoothComment(boothId);
-  console.log(boothComments);
   const [newBoothComment, setNewBoothComment] = useState<SendComment[]>([]);
   const [, store] = useUserStore();
-
-  // setboothCommentsArr(() => boothComments);
-  // useEffect(() => {
-  //   const data = useFetchBoothComment(boothId);
-  //   setBoothComments(data);
-  // }, [boothId]);
-
-  useEffect(() => {
-  }, [newBoothComment]);
 
   useEffect(() => {
     store.fetchCurrentUser();
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value.length > MAX_LENGTH) {
+      e.target.value = e.target.value.slice(0, MAX_LENGTH);
+    }
     setInputValue(e.target.value);
   };
+
   const handleSendComment = () => {
-    const contents = inputValue;
-    if (contents === '') return;
+    const contents = inputValue.trim();
+    if (!contents) return;
+
     if (accessToken === '""') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
       navigate('/login');
       return;
     }
+
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     const dataToSend: SendComment = {
       content: contents,
       emoji: randomEmoji,
-      boothId,
     };
+
     fetch(`${process.env.REACT_APP_URL}/booth/comment/${boothId}`, {
       method: 'POST',
       headers: {
@@ -145,51 +197,37 @@ export default function BoothComment({ boothId }: { boothId: string }) {
       },
       body: JSON.stringify(dataToSend),
     })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to send comment');
+        }
+        return response.json();
+      })
+      .then(() => {
+        setInputValue('');
+        setNewBoothComment([...newBoothComment, dataToSend]);
+      })
       .catch((error) => console.error('Error:', error));
-
-    setInputValue('');
-
-    setNewBoothComment([...newBoothComment, dataToSend]);
   };
 
   if (boothComments.length === 0) {
     return (
       <>
-        <NoCommentBox>
-          실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !
-        </NoCommentBox>
-        <CommentSend boothId={boothId} />
+        <NoCommentBox>실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !</NoCommentBox>
+        <CommentInput
+          inputValue={inputValue}
+          handleInputChange={handleInputChange}
+          handleSendComment={handleSendComment}
+        />
       </>
     );
   }
+
   return (
     <>
-      {boothComments.map((boothCommentDetail, index:number) => {
-        const {
-          userId, content, createdAt, emoji,
-        } = boothCommentDetail;
-        const createdAtDate = new Date(createdAt);
-
-        const formattedDateTime = createdAtDate.toLocaleString(undefined, {
-          dateStyle: 'short',
-          timeStyle: 'short',
-        });
-
-        return (
-          <CommentBox key={index}>
-            <CommentTop>
-              <img src={`/${emoji}.svg`} alt={`${emoji}`} />
-              <h3>{userId}</h3>
-              <div>{formattedDateTime}</div>
-            </CommentTop>
-            <p>{content}</p>
-          </CommentBox>
-        );
-      })}
-      {newBoothComment.map((boothCommentDetail, index:number) => {
-        const {
-          content, emoji,
-        } = boothCommentDetail;
+      <BoothCommentList boothComments={boothComments} />
+      {newBoothComment.map((boothCommentDetail, index) => {
+        const { content, emoji } = boothCommentDetail;
 
         return (
           <CommentBox key={index}>
@@ -202,28 +240,11 @@ export default function BoothComment({ boothId }: { boothId: string }) {
           </CommentBox>
         );
       })}
-      <TextWrapper>
-        <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
-          <input
-            type="text"
-            value={inputValue}
-            maxLength={MAX_LENGTH}
-            onChange={handleInputChange}
-          />
-          <span>
-            {inputValue.length}
-            /
-            {MAX_LENGTH}
-          </span>
-        </TextBox>
-        <button type="submit" onClick={handleSendComment} aria-label="한줄외치기버튼">
-          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
-            <circle cx="18" cy="18" r="18" fill="#0047C9" />
-            <path fillRule="evenodd" clipRule="evenodd" d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z" fill="white" />
-            <path d="M17.0521 27.041C17.0521 27.5933 17.4998 28.041 18.0521 28.041C18.6044 28.041 19.0521 27.5933 19.0521 27.041L17.0521 27.041ZM17.0521 11.041L17.0521 27.041L19.0521 27.041L19.0521 11.041L17.0521 11.041Z" fill="white" />
-          </svg>
-        </button>
-      </TextWrapper>
+      <CommentInput
+        inputValue={inputValue}
+        handleInputChange={handleInputChange}
+        handleSendComment={handleSendComment}
+      />
     </>
   );
 }
