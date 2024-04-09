@@ -105,6 +105,7 @@ const MapInfoBottom = styled.div`
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
+    color:black;
   }
 
   .selected{
@@ -166,7 +167,7 @@ export default function DetailedMapPage() {
   const [cliked, setClicked] = useState(false);
 
   if (!booth) {
-    return null; // 데이터가 로드되지 않았을 때의 처리
+    return null;
   }
   const {
     name,
@@ -206,12 +207,6 @@ export default function DetailedMapPage() {
       setLikeCount(liked);
     }
   }, [booth]);
-
-  // useEffect(() => {
-  //   return(
-  //     store.boothLike()
-  //   )
-  // },[]);
 
   const handleBoothLike = (value: string) => {
     const newLikeCount = likeCount + 1;
