@@ -71,9 +71,10 @@ export default function ProfileSection() {
   const handleClickLogout = async () => {
     const confirmLogout = window.confirm('로그아웃 하시겠습니까?');
     if (confirmLogout) {
-    await apiService.logout();
-    setAccessToken('');
-    navigate('/profile');}
+      await apiService.logout();
+      setAccessToken('');
+      navigate('/profile');
+    }
   };
 
   const handleClickLogIn = () => {
