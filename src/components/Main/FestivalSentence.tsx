@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -31,10 +32,15 @@ const SentenceBox = styled.div`
 
 export default function FestivalSentence() {
   const { data } = useFetchSentence();
+  const navigate = useNavigate();
+
+  const handleClickGuestbook = () => {
+    navigate('/guestbook');
+  };
 
   return (
     <>
-      <FestivalSentenceBox>
+      <FestivalSentenceBox onClick={handleClickGuestbook}>
         <SentenceBox>
           {data === undefined ? (
             <SkeletonFestivalSentence />
