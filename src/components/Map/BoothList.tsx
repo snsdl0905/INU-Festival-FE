@@ -110,7 +110,7 @@ export default function BoothList({
             key={id}
           >
             <BoothContainer>
-              <img src={boothImgs && boothImgs[0].url} alt="boothImg.png" />
+              <img src={boothImgs.length > 0 ? boothImgs[0].url : 'default.png'} alt="boothImg.png" />
               <BoothContent>
                 <div>{category}</div>
                 <b>{name}</b>
