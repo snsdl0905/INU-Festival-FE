@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -171,7 +171,16 @@ export default function DetailedMapPage() {
     description,
     liked,
     boothImgs,
+    boothDays,
   } = booth;
+
+  let selectedDay;
+  const location = useLocation();
+  if (location.state && location.state.date) {
+    selectedDay = location.state.date;
+  } else {
+    selectedDay = boothDays && boothDays['0'].day;
+  }
 
   const handleRightButton = () => {
     const newPosition = parseInt(translateImg, 10) - 100;
@@ -285,7 +294,7 @@ export default function DetailedMapPage() {
         </button>
       </MapButtonBox>
       {toast && <Toast setToast={setToast} text={toastText} />}
-      <InfoWithIcon small="false" booth={booth} selectedDay="월" />
+      <InfoWithIcon small="false" booth={booth} selectedDay={selectedDay} />
       <MapInfoBottom>
         <button
           type="button"
