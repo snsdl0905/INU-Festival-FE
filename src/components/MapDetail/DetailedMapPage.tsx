@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-
 import styled from 'styled-components';
-
-import useFetchBooth from '../../hooks/useFetchBooth';
-import useLikeStore from '../../hooks/useLikeStore';
-
-import boothImg from '../../types/boothImg';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
 import InfoWithIcon from './InfoWithIcon';
 import Toast from '../Profile/Toast';
 import BoothComment from './BoothComment';
+
+import boothImg from '../../types/boothImg';
+
+import useFetchBooth from '../../hooks/useFetchBooth';
+import useLikeStore from '../../hooks/useLikeStore';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
