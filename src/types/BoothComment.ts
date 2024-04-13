@@ -4,6 +4,7 @@ interface BoothComment {
     userId: number;
     createdAt: string;
     updatedAt: string;
+    emoji: string;
 }
 
 export default BoothComment;

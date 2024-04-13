@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  z-index: 100;
+  z-index: 300;
   position: fixed;
   left: 50%;
   bottom: 0px;

@@ -161,6 +161,10 @@ export default function GuestBook() {
 
     fetch(`${process.env.REACT_APP_URL}/sentence`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
       body: JSON.stringify(dataToSend),
     })
       .then((response) => response.json())

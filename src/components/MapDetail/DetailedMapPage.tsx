@@ -5,9 +5,16 @@ import styled from 'styled-components';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
+
+import BoothComment from './BoothComment';
+import Toast from '../Profile/Toast';
 import InfoWithIcon from './InfoWithIcon';
 import useFetchBooth from '../../hooks/useFetchBooth';
 import boothImg from '../../types/boothImg';
+import Toast from '../Profile/Toast';
+import useLikeStore from '../../hooks/useLikeStore';
+import BoothComment from './BoothComment';
+
 import Toast from '../Profile/Toast';
 import useLikeStore from '../../hooks/useLikeStore';
 import BoothComment from './BoothComment';
@@ -102,6 +109,7 @@ const MapInfoBottom = styled.div`
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
+    color:black;
   }
 
   .selected{
