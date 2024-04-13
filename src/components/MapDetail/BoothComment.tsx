@@ -94,10 +94,6 @@ const TextWrapper = styled.div`
     }
 `;
 
-const BoothCommentWrapper = styled.div`
-height:300px;
-`;
-
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
