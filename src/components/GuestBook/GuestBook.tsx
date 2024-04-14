@@ -1,7 +1,7 @@
 import {
   useState, useEffect, useRef,
 } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import styled from 'styled-components';
 import { io } from 'socket.io-client';
 
@@ -44,7 +44,7 @@ const Button = styled.button`
 
 const BottomBanner = styled.div`
   padding-inline: ${(props) => props.theme.sizes.contentPadding};
-  z-index: 300;
+  z-index: 400;
   position: fixed;
   bottom: 0;
   height: 90px;
@@ -75,6 +75,7 @@ const TextBox = styled.div<{ $isMaximum: boolean }>`
   width: 100%;
   border-bottom: 2px solid ${(props) => (props.$isMaximum ? '#F00' : '#0047C9')};
   padding-bottom: 5px;
+
 
   span{
     float: right;
@@ -111,6 +112,7 @@ export default function GuestBook() {
   const [inputBanner, setInputBanner] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const inputRef = useRef<HTMLInputElement>(null);
   const chatWindow = useRef<HTMLDivElement>(null);
@@ -180,7 +182,7 @@ export default function GuestBook() {
     const userAccessToken = JSON.parse(accessToken);
     if (userAccessToken === '') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
     setInputBanner(true);
