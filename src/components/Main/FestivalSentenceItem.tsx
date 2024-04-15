@@ -35,7 +35,7 @@ const ContentBox = styled.div`
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
-    line-height: 100%; /* 12px */
+    line-height: 100%;
     letter-spacing: -0.36px;
   }
 `;

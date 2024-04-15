@@ -28,9 +28,6 @@ const Wrapper = styled.div`
   cursor: grab;
   padding-top: 15px;
 
-  /* &:active {
-    cursor: grabbing;
-  } */
 `;
 
 const BottomSheetContent = styled.div`
@@ -47,21 +44,18 @@ const BottomSheetHeader = styled.div`
     border-radius: 12px;
     width: 60px;
     height: 6.747px;
-    /* margin: 25px; */
     margin: 5px 0;
 
 
 `;
 
 const BottomSheetFilter = styled.div`
-    /* overflow: scroll; */
     width: 100%;
-    /* height: max-content; */
-    /* display: flex; */
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px 0;
     border-bottom: 1px dashed #CEDCEA;
+    overflow: scroll;
 
     button {
       color: #000;
@@ -71,29 +65,22 @@ const BottomSheetFilter = styled.div`
       font-size: 13px;
       font-style: normal;
       font-weight: 800;
-      line-height: 21px; /* 161.538% */
+      line-height: 21px;
       letter-spacing: -0.52px;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
-      /* box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12); */
       height: 45px;
       cursor: pointer;
       background-color: #F3F3F5;
-      /* border: 1px solid #d4d3d3; */
-      /* color: #7e7d7d; */
       font-family: SUIT, sans-serif;
     }
     
     .clickedDay {
       background-color: #EBF2FF;
-      /* border: 1px solid #FB7876;
-      color: #FB7876; */
     }
 
     .clickedCategory {
       background-color: #EBF2FF;
-      /* border: 1px solid #0199FF;
-      color: #0199FF; */
     }
 
     :first-child{
@@ -103,8 +90,6 @@ const BottomSheetFilter = styled.div`
 
 const DayFilterContainer = styled.div`
   display: flex;
-  /* justify-content: space-around; */
-  /* width: 40%; */
 
   button {
     padding: 0 24px;
@@ -114,8 +99,6 @@ const DayFilterContainer = styled.div`
 
 const CategoryFilterContanier = styled.div`
   display: flex;
-  /* justify-content: space-around; */
-  /* width: 60%; */
 
   button {
     padding: 0 30px;
@@ -153,15 +136,8 @@ export default function BottomSheet({
   selectedCategory,
   booths,
 }: BottomSheetProps) {
-  // const { sheet, content } = useBottomSheet();
-  // const [isSwipe, setIsSwipe] = useState<boolean>(false);
-
   const categories = useFetchCategories();
   const { days, filters } = categories;
-
-  // const handleClick = () => {
-  //   setIsSwipe(true);
-  // };
 
   const handleSetFilterDay = (category: string) => {
     setSelectedDay(category);
@@ -173,13 +149,7 @@ export default function BottomSheet({
 
   return (
     <Wrapper>
-      {
-      // ref={sheet}
-      // onClick={handleClick}
-      // className={isSwipe ? 'active' : ''}
-      }
       <BottomSheetHeader />
-      {/* <BottomSheetContent ref={content}> */}
       <BottomSheetContent>
         <BottomSheetFilter>
           <FilterContainer>

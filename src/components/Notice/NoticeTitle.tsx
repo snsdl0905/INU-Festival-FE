@@ -33,7 +33,7 @@ const NoticeTitleBox = styled.div`
     color: #A9A9A9;
     font-size: 13px;
     font-weight: 600;
-    line-height: 21px; /* 161.538% */
+    line-height: 21px; 
     letter-spacing: -0.52px;
   }
     `;
