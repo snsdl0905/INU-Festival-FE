@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import useFetchBoothComment from '../../hooks/useFetchBoothComment';
 import SendComment from '../../types/SendComment';
 import BoothComment from '../../types/BoothComment';
@@ -93,6 +93,7 @@ const TextWrapper = styled.div`
     outline: none;
     }
 `;
+
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
@@ -158,6 +159,7 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
+  const location = useLocation();
   const boothComments: BoothComment[] = useFetchBoothComment(boothId);
   const [newBoothComment, setNewBoothComment] = useState<SendComment[]>([]);
   const [, store] = useUserStore();
@@ -179,7 +181,7 @@ export default function BoothComment({ boothId }: { boothId: string }) {
 
     if (accessToken === '""') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
 
@@ -211,16 +213,18 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   };
 
   if (boothComments.length === 0) {
-    return (
-      <>
-        <NoCommentBox>실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !</NoCommentBox>
-        <CommentInput
-          inputValue={inputValue}
-          handleInputChange={handleInputChange}
-          handleSendComment={handleSendComment}
-        />
-      </>
-    );
+    if (newBoothComment.length === 0) {
+      return (
+        <>
+          <NoCommentBox>실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !</NoCommentBox>
+          <CommentInput
+            inputValue={inputValue}
+            handleInputChange={handleInputChange}
+            handleSendComment={handleSendComment}
+          />
+        </>
+      );
+    }
   }
 
   return (

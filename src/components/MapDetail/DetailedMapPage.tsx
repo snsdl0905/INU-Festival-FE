@@ -1,23 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useParams, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Header from '../Notice/Header';
 import BoothInstruction from './BoothInstruction';
-
-import BoothComment from './BoothComment';
-import Toast from '../Profile/Toast';
 import InfoWithIcon from './InfoWithIcon';
-import useFetchBooth from '../../hooks/useFetchBooth';
-import boothImg from '../../types/boothImg';
 import Toast from '../Profile/Toast';
-import useLikeStore from '../../hooks/useLikeStore';
 import BoothComment from './BoothComment';
 
-import Toast from '../Profile/Toast';
+import boothImg from '../../types/boothImg';
+
+import useFetchBooth from '../../hooks/useFetchBooth';
 import useLikeStore from '../../hooks/useLikeStore';
-import BoothComment from './BoothComment';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -57,6 +51,7 @@ const MapInfoTop = styled.div`
       font-size: 12px;
       margin: 0 4px;
       font-weight: 550;
+      color:black;
     }
   }
 `;
@@ -94,7 +89,6 @@ const MapButtonBox = styled.div`
   .unliked{
     fill:#BBC7D3;
   }
-
 `;
 
 const MapInfoBottom = styled.div`
@@ -126,7 +120,7 @@ const MapImageContainer = styled.div<{translateImg: string}>`
   height: 90vw;
   background-color: #D1D9F5;
   transform: translateX(${(props) => props.translateImg});
-  `;
+`;
 
 const ImageBox = styled.div`
   img{
@@ -138,7 +132,6 @@ const ImageBox = styled.div`
 const Carousel = styled.div`
   overflow: hidden;
   position: relative;
-
 
   button{
     border: none;
@@ -177,14 +170,17 @@ export default function DetailedMapPage() {
     category,
     description,
     liked,
-    // boothImgs,
+    boothImgs,
+    boothDays,
   } = booth;
 
-  const boothImgs: boothImg[] = [];
-  boothImgs.push({ id: '4', url: 'BOL.jpeg' });
-  boothImgs.push({ id: '5', url: 'BOL2.jpeg' });
-  boothImgs.push({ id: '6', url: 'DAMONS.png' });
-  boothImgs.push({ id: '7', url: 'DAMONS4.png' });
+  let selectedDay;
+  const location = useLocation();
+  if (location.state && location.state.date) {
+    selectedDay = location.state.date;
+  } else {
+    selectedDay = boothDays && boothDays['0'].day;
+  }
 
   const handleRightButton = () => {
     const newPosition = parseInt(translateImg, 10) - 100;
@@ -202,8 +198,8 @@ export default function DetailedMapPage() {
   const [toastText, setToastText] = useState('');
   const [likeCount, setLikeCount] = useState<number>(0);
   useEffect(() => {
-    if (booth && booth.liked) {
-      setLikeCount(booth.liked);
+    if (booth && liked) {
+      setLikeCount(liked);
     }
   }, [booth]);
 
@@ -298,7 +294,7 @@ export default function DetailedMapPage() {
         </button>
       </MapButtonBox>
       {toast && <Toast setToast={setToast} text={toastText} />}
-      <InfoWithIcon small="false" booth={booth} selectedDay="월" />
+      <InfoWithIcon small="false" booth={booth} selectedDay={selectedDay} />
       <MapInfoBottom>
         <button
           type="button"
