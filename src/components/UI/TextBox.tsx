@@ -3,17 +3,18 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  margin-block: .5rem;
-
   input {
-    width: 100%;
+    width: 115%;
     align-self: stretch;
-    height: 48px;
+    height: 56px;
     flex-shrink: 0;
     border-radius: 12px;
     background: #F3F3F5;
     border: none;
     padding-left: 15px;
+    font-size: 16px;
+    transform: scale(0.87);
+    margin-left: -7.5%;
     
     &::placeholder {
       color: #B9B9B9;
