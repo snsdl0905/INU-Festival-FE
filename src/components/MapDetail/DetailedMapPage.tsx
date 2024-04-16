@@ -103,6 +103,7 @@ const MapInfoBottom = styled.div`
     font-weight: 700;
     font-size: 15px;
     cursor: pointer;
+    color:black;
   }
 
   .selected{
