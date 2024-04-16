@@ -48,27 +48,21 @@ export default function MapLayer({
   };
 
   const createMarkers = (booth : Booth) => {
+    let uniqueMarker = false;
     booth.boothDays.forEach((boothDay: BoothDay) => {
       if (boothDay.day === selectedDay) {
         const latlang = new kakao.maps.LatLng(boothDay.x, boothDay.y);
         const imageSize = new kakao.maps.Size(29, 35);
         const imageOption = { offset: new kakao.maps.Point(16, 34) };
-        let imageSrc;
-        switch (booth.category) {
-        case '주점':
-          imageSrc = 'markerBlack.png';
-          break;
-        case '비주점':
-          imageSrc = 'markerYellow.png';
-          break;
-        case '푸드트럭':
-          imageSrc = 'markerBlue.png';
-          break;
-        default:
-          break;
+
+        if ((booth.category === '푸드트럭' || booth.category === '플리마켓') && uniqueMarker) {
+          return;
+        }
+        if ((booth.category === '푸드트럭' || booth.category === '플리마켓') && !uniqueMarker) {
+          uniqueMarker = true;
         }
 
-        const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+        const markerImage = new kakao.maps.MarkerImage(`${booth.markerImage}.svg`, imageSize, imageOption);
 
         const marker = new kakao.maps.Marker({
           position: latlang,
@@ -79,6 +73,8 @@ export default function MapLayer({
         marker.setMap(null);
         marker.setMap(kakaoMap);
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
+        console.log(booth.c);
+        if (booth.category === '푸드트럭' || booth.category === '플리마켓') return;
 
         kakao.maps.event.addListener(marker, 'click', () => {
           const newMarker: Booth[] = [];
@@ -100,6 +96,8 @@ export default function MapLayer({
     resetMarkers();
 
     const booths: Booth[] = selectedBooth || filteredBooths;
+
+    console.log(booths);
 
     booths.forEach((booth) => {
       createMarkers(booth);

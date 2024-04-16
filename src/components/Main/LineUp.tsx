@@ -45,6 +45,7 @@ export default function LineUp({
       speed={300}
       pagination={{ clickable: true }}
       allowTouchMove
+      slidesOffsetAfter={50}
     >
       {data === undefined
         ? (
