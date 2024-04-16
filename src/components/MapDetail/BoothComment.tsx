@@ -93,6 +93,7 @@ const TextWrapper = styled.div`
     outline: none;
     }
 `;
+
 const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
@@ -158,7 +159,7 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const boothComments: BoothComment[] = useFetchBoothComment(boothId);
+  const boothComments = useFetchBoothComment(boothId);
   const [newBoothComment, setNewBoothComment] = useState<SendComment[]>([]);
   const [, store] = useUserStore();
 
@@ -211,16 +212,18 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   };
 
   if (boothComments.length === 0) {
-    return (
-      <>
-        <NoCommentBox>실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !</NoCommentBox>
-        <CommentInput
-          inputValue={inputValue}
-          handleInputChange={handleInputChange}
-          handleSendComment={handleSendComment}
-        />
-      </>
-    );
+    if (newBoothComment.length === 0) {
+      return (
+        <>
+          <NoCommentBox>실시간 부스에 대한 정보와 여러분의 감상을 남겨주세요 !</NoCommentBox>
+          <CommentInput
+            inputValue={inputValue}
+            handleInputChange={handleInputChange}
+            handleSendComment={handleSendComment}
+          />
+        </>
+      );
+    }
   }
 
   return (
