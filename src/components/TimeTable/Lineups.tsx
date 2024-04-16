@@ -52,7 +52,7 @@ export default function Lineups({ lineups }: LineupsProps) {
         speed={300}
         pagination={{ clickable: true }}
         allowTouchMove
-        slidesOffsetAfter={90}
+        slidesOffsetAfter={110}
 
       >
         {lineups.map((lineup) => (
