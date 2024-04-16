@@ -51,6 +51,7 @@ const MapInfoTop = styled.div`
       font-size: 12px;
       margin: 0 4px;
       font-weight: 550;
+      color:black;
     }
   }
 `;

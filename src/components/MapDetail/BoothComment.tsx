@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 import useFetchBoothComment from '../../hooks/useFetchBoothComment';
 import SendComment from '../../types/SendComment';
 import BoothComment from '../../types/BoothComment';
@@ -159,7 +159,8 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-  const boothComments = useFetchBoothComment(boothId);
+  const location = useLocation();
+  const boothComments: BoothComment[] = useFetchBoothComment(boothId);
   const [newBoothComment, setNewBoothComment] = useState<SendComment[]>([]);
   const [, store] = useUserStore();
 
@@ -180,7 +181,7 @@ export default function BoothComment({ boothId }: { boothId: string }) {
 
     if (accessToken === '""') {
       alert('로그인 후에 메시지를 보낼 수 있습니다.');
-      navigate('/login');
+      navigate('/login', { state: { from: location.pathname } });
       return;
     }
 
