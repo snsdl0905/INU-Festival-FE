@@ -17,8 +17,11 @@ const Container = styled.div`
   align-items: center;
   gap: 15px;
 
+  margin-bottom: -10px;
+
   form {
     width: 100%;
+    margin-top: 10px;
   }
 `;
 
@@ -44,9 +47,9 @@ const BtnWrapper = styled.div`
   display:flex;
   flex-direction:column;
   align-items: center;
-  width:100%;
-  gap:10px;
-  margin-top:50px;
+  width: 100%;
+  gap: 10px;
+  margin-top: 40px;
 `;
 
 const Details = styled.div`
@@ -58,12 +61,11 @@ const Details = styled.div`
   font-weight: 400;
   line-height: 19px; 
   letter-spacing: -0.52px;
-  margin-top:60px;
+  margin-top: 50px;
   
   span{
     display:block;
   }
-
 `;
 
 export default function LoginForm() {
