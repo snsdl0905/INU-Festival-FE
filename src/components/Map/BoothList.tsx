@@ -25,12 +25,6 @@ const BoothContainer = styled.div`
     padding: 10px;
     width: 100%;
     border-bottom: 1px solid #CEDCEA;
-
-    img{
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-    }
 `;
 
 const BoothContent = styled.div`
@@ -83,6 +77,12 @@ const Image = styled.div`
   width: 160px;
   height: 160px;
   border-radius: 12px;
+
+  img{
+      width: 160px;
+      height: 160px;
+      border-radius: 12px;
+    }
 `;
 
 type BoothListProps = {
