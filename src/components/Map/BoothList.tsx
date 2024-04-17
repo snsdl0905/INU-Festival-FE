@@ -27,8 +27,8 @@ const BoothContainer = styled.div`
     border-bottom: 1px solid #CEDCEA;
 
     img{
-      width: 160px;
-      height: 160px;
+      width: 100%;
+      height: 100%;
       border-radius: 12px;
     }
 `;
@@ -79,6 +79,12 @@ const LikedNumber = styled.p`
     }
 `;
 
+const Image = styled.div`
+  width: 160px;
+  height: 160px;
+  border-radius: 12px;
+`;
+
 type BoothListProps = {
   booths: Booth[];
   selectedDay: string;
@@ -110,7 +116,9 @@ export default function BoothList({
             key={id}
           >
             <BoothContainer>
-              <img src={boothImgs.length > 0 ? boothImgs[0].url : 'default.png'} alt="boothImg.png" />
+              <Image>
+                <img src={boothImgs.length > 0 ? boothImgs[0].url : 'default.png'} alt="boothImg.png" />
+              </Image>
               <BoothContent>
                 <div>{category}</div>
                 <b>{name}</b>
