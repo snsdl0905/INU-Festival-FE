@@ -49,7 +49,6 @@ const BottomSheetHeader = styled.div`
 const BottomSheetFilter = styled.div`
     width: 100%;
     margin-top: 5px;
-    margin-bottom: 5px;
     padding: 10px 0;
     border-bottom: 1px dashed #CEDCEA;
 
@@ -61,6 +60,7 @@ const BottomSheetFilter = styled.div`
       line-height: 21px;
       letter-spacing: -0.52px;
       padding-right: 10px;
+      width: 45px;
     }
 
     button {
@@ -89,9 +89,6 @@ const BottomSheetFilter = styled.div`
       background-color: #EBF2FF;
     }
 
-    :first-child{
-    margin-bottom: 5px;
-  }
 `;
 
 const DayFilterContainer = styled.div`
@@ -117,13 +114,15 @@ const FilterContainer = styled.div`
   width: max-content;
 `;
 
-const Hello = styled.div`
+const DataFilterContainer = styled.div`
     width: 100%;
     overflow: scroll;
 `;
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
 type BottomSheetProps = {
@@ -159,7 +158,7 @@ export default function BottomSheet({
         <BottomSheetFilter>
           <Container>
             <p>요일</p>
-            <Hello>
+            <DataFilterContainer>
               <FilterContainer>
                 {days && days.map((category: string) => (
                   <DayFilterContainer key={category}>
@@ -173,11 +172,11 @@ export default function BottomSheet({
                   </DayFilterContainer>
                 ))}
               </FilterContainer>
-            </Hello>
+            </DataFilterContainer>
           </Container>
           <Container>
             <p>분류</p>
-            <Hello>
+            <DataFilterContainer>
               <FilterContainer>
                 {filters && filters.map((category: string) => (
                   <CategoryFilterContanier key={category}>
@@ -191,7 +190,7 @@ export default function BottomSheet({
                   </CategoryFilterContanier>
                 ))}
               </FilterContainer>
-            </Hello>
+            </DataFilterContainer>
           </Container>
         </BottomSheetFilter>
         <BoothList
