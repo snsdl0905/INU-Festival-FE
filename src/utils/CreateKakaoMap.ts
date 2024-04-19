@@ -7,7 +7,7 @@ export default function Kakao() {
     const path = 'split_map/';
 
     if (y >= 0 && y < limit && x >= 0 && x < limit) {
-      return `${path}planh${
+      return `${path}${
         z}_${y}_${x}.png`;
     }
     return 'https://i1.daumcdn.net/dmaps/apis/white.png';
