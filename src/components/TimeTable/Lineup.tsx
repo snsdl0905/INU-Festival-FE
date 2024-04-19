@@ -49,7 +49,7 @@ export default function Lineup({ lineup }: LineupProps) {
 
   return (
     <Container>
-      <img src="BOL.jpeg" alt="" />
+      <img src="LineupDefault.jpeg" alt="" />
       <div>
         <Title>{name}</Title>
         <Description>

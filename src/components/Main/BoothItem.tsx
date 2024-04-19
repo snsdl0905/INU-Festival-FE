@@ -77,7 +77,7 @@ export default function BoothItem({ booth, index }:BoothItemProps) {
       <Booth>
         <BoothDetail>
           <BoothRank src={`Rank${index + 1}.png`} alt="순위" />
-          <BoothImg src="BoothDefault.png" alt="부스이미지" />
+          <BoothImg src="/PinkBoothDefault.jpeg" alt="부스이미지" />
           <BoothTitle>
             <div>{booth.category}</div>
             <div>{booth.name}</div>
