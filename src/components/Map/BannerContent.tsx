@@ -52,7 +52,16 @@ const BottomSheetFilter = styled.div`
     margin-bottom: 5px;
     padding: 10px 0;
     border-bottom: 1px dashed #CEDCEA;
-    overflow: scroll;
+
+    p{
+      color: #969FA9;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: -0.52px;
+      padding-right: 10px;
+    }
 
     button {
       color: #000;
@@ -106,16 +115,15 @@ const FilterContainer = styled.div`
   display: flex;
   align-items: center;
   width: max-content;
-  
-  p{
-    color: #969FA9;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 21px;
-    letter-spacing: -0.52px;
-    padding-right: 10px;
-  }
+`;
+
+const Hello = styled.div`
+    width: 100%;
+    overflow: scroll;
+`;
+
+const Container = styled.div`
+  display: flex;
 `;
 
 type BottomSheetProps = {
@@ -149,34 +157,42 @@ export default function BottomSheet({
       <BottomSheetHeader />
       <BottomSheetContent>
         <BottomSheetFilter>
-          <FilterContainer>
+          <Container>
             <p>요일</p>
-            {days && days.map((category: string) => (
-              <DayFilterContainer key={category}>
-                <button
-                  type="button"
-                  onClick={() => handleSetFilterDay(category)}
-                  className={selectedDay === category ? 'clickedDay' : ''}
-                >
-                  {category}
-                </button>
-              </DayFilterContainer>
-            ))}
-          </FilterContainer>
-          <FilterContainer>
+            <Hello>
+              <FilterContainer>
+                {days && days.map((category: string) => (
+                  <DayFilterContainer key={category}>
+                    <button
+                      type="button"
+                      onClick={() => handleSetFilterDay(category)}
+                      className={selectedDay === category ? 'clickedDay' : ''}
+                    >
+                      {category}
+                    </button>
+                  </DayFilterContainer>
+                ))}
+              </FilterContainer>
+            </Hello>
+          </Container>
+          <Container>
             <p>분류</p>
-            {filters && filters.map((category: string) => (
-              <CategoryFilterContanier key={category}>
-                <button
-                  type="button"
-                  onClick={() => handleSetFilterCategory(category)}
-                  className={selectedCategory === category ? 'clickedCategory' : ''}
-                >
-                  {category}
-                </button>
-              </CategoryFilterContanier>
-            ))}
-          </FilterContainer>
+            <Hello>
+              <FilterContainer>
+                {filters && filters.map((category: string) => (
+                  <CategoryFilterContanier key={category}>
+                    <button
+                      type="button"
+                      onClick={() => handleSetFilterCategory(category)}
+                      className={selectedCategory === category ? 'clickedCategory' : ''}
+                    >
+                      {category}
+                    </button>
+                  </CategoryFilterContanier>
+                ))}
+              </FilterContainer>
+            </Hello>
+          </Container>
         </BottomSheetFilter>
         <BoothList
           booths={booths}
