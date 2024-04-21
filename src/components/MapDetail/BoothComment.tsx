@@ -232,12 +232,14 @@ export default function BoothComment({ boothId }: { boothId: string }) {
       <BoothCommentList boothComments={boothComments} />
       {newBoothComment.map((boothCommentDetail, index) => {
         const { content, emoji } = boothCommentDetail;
+        const nameLength = store.name.length;
+        const name = store.name.substring(0, nameLength - 3) + store.name.substring(nameLength - 3).replace(/./g, '*');
 
         return (
           <CommentBox key={index}>
             <CommentTop>
               <img src={`/${emoji}.svg`} alt={`${emoji}`} />
-              <h3>{store.name}</h3>
+              <h3>{name}</h3>
               <div>방금전</div>
             </CommentTop>
             <p>{content}</p>
