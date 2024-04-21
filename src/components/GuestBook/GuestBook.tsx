@@ -104,6 +104,10 @@ const TextBox = styled.div<{ $isMaximum: boolean }>`
   }
 `;
 
+const SubmitButton = styled.button`
+  cursor: pointer;
+`;
+
 const ServerURL = process.env.REACT_APP_URL;
 const MAX_LENGTH = 16;
 
@@ -236,13 +240,13 @@ export default function GuestBook() {
               {MAX_LENGTH}
             </span>
           </TextBox>
-          <button type="submit" onClick={handleSendMessage} aria-label="한줄외치기버튼">
+          <SubmitButton type="submit" onClick={handleSendMessage} aria-label="한줄외치기버튼">
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
               <circle cx="18" cy="18" r="18" fill="#0047C9" />
               <path fillRule="evenodd" clipRule="evenodd" d="M18.7247 9.72766C18.3458 9.32581 17.7316 9.32581 17.3527 9.72766L10.686 16.7992C10.3071 17.2011 10.3071 17.8526 10.686 18.2545C11.0648 18.6563 11.6791 18.6563 12.0579 18.2545L18.0387 11.9105L24.0195 18.2545C24.3983 18.6563 25.0126 18.6563 25.3914 18.2545C25.7703 17.8526 25.7703 17.2011 25.3914 16.7992L18.7247 9.72766Z" fill="white" />
               <path d="M17.0521 27.041C17.0521 27.5933 17.4998 28.041 18.0521 28.041C18.6044 28.041 19.0521 27.5933 19.0521 27.041L17.0521 27.041ZM17.0521 11.041L17.0521 27.041L19.0521 27.041L19.0521 11.041L17.0521 11.041Z" fill="white" />
             </svg>
-          </button>
+          </SubmitButton>
         </BottomBanner>
       )}
     </>
