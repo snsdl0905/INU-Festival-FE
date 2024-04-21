@@ -113,7 +113,7 @@ function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
           {MAX_LENGTH}
         </span>
       </TextBox>
-      <button type="submit" onClick={handleSendComment} aria-label="한줄외치기버튼" style={{ cursor: 'pointer' }}>
+      <button type="submit" onClick={handleSendComment} aria-label="부스댓글버튼" style={{ cursor: 'pointer' }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="18" fill="#0047C9" />
           <path
@@ -169,6 +169,11 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (accessToken === '""') {
+      alert('로그인 후에 메시지를 보낼 수 있습니다.');
+      navigate('/login', { state: { from: location.pathname } });
+      return;
+    }
     if (e.target.value.length > MAX_LENGTH) {
       e.target.value = e.target.value.slice(0, MAX_LENGTH);
     }
@@ -178,12 +183,6 @@ export default function BoothComment({ boothId }: { boothId: string }) {
   const handleSendComment = () => {
     const contents = inputValue.trim();
     if (!contents) return;
-
-    if (accessToken === '""') {
-      alert('로그인 후에 메시지를 보낼 수 있습니다.');
-      navigate('/login', { state: { from: location.pathname } });
-      return;
-    }
 
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
     const dataToSend: SendComment = {
