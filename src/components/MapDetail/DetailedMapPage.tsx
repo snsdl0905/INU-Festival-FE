@@ -136,6 +136,7 @@ const Carousel = styled.div`
   button{
     border: none;
   }
+  margin-top: 50px;
 `;
 
 const ButtonContainer = styled.div`
