@@ -12,7 +12,7 @@ const ToastBox = styled.div`
     position: fixed;
     bottom: 120px;
     display: flex;
-    background-color: #e8ebf0;
+    background-color: #fafcff; opacity : 0.9;
     border-radius: 15px;
     padding: 10px;
 
