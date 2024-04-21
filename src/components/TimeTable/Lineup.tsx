@@ -44,12 +44,17 @@ type LineupProps = {
 
 export default function Lineup({ lineup }: LineupProps) {
   const {
-    name, startTime, endTime,
+    name, startTime, endTime, img,
   } = lineup;
 
   return (
     <Container>
-      <img src="LineupDefault.jpeg" alt="" />
+      {/* {lineup.img ? (
+        <img src={lineup.img} alt={lineup.img} />
+      ) : (
+        <img src="LineupDefault.jpeg" alt="Default" />
+      )} */}
+      <img src="LineupDefault.jpeg" alt="Default" />
       <div>
         <Title>{name}</Title>
         <Description>

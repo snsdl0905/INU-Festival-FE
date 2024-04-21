@@ -120,7 +120,7 @@ export default function BoothRanking() {
 
   const handleClick = (id:string) => {
     navigate(`map/${id}`);
-  }
+  };
 
   return (
     <>

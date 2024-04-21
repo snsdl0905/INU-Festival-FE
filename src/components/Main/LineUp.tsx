@@ -66,7 +66,12 @@ export default function LineUp({
           return (
             <SwiperSlide key={key}>
               <Container data-hash={key}>
-                <img src="LineupDefault.jpeg" alt={lineup.img} />
+                {/* {lineup.img ? (
+                  <img src={lineup.img} alt={lineup.img} />
+                ) : (
+                  <img src="LineupDefault.jpeg" alt="Default" />
+                )} */}
+                <img src="LineupDefault.jpeg" alt="Default" />
               </Container>
             </SwiperSlide>
           );
