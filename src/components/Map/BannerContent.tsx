@@ -100,7 +100,7 @@ const DayFilterContainer = styled.div`
 
 `;
 
-const CategoryFilterContanier = styled.div`
+const CategoryFilterContainer = styled.div`
   display: flex;
 
   button {
@@ -179,7 +179,7 @@ export default function BottomSheet({
             <DataFilterContainer>
               <FilterContainer>
                 {filters && filters.map((category: string) => (
-                  <CategoryFilterContanier key={category}>
+                  <CategoryFilterContainer key={category}>
                     <button
                       type="button"
                       onClick={() => handleSetFilterCategory(category)}
@@ -187,7 +187,7 @@ export default function BottomSheet({
                     >
                       {category}
                     </button>
-                  </CategoryFilterContanier>
+                  </CategoryFilterContainer>
                 ))}
               </FilterContainer>
             </DataFilterContainer>
