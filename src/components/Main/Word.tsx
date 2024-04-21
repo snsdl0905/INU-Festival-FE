@@ -55,7 +55,10 @@ export default function Word() {
           data.keywords.map((word) => (
             <SwiperSlide key={word.id}>
               <WordContent>
-                <span>{word.keyword}</span>
+                <span>
+                  #
+                  {word.keyword}
+                </span>
               </WordContent>
             </SwiperSlide>
           ))
