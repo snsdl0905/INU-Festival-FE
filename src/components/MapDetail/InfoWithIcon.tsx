@@ -73,10 +73,8 @@ export default function InfoWithIcon({
 }: InfoWithIconProps) {
   if (!booth || !selectedDay || !booth.boothDays) { return null; }
 
-  const { department } = booth;
-  const selectedBooth = booth.boothDays.find((boothDay) => boothDay.day === selectedDay);
-  const location = selectedBooth ? selectedBooth.location : '';
-  const time = selectedBooth ? selectedBooth.time : '';
+  const { department, location, time } = booth;
+
   return (
     <MapInfoMiddle $small={small}>
       <div>

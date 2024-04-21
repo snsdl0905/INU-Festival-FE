@@ -13,6 +13,8 @@ interface Booth {
     boothDays: BoothDay[];
     boothImgs: boothImg[];
     boothComments: BoothComment[];
+    time:string;
+    location:string;
   }
 
 export default Booth;
