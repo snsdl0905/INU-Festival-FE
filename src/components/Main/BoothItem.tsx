@@ -72,7 +72,6 @@ export default function BoothItem({ booth, index }:BoothItemProps) {
   const handleClick = (id:string) => {
     navigate(`/map/${id}`);
   };
-  console.log(booth.boothImgs[0]);
   return (
     <BoothList onClick={() => handleClick(booth.id)}>
       <Booth>
