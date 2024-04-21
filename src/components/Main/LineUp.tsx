@@ -70,7 +70,7 @@ export default function LineUp({
                   <img src={lineup.img} alt={lineup.img} />
                 ) : (
                   <img src="LineupDefault.jpeg" alt="Default" />
-                )} */}
+                )} 백엔드 데이터 제대로 들어가면 이걸로 수정예정 */}
                 <img src="LineupDefault.jpeg" alt="Default" />
               </Container>
             </SwiperSlide>
