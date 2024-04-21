@@ -19,7 +19,7 @@ const BlurContainer = styled.div`
     bottom: 0px;
     z-index: -1;
     background-size: cover;
-    background-image: url("BOL2.jpeg")
+    background-image: url("LineupDefault.jpeg")
   }
 `;
 
