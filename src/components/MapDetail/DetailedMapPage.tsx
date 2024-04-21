@@ -86,8 +86,11 @@ const MapButtonBox = styled.div`
   .like{
     fill:#ff0000;
   }
-  .unliked{
+  .unClicked{
     fill:#BBC7D3;
+  }
+  .shareClicked{
+    fill:#0147C8
   }
 `;
 
@@ -162,6 +165,7 @@ export default function DetailedMapPage() {
   const [, store] = useLikeStore();
   const [translateImg, setTranslateImg] = useState<string>('0');
   const [cliked, setClicked] = useState(false);
+  const [shareBtnClicked, setShareBtnClicked] = useState(false);
 
   if (!booth) {
     return null;
@@ -213,12 +217,17 @@ export default function DetailedMapPage() {
       setClicked(false);
     }, 100);
   };
+
   const handleShare = async (url: string) => {
     const shareObject: ShareData = {
       title: '희희낙락',
       text: '즐거운 축제의 시작, 희희낙락과 함께하세요!',
       url: window.location.href,
     };
+    setShareBtnClicked(true);
+    setTimeout(() => {
+      setShareBtnClicked(false);
+    }, 100);
 
     try {
       if (navigator.share) {
@@ -283,14 +292,14 @@ export default function DetailedMapPage() {
         </button>
       </MapInfoTop>
       <MapButtonBox>
-        <button type="button" onClick={() => handleShare(window.location.href)}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
-            <path d="M20.0487 15.0782C18.8702 15.0782 17.799 15.5375 17.0026 16.2864L9.38293 12.4089C9.39705 12.2627 9.40458 12.1146 9.40458 11.9646C9.40458 11.7911 9.39328 11.6213 9.37446 11.4534L16.9038 7.62114C17.7096 8.4257 18.8203 8.92372 20.0477 8.92372C22.5064 8.92372 24.5 6.926 24.5 4.46233C24.5 1.99866 22.5073 0 20.0487 0C17.59 0 15.5964 1.99772 15.5964 4.46139C15.5964 4.61607 15.6039 4.76793 15.6199 4.91884L8.05854 8.76715C7.25656 7.98428 6.16184 7.5023 4.95417 7.5023C2.49365 7.5023 0.5 9.50002 0.5 11.9637C0.5 14.4274 2.49365 16.4251 4.95229 16.4251C6.18443 16.4251 7.29892 15.9233 8.1056 15.1131L15.6359 18.9453C15.6105 19.1396 15.5954 19.3368 15.5954 19.5386C15.5954 22.0023 17.5891 24 20.0477 24C22.5064 24 24.5 22.0023 24.5 19.5386C24.5 17.0749 22.5064 15.0772 20.0477 15.0772L20.0487 15.0782Z" fill="#BBC7D3" />
+        <button className={shareBtnClicked ? 'shareClicked' : 'unClicked'} type="button" onClick={() => handleShare(window.location.href)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="currnet">
+            <path d="M20.0487 15.0782C18.8702 15.0782 17.799 15.5375 17.0026 16.2864L9.38293 12.4089C9.39705 12.2627 9.40458 12.1146 9.40458 11.9646C9.40458 11.7911 9.39328 11.6213 9.37446 11.4534L16.9038 7.62114C17.7096 8.4257 18.8203 8.92372 20.0477 8.92372C22.5064 8.92372 24.5 6.926 24.5 4.46233C24.5 1.99866 22.5073 0 20.0487 0C17.59 0 15.5964 1.99772 15.5964 4.46139C15.5964 4.61607 15.6039 4.76793 15.6199 4.91884L8.05854 8.76715C7.25656 7.98428 6.16184 7.5023 4.95417 7.5023C2.49365 7.5023 0.5 9.50002 0.5 11.9637C0.5 14.4274 2.49365 16.4251 4.95229 16.4251C6.18443 16.4251 7.29892 15.9233 8.1056 15.1131L15.6359 18.9453C15.6105 19.1396 15.5954 19.3368 15.5954 19.5386C15.5954 22.0023 17.5891 24 20.0477 24C22.5064 24 24.5 22.0023 24.5 19.5386C24.5 17.0749 22.5064 15.0772 20.0477 15.0772L20.0487 15.0782Z" fill="current" />
           </svg>
           <p>공유하기</p>
         </button>
         <button
-          className={cliked ? 'like' : 'unliked'}
+          className={cliked ? 'like' : 'unClicked'}
           type="button"
           onClick={() => handleBoothLike(id)}
         >
