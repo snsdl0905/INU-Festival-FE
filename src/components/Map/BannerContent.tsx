@@ -1,8 +1,5 @@
-// import { useState } from 'react';
-
 import { styled } from 'styled-components';
 
-// import { useBottomSheet } from '../../hooks/useBottomSheet';
 import BoothList from './BoothList';
 import Booth from '../../types/Booth';
 import useFetchCategories from '../../hooks/useFetchCategories';
@@ -52,10 +49,19 @@ const BottomSheetHeader = styled.div`
 const BottomSheetFilter = styled.div`
     width: 100%;
     margin-top: 5px;
-    margin-bottom: 5px;
     padding: 10px 0;
     border-bottom: 1px dashed #CEDCEA;
-    overflow: scroll;
+
+    p{
+      color: #969FA9;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 21px;
+      letter-spacing: -0.52px;
+      padding-right: 10px;
+      width: 45px;
+    }
 
     button {
       color: #000;
@@ -83,9 +89,6 @@ const BottomSheetFilter = styled.div`
       background-color: #EBF2FF;
     }
 
-    :first-child{
-    margin-bottom: 5px;
-  }
 `;
 
 const DayFilterContainer = styled.div`
@@ -97,7 +100,7 @@ const DayFilterContainer = styled.div`
 
 `;
 
-const CategoryFilterContanier = styled.div`
+const CategoryFilterContainer = styled.div`
   display: flex;
 
   button {
@@ -109,16 +112,17 @@ const FilterContainer = styled.div`
   display: flex;
   align-items: center;
   width: max-content;
-  
-  p{
-    color: #969FA9;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 21px;
-    letter-spacing: -0.52px;
-    padding-right: 10px;
-  }
+`;
+
+const DataFilterContainer = styled.div`
+    width: 100%;
+    overflow: scroll;
+`;
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 `;
 
 type BottomSheetProps = {
@@ -152,34 +156,42 @@ export default function BottomSheet({
       <BottomSheetHeader />
       <BottomSheetContent>
         <BottomSheetFilter>
-          <FilterContainer>
+          <Container>
             <p>요일</p>
-            {days && days.map((category: string) => (
-              <DayFilterContainer key={category}>
-                <button
-                  type="button"
-                  onClick={() => handleSetFilterDay(category)}
-                  className={selectedDay === category ? 'clickedDay' : ''}
-                >
-                  {category}
-                </button>
-              </DayFilterContainer>
-            ))}
-          </FilterContainer>
-          <FilterContainer>
+            <DataFilterContainer>
+              <FilterContainer>
+                {days && days.map((category: string) => (
+                  <DayFilterContainer key={category}>
+                    <button
+                      type="button"
+                      onClick={() => handleSetFilterDay(category)}
+                      className={selectedDay === category ? 'clickedDay' : ''}
+                    >
+                      {category}
+                    </button>
+                  </DayFilterContainer>
+                ))}
+              </FilterContainer>
+            </DataFilterContainer>
+          </Container>
+          <Container>
             <p>분류</p>
-            {filters && filters.map((category: string) => (
-              <CategoryFilterContanier key={category}>
-                <button
-                  type="button"
-                  onClick={() => handleSetFilterCategory(category)}
-                  className={selectedCategory === category ? 'clickedCategory' : ''}
-                >
-                  {category}
-                </button>
-              </CategoryFilterContanier>
-            ))}
-          </FilterContainer>
+            <DataFilterContainer>
+              <FilterContainer>
+                {filters && filters.map((category: string) => (
+                  <CategoryFilterContainer key={category}>
+                    <button
+                      type="button"
+                      onClick={() => handleSetFilterCategory(category)}
+                      className={selectedCategory === category ? 'clickedCategory' : ''}
+                    >
+                      {category}
+                    </button>
+                  </CategoryFilterContainer>
+                ))}
+              </FilterContainer>
+            </DataFilterContainer>
+          </Container>
         </BottomSheetFilter>
         <BoothList
           booths={booths}

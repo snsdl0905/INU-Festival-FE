@@ -13,6 +13,7 @@ import SkeletonFestivalSentence from '../Loading/SkeletonFestivalSentenceItem';
 const FestivalSentenceBox = styled.div`
   display: flex;
   direction: columns;
+  cursor: pointer;
 
   .swiper {
     width: 100%;

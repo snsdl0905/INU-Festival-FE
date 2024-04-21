@@ -136,6 +136,7 @@ const Carousel = styled.div`
   button{
     border: none;
   }
+  margin-top: 50px;
 `;
 
 const ButtonContainer = styled.div`
@@ -246,11 +247,17 @@ export default function DetailedMapPage() {
       <Header shadow="false"> </Header>
       <Carousel>
         <MapImageContainer translateImg={translateImg}>
-          {boothImgs && boothImgs.map((img: boothImg) => (
-            <ImageBox key={img.id}>
-              <img src={`/${img.url}`} alt={img.url} />
+          {boothImgs && boothImgs.length > 0 ? (
+            boothImgs.map((img: boothImg) => (
+              <ImageBox key={img.id}>
+                <img src={img.url} alt={img.url} />
+              </ImageBox>
+            ))
+          ) : (
+            <ImageBox>
+              <img src="/PinkBoothDefault.jpeg" alt="Default" />
             </ImageBox>
-          ))}
+          )}
         </MapImageContainer>
         <ButtonContainer>
           <Button className="left" type="button" onClick={handleLeftButton}>
