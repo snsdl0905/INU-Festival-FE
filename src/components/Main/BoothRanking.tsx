@@ -114,6 +114,8 @@ const BoothHeart = styled.div`
 `;
 
 export default function BoothRanking() {
+  const today = new Date().toLocaleDateString('KR');
+
   const { data } = useFetchBoothsRanking();
   const formatter = getCompactNumberFormatter();
   const navigate = useNavigate();
@@ -131,7 +133,9 @@ export default function BoothRanking() {
       </BoothRankingTitle>
 
       <UpdateDate>
-        실시간 업데이트(2023.09.07)
+        실시간 업데이트(
+        {today}
+        )
       </UpdateDate>
 
       <BoothRankingContainer>
