@@ -104,19 +104,37 @@ type ScheduleProps = {
 
 export default function Schedule({ performs }: ScheduleProps) {
   const [id, setId] = useState('-1');
+  const [currentTime, setCurrentTime] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
-    const match = (perform: Perform) => (
-      perform.startTime <= '20:00'
-      && perform.endTime >= '20:00'
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const seconds = now.getSeconds().toString().padStart(2, '0');
+      const month = now.getMonth();
+      const date = now.getDate();
+      setCurrentTime(`${hours}:${minutes}:${seconds}`);
+      setCurrentDate(`${month}월 ${date}일`);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const match = (perform) => (
+      perform.date === currentDate
+      && perform.startTime <= currentTime
+      && perform.endTime >= currentTime
     );
 
     const artist = performs.find(match);
-
     if (artist) {
       setId(artist.id);
+    } else {
+      setId('-1');
     }
-  }, [performs]);
+  }, [currentTime]);
 
   return (
     <Section>
