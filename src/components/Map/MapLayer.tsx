@@ -73,7 +73,6 @@ export default function MapLayer({
         marker.setMap(null);
         marker.setMap(kakaoMap);
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
-        console.log(booth.c);
         if (booth.category === '푸드트럭' || booth.category === '플리마켓') return;
 
         kakao.maps.event.addListener(marker, 'click', () => {
@@ -96,8 +95,6 @@ export default function MapLayer({
     resetMarkers();
 
     const booths: Booth[] = selectedBooth || filteredBooths;
-
-    console.log(booths);
 
     booths.forEach((booth) => {
       createMarkers(booth);
