@@ -3,10 +3,9 @@ import { styled } from 'styled-components';
 import Perform from '../../types/Perform';
 
 const Container = styled.div`
-width: 159px;
-height: 21rem;
-margin-bottom: 20px;
-cursor: pointer;
+  width: 159px;
+  height: 21rem;
+  margin-bottom: 20px;
 
 img {
   width: 159px;

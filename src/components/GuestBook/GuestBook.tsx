@@ -40,6 +40,8 @@ const Button = styled.button`
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
+  cursor: pointer;
+
 `;
 
 const BottomBanner = styled.div`
