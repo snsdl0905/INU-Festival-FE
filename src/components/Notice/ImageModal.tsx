@@ -9,11 +9,13 @@ const ModalBox = styled.div`
     left: 0;
     background-color: rgba(0,0,0,0.8);
     align-items: center;
+
     button{
         background: none;
         border: none;
         padding: 15px;
         float: right;
+        cursor: pointer;
     }
 `;
 

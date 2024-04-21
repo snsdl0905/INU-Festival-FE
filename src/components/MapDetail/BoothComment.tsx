@@ -113,7 +113,7 @@ function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
           {MAX_LENGTH}
         </span>
       </TextBox>
-      <button type="submit" onClick={handleSendComment} aria-label="한줄외치기버튼">
+      <button type="submit" onClick={handleSendComment} aria-label="한줄외치기버튼" style={{ cursor: 'pointer' }}>
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="18" fill="#0047C9" />
           <path
