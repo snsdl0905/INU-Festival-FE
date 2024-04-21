@@ -73,7 +73,10 @@ export default function InfoWithIcon({
 }: InfoWithIconProps) {
   if (!booth || !selectedDay || !booth.boothDays) { return null; }
 
-  const { department, location, time } = booth;
+  const {
+    department, location, time, boothDays,
+  } = booth;
+  const days = boothDays.map((dayInfo) => dayInfo.day).join(', ');
 
   return (
     <MapInfoMiddle $small={small}>
@@ -93,7 +96,9 @@ export default function InfoWithIcon({
         <span>
           <img src="/clock.svg" alt="clock" />
         </span>
-        <p>{time}</p>
+        <p>
+          {`(${days}) ${time} `}
+        </p>
       </div>
     </MapInfoMiddle>
   );
