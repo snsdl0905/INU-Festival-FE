@@ -80,7 +80,6 @@ export default function MapLayer({
           filteredBooths.forEach((wholeBooth) => {
             if (wholeBooth.name === booth.name) newMarker.push(wholeBooth);
           });
-          newMarker.push(booth);
           setSelectedBooth(newMarker);
           setMarkers((prevMarkers) => [...prevMarkers, marker]);
         });
