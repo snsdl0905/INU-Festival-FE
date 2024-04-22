@@ -88,7 +88,7 @@ export default function HelpSection() {
   };
 
   const handleCopyHelp = () => {
-    window.open('https://open.kakao.com/o/sNl4zf7f');
+    window.open('https://open.kakao.com/o/sAfoQwng');
   };
 
   const handleClickFriend = () => {

@@ -190,13 +190,19 @@ export default function DetailedMapPage() {
   const handleRightButton = () => {
     const newPosition = parseInt(translateImg, 10) - 100;
     const maxPosition = boothImgs.length * -100;
+
     setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
   };
 
   const handleLeftButton = () => {
-    const newPosition = parseInt(translateImg, 10) + 100;
-    const maxPosition = boothImgs.length * -100;
-    setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
+    if (boothImgs.length <= 1) return;
+
+    const currentPosition = parseInt(translateImg, 10);
+    const newPosition = currentPosition + 100;
+    const maxPosition = (boothImgs.length - 1) * -100;
+    const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 100;
+
+    setTranslateImg(`${updatedPosition}vw`);
   };
 
   const [toast, setToast] = useState(false);
