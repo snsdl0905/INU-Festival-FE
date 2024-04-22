@@ -1,10 +1,7 @@
 interface BoothDay {
     id: number;
     day: string;
-    time: string;
-    location: string;
-    x: string;
-    y: string;
+    boothId: string;
   }
 
 export default BoothDay;
