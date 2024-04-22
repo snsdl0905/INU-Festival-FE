@@ -61,7 +61,7 @@ const TextBox = styled.div<{ $isMaximum: boolean }>`
     border: none;
     color: #0042B9;
     font-family: SUIT, sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 800;
     line-height: 21px;

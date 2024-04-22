@@ -224,7 +224,7 @@ export default function GuestBook() {
       </Container>
       {inputBanner && (
         <BottomBanner>
-          <TextBox $isMaximum={inputValue.length > MAX_LENGTH}>
+          <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
             <input
               type="text"
               value={inputValue}
