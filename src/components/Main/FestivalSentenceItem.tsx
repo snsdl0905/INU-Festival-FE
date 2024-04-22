@@ -51,7 +51,9 @@ export default function FestivalSentenceItem({ sentence }: SententenceItemProps)
         <img src={`${sentence.emoji}.svg`} alt="말풍선" />
       </BallonBox>
       <ContentBox>
-        <span>{sentence.studentId}</span>
+        <span>
+          {`${sentence.studentId.slice(0, 6)}***`}
+        </span>
         {sentence.content}
       </ContentBox>
     </SentenceItemBox>
