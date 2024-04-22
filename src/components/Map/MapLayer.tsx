@@ -51,7 +51,7 @@ export default function MapLayer({
     let uniqueMarker = false;
     booth.boothDays.forEach((boothDay: BoothDay) => {
       if (boothDay.day === selectedDay) {
-        const latlang = new kakao.maps.LatLng(boothDay.x, boothDay.y);
+        const latlang = new kakao.maps.LatLng(booth.x, booth.y);
         const imageSize = new kakao.maps.Size(29, 35);
         const imageOption = { offset: new kakao.maps.Point(16, 34) };
 
@@ -77,7 +77,9 @@ export default function MapLayer({
 
         kakao.maps.event.addListener(marker, 'click', () => {
           const newMarker: Booth[] = [];
-          newMarker.push(booth);
+          filteredBooths.forEach((wholeBooth) => {
+            if (wholeBooth.name === booth.name) newMarker.push(wholeBooth);
+          });
           setSelectedBooth(newMarker);
           setMarkers((prevMarkers) => [...prevMarkers, marker]);
         });

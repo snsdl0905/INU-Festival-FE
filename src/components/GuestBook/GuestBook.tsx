@@ -91,7 +91,7 @@ const TextBox = styled.div<{ $isMaximum: boolean }>`
     border: none;
     color: #0042B9;
     font-family: SUIT, sans-serif;
-    font-size: 15px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 800;
     line-height: 21px;
@@ -224,7 +224,7 @@ export default function GuestBook() {
       </Container>
       {inputBanner && (
         <BottomBanner>
-          <TextBox $isMaximum={inputValue.length > MAX_LENGTH}>
+          <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
             <input
               type="text"
               value={inputValue}
