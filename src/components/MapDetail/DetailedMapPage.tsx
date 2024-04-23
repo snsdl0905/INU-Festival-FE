@@ -121,13 +121,14 @@ const MapInfoBottom = styled.div`
 const MapImageContainer = styled.div<{translateImg: string}>`
   width: 800vw;
   height: 90vw;
-  background-color: #D1D9F5;
+  background-color: white;
   transform: translateX(${(props) => props.translateImg});
 `;
 
 const ImageBox = styled.div`
   img{
     width: 100vw;
+    height:100vw;
     float: left;
   }
 `;
