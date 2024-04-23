@@ -128,8 +128,10 @@ const MapImageContainer = styled.div<{translateImg: string}>`
 const ImageBox = styled.div`
   img{
     width: 100vw;
-    height:100
+    height:100vw;
     float: left;
+    max-weight:600px;
+    max-height:600px;
   }
 `;
 
