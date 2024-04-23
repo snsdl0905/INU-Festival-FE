@@ -203,15 +203,21 @@ export default function DetailedMapPage() {
   };
 
   const handleLeftButton = () => {
+    if (boothImgs.length <= 1) return;
+
     const screenWidth = window.innerWidth;
     if (screenWidth >= 600) {
-      const newPosition = parseInt(translateImg, 10) + 600;
-      const maxPosition = boothImgs.length * -600;
-      setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 600}px` : `${newPosition}px`));
+      const currentPosition = parseInt(translateImg, 10);
+      const newPosition = currentPosition + 600;
+      const maxPosition = (boothImgs.length - 1) * -600;
+      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 600;
+      setTranslateImg(`${updatedPosition}px`);
     } else {
-      const newPosition = parseInt(translateImg, 10) - 100;
-      const maxPosition = boothImgs.length * -100;
-      setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
+      const currentPosition = parseInt(translateImg, 10);
+      const newPosition = currentPosition + 100;
+      const maxPosition = (boothImgs.length - 1) * -100;
+      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 100;
+      setTranslateImg(`${updatedPosition}vw`);
     }
   };
 
