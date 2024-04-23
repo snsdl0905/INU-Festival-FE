@@ -120,7 +120,7 @@ const MapInfoBottom = styled.div`
 
 const MapImageContainer = styled.div<{translateImg: string}>`
   width: 800vw;
-  height: 90vw;
+  /* height: 90vw; */
   background-color: white;
   transform: translateX(${(props) => props.translateImg});
 `;
@@ -130,7 +130,7 @@ const ImageBox = styled.div`
     width: 100vw;
     height:100vw;
     float: left;
-    max-weight:600px;
+    max-width: 600px;
     max-height:600px;
   }
 `;
