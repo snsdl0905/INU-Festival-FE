@@ -128,7 +128,7 @@ const MapImageContainer = styled.div<{translateImg: string}>`
 const ImageBox = styled.div`
   img{
     width: 100vw;
-    height:100vw;
+    height:100
     float: left;
   }
 `;
@@ -332,7 +332,7 @@ export default function DetailedMapPage() {
         </button>
       </MapInfoBottom>
       {showInstruction ? (
-        <BoothInstruction description={description || ''} />)
+        <BoothInstruction description={description || '아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!'} />)
         : (<BoothComment boothId={id} />)}
     </>
   );
