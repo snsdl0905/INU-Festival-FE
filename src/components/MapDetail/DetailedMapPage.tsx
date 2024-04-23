@@ -120,7 +120,6 @@ const MapInfoBottom = styled.div`
 
 const MapImageContainer = styled.div<{translateImg: string}>`
   width: 800vw;
-  /* height: 90vw; */
   background-color: white;
   transform: translateX(${(props) => props.translateImg});
 `;
@@ -191,15 +190,29 @@ export default function DetailedMapPage() {
   }
 
   const handleRightButton = () => {
-    const newPosition = parseInt(translateImg, 10) - 100;
-    const maxPosition = boothImgs.length * -100;
-    setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 600) {
+      const newPosition = parseInt(translateImg, 10) - 600;
+      const maxPosition = boothImgs.length * -600;
+      setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}px`));
+    } else {
+      const newPosition = parseInt(translateImg, 10) - 100;
+      const maxPosition = boothImgs.length * -100;
+      setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
+    }
   };
 
   const handleLeftButton = () => {
-    const newPosition = parseInt(translateImg, 10) + 100;
-    const maxPosition = boothImgs.length * -100;
-    setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 600) {
+      const newPosition = parseInt(translateImg, 10) + 600;
+      const maxPosition = boothImgs.length * -600;
+      setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 600}px` : `${newPosition}px`));
+    } else {
+      const newPosition = parseInt(translateImg, 10) - 100;
+      const maxPosition = boothImgs.length * -100;
+      setTranslateImg(() => (newPosition > 0 ? `${maxPosition + 100}vw` : `${newPosition}vw`));
+    }
   };
 
   const [toast, setToast] = useState(false);
