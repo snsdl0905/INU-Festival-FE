@@ -120,15 +120,17 @@ const MapInfoBottom = styled.div`
 
 const MapImageContainer = styled.div<{translateImg: string}>`
   width: 800vw;
-  height: 90vw;
-  background-color: #D1D9F5;
+  background-color: white;
   transform: translateX(${(props) => props.translateImg});
 `;
 
 const ImageBox = styled.div`
   img{
     width: 100vw;
+    height:100vw;
     float: left;
+    max-width: 600px;
+    max-height:600px;
   }
 `;
 
@@ -188,21 +190,35 @@ export default function DetailedMapPage() {
   }
 
   const handleRightButton = () => {
-    const newPosition = parseInt(translateImg, 10) - 100;
-    const maxPosition = boothImgs.length * -100;
-
-    setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 600) {
+      const newPosition = parseInt(translateImg, 10) - 600;
+      const maxPosition = boothImgs.length * -600;
+      setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}px`));
+    } else {
+      const newPosition = parseInt(translateImg, 10) - 100;
+      const maxPosition = boothImgs.length * -100;
+      setTranslateImg(() => (newPosition <= maxPosition ? '0' : `${newPosition}vw`));
+    }
   };
 
   const handleLeftButton = () => {
     if (boothImgs.length <= 1) return;
 
-    const currentPosition = parseInt(translateImg, 10);
-    const newPosition = currentPosition + 100;
-    const maxPosition = (boothImgs.length - 1) * -100;
-    const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 100;
-
-    setTranslateImg(`${updatedPosition}vw`);
+    const screenWidth = window.innerWidth;
+    if (screenWidth >= 600) {
+      const currentPosition = parseInt(translateImg, 10);
+      const newPosition = currentPosition + 600;
+      const maxPosition = (boothImgs.length - 1) * -600;
+      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 600;
+      setTranslateImg(`${updatedPosition}px`);
+    } else {
+      const currentPosition = parseInt(translateImg, 10);
+      const newPosition = currentPosition + 100;
+      const maxPosition = (boothImgs.length - 1) * -100;
+      const updatedPosition = newPosition > 0 ? maxPosition : currentPosition + 100;
+      setTranslateImg(`${updatedPosition}vw`);
+    }
   };
 
   const [toast, setToast] = useState(false);
@@ -337,7 +353,7 @@ export default function DetailedMapPage() {
         </button>
       </MapInfoBottom>
       {showInstruction ? (
-        <BoothInstruction description={description || ''} />)
+        <BoothInstruction description={description || '아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!'} />)
         : (<BoothComment boothId={id} />)}
     </>
   );
