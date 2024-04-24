@@ -78,7 +78,9 @@ export default function MapLayer({
         kakao.maps.event.addListener(marker, 'click', () => {
           const newMarker: Booth[] = [];
           filteredBooths.forEach((wholeBooth) => {
-            if (wholeBooth.name === booth.name) newMarker.push(wholeBooth);
+            if (wholeBooth.name === booth.name || wholeBooth.x === booth.x) {
+              newMarker.push(wholeBooth);
+            }
           });
           setSelectedBooth(newMarker);
           setMarkers((prevMarkers) => [...prevMarkers, marker]);
