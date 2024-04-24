@@ -62,6 +62,10 @@ const LikedNumber = styled.p`
     justify-content: center;
     width: fit-content;
     margin-top: 10px;
+
+    svg{
+      margin: 0 1px;
+    }
   
     span {
       font-size: 11px;
