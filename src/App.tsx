@@ -1,5 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { Analytics } from '@vercel/analytics/react';
+// eslint-disable-next-line import/no-unresolved
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
@@ -20,6 +22,7 @@ export default function App() {
       <Reset />
       <GlobalStyle />
       <RouterProvider router={router} />
+      <SpeedInsights />
       <Analytics />
     </ThemeProvider>
   );
