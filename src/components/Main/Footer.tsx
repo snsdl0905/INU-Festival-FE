@@ -58,7 +58,7 @@ export default function Footer() {
         </Item>
       </Section>
       <Section>
-        <h2>서버 운영시간</h2>
+        <h2>서버 운영기간</h2>
         <p>24.04.25 ~ 24.05.09</p>
       </Section>
       <Section>
