@@ -65,22 +65,23 @@ const MapInfoMiddle = styled.div<{$small: string }>`
     :first-child{
       span{
         width: 13.6px;
+        height: 17px;
       }
     }
     :nth-child(2){
       span{
         width: 15px;
-
+        height: 17px;
       }
     }
     :last-child{
       span{
         width: 16px;
+        height: 16px;
       }
     }
     
     span {
-      height: 17px;
       margin-right: 1.2rem;
     }
 
