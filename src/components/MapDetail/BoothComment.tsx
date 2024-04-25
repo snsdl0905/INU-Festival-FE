@@ -39,7 +39,7 @@ const CommentBox = styled.div`
     }
 `;
 const NoCommentBox = styled.div`
-    height: 300px; 
+    height: 150px; 
     display: flex;
     align-items: center;
     justify-content: center;
