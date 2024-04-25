@@ -59,10 +59,10 @@ export default function Footer() {
       </Section>
       <Section>
         <h2>서버 운영시간</h2>
-        <p>23.00.00 ~ 23.00.00</p>
+        <p>24.04.25 ~ 24.05.09</p>
       </Section>
       <Section>
-        <p>Copyright 2023 희희낙락 All rights reserved.</p>
+        <p>Copyright 2024 희희낙락 All rights reserved.</p>
       </Section>
     </Container>
   );
