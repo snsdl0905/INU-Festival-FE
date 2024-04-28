@@ -43,6 +43,7 @@ const NoCommentBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    color:#686B68;
 `;
 const TextBox = styled.div<{ $isMaximum: boolean }>`
   width: 100%;
