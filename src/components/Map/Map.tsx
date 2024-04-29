@@ -14,8 +14,8 @@ const Container = styled.div`
 
 export default function Map() {
   const booths = useFetchBooths();
-  const [selectedDay, setSelectedDay] = useState<string>('수');
-  const [selectedCategory, setSelectedCategory] = useState<string>('주점');
+  const [selectedDay, setSelectedDay] = useState<string>(localStorage.getItem('day') || '화');
+  const [selectedCategory, setSelectedCategory] = useState<string>(localStorage.getItem('category') || '비주점');
   const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
 
   const filtered = booths.filter((booth) => {
