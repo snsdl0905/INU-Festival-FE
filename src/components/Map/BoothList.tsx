@@ -21,6 +21,7 @@ const PreButton = styled.div`
 
 const BoothContainer = styled.div`
     flex: 1;
+    overflow-x: scroll;
     display: flex;
     padding: 10px;
     width: 100%;
