@@ -12,9 +12,14 @@ const Container = styled.div`
     cursor: grab;
 `;
 
+const WEEKDAY = ['일', '월', '화', '수', '목', '금', '토'];
+
 export default function Map() {
+  const now = new Date();
+  const month = now.getDay();
+  const day = (WEEKDAY[month] === '화' || WEEKDAY[month] === '수' || WEEKDAY[month] === '목') ? WEEKDAY[month] : '화';
   const booths = useFetchBooths();
-  const [selectedDay, setSelectedDay] = useState<string>(localStorage.getItem('day') || '화');
+  const [selectedDay, setSelectedDay] = useState<string>(localStorage.getItem('day') || day);
   const [selectedCategory, setSelectedCategory] = useState<string>(localStorage.getItem('category') || '비주점');
   const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
 
