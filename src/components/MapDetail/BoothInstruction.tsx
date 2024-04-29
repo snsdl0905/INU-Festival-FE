@@ -14,6 +14,7 @@ const InstrucionContainer = styled.div`
         letter-spacing: 0.02rem;
         white-space: pre-line;
         line-height: 1.5;
+        word-break: break-word;
     `;
 
 export default function BoothInstruction({ description }: BoothInstructionProps) {

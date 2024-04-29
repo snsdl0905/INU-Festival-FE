@@ -39,10 +39,11 @@ const CommentBox = styled.div`
     }
 `;
 const NoCommentBox = styled.div`
-    height: 300px; 
+    height: 150px; 
     display: flex;
     align-items: center;
     justify-content: center;
+    color:#686B68;
 `;
 const TextBox = styled.div<{ $isMaximum: boolean }>`
   width: 100%;
