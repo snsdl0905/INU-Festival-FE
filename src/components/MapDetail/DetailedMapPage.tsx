@@ -118,10 +118,10 @@ const MapInfoBottom = styled.div`
   }
 `;
 
-const MapImageContainer = styled.div<{translateImg: string}>`
+const MapImageContainer = styled.div<{$translateImg: string}>`
   width: 800vw;
   background-color: white;
-  transform: translateX(${(props) => props.translateImg});
+  transform: translateX(${(props) => props.$translateImg});
 `;
 
 const ImageBox = styled.div`
@@ -284,7 +284,7 @@ export default function DetailedMapPage() {
     <>
       <Header shadow="false"> </Header>
       <Carousel>
-        <MapImageContainer translateImg={translateImg}>
+        <MapImageContainer $translateImg={translateImg}>
           {boothImgs && boothImgs.length > 0 ? (
             boothImgs.map((img: boothImg) => (
               <ImageBox key={img.id}>
