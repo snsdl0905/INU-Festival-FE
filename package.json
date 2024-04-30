@@ -6,7 +6,7 @@
     "license": "ISC",
     "scripts": {
         "start": "parcel --port 8080",
-        "build": "GENERATE_SOURCEMAP=false parcel build",
+        "build": "parcel build index.html --no-source-maps ",
         "check": "tsc --noEmit",
         "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx .",
         "test": "jest",
