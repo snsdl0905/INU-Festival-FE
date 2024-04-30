@@ -52,7 +52,7 @@ export default function MapLayer({
     booth.boothDays.forEach((boothDay: BoothDay) => {
       if (boothDay.day === selectedDay) {
         const latlang = new kakao.maps.LatLng(booth.x, booth.y);
-        const imageSize = new kakao.maps.Size(29, 35);
+        const imageSize = new kakao.maps.Size(25, 30.17);
         const imageOption = { offset: new kakao.maps.Point(16, 34) };
 
         if ((booth.category === '푸드트럭' || booth.category === '플리마켓') && uniqueMarker) {
