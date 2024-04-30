@@ -48,12 +48,11 @@ export default function Lineup({ lineup }: LineupProps) {
 
   return (
     <Container>
-      {/* {lineup.img ? (
-        <img src={lineup.img} alt={lineup.img} />
-      ) : (
+      {lineup.img === 'temp.img' ? (
         <img src="LineupDefault.jpeg" alt="Default" />
-      )} 백엔드 데이터 제대로 들어가면 이걸로 수정예정 */ }
-      <img src="LineupDefault.jpeg" alt="Default" />
+      ) : (
+        <img src={lineup.img} alt={lineup.img} />
+      )}
       <div>
         <Title>{name}</Title>
         <Description>
