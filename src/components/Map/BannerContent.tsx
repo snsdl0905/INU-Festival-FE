@@ -144,10 +144,12 @@ export default function BottomSheet({
   const { days, filters } = categories;
 
   const handleSetFilterDay = (category: string) => {
+    localStorage.setItem('day', category);
     setSelectedDay(category);
   };
 
   const handleSetFilterCategory = (category: string) => {
+    localStorage.setItem('category', category);
     setSelectedCategory(category);
   };
 

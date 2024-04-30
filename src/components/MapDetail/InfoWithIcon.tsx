@@ -26,11 +26,28 @@ const MapInfoMiddle = styled.div<{$small: string }>`
   }
 
   ${(props) => (props.$small === 'false') && css`
+  :first-child{
+      span{
+        width: 16px;
+        height: 20px;
+      }
+    }
+    :nth-child(2){
+      span{
+        width: 17px;
+        height: 20px;
+      }
+    }
+    :last-child{
+      span{
+        width: 19px;
+        height: 19px;
+      }
+    }
     div{
       padding: 1rem;
     }
     span{
-      width: 18px;
       margin: 0 1.5rem;
     }
     p{
@@ -44,9 +61,27 @@ const MapInfoMiddle = styled.div<{$small: string }>`
 
   ${(props) => (props.$small === 'true') && css`
     font-size: 12px;
+
+    :first-child{
+      span{
+        width: 13.6px;
+        height: 17px;
+      }
+    }
+    :nth-child(2){
+      span{
+        width: 15px;
+        height: 17px;
+      }
+    }
+    :last-child{
+      span{
+        width: 16px;
+        height: 16px;
+      }
+    }
     
     span {
-      width: 15px;
       margin-right: 1.2rem;
     }
 

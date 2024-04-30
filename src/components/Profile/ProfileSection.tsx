@@ -41,13 +41,14 @@ const ProfileTitle = styled.div`
 `;
 
 const UserIcon = styled.img`
-  width: 108px;
+  width: 105px;
+  height:150px;
   margin-bottom:32px;
   flex-shrink: 1;
 `;
 
 const LoginBtn = styled.button`
-  width: 11.3em;
+  width: 12em;
   display: flex;
   justify-content: center;
   padding: 15px 60px;
