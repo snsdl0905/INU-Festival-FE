@@ -30,6 +30,7 @@ export default function Map() {
   });
 
   let y = '';
+  const nowY = document.documentElement.scrollTop;
 
   useEffect(() => () => {
     localStorage.setItem('y', y);
@@ -45,7 +46,7 @@ export default function Map() {
   });
 
   useEffect(() => {
-    window.scrollTo(0, document.documentElement.scrollTop);
+    window.scrollTo(0, nowY);
   }, [selectedCategory, selectedDay, selectedBooth]);
 
   return (
