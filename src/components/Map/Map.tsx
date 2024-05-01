@@ -42,11 +42,11 @@ export default function Map() {
   useEffect(() => {
     const newScrollY = Number(localStorage.getItem('y'));
     window.scrollTo(0, newScrollY);
-
-    useEffect(() => {
-      window.scrollTo(0, document.documentElement.scrollTop);
-    }, [selectedCategory, selectedDay, selectedBooth]);
   });
+
+  useEffect(() => {
+    window.scrollTo(0, document.documentElement.scrollTop);
+  }, [selectedCategory, selectedDay, selectedBooth]);
 
   return (
     <Container>
