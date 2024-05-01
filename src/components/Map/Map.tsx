@@ -30,7 +30,6 @@ export default function Map() {
   });
 
   let y = '';
-  const nowY = document.documentElement.scrollTop;
 
   useEffect(() => () => {
     localStorage.setItem('y', y);
@@ -43,11 +42,7 @@ export default function Map() {
   useEffect(() => {
     const newScrollY = Number(localStorage.getItem('y'));
     window.scrollTo(0, newScrollY);
-  });
-
-  useEffect(() => {
-    window.scrollTo(0, nowY);
-  }, [selectedCategory, selectedDay, selectedBooth]);
+  }, [booths]);
 
   return (
     <Container>
