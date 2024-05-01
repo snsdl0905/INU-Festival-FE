@@ -24,8 +24,33 @@ export default function Kakao() {
     mapTypeId: kakao.maps.MapTypeId.PLAN,
     $scale: false,
     // 지도의 중심 좌표 (x, y)
-    center: new kakao.maps.Coords(750, -400),
+    center: new kakao.maps.Coords(450, -400),
     level: 0,
+  });
+  const center = map.getCenter();
+  // const marker = new kakao.maps.Marker({
+  //   position: center,
+  // });
+  // marker.setMap(map);
+
+  const mark = new kakao.maps.Marker({
+    // 지도 중심좌표에 마커를 생성합니다
+    position: new kakao.maps.LatLng('33.473423523488634', '124.85189092016596'),
+  });
+
+  mark.setMap(map);
+
+  kakao.maps.event.addListener(map, 'click', (mouseEvent) => {
+    // 클릭한 위도, 경도 정보를 가져옵니다
+    const latlng = mouseEvent.latLng;
+
+    // 마커 위치를 클릭한 위치로 옮깁니다
+    mark.setPosition(latlng);
+
+    let message = `(${latlng.getLat()}, `;
+    message += `${latlng.getLng()})`;
+
+    console.log(message);
   });
   return map;
 }
