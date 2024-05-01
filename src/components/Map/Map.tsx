@@ -46,7 +46,7 @@ export default function Map() {
 
   useEffect(() => {
     window.scrollTo(0, document.documentElement.scrollTop);
-  }, [selectedCategory, selectedDay]);
+  }, [selectedCategory, selectedDay, selectedBooth]);
 
   return (
     <Container>
