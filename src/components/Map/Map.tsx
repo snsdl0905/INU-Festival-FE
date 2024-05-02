@@ -1,6 +1,7 @@
+import { useEffect, useRef, useState } from 'react';
+
 import styled from 'styled-components';
 
-import { useState } from 'react';
 import MapLayer from './MapLayer';
 import BottomSheet from './BannerContent';
 import Booth from '../../types/Booth';
@@ -27,6 +28,21 @@ export default function Map() {
     const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);
     return dayCount.length && booth.category === selectedCategory;
   });
+
+  let y = '';
+
+  useEffect(() => () => {
+    localStorage.setItem('y', y);
+  }, []);
+
+  document.addEventListener('scroll', () => {
+    y = String(document.documentElement.scrollTop);
+  });
+
+  useEffect(() => {
+    const newScrollY = Number(localStorage.getItem('y'));
+    window.scrollTo(0, newScrollY);
+  }, [booths]);
 
   return (
     <Container>
