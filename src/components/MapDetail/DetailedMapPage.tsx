@@ -297,18 +297,20 @@ export default function DetailedMapPage() {
             </ImageBox>
           )}
         </MapImageContainer>
-        <ButtonContainer>
-          <Button className="left" type="button" onClick={handleLeftButton}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="23" viewBox="0 0 12 23" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M0.307017 11.0735C-0.0835074 11.464 -0.0835071 12.0972 0.307017 12.4877L10.1944 22.3751C10.5849 22.7656 11.2181 22.7656 11.6086 22.3751C11.9991 21.9845 11.9991 21.3514 11.6086 20.9608L2.42834 11.7806L11.6086 2.60032C11.9991 2.2098 11.9991 1.57663 11.6086 1.18611C11.2181 0.795586 10.5849 0.795586 10.1944 1.18611L0.307017 11.0735Z" fill="#ffffff" />
-            </svg>
-          </Button>
-          <Button className="right" type="button" onClick={handleRightButton}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="23" viewBox="0 0 13 23" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M12.3065 12.1962C12.6971 11.8056 12.6971 11.1725 12.3065 10.7819L2.60872 1.08413C2.21819 0.693609 1.58503 0.693609 1.1945 1.08413C0.80398 1.47466 0.80398 2.10782 1.1945 2.49835L10.1852 11.4891L1.1945 20.4798C0.80398 20.8703 0.80398 21.5034 1.1945 21.894C1.58503 22.2845 2.21819 22.2845 2.60872 21.894L12.3065 12.1962Z" fill="#ffffff" />
-            </svg>
-          </Button>
-        </ButtonContainer>
+        {boothImgs && boothImgs.length > 1 && (
+          <ButtonContainer>
+            <Button className="left" type="button" onClick={handleLeftButton}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="23" viewBox="0 0 12 23" fill="none">
+                <path fillRule="evenodd" clipRule="evenodd" d="M0.307017 11.0735C-0.0835074 11.464 -0.0835071 12.0972 0.307017 12.4877L10.1944 22.3751C10.5849 22.7656 11.2181 22.7656 11.6086 22.3751C11.9991 21.9845 11.9991 21.3514 11.6086 20.9608L2.42834 11.7806L11.6086 2.60032C11.9991 2.2098 11.9991 1.57663 11.6086 1.18611C11.2181 0.795586 10.5849 0.795586 10.1944 1.18611L0.307017 11.0735Z" fill="#ffffff" />
+              </svg>
+            </Button>
+            <Button className="right" type="button" onClick={handleRightButton}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="23" viewBox="0 0 13 23" fill="none">
+                <path fillRule="evenodd" clipRule="evenodd" d="M12.3065 12.1962C12.6971 11.8056 12.6971 11.1725 12.3065 10.7819L2.60872 1.08413C2.21819 0.693609 1.58503 0.693609 1.1945 1.08413C0.80398 1.47466 0.80398 2.10782 1.1945 2.49835L10.1852 11.4891L1.1945 20.4798C0.80398 20.8703 0.80398 21.5034 1.1945 21.894C1.58503 22.2845 2.21819 22.2845 2.60872 21.894L12.3065 12.1962Z" fill="#ffffff" />
+              </svg>
+            </Button>
+          </ButtonContainer>
+        )}
       </Carousel>
       <MapInfoTop>
         <p>{category}</p>
