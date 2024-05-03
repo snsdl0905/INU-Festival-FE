@@ -13,7 +13,7 @@ export default function useCheckScreenWidth(
       width: window.innerWidth,
     });
     if (window.innerWidth <= 360) {
-      setPerView(defaultPerview - 1.5);
+      setPerView(defaultPerview - 1.6);
     } else if (window.innerWidth <= 550) {
       setPerView(defaultPerview - 1.3);
     } else {
