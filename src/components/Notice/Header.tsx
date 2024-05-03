@@ -35,6 +35,7 @@ const HeaderContainer = styled.div <{ $shadow: string }>`
   button{
     background: none;
     border: none;
+    margin-right:12px;
   }
 `;
 

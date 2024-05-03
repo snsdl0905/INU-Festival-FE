@@ -207,7 +207,7 @@ export default function GuestBook() {
 
   return (
     <>
-      <Header shadow="false">방명록</Header>
+      <Header shadow="false">실시간 채팅</Header>
       <Container ref={chatWindow} onClick={() => handleBottomBanner()}>
         {
           data?.shouts.map((message) => (
