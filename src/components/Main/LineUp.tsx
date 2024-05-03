@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import useFetchPerforms from '../../hooks/useFetchPerforms';
 
-import SkeletonFestivalLineupItem from '../Loading/SkeletonFestivalLineupItem';
 import Skeleton from '../Loading/Skeleton';
 
 const Container = styled.div`

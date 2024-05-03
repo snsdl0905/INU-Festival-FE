@@ -9,6 +9,7 @@ const BlurContainer = styled.div`
   border-radius: 0px 0px 12px 12px;
   overflow: hidden;
 
+
   ::before {  
     position: absolute;
     content: "";
@@ -19,7 +20,8 @@ const BlurContainer = styled.div`
     bottom: 0px;
     z-index: -1;
     background-size: cover;
-    background-image: url("LineupDefault.jpeg")
+    background-color: #F5BCC9;
+    background-image: url("LineupDefault.jpeg");
   }
 `;
 
