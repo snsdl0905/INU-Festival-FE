@@ -20,7 +20,7 @@ const BlurContainer = styled.div`
     bottom: 0px;
     z-index: -1;
     background-size: cover;
-    background-color: #F5BCC9;
+    background-color: #FEC0CA;
     background-image: url("LineupDefault.jpeg");
   }
 `;
