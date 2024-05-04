@@ -38,12 +38,16 @@ export default function MapLayer({
     setKakaoMap(map);
   }, []);
 
+  const moveLatLng = (data) => {
+    const newLatLng = new kakao.maps.Coords(data[0], data[1]);
+    kakaoMap.panTo(newLatLng);
+  };
+
   const resetMarkers = () => {
     setMarkers((prevMarkers) => {
       prevMarkers.forEach((marker) => marker.setMap(null));
       return [];
     });
-
     setMarkers(() => []);
   };
 
@@ -60,6 +64,7 @@ export default function MapLayer({
         }
         if ((booth.category === '푸드트럭' || booth.category === '플리마켓') && !uniqueMarker) {
           uniqueMarker = true;
+          moveLatLng([600, -280]);
         }
 
         const markerImage = new kakao.maps.MarkerImage(`${booth.markerImage}.svg`, imageSize, imageOption);
@@ -74,6 +79,9 @@ export default function MapLayer({
         marker.setMap(kakaoMap);
         setMarkers((prevMarkers) => [...prevMarkers, marker]);
         if (booth.category === '푸드트럭' || booth.category === '플리마켓') return;
+        if (booth.category !== '푸드트럭' && booth.category !== '플리마켓') {
+          moveLatLng([700, -400]);
+        }
 
         kakao.maps.event.addListener(marker, 'click', () => {
           const newMarker: Booth[] = [];
