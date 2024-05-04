@@ -77,7 +77,7 @@ export default function MessageContainer({ msg, name }: {msg: Message, name: str
       </Content>
       <User>
         <img src={`${emoji}.svg`} alt="이모지" />
-        <b>{`${studentId.slice(0, 6)}***`}</b>
+        <b>{studentId}</b>
       </User>
     </MessageBox>
   );
