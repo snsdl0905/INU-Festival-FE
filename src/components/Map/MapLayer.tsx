@@ -20,6 +20,8 @@ type MapLayerProps = {
   selectedDay: string;
   selectedBooth: Booth[] | null;
   setSelectedBooth: (value: Booth[] | null) => void;
+  showMarker: Booth[] | null;
+  setShowMarker: (value: Booth[] | null) => void;
 };
 
 export default function MapLayer({
@@ -27,6 +29,8 @@ export default function MapLayer({
   selectedDay,
   selectedBooth,
   setSelectedBooth,
+  showMarker,
+  setShowMarker,
 } : MapLayerProps) {
   const { kakao } = window;
 
@@ -94,16 +98,17 @@ export default function MapLayer({
 
     kakao.maps.event.addListener(kakaoMap, 'click', () => {
       setSelectedBooth(null);
+      setShowMarker(null);
     });
 
     resetMarkers();
 
-    const booths: Booth[] = selectedBooth || filteredBooths;
+    const booths: Booth[] = selectedBooth || showMarker || filteredBooths;
 
     booths.forEach((booth) => {
       createMarkers(booth);
     });
-  }, [selectedDay, filteredBooths, kakaoMap]);
+  }, [selectedDay, showMarker, filteredBooths, kakaoMap]);
 
   useEffect(() => {
     setSelectedBooth(null);

@@ -42,8 +42,6 @@ const BottomSheetHeader = styled.div`
     width: 60px;
     height: 6.747px;
     margin: 5px 0;
-
-
 `;
 
 const BottomSheetFilter = styled.div`
@@ -131,6 +129,7 @@ type BottomSheetProps = {
   setSelectedCategory: (value: string) => void;
   selectedCategory: string;
   booths: Booth[];
+  setShowMarker: (value: string) => void;
 }
 
 export default function BottomSheet({
@@ -139,6 +138,7 @@ export default function BottomSheet({
   setSelectedCategory,
   selectedCategory,
   booths,
+  setShowMarker,
 }: BottomSheetProps) {
   const categories = useFetchCategories();
   const { days, filters } = categories;
@@ -198,6 +198,7 @@ export default function BottomSheet({
         <BoothList
           booths={booths}
           selectedDay={selectedDay}
+          setShowMarker={setShowMarker}
         />
       </BottomSheetContent>
     </Wrapper>
