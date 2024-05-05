@@ -26,8 +26,11 @@ function selectDates(filteredPerforms: Perform[]) {
 }
 
 export default function FilterableTimeTable() {
+  const now = new Date();
+  const day = now.getDate();
+  const today = { 7: 'day1', 8: 'day2', 9: 'day3' };
   const [categories] = useState(['day1', 'day2', 'day3']);
-  const [filterCategory, setFilterCatergory] = useState<string>('day1');
+  const [filterCategory, setFilterCatergory] = useState(today[day] || 'day1');
 
   const { data } = useFetchPerforms();
   const filteredPerforms = data ? filterPerforms(data.performs, filterCategory) : [];
