@@ -175,6 +175,9 @@ export default function DetailedMapPage() {
   const [translateImg, setTranslateImg] = useState<string>('0');
   const [cliked, setClicked] = useState(false);
   const [shareBtnClicked, setShareBtnClicked] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!booth) {
     return null;
@@ -231,6 +234,7 @@ export default function DetailedMapPage() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
   const [likeCount, setLikeCount] = useState<number>(0);
+
   useEffect(() => {
     if (booth && liked) {
       setLikeCount(liked);
