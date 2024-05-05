@@ -91,6 +91,10 @@ export default function HelpSection() {
     window.open('https://open.kakao.com/o/sAfoQwng');
   };
 
+  const handleCopyReview = () => {
+    window.open('https://forms.gle/7RQop6HMcAY2ofro9');
+  };
+
   const handleClickFriend = () => {
     setToastText('준비중입니다.');
     setToast(true);
@@ -107,6 +111,10 @@ export default function HelpSection() {
       <HelpElement onClick={handleCopyHelp}>
         <HelpIcon src="Contact.svg" />
         <Helplink>문의하기</Helplink>
+      </HelpElement>
+      <HelpElement onClick={handleCopyReview}>
+        <HelpIcon src="review.svg" />
+        <Helplink>리뷰 남기기</Helplink>
       </HelpElement>
       <HelpElement onClick={() => handleShare()}>
         <HelpIcon src="Link.svg" />
