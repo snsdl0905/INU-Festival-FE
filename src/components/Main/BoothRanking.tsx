@@ -133,9 +133,7 @@ export default function BoothRanking() {
       </BoothRankingTitle>
 
       <UpdateDate>
-        실시간 업데이트(
-        {today}
-        )
+        💥 랭킹은 매일 오전 09시에 초기화됩니다. 💥
       </UpdateDate>
 
       <BoothRankingContainer>
