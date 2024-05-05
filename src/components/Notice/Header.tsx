@@ -29,7 +29,7 @@ const HeaderContainer = styled.div <{ $shadow: string }>`
     font-weight: 800;
     line-height: normal;
     letter-spacing: -0.64px;
-    padding-right: 25.5px;
+    padding-right: 30px;
   }
 
   button{
