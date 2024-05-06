@@ -99,11 +99,6 @@ export default function HelpSection() {
   return (
     <HelpWrapper>
       <HelpTitle>지원</HelpTitle>
-      <HelpElement onClick={() => handleClickFriend()}>
-        <HelpIcon src="Human.svg" />
-        <Helplink>친구 찾기</Helplink>
-        {toast && <Toast setToast={setToast} text={toastText} />}
-      </HelpElement>
       <HelpElement onClick={handleCopyHelp}>
         <HelpIcon src="Contact.svg" />
         <Helplink>문의하기</Helplink>
