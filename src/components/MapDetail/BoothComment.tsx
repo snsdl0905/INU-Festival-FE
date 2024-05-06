@@ -157,7 +157,7 @@ const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentD
 });
 
 export default function BoothComment(
-  { boothId }: { boothId: string },
+  { boothId, setCommentCount }: { boothId: string, setCommentCount: (value: number) => void; },
 ) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
@@ -192,6 +192,8 @@ export default function BoothComment(
       content: contents,
       emoji: randomEmoji,
     };
+
+    setCommentCount((prev: number) => prev + 1);
 
     fetch(`${process.env.REACT_APP_URL}/booth/comment/${boothId}`, {
       method: 'POST',

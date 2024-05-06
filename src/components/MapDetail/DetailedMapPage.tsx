@@ -233,7 +233,11 @@ export default function DetailedMapPage() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
   const [likeCount, setLikeCount] = useState<number>(0);
-  const commentCount = (boothComments?.length || 0);
+  const [commentCount, setCommentCount] = useState<number>(boothComments?.length || 0);
+
+  useEffect(() => {
+    setCommentCount(boothComments?.length || 0);
+  }, [boothComments]);
 
   useEffect(() => {
     if (booth && liked) {
@@ -371,7 +375,7 @@ export default function DetailedMapPage() {
       </MapInfoBottom>
       {showInstruction ? (
         <BoothInstruction description={description || '아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!'} />)
-        : (<BoothComment boothId={id} />)}
+        : (<BoothComment boothId={id} setCommentCount={setCommentCount} />)}
     </>
   );
 }
