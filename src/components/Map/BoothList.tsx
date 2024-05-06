@@ -33,7 +33,8 @@ const BoothContainer = styled.div`
 
 const BoothContent = styled.div`
     margin-left: 20px;
-
+    display:flex;
+    flex-direction: column;
     div {
       color: #BBC7D3;
       margin-top: 3px;
