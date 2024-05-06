@@ -41,6 +41,7 @@ export class LikeStore {
       });
       this.reset();
     } catch (e) {
+      alert('좋아요는 모바일에서만 가능합니다!');
       this.setError();
     }
   }
