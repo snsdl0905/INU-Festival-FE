@@ -96,14 +96,14 @@ const BoothBox = styled.div`
 
   button{
     background-color: transparent;
-    padding: 0 10px;
+    padding: 0 5px;
     border: none;
   }
 `;
 
 const NameBox = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 type BoothListProps = {
@@ -119,28 +119,24 @@ export default function BoothList({
 }: BoothListProps) {
   if (!booths) { return []; }
 
-  const markerButton = useRef<HTMLImageElement>(null);
+  const markerButton = useRef<HTMLElement>(null);
 
   const formatter = getCompactNumberFormatter();
   const navigate = useNavigate();
-
-  const handleNavigate = (id: string, e: Event) => {
-    const isMarker = markerButton?.current?.contains(e.target);
-    console.log(markerButton.current);
-    console.log(e.target as Node);
-    console.log(isMarker);
-    if (!isMarker) {
-    // if (markerButton.current && !markerButton.current.contains(e.target)) {
-
-      // if (true) {
-      navigate(`/map/${id}`, { state: { date: selectedDay } });
-    }
-  };
 
   const handleShowMarker = (id: string) => {
     const markerArray = booths.filter((booth) => booth.id === id);
     setShowMarker(markerArray);
     window.scrollTo(0, 0);
+  };
+
+  const handleNavigate = (id: string, e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const isMark = (e.target as HTMLElement).isEqualNode(markerButton.current as HTMLElement);
+    if (!isMark) {
+      navigate(`/map/${id}`, { state: { date: selectedDay } });
+    } else {
+      handleShowMarker(id);
+    }
   };
 
   return (
@@ -164,8 +160,8 @@ export default function BoothList({
                   <NameBox>
                     <b>{name}</b>
                     <div>
-                      <button onClick={() => handleShowMarker(id)}>
-                        <img ref={markerButton} src="marker.svg" />
+                      <button onClick={() => handleShowMarker(id)} type="button">
+                        <img ref={markerButton} src="marker.svg" alt="marker.svg" />
                       </button>
                     </div>
                   </NameBox>
