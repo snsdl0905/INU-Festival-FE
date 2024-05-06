@@ -56,7 +56,7 @@ export default function FestivalSentence() {
               modules={[Autoplay]}
               className="mySwiper"
             >
-              {data.shouts.map((sentence) => (
+              {data.shouts.slice(0).reverse().map((sentence) => (
                 <SwiperSlide
                   key={sentence.id}
                 >
