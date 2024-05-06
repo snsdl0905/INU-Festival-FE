@@ -3,7 +3,7 @@ import Booth from '../../types/Booth';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
   padding-left: 0;
-  padding-top: 10px;
+  padding-top: 5px;
   width: max-content;
   div{
     display: flex;
@@ -31,11 +31,17 @@ const MapInfoMiddle = styled.div<{$small: string }>`
         width: 16px;
         height: 20px;
       }
+      p{
+        margin-left:3px;
+      }
     }
     :nth-child(2){
       span{
         width: 17px;
         height: 20px;
+      }
+      p{
+        margin-left:2px;
       }
     }
     :last-child{
@@ -43,6 +49,7 @@ const MapInfoMiddle = styled.div<{$small: string }>`
         width: 19px;
         height: 19px;
       }
+      
     }
     div{
       padding: 1rem;
@@ -61,11 +68,17 @@ const MapInfoMiddle = styled.div<{$small: string }>`
 
   ${(props) => (props.$small === 'true') && css`
     font-size: 12px;
+    div{
+      padding-bottom: 3px;
+    }
 
     :first-child{
       span{
         width: 13.6px;
         height: 17px;
+      }
+      p{
+        margin-left:2.4px;
       }
     }
     :nth-child(2){
@@ -73,12 +86,16 @@ const MapInfoMiddle = styled.div<{$small: string }>`
         width: 15px;
         height: 17px;
       }
+      p{
+        margin-left:1px;
+      }
     }
     :last-child{
       span{
         width: 16px;
         height: 16px;
       }
+ 
     }
     
     span {

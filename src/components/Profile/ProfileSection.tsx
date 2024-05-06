@@ -41,7 +41,7 @@ const ProfileTitle = styled.div`
 `;
 
 const UserIcon = styled.img`
-  width: 105px;
+  width: 118px;
   height:150px;
   margin-bottom:32px;
   flex-shrink: 1;

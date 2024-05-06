@@ -12,6 +12,7 @@ import boothImg from '../../types/boothImg';
 
 import useFetchBooth from '../../hooks/useFetchBooth';
 import useLikeStore from '../../hooks/useLikeStore';
+import useFetchBoothComment from '../../hooks/useFetchBoothComment';
 
 const MapInfoTop = styled.div`
   margin: 0 auto;
@@ -175,6 +176,9 @@ export default function DetailedMapPage() {
   const [translateImg, setTranslateImg] = useState<string>('0');
   const [cliked, setClicked] = useState(false);
   const [shareBtnClicked, setShareBtnClicked] = useState(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!booth) {
     return null;
@@ -186,6 +190,7 @@ export default function DetailedMapPage() {
     liked,
     boothImgs,
     boothDays,
+    boothComments,
   } = booth;
 
   let selectedDay;
@@ -231,6 +236,12 @@ export default function DetailedMapPage() {
   const [toast, setToast] = useState(false);
   const [toastText, setToastText] = useState('');
   const [likeCount, setLikeCount] = useState<number>(0);
+  const [commentCount, setCommentCount] = useState<number>(boothComments?.length || 0);
+
+  useEffect(() => {
+    setCommentCount(boothComments?.length || 0);
+  }, [boothComments]);
+
   useEffect(() => {
     if (booth && liked) {
       setLikeCount(liked);
@@ -337,7 +348,7 @@ export default function DetailedMapPage() {
           <svg width="24" height="21" viewBox="0 0 24 21" fill="current" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.8359 1.84349C19.1022 -0.805334 14.7424 -0.525083 12.0966 2.2051C12.035 2.26839 11.9296 2.26839 11.8592 2.2051C9.20466 -0.525083 4.84482 -0.805334 2.11992 1.84349C-0.604974 4.49231 -0.754403 9.15714 1.97049 11.9596L9.89028 20.105C11.0506 21.2983 12.9228 21.2983 14.0831 20.105L21.6777 12.2941L21.9941 11.9687C24.719 9.16618 24.6662 4.59176 21.8447 1.85253L21.8359 1.84349Z" fill="current" />
           </svg>
-          <p>좋아요</p>
+          <p>무한 좋아요</p>
         </button>
       </MapButtonBox>
       {toast && <Toast setToast={setToast} text={toastText} />}
@@ -358,12 +369,15 @@ export default function DetailedMapPage() {
           onClick={() => setShowInstruction(false)}
         >
           댓글
-          {}
+          (
+          {commentCount }
+          )
+          {' '}
         </button>
       </MapInfoBottom>
       {showInstruction ? (
         <BoothInstruction description={description || '아직 부스 소개가 없어요! \n 여러분의 댓글이 소중한 정보가 될 수 있습니다!'} />)
-        : (<BoothComment boothId={id} />)}
+        : (<BoothComment boothId={id} setCommentCount={setCommentCount} />)}
     </>
   );
 }

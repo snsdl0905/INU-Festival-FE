@@ -7,19 +7,18 @@ type ToastProps = {
 }
 
 const ToastBox = styled.div`
-    width: 100%;
-    max-width: 600px;
+    width: calc(100% - 32px);
+    max-width: 568px;
     position: fixed;
-    bottom: 120px;
+    bottom: calc(30px + 10vh);
     display: flex;
     background-color: #fafcff; opacity : 0.9;
     border-radius: 15px;
     padding: 10px;
-
+    
     p{
       margin: 0 auto;
       color: #1d1d1d;
-      padding-right: 16px;
     }
 `;
 
@@ -27,7 +26,7 @@ export default function Toast({ setToast, text }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setToast(false);
-    }, 1500);
+    }, 2500);
     return () => {
       clearTimeout(timer);
     };

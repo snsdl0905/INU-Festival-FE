@@ -7,36 +7,37 @@ import BoothComment from '../../types/BoothComment';
 import useUserStore from '../../hooks/useUserStore';
 
 const CommentTop = styled.div`
-    display: flex;
-    align-items: center;
-    padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
 
-    img{
-        margin-right: 1rem;
-        width: 20px;
-        
-    }
-    div{
-      margin-left:10px;
-    }
+  img{
+    margin-right: 10px;
+    width: 20px;
+      
+  }
+  div{
+    margin-left:10px;
+  }
 `;
 const CommentBox = styled.div`
-    padding: 3rem;
+  padding: 3rem;
 
-    p{
-        padding-left: 34px;
-        font-weight: 400;
-    }
+  p{
+    padding-left: 30px;
+    font-weight: 400;
+  }
 
-    h3{
-        color: #969FA9;
-        font-size: 1.4rem;
-    }
+  h3{
+    font-weight: 700;
+    color: #969FA9;
+    font-size: 1.4rem;
+  }
 
-    div{
-        color: #BBC7D3;
-        font-size: 1.4rem;
-    }
+  div{
+    color: #BBC7D3;
+    font-size: 1.4rem;
+  }
 `;
 const NoCommentBox = styled.div`
     height: 150px; 
@@ -99,6 +100,9 @@ const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
 function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') handleSendComment();
+  };
   return (
     <TextWrapper>
       <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
@@ -107,6 +111,7 @@ function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
           value={inputValue}
           maxLength={MAX_LENGTH}
           onChange={handleInputChange}
+          onKeyUp={(e) => handleEnter(e)}
         />
         <span>
           {inputValue.length}
@@ -156,7 +161,9 @@ const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentD
   );
 });
 
-export default function BoothComment({ boothId }: { boothId: string }) {
+export default function BoothComment(
+  { boothId, setCommentCount }: { boothId: string, setCommentCount: (value: number) => void; },
+) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
@@ -190,6 +197,8 @@ export default function BoothComment({ boothId }: { boothId: string }) {
       content: contents,
       emoji: randomEmoji,
     };
+
+    setCommentCount((prev: number) => prev + 1);
 
     fetch(`${process.env.REACT_APP_URL}/booth/comment/${boothId}`, {
       method: 'POST',
@@ -234,7 +243,6 @@ export default function BoothComment({ boothId }: { boothId: string }) {
         const { content, emoji } = boothCommentDetail;
         const nameLength = store.name.length;
         const name = store.name.substring(0, nameLength - 3) + store.name.substring(nameLength - 3).replace(/./g, '*');
-
         return (
           <CommentBox key={index}>
             <CommentTop>

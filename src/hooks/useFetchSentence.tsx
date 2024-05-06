@@ -9,5 +9,11 @@ type Sentences = {
 }
 
 export default function useFetchSentence() {
-  return useFetch<Sentences>(url);
+  const accessToken = localStorage.getItem('accessToken') || '';
+
+  return useFetch<Sentences>(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
 }
