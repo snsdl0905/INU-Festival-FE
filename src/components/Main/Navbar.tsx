@@ -134,7 +134,7 @@ export default function Navbar() {
                   fill={color}
                 />
               </svg>
-              <span>방명록</span>
+              <span>실시간 채팅</span>
             </StyledNavLink>
           </li>
 
