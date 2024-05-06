@@ -168,7 +168,7 @@ export default function BoothList({
   };
 
   const handleNavigate = (id: string, e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const isMark = (e.target as HTMLElement).isEqualNode(markerButton.current as HTMLElement);
+    const isMark = (e.target as HTMLElement).parentNode.isEqualNode(markerButton.current as HTMLElement);
     console.log(e.target);
     if (!isMark) {
       navigate(`/map/${id}`, { state: { date: selectedDay } });
@@ -204,9 +204,9 @@ export default function BoothList({
                       <span>{formatter.format(liked)}</span>
                     </LikedNumber>
                     <div>
-                      <button onClick={() => handleShowMarker(id)} type="button">
+                      <button ref={markerButton} onClick={() => handleShowMarker(id)} type="button">
                         <img src="marker.svg" alt="marker.svg" />
-                        <p ref={markerButton}>위치 보기</p>
+                        <p>위치 보기</p>
                       </button>
                     </div>
                   </NameBox>
