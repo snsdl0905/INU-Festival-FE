@@ -23,6 +23,7 @@ export default function Map() {
   const [selectedDay, setSelectedDay] = useState<string>(localStorage.getItem('day') || day);
   const [selectedCategory, setSelectedCategory] = useState<string>(localStorage.getItem('category') || '비주점');
   const [selectedBooth, setSelectedBooth] = useState<Booth[] | null>(null);
+  const [showMarker, setShowMarker] = useState<Booth[] | null>(null);
 
   const filtered = booths.filter((booth) => {
     const dayCount = booth.boothDays.filter((boothDay) => boothDay.day === selectedDay);
@@ -51,6 +52,8 @@ export default function Map() {
         selectedDay={selectedDay}
         selectedBooth={selectedBooth}
         setSelectedBooth={setSelectedBooth}
+        showMarker={showMarker}
+        setShowMarker={setShowMarker}
       />
       <BottomSheet
         setSelectedDay={setSelectedDay}
@@ -58,6 +61,7 @@ export default function Map() {
         setSelectedCategory={setSelectedCategory}
         selectedCategory={selectedCategory}
         booths={selectedBooth || filtered}
+        setShowMarker={setShowMarker}
       />
     </Container>
   );
