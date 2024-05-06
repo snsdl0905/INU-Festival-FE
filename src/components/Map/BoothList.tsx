@@ -37,7 +37,7 @@ const BoothContent = styled.div`
     flex-direction: column;
     div {
       color: #BBC7D3;
-      margin-top: 3px;
+      margin-top:2.6px;
       margin-bottom: 2.5px;
       margin-right: 5px;
       font-size: 11px;

@@ -3,7 +3,7 @@ import Booth from '../../types/Booth';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
   padding-left: 0;
-  padding-top: 10px;
+  padding-top: 9px;
   width: max-content;
   div{
     display: flex;
@@ -43,6 +43,7 @@ const MapInfoMiddle = styled.div<{$small: string }>`
         width: 19px;
         height: 19px;
       }
+      
     }
     div{
       padding: 1rem;
@@ -78,7 +79,9 @@ const MapInfoMiddle = styled.div<{$small: string }>`
       span{
         width: 16px;
         height: 16px;
+        
       }
+ 
     }
     
     span {
