@@ -119,7 +119,7 @@ const NameBox = styled.div`
     border-radius: 15px;
     align-items: center;
     justify-content: center;
-    width: fit-content;
+    width: max-content;
     margin-top: 5px;
     margin-left: 6px;
 
@@ -128,7 +128,7 @@ const NameBox = styled.div`
     }
 
     p{
-      padding-left: 2px;
+      padding-left: 3px;
     }
   }
 

@@ -242,7 +242,6 @@ export default function DetailedMapPage() {
     setCommentCount(boothComments?.length || 0);
   }, [boothComments]);
 
-
   useEffect(() => {
     if (booth && liked) {
       setLikeCount(liked);
@@ -374,7 +373,6 @@ export default function DetailedMapPage() {
           {commentCount }
           )
           {' '}
-          {console.log(boothComments?.length)}
         </button>
       </MapInfoBottom>
       {showInstruction ? (
