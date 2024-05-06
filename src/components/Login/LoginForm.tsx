@@ -23,6 +23,11 @@ const Container = styled.div`
     width: 100%;
     margin-top: 10px;
   }
+
+  img{
+    width: 121px;
+    height: 92px;
+  }
 `;
 
 const LmsButton = styled(Button)`
