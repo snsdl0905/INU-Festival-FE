@@ -25,7 +25,7 @@ const BoothContainer = styled.div`
     overflow-x: scroll;
     display: flex;
     padding-top: 23px;
-    padding-bottom: 23px;
+    padding-bottom: 20px;
     padding-right:10px;
     padding-left:10px;
     width: 100%;
@@ -86,13 +86,13 @@ const LikedNumber = styled.p`
 `;
 
 const Image = styled.div`
-  width: 150px;
-  height: 150px;
+  width: 154px;
+  height: 154px;
   border-radius: 12px;
 
   img{
-      width: 150px;
-      height: 150px;
+      width: 154px;
+      height: 154px;
       border-radius: 12px;
     }
 `;
