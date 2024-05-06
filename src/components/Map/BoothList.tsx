@@ -23,7 +23,10 @@ const BoothContainer = styled.div`
     flex: 1;
     overflow-x: scroll;
     display: flex;
-    padding: 10px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    padding-right:10px;
+    padding-left:10px;
     width: 100%;
     border-bottom: 1px solid #CEDCEA;
 `;
@@ -79,13 +82,13 @@ const LikedNumber = styled.p`
 `;
 
 const Image = styled.div`
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 12px;
 
   img{
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
       border-radius: 12px;
     }
 `;
