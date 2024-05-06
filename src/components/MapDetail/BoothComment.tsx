@@ -156,7 +156,9 @@ const BoothCommentList = ({ boothComments }) => boothComments.map((boothCommentD
   );
 });
 
-export default function BoothComment({ boothId }: { boothId: string }) {
+export default function BoothComment(
+  { boothId }: { boothId: string },
+) {
   const [inputValue, setInputValue] = useState('');
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
@@ -234,7 +236,6 @@ export default function BoothComment({ boothId }: { boothId: string }) {
         const { content, emoji } = boothCommentDetail;
         const nameLength = store.name.length;
         const name = store.name.substring(0, nameLength - 3) + store.name.substring(nameLength - 3).replace(/./g, '*');
-
         return (
           <CommentBox key={index}>
             <CommentTop>
