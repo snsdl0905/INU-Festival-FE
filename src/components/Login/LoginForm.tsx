@@ -122,7 +122,7 @@ export default function LoginForm() {
       </form>
       <Details>
         <span>로그인 정보는 포탈과 동일합니다</span>
-        <span>인천대학교 재학생만 로그인이 가능합니다</span>
+        <span>재학생만 로그인이 가능합니다</span>
         <span>아이디 찾기 / 비밀번호 찾기는</span>
         <span>PC에서 포탈을 이용하시기 바랍니다.</span>
       </Details>
