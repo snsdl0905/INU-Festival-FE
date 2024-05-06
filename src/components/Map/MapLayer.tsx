@@ -119,6 +119,7 @@ export default function MapLayer({
 
   useEffect(() => {
     setSelectedBooth(null);
+    setShowMarker(null);
   }, [Object.keys(filteredBooths).join()]);
 
   return (

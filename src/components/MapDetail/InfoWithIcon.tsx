@@ -3,7 +3,7 @@ import Booth from '../../types/Booth';
 
 const MapInfoMiddle = styled.div<{$small: string }>`
   padding-left: 0;
-  padding-top: 9px;
+  padding-top: 5px;
   width: max-content;
   div{
     display: flex;
@@ -68,6 +68,9 @@ const MapInfoMiddle = styled.div<{$small: string }>`
 
   ${(props) => (props.$small === 'true') && css`
     font-size: 12px;
+    div{
+      padding-bottom: 3px;
+    }
 
     :first-child{
       span{
