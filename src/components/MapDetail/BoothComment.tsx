@@ -29,7 +29,7 @@ const CommentBox = styled.div`
   }
 
   h3{
-    font-weight: 600;
+    font-weight: 700;
     color: #969FA9;
     font-size: 1.4rem;
   }
