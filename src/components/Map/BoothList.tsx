@@ -51,6 +51,7 @@ const BoothContent = styled.div`
       font-weight: 800;
       line-height: normal;
       letter-spacing: -0.64px;
+      width: max-content;
     }
 `;
 
