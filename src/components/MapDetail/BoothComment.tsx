@@ -99,6 +99,9 @@ const MAX_LENGTH = 50;
 const emojis = ['happy', 'funny', 'thrilling', 'excited'];
 
 function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
+  const handleEnter = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') handleSendComment();
+  };
   return (
     <TextWrapper>
       <TextBox $isMaximum={inputValue.length >= MAX_LENGTH}>
@@ -107,6 +110,7 @@ function CommentInput({ inputValue, handleInputChange, handleSendComment }) {
           value={inputValue}
           maxLength={MAX_LENGTH}
           onChange={handleInputChange}
+          onKeyUp={(e) => handleEnter(e)}
         />
         <span>
           {inputValue.length}
