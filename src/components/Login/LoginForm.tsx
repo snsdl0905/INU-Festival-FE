@@ -122,7 +122,6 @@ export default function LoginForm() {
       </form>
       <Details>
         <span>로그인 정보는 포탈과 동일합니다</span>
-        <span>학생은 학번, 교원은 교번, 직원은 사번입니다.</span>
         <span>아이디 찾기 / 비밀번호 찾기는</span>
         <span>PC에서 포탈을 이용하시기 바랍니다.</span>
       </Details>
