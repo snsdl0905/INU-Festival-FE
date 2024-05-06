@@ -7,36 +7,37 @@ import BoothComment from '../../types/BoothComment';
 import useUserStore from '../../hooks/useUserStore';
 
 const CommentTop = styled.div`
-    display: flex;
-    align-items: center;
-    padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
 
-    img{
-        margin-right: 1rem;
-        width: 20px;
-        
-    }
-    div{
-      margin-left:10px;
-    }
+  img{
+    margin-right: 10px;
+    width: 20px;
+      
+  }
+  div{
+    margin-left:10px;
+  }
 `;
 const CommentBox = styled.div`
-    padding: 3rem;
+  padding: 3rem;
 
-    p{
-        padding-left: 34px;
-        font-weight: 400;
-    }
+  p{
+    padding-left: 30px;
+    font-weight: 400;
+  }
 
-    h3{
-        color: #969FA9;
-        font-size: 1.4rem;
-    }
+  h3{
+    font-weight: 600;
+    color: #969FA9;
+    font-size: 1.4rem;
+  }
 
-    div{
-        color: #BBC7D3;
-        font-size: 1.4rem;
-    }
+  div{
+    color: #BBC7D3;
+    font-size: 1.4rem;
+  }
 `;
 const NoCommentBox = styled.div`
     height: 150px; 
