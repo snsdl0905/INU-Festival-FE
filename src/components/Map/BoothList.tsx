@@ -24,16 +24,20 @@ const BoothContainer = styled.div`
     flex: 1;
     overflow-x: scroll;
     display: flex;
-    padding: 10px;
+    padding-top: 23px;
+    padding-bottom: 23px;
+    padding-right:10px;
+    padding-left:10px;
     width: 100%;
 `;
 
 const BoothContent = styled.div`
     margin-left: 20px;
-
+    display:flex;
+    flex-direction: column;
     div {
       color: #BBC7D3;
-      margin-top: 3px;
+      margin-top:2.6px;
       margin-bottom: 2.5px;
       margin-right: 5px;
       font-size: 11px;
@@ -80,13 +84,13 @@ const LikedNumber = styled.p`
 `;
 
 const Image = styled.div`
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   border-radius: 12px;
 
   img{
-      width: 160px;
-      height: 160px;
+      width: 150px;
+      height: 150px;
       border-radius: 12px;
     }
 `;

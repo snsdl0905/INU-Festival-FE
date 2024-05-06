@@ -11,7 +11,6 @@ const Container = styled.div`
   width: 100%;
   position: relative;
   height: 400px;
-  margin-bottom: 20px;
   top: 0;
 `;
 
