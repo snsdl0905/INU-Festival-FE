@@ -21,16 +21,17 @@ const HelpTitle = styled.div`
 
 const HelpElement = styled.li`
 width: 100%;
-height: 23px;
+height: 20px;
 flex-shrink: 0;
 margin-bottom:27px;
 display:flex;
+align-items: center;
 cursor: pointer;
 `;
 
 const HelpIcon = styled.img`
 width: 18px;
-height: 18px;
+height: 20px;
 flex-shrink: 0;
 margin-right: 12px;
 `;
@@ -47,6 +48,9 @@ const Helplink = styled.button`
   background-color: transparent;
   cursor: pointer;
   min-width: fit-content;
+  height: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 `;
 
 const CopyTextArea = styled.textarea`
