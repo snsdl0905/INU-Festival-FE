@@ -24,8 +24,8 @@ const BoothContainer = styled.div`
     flex: 1;
     overflow-x: scroll;
     display: flex;
-    padding-top: 23px;
-    padding-bottom: 20px;
+    padding-top: 17px;
+    padding-bottom: 12px;
     padding-right:10px;
     padding-left:10px;
     width: 100%;
