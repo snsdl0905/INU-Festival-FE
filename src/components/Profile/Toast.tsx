@@ -26,7 +26,7 @@ export default function Toast({ setToast, text }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setToast(false);
-    }, 1500);
+    }, 2500);
     return () => {
       clearTimeout(timer);
     };
