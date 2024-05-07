@@ -99,7 +99,7 @@ const Item = styled.div`
 `;
 
 type ScheduleProps = {
-    performs: Perform[];
+  performs: Perform[];
 }
 
 export default function Schedule({ performs }: ScheduleProps) {
@@ -113,10 +113,12 @@ export default function Schedule({ performs }: ScheduleProps) {
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       const seconds = now.getSeconds().toString().padStart(2, '0');
-      const month = now.getMonth();
+      const month = now.getMonth() + 1;
       const date = now.getDate();
+      console.log(`${hours}:${minutes}:${seconds}`);
+      console.log(`${month}월 0${date}일`);
       setCurrentTime(`${hours}:${minutes}:${seconds}`);
-      setCurrentDate(`${month}월 ${date}일`);
+      setCurrentDate(`${month}월 0${date}일`);
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
