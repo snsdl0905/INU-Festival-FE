@@ -35,8 +35,9 @@ export default function LineUp({
 }: LineUpProps) {
   const { data } = useFetchPerforms();
 
-  const lineups = data?.performs?.filter((perform) => perform.category === '연예인') || [];
+  const lineups = data?.performs?.filter((perform) => perform.category === '연예인' && perform.day === 'day1') || [];
 
+  console.log(lineups);
   return (
     <Swiper
       spaceBetween={spaceBetween}
