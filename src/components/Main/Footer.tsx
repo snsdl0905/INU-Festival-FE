@@ -48,12 +48,10 @@ export default function Footer() {
           <h3>
             <p>Front End</p>
             <p>Back End</p>
-            <p>Design</p>
           </h3>
           <div>
             <p>유소정, 이의영, 이희주</p>
             <p>김선희, 이헌도</p>
-            <p>서찬해</p>
           </div>
         </Item>
       </Section>
